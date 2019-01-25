@@ -1,0 +1,49 @@
+﻿@model MVC2013.Models.Razon_Social_Contacto
+
+@{
+    ViewBag.Title = Resources.Resources.contacto+ "_" + Resources.Resources.eliminar;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Relacion Entre Contacto y Razon Social</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Resources.Resources.contacto
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contactos.nombre)
+        </dd>
+        <dt>
+            Razon Social
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Razones_Sociales.razon_social)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-sm btn-danger" type="submit">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            </div>
+        </div>
+
+
+    }
+</div>
+<div>
+    <button class="btn-sm btn-bitbucket" onclick="location.href = '@Url.Action("Details_RS", new { id_Razon_Social = @ViewBag.id})'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar a Detalles de Razon Social
+    </button>
+</div>

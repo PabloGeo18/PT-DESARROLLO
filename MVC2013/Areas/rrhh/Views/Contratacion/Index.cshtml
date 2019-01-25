@@ -1,0 +1,205 @@
+﻿@model IEnumerable<MVC2013.Models.Contratacion>
+
+@{
+    ViewBag.Title = Resources.Resources.contratacion + "_" + Resources.Resources.lista;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<!--Confirmar Eliminación-->
+<div class="modal fade" id="confirm_delete" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-red">
+                @Resources.Resources.confirmacion
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                @Resources.Resources.confirmacion_terminar_contrato
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger" id="btn_ok" data-id="">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Confirmar Terminación de Contrato-->
+<div class="modal fade" id="terminar_contrato" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        @using (Html.BeginForm("Terminar_Contrato", "Contratacion", FormMethod.Post))
+        {
+        <div class="modal-content">
+            <div class="modal-header bg-red">
+                @Resources.Resources.confirmacion
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    @Resources.Resources.confirmacion_terminar_contrato
+                    <input hidden id="id_contratacion" name="id" value="" />
+                </div>
+                <div class="form-group">
+                    <b>@Resources.Resources.fecha_terminar_contrato</b>
+                    <div style="position:relative">
+                        <input type='text' class="form-control" id="fecha_contrato" name="fecha_contrato" required />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger" type="submit">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+<!--Modal Mensaje-->
+<div class="modal fade" id="mostrar_mensaje" data-backdrop="static" role="dialog">
+    <div style="left:auto" class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <label id="titulo">Prueba</label>
+            </div>
+            <div class="modal-body">
+                <label id="mensaje">Prueba</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>@Resources.Resources.contratacion_lista</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="alert alert-danger">
+            @Html.ValidationSummary(true, "", new { })
+        </div>
+    </div>
+}
+
+<div class="form-group">
+    <button class="btn btn-sm btn-success" onclick="location.href = '@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</div>
+<div class="table-responsive">
+
+    <table class="table" id="lista_contratos">
+        <tr>
+            <th>@Resources.Resources.empresa</th>
+            <th>@Resources.Resources.empleado</th>
+            <th>@Resources.Resources.puesto</th>
+            <th>@Resources.Resources.estado</th>
+            <th>@Resources.Resources.acciones</th>
+        </tr>
+        <tr>
+            <td><input type="text" id="empresa" autocomplete="off" /></td>
+            <td><input type="text" id="empleado" autocomplete="off" /></td>
+            <td><input type="text" id="puesto" autocomplete="off" /></td>
+            <td><input type="text" id="estado" autocomplete="off" /></td>
+            <td></td>
+        </tr>
+        @foreach (var contrato in Model)
+        {
+            <tr id="t_@contrato.id_contratacion">
+                <td class="c_empresa">@contrato.Empresa.nombre</td>
+                <td class="c_empleado">@contrato.Empleado.primer_apellido @contrato.Empleado.segundo_apellido, @contrato.Empleado.primer_nombre @contrato.Empleado.segundo_nombre</td>
+                <td class="c_puesto">@contrato.Puesto.nombre</td>
+                @if (contrato.activo)
+                {
+                    <td class="c_estado">@Resources.Resources.activo</td>
+                }
+                else
+                {
+                    <td class="c_estado">@Resources.Resources.finalizada</td>
+                }
+                <td>
+                    <button class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("Edit", new { id = contrato.id_contratacion })'">
+                        <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                    </button>
+                    <button class="btn btn-info btn-sm" onclick="location.href='@Url.Action("Details", new { id = contrato.id_contratacion })'">
+                        <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                    </button>
+                    <!--<button class="btn btn-danger btn-sm btn_delete" data-toggle="modal" data-target="#confirm_delete" data-id="@contrato.id_contratacion">
+                        <span class="glyphicon glyphicon-folder-close"></span>&nbsp;@Resources.Resources.terminar
+                    </button>-->
+                    @if (contrato.activo)
+                    {
+                        <button class="btn btn-danger btn-sm btn_terminate" data-toggle="modal" data-target="#terminar_contrato" data-id="@contrato.id_contratacion">
+                            <span class="glyphicon glyphicon-folder-close"></span>&nbsp;@Resources.Resources.terminar
+                        </button>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>
+<script>
+    $(function () {
+
+        //Transferir ID
+        $(document).on('click', '.btn_delete', function () {
+            $('#btn_ok').data('id', $(this).data('id'));
+        });
+
+        $(document).on('click', '.btn_terminate', function () {
+            $('#id_contratacion').val($(this).data('id'));
+        });
+
+        //Terminar contrato
+        $('#btn_ok').click(function () {
+            $('#confirm_delete').toggle('toggle');
+            var id = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("Terminar", "Contratacion")',
+                type: "POST",
+                data: { 'id': id },
+                error: function () {
+                    alert("Error con la conexión con el servidor.");
+                },
+                success: function (response) {
+                    if (response.response == true) {
+                        $('#t_' + id.toString()).remove();
+                    }
+                    else {
+                        $('#mensaje').text(response.msg);
+                        $('#titulo').text("Error");
+                        $('#mostrar_mensaje').modal('show');
+                    }
+                }
+            });
+        });
+
+        $('#fecha_contrato').datetimepicker(
+                                    {
+                                        viewMode: 'days',
+                                        format: 'DD/MM/YYYY',
+                                    });
+
+        
+
+        //Filtro de la tabla de empleados
+        $('#lista_contratos').filterByMultiColumn([
+            {
+                filterClass: 'c_empresa',
+                field: 'empresa'
+            },
+            {
+                filterClass: 'c_empleado',
+                field: 'empleado'
+            },
+            {
+                filterClass: 'c_puesto',
+                field: 'puesto'
+            }
+        ]);
+    });
+
+</script>

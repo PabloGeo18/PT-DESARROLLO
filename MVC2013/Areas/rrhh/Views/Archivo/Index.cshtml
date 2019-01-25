@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MVC2013.Models.Archivo>
+
+@{
+    ViewBag.Title = @Resources.Resources.archivo + "_" + @Resources.Resources.editar;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+            
+<h2>@Resources.Resources.archivo_lista</h2>
+
+<button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Create")'">
+    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+</button>
+
+<div class="table-responsive" style="max-heigh:400px; overflow-y:auto">
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <th>@Resources.Resources.archivo_nombre</th>
+        <th>@Resources.Resources.archivo_tipo_archivo</th>
+        <th>@Resources.Resources.archivo_ubicacion</th>
+        <th>@Resources.Resources.acciones</th>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo_Archivo.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ubicacion)
+                </td>
+                <td>
+                    <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.id_archivo })'">
+                        @Resources.Resources.detalle
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.id_archivo })'">
+                        @Resources.Resources.editar
+                    </button>
+                    <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = item.id_archivo })'">
+                        @Resources.Resources.eliminar
+                    </button>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

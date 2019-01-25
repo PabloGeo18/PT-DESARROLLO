@@ -1,0 +1,1485 @@
+﻿@model MVC2013.Areas.rrhh.Models.EmpleadoContrato
+
+@using System.Globalization;
+@{
+    ViewBag.Title = Resources.Resources.empleado + "_" + Resources.Resources.detalle;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+    DateTimeFormatInfo mfi = new DateTimeFormatInfo();
+}
+
+
+<!--Modal para insertar archivos-->
+<div class="modal fade " id="nuevo_archivo" data-backdrop="static">
+    <div style="left: auto" class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("UploadFiles", "Empleado", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="hidden" name="id_empleado" value="@Model.empleado.id_empleado" />
+                <div class="modal-header bg-green">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    @Resources.Resources.empleado_archivos_subir
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover">
+                                <tr>
+                                    <th style="width:60%">@Resources.Resources.archivo</th>
+                                    <th style="width:40%">@Resources.Resources.tipo_archivo_nombre</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="file" id="lista_archivos" name="lista_archivos" size="20" />
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("id_tipo_archivo", null, "", htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%" })
+                                        @Html.ValidationMessage("id_tipo_archivo")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="file" id="lista_archivos" name="lista_archivos" size="23" />
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("id_tipo_archivo", null, "", htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%" })
+                                        @Html.ValidationMessage("id_tipo_archivo")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="file" id="lista_archivos" name="lista_archivos" size="23" />
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("id_tipo_archivo", null, "", htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%" })
+                                        @Html.ValidationMessage("nuevo_archivo")
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.crear
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Modal para insertar direcciones-->
+<div class="modal fade" id="nueva_direccion" data-backdrop="static">
+    <div style="left: auto" class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("NuevaDireccion", "Empleado", FormMethod.Post))
+            {
+                <input type="hidden" name="id_empleado" value="@Model.empleado.id_empleado" />
+                <div class="modal-header bg-green">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    @Resources.Resources.empleado_dirección_nueva
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 form-group">
+                            <label>Dirección</label>
+                            <input type="text" class="form-control" name="direccion_input" id="direccion_input" maxlength="150" style="max-width:100%" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            @Html.Label(Resources.Resources.tipo_direccion_nombre, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("id_tipo_direccion", null, "", htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @required = "required" })
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            @Html.Label(Resources.Resources.empleado_direcciones_municipio, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("id_municipio", null, "", htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @required = "required" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-save"></span> @Resources.Resources.crear
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Modal para el detalle y editar direcciones-->
+<div class="modal fade" id="ver_direccion" data-backdrop="static">
+    <div style="left: auto" class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("EditarDireccion", "Empleado", FormMethod.Post))
+            {
+                @Html.Hidden("id_empleado_direcciones")
+                <div class="modal-header bg-blue">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    @Resources.Resources.empleado_dirección_nueva
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 form-group">
+                            <label>Dirección</label>
+                            <input type="text" class="form-control" name="direccion_input" id="ed_direccion_input" maxlength="150" style="max-width:100%" disabled />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            @Html.Label(@Resources.Resources.tipo_direccion_nombre, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("id_tipo_direccion", null, "---", htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @disabled = "disabled", @id = "ed_tipo_direccion" })
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            @Html.Label(@Resources.Resources.empleado_direcciones_municipio, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("id_municipio", null, "---", htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @disabled = "disabled", @id = "ed_municipio" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="desb_ed_dir"><span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar</button>
+                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Modal para insertar teléfonos-->
+<div class="modal fade modal" id="nuevo_telefono" data-backdrop="static">
+    <div style="left: auto" class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("NuevoTelefono", "Empleado", FormMethod.Post))
+            {
+                <input type="hidden" name="id_empleado" value="@Model.empleado.id_empleado" />
+                <div class="modal-header bg-green">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    @Resources.Resources.empleado_telefono_nuevo
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            @Html.Label(@Resources.Resources.tipo_telefono_nombre, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("id_tipo_telefono", null, "", htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @required = "required" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label(@Resources.Resources.empleado_telefono, htmlAttributes: new { @class = "control-label" })
+                            <input name="numero" id="numero" type="number" required class="form-control" />
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label(@Resources.Resources.empleado_telefono_extension, htmlAttributes: new { @class = "control-label" })
+                            <input name="extension" id="extension" type="number" class="form-control" />
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label(@Resources.Resources.empleado_telefono_comentario, htmlAttributes: new { @class = "control-label" })
+                            <input name="comentario" id="comentario" type="text" maxlength="150" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.crear</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Modal para el detalle y editar telefonos-->
+<div class="modal fade" id="ver_telefono" data-backdrop="static">
+    <div style="left:auto" class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("EditarTelefono", "Empleado", FormMethod.Post))
+            {
+                <input name="id_empleado_telefono" id="id_empleado_telefono" type="hidden" class="form-control" />
+                <div class="modal-header bg-blue">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    @Resources.Resources.empleado_telefono_telefono
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            @Html.Label(@Resources.Resources.tipo_telefono_nombre, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("id_tipo_telefono", null, htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @disabled = "disabled", @id = "ed_tipo_telefono", @required = "required" })
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label(@Resources.Resources.empleado_telefono, htmlAttributes: new { @class = "control-label" })
+                            <input name="ed_numero" id="ed_numero" type="number" required class="form-control" disabled />
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label(@Resources.Resources.empleado_telefono_extension, htmlAttributes: new { @class = "control-label" })
+                            <input name="ed_extension" id="ed_extension" type="number" class="form-control" disabled />
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label(@Resources.Resources.empleado_telefono_comentario, htmlAttributes: new { @class = "control-label" })
+                            <input name="ed_comentario_tel" id="ed_comentario_tel" type="text" maxlength="150" class="form-control" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn" id="desb_ed_tel"><span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar</button>
+                    <button type="submit" class="btn btn-success btn"><span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@if (Model.contrato != null)
+{
+    <!--Confirmar Terminación de Contrato-->
+    <div class="modal fade" id="terminar_contrato" data-backdrop="static" role="dialog">
+        <div style="left: auto;" class="modal-dialog modal-sm ">
+            @using (Html.BeginForm("Terminar_Contrato", "Contratacion", FormMethod.Post))
+            {
+                <div class="modal-content">
+                    <div class="modal-header bg-red">
+                        @Resources.Resources.confirmacion
+                        <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            @Resources.Resources.confirmacion_terminar_contrato
+                            <input hidden id="id_contratacion" name="id" value="@Model.contrato.id_contratacion" />
+                        </div>
+                        <div class="form-group">
+                            <label>Motivo de Baja</label>
+                            @Html.DropDownList("motivo_baja", null, "---", htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @required = "required" })
+                        </div>
+                        <div class="form-group">
+                            <label>Razón de Baja</label>
+                            <input type="text" class="form-control" name="razon_baja" />
+                        </div>
+                        <div class="form-group">
+                            <b>@Resources.Resources.fecha_terminar_contrato</b>
+                            <div style="position:relative">
+                                <input type='text' class="form-control" id="fecha_contrato" name="fecha_contrato" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-sm btn-danger" type="submit">
+                            @Resources.Resources.terminar
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!--Documentos Nuevos del Contrato-->
+    <div class="modal fade" id="doc_contrato" data-backdrop="static" role="dialog">
+        <div style="left: auto" class="modal-dialog modal-sm ">
+            <div class="modal-content">
+                <div class="modal-header bg-green">
+                    Documentos del Contrato
+                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                </div>
+                <div class="modal-body" id="reportes_contrato">
+                    <ul class="list-group">
+                        @foreach (var item in Model.contrato.Puesto.Documento_Puesto.Where(d => d.activo))
+                        {
+                            <li class="list-group-item highlight" onclick="location.href='@Url.Action(item.Documentos.reporte, new { id = Model.contrato.id_contratacion })'">@item.Documentos.nombre</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+<!--Modal Mensaje-->
+<div class="modal fade" id="mostrar_mensaje" data-backdrop="static" role="dialog">
+    <div style="left:auto" class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <label id="titulo">--</label>
+            </div>
+            <div class="modal-body">
+                <label id="mensaje">--</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal para Nuevas Experiencias Laborales-->
+<div class="modal fade modal" id="nueva_experiencia_laboral" data-backdrop="static">
+    <div style="left: auto" class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("NuevaExperienciaLaboral", "Empleado", FormMethod.Post))
+            {
+                <input type="hidden" name="id_empleado" value="@Model.empleado.id_empleado" />
+                <div class="modal-header bg-green">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    Nueva Experiencia Laboral
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                            <label>Empresa</label>
+                            <input type="text" class="form-control" autocomplete="off" required name="empresa" style="max-width:100%" maxlength="100" />
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                            <label>Puesto</label>
+                            <input type="text" class="form-control" autocomplete="off" required name="puesto" style="max-width:100%" maxlength="100" />
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                            <label>Jefe</label>
+                            <input type="text" class="form-control" autocomplete="off" name="jefe" style="max-width:100%" maxlength="100" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                            <label>Telefono</label>
+                            <input type="number" class="form-control" autocomplete="off" name="telefono" style="max-width:100%" />
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-xs-12 col-sm-8 form-group">
+                            <label>Dirección</label>
+                            <input type="text" class="form-control" autocomplete="off" name="direccion" style="max-width:100%" maxlength="100" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4 form-group">
+                            <label>Fecha Inicio</label>
+                            <div style="position:relative">
+                                <input type='text' required autocomplete="off" class="form-control" name="fecha_inicio" id="c_el_fecha_inicio" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4 form-group">
+                            <label>Fecha Fin</label>
+                            <div style="position:relative">
+                                <input type='text' required autocomplete="off" class="form-control" name="fecha_fin" id="c_el_fecha_fin" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4 form-group">
+                            <label>Comentario</label>
+                            <input type="text" class="form-control" name="comentario" style="max-width:100%" maxlength="500" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.crear</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Modal para el detalle y editar experiencias laborales-->
+<div class="modal fade" id="ver_experiencia_laboral" data-backdrop="static">
+    <div style="left:auto" class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("EditarExperienciaLaboral", "Empleado", FormMethod.Post))
+            {
+                <input name="id" id="id_empleado_experiencia_laboral" type="hidden" class="form-control" />
+                <div class="modal-header bg-blue">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    Experiencia Laboral
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                            <label>Empresa</label>
+                            <input type="text" class="form-control" autocomplete="off" id="ed_el_empresa" required name="empresa" style="max-width:100%" maxlength="100" />
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                            <label>Puesto</label>
+                            <input type="text" class="form-control" autocomplete="off" id="ed_el_puesto" required name="puesto" style="max-width:100%" maxlength="100" />
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                            <label>Jefe</label>
+                            <input type="text" class="form-control" autocomplete="off" id="ed_el_jefe" name="jefe" style="max-width:100%" maxlength="100" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                            <label>Telefono</label>
+                            <input type="number" class="form-control" autocomplete="off" id="ed_el_telefono" name="telefono" style="max-width:100%" />
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-xs-12 col-sm-8 form-group">
+                            <label>Dirección</label>
+                            <input type="text" class="form-control" autocomplete="off" id="ed_el_direccion" name="direccion" style="max-width:100%" maxlength="100" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4 form-group">
+                            <label>Fecha Inicio</label>
+                            <div style="position:relative">
+                                <input type='text' required autocomplete="off" class="form-control" name="fecha_inicio" id="ed_el_fecha_inicio" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4 form-group">
+                            <label>Fecha Fin</label>
+                            <div style="position:relative">
+                                <input type='text' required autocomplete="off" class="form-control" name="fecha_fin" id="ed_el_fecha_fin" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4 form-group">
+                            <label>Comentario</label>
+                            <input type="text" class="form-control" name="comentario" id="ed_el_comentario" style="max-width:100%" maxlength="500" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn" id="desb_ed_el"><span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar</button>
+                    <button type="submit" class="btn btn-success btn" id="btn_editar_experiencia_laboral"><span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-7 col-md-7 col-xs-12 col-sm-7">
+        <h3 style="text-align:left; margin-top:64px">
+            @(Model.empleado.id_empleado.ToString() + " - " +
+        Model.empleado.primer_nombre + " " +
+        (!String.IsNullOrEmpty(Model.empleado.segundo_nombre) ? Model.empleado.segundo_nombre + " " : "") +
+        Model.empleado.primer_apellido + " " +
+        (!String.IsNullOrEmpty(Model.empleado.segundo_apellido) ? Model.empleado.segundo_apellido : ""))
+        </h3>
+    </div>
+    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-3" style="margin-top:64px; text-align:right">
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-success" onclick="location.href='@Url.Action("Get_Hoja_Informacion", new { id = Model.empleado.id_empleado })'">
+                Hoja de Información
+            </button>
+            <button type="button" class="btn btn-sm btn-success" onclick="location.href='@Url.Action("Get_Hoja_Vida", new { id = Model.empleado.id_empleado })'">
+                Hoja de Vida
+            </button>
+        </div>
+
+    </div>
+    <div class="col-lg-2 col-md-2 col-xs-12 col-sm-2" style="text-align:end">
+        <img width="95" height="100" src="@Url.Action("GetImage", "Empleado", new { id = Model.empleado.id_empleado })" />
+    </div>
+</div>
+
+
+
+<!--Detalles del empleado-->
+<div id="main">
+    @using (Html.BeginForm("EditEmpleado", "Empleado", FormMethod.Post, new { enctype = "multipart/form-data", id = "editar_empleado_form" }))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.empleado.id_empleado)
+        <input hidden id="tipo_foto" value="0" name="tipo_foto" />
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" class="a_empleado" href="#datos_personales">@Resources.Resources.empleado_datos_personales</a></li>
+            <li><a data-toggle="tab" class="a_empleado" href="#imagen_empleado">@Resources.Resources.empleado_imagen</a></li>
+            <li><a data-toggle="tab" class="a_empleado" href="#informacion_adicional">@Resources.Resources.empleado_informacion_adicional</a></li>
+            <li><a data-toggle="tab" class="a_info" href="#contrato">Contrato</a></li>
+            <li><a data-toggle="tab" class="a_info" href="#direccion">@Resources.Resources.empleado_direccion</a></li>
+            <li><a data-toggle="tab" class="a_info" href="#contacto">@Resources.Resources.empleado_contacto</a></li>
+            <li><a data-toggle="tab" class="a_info" href="#experiencia_laboral">Experiencia Laboral</a></li>
+            <li><a data-toggle="tab" class="a_info" href="#archivos">Archivos</a></li>
+            <li><a data-toggle="tab" class="a_empleado" href="#auditoria">Auditoria</a></li>
+        </ul>
+        <div class="tab-content">
+            <!--Datos personales-->
+            <div class="tab-pane fade in active" id="datos_personales">
+                <div class="row">
+                    <!--Campos-->
+                    <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading bg-blue">
+                                <h4 class="panel-title">@Resources.Resources.informacion_personal</h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-4 form-group">
+                                        @Html.Label(Resources.Resources.empleado_dpi, Resources.Resources.empleado_dpi.ToUpper(), new { htmlAttributes = new { @class = "col-md-2" } })
+                                        @Html.EditorFor(model => model.empleado.dpi, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.empleado.dpi, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-4 form-group">
+                                        @Html.Label(@Resources.Resources.empleado_dpi_direccion, new { htmlAttributes = new { @class = "col-md-2" } })
+                                        @Html.DropDownListFor(model => model.empleado.id_municipio_dpi, (IEnumerable<SelectListItem>)ViewBag.id_municipio_dpi, htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @disabled = "disabled", @required = "required" })
+                                    </div>
+                                    <div class="col-lg-4 form-group">
+                                        @Html.Label(@Resources.Resources.empleado_estado_civil, htmlAttributes: new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.empleado.id_estado_civil, (IEnumerable<SelectListItem>)ViewBag.id_estado_civil, htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @disabled = "disabled", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 form-group">
+                                        @Html.Label(@Resources.Resources.empleado_primer_nombre, new { htmlAttributes = new { @class = "col-md-2" } })
+                                        @Html.EditorFor(model => model.empleado.primer_nombre, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.empleado.primer_nombre, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-4 form-group">
+                                        @Html.Label(@Resources.Resources.empleado_primer_apellido, new { htmlAttributes = new { @class = "col-md-2" } })
+                                        @Html.EditorFor(model => model.empleado.primer_apellido, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.empleado.primer_apellido, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-4 form-group">
+                                        @Html.Label(@Resources.Resources.empleado_apellido_casada, new { htmlAttributes = new { @class = "col-md-2" } })
+                                        @Html.EditorFor(model => model.empleado.apellido_casada, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                        @Html.ValidationMessageFor(model => model.empleado.apellido_casada, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 form-group">
+                                        @Html.Label(@Resources.Resources.empleado_segundo_nombre, new { htmlAttributes = new { @class = "col-md-2" } })
+                                        @Html.EditorFor(model => model.empleado.segundo_nombre, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                        @Html.ValidationMessageFor(model => model.empleado.segundo_nombre, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-4 form-group">
+                                        @Html.Label(@Resources.Resources.empleado_segundo_apellido, new { htmlAttributes = new { @class = "col-md-2" } })
+                                        @Html.EditorFor(model => model.empleado.segundo_apellido, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                        @Html.ValidationMessageFor(model => model.empleado.segundo_apellido, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-4 form-group">
+                                        @Html.Label(Resources.Resources.empleado_nit, Resources.Resources.empleado_nit, new { htmlAttributes = new { @class = "col-md-2" } })
+                                        @Html.EditorFor(model => model.empleado.nit, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                        @Html.ValidationMessageFor(model => model.empleado.nit, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        @Html.Label(@Resources.Resources.empleado_fecha_nacimiento, htmlAttributes: new { @class = "control-label" })
+                                        <div style="position:relative">
+                                            <input type='text' class="form-control" disabled required id="fecha_nacimiento" name="empleado.fecha_nacimiento" value="@Model.empleado.fecha_nacimiento.ToString("dd/MM/yyyy")" />
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.empleado.fecha_nacimiento, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-4">
+                                        @Html.Label(@Resources.Resources.empleado_nacionalidad, htmlAttributes: new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.empleado.id_pais_nacionalidad, (IEnumerable<SelectListItem>)ViewBag.id_pais_nacionalidad, htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @disabled = "disabled", @required = "required" })
+                                        @Html.ValidationMessageFor(model => model.empleado.id_pais_nacionalidad, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-4">
+                                        @Html.Label(@Resources.Resources.empleado_pasaporte, Resources.Resources.empleado_pasaporte, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.empleado.pasaporte, "", new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                        @Html.ValidationMessageFor(model => model.empleado.pasaporte, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--Academicos y otros-->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading bg-aqua">
+                                <h4 class="panel-title">@Resources.Resources.academicos_otros</h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            @Html.CheckBoxFor(model => model.empleado.sabe_leer, new { disabled = "disabled" })
+                                            @Html.Label(@Resources.Resources.empleado_sabe_leer, htmlAttributes: new { @class = "control-label ", @for = "sabe_leer" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            @Html.CheckBoxFor(model => model.empleado.sabe_escribir, new { disabled = "disabled" })
+                                            @Html.Label(@Resources.Resources.empleado_sabe_escribir, htmlAttributes: new { @class = "control-label ", @for = "sabe_escribir" })
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            @Html.CheckBoxFor(model => model.empleado.servicio_militar, new { disabled = "disabled" })
+                                            @Html.Label(@Resources.Resources.empleado_servicio_militar, htmlAttributes: new { @class = "control-label ", @for = "servicio_militar" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 form-group">
+                                        @Html.Label("Género", new { htmlAttributes = new { @class = "control-label" } })
+                                        @Html.DropDownListFor(model => model.empleado.id_genero, (IEnumerable<SelectListItem>)ViewBag.id_genero, "---", htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @disabled = "disabled" })
+                                        @Html.ValidationMessageFor(model => model.empleado.id_genero, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 form-group">
+                                        @Html.Label("Estatura (cm)", htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.empleado.estatura, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @required = "required", id = "estatura_input" } })
+                                        @Html.ValidationMessageFor(model => model.empleado.estatura, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 form-group">
+                                        @Html.Label(@Resources.Resources.empleado_peso)
+                                        @Html.EditorFor(model => model.empleado.peso, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.empleado.peso, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+                                        @Html.Label(@Resources.Resources.empleado_estudio, htmlAttributes: new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.empleado.id_grado_estudio, (IEnumerable<SelectListItem>)ViewBag.id_grado_estudio, htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @disabled = "disabled", @selecteditem = @Model.empleado.Grado_Estudio.nombre, @required = "required" })
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-group">
+                                        @Html.Label(@Resources.Resources.empleado_profesion, htmlAttributes: new { @class = "control-label" })
+                                        @Html.DropDownListFor(model => model.empleado.id_profesion, (IEnumerable<SelectListItem>)ViewBag.id_profesion, htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @disabled = "disabled", @required = "required" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                                        @Html.Label(@Resources.Resources.empleado_afiliacion_igss, new { htmlAttributes = new { @class = "col-md-2" } })
+                                        @Html.EditorFor(model => model.empleado.afiliacion_igss, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                        @Html.ValidationMessageFor(model => model.empleado.afiliacion_igss, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                                        @Html.Label(@Resources.Resources.empleado_afiliacion_irtra, new { htmlAttributes = new { @class = "col-md-2" } })
+                                        @Html.EditorFor(model => model.empleado.afiliacion_irtra, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                        @Html.ValidationMessageFor(model => model.empleado.afiliacion_irtra, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                                        @Html.Label("Credencial de Agente de Seguridad", new { htmlAttributes = new { @class = "col-md-2" } })
+                                        @Html.EditorFor(model => model.empleado.digeesp, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                        @Html.ValidationMessageFor(model => model.empleado.digeesp, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="imagen_empleado">
+                <div class="row">
+                    <div class=" form-group col-lg-6 col-md-12 col-xs-12 col-sm-12">
+                        <dl class="dl-horizontal">
+                            <dd>&nbsp;</dd>
+                            <dd>&nbsp;</dd>
+                            <dd>&nbsp;</dd>
+                            <dd>
+                                <h4>@Resources.Resources.imagen</h4>
+                            </dd>
+                            <dd><img id="empleado_imagen" src="@Url.Action("GetImage", "Empleado", new { id = Model.empleado.id_empleado })" class="img-rounded" style="width:228px; height:240px;" /></dd>
+                            <dd>&nbsp;</dd>
+                            <dd><input type="file" onchange="onFileSelected(event)" id="imagen_cedula" name="imagen_cedula" class="btn-primary" accept="image/*" /></dd>
+                        </dl>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-12 col-xs-12 col-sm-12">
+                        <iframe id="frame_webcam" frameborder="0" src="@Url.Action("WebCam")" style="width:400px; height:410px;"></iframe>
+                    </div>
+                </div>
+            </div>
+            <!--Información adicional-->
+            <div class="tab-pane fade" id="informacion_adicional">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading bg-yellow">
+                                <h4 class="panel-title ">@Resources.Resources.correo_electronico</h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-lg-12">
+                                    @Html.EditorFor(model => model.empleado.correo, "", new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                    @Html.ValidationMessageFor(model => model.empleado.correo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading bg-green">
+                        <h4 class="panel-title">@Resources.Resources.cuenta_bancaria</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                @Html.Label(Resources.Resources.empleado_banco, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.empleado.id_banco_cuenta, (IEnumerable<SelectListItem>)ViewBag.id_banco_cuenta, "---", htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @disabled = "disabled", id = "banco_input" })
+                                @Html.ValidationMessageFor(model => model.empleado.id_banco_cuenta, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(Resources.Resources.empleado_tipo_cuenta, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.empleado.id_tipo_cuenta, (IEnumerable<SelectListItem>)ViewBag.id_tipo_cuenta, "---", htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.empleado.id_tipo_cuenta, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(Resources.Resources.empleado_numero_cuenta, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.empleado.numero_cuenta, "", new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", id = "numero_cuenta_input" } })
+                                @Html.ValidationMessageFor(model => model.empleado.numero_cuenta, "", new { @class = "text-danger", @id = "validation_numero_cuenta" })
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label("Tipo de Pago", htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.empleado.id_tipo_pago, (IEnumerable<SelectListItem>)ViewBag.tipo_pago, "---", htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.empleado.id_tipo_pago, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
+                                @Html.Label("Observación", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.empleado.comentario, "", new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.empleado.numero_cuenta, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading bg-orange">
+                        <h4 class="panel-title">@Resources.Resources.licencia_conducir</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-lg-4">
+                            @Html.Label(@Resources.Resources.empleado_tipo_licencia, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.empleado.id_tipo_licencia, (IEnumerable<SelectListItem>)ViewBag.id_tipo_licencia, "---", htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%", @disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.empleado.id_tipo_licencia, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-4">
+                            @Html.Label(@Resources.Resources.empleado_numero_licencia, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.empleado.numero_licencia, "", new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.empleado.numero_licencia, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-4">
+                            @Html.Label(@Resources.Resources.empleado_fecha_vencimiento_licencia, htmlAttributes: new { @class = "control-label" })
+                            <div style="position:relative">
+                                <input type='text' class="form-control" id="fecha_vencimiento_licencia" disabled name="empleado.fecha_vencimiento_licencia" value="@ViewBag.fecha_vencimiento_licencia" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Contrato-->
+            <div id="contrato" class="tab-pane fade">
+                @if (Model.contrato == null)
+                {
+                <div class="row">
+                    <dl class="dl-horizontal">
+                        <dd style="font-size:large; color:red">El empleado no tiene ningún contrato activo con la empresa.</dd>
+                    </dl>
+                </div>
+                <div class="pager">
+                    <div class="btn-info btn btn-sm" type="button" onclick="location.href = '@Url.Action("Historico", "Contratacion", new { id_empleado = Model.empleado.id_empleado })'">
+                        <span class="glyphicon glyphicon-list-alt"></span>&nbsp;Histórico de Contratos
+                    </div>
+                    <button class="btn-success btn btn-sm" type="button" onclick="location.href = '@Url.Action("Create", "Contratacion", new { id_empleado = Model.empleado.id_empleado })'">
+                        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Crear Contrato
+                    </button>
+                </div>
+                }
+                else
+                {
+                <div class="row">
+                    <div class="col-lg-6  col-md-6 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-lg-5  col-md-5 col-sm-12 col-xs-12">
+                                <h3 style="margin:2px 0 0 0">Detalle del Contrato</h3>
+                            </div>
+                            <div class="col-lg-7  col-md-7 col-sm-12 col-xs-12" style="text-align:center">
+                                <button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#doc_contrato">
+                                    Documentos del Contrato
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <hr />
+                            <dl class="dl-horizontal">
+                                <dt>@Resources.Resources.empresa</dt>
+                                <dd>@Model.contrato.Empresa.nombre</dd>
+                                <dt>Tipo de Puesto</dt>
+                                <dd>@Model.contrato.Puesto.Tipo_Puesto.nombre</dd>
+                                <dt>@Resources.Resources.puesto_nombre</dt>
+                                <dd>@Model.contrato.Puesto.nombre</dd>
+                                <dt>Ubicación</dt>
+                                <dd>@((Model.contrato.Ubicaciones != null) ? Model.contrato.Ubicaciones.direccion : "No asignada")</dd>
+                                <dt>@Resources.Resources.fecha_inicio</dt>
+                                <dd>@Model.contrato.fecha_inicio.ToString("dd/MM/yyyy")</dd>
+                                <dt>Estado de Empleado</dt>
+                                <dd>@Model.contrato.Estado_Empleado.nombre</dd>
+                                <dt>Fecha de Baja</dt>
+                                @if (Model.contrato.fecha_fin.HasValue)
+                                    {
+                                    <dd>@Model.contrato.fecha_fin.Value.ToString("dd/MM/yyyy")</dd>
+                                    }
+                                    else
+                                    {
+                                    <dd>--/--/----</dd>
+                                    }
+                                <dt>Referido por</dt>
+                                <dd>@Model.contrato.referido_por</dd>
+                            </dl>
+                            <dl class="dl-horizontal">
+                                <dd>
+                                    <button class="btn btn-primary btn-sm" type="button" onclick="location.href='@Url.Action("Edit", "Contratacion", new { id = Model.contrato.id_contratacion })'">
+                                        <span class="glyphicon glyphicon-edit"></span>&nbsp;Editar Contrato
+                                    </button>
+                                </dd>
+                                <dd>&nbsp;</dd>
+                                <dd>
+                                    <button class="btn btn-primary btn-sm" type="button" onclick="location.href='@Url.Action("EditPuesto", "Contratacion", new { id = Model.contrato.id_contratacion })'">
+                                        <span class="glyphicon glyphicon-edit"></span>&nbsp;Editar Puesto
+                                    </button>
+                                </dd>
+                                <dd>&nbsp;</dd>
+                                <dd>
+                                    <button class="btn btn-warning btn-sm" type="button" onclick="location.href='@Url.Action("CalcularLiquidacion", "Empleado", new { id_contratacion = Model.contrato.id_contratacion })'">
+                                        <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.liquidacion_calcular
+                                    </button>
+                                </dd>
+                                <dd>&nbsp;</dd>
+                                <dd>
+                                    <button type="button" class="btn btn-danger btn-sm btn_terminate" data-toggle="modal" data-target="#terminar_contrato" data-id="@Model.contrato.id_contratacion">
+                                        <span class="glyphicon glyphicon-folder-close"></span>&nbsp;@Resources.Resources.contratacion_terminar
+                                    </button>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <h3 style="margin:2px 0 0 0">@Resources.Resources.resumen_vacaciones</h3>
+                        <div>
+                            <hr />
+                            <div class="form-group">
+                                <dl class="dl-horizontal">
+                                    <dt>@Resources.Resources.dias_disponibles </dt>
+                                    <dd>@(Model.contrato.Vacacion_Contrato.Sum(v => v.dias_total) - Model.contrato.Vacacion_Contrato.Sum(e => e.dias_tomados))</dd>
+                                    <dt>@Resources.Resources.dias_gozados </dt>
+                                    <dd>@Model.contrato.Vacacion_Contrato.Sum(e => e.dias_tomados)</dd>
+                                </dl>
+                            </div>
+                            <div class="table-responsive" style="overflow-y:auto; max-height:500px">
+                                <table class="table-condensed" id="tabla_vacaciones">
+                                    <thead>
+                                        <tr>
+                                            <th>@Resources.Resources.periodo</th>
+                                            <th>@Resources.Resources.dias_disponibles</th>
+                                            <th>@Resources.Resources.dias_gozados</th>
+                                            <th>@Resources.Resources.acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var vacaciones in Model.contrato.Vacacion_Contrato.Where(v => !v.eliminado))
+                                            {
+                                            <tr>
+                                                <td>@mfi.GetMonthName(vacaciones.Contratacion.fecha_inicio.Month).Substring(0, 3)/@vacaciones.Periodo.año_inicial.Year - @mfi.GetMonthName(vacaciones.Contratacion.fecha_inicio.Month).Substring(0, 3)/@vacaciones.Periodo.año_final.Year </td>
+                                                @if (!vacaciones.dias_tomados.HasValue)
+                                                    {
+                                                    <td>@vacaciones.dias_total</td>
+                                                    <td>0</td>
+                                                    }
+                                                    else
+                                                    {
+                                                    <td>@(vacaciones.dias_total - vacaciones.dias_tomados)</td>
+                                                    <td>@vacaciones.dias_tomados.Value</td>
+                                                    }
+                                                <td>
+                                                    <button class="btn btn-sm btn-info" type="button" onclick="location.href='@Url.Action("Details", "Vacacion_Detalle", new { id = vacaciones.id_vacacion_contrato })'">
+                                                        <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+            <!--Direcciones-->
+            <div class="tab-pane fade" id="direccion">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">@Resources.Resources.direcciones</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#nueva_direccion">
+                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+                            </button>
+                        </div>
+                        <div class="table-responsive" style="max-height:400px; overflow-y:auto">
+                            <table class="table-striped">
+                                <tr>
+                                    <th>@Resources.Resources.tipo_direccion_nombre</th>
+                                    <th>@Resources.Resources.acciones</th>
+                                </tr>
+                                @foreach (var item in Model.empleado.Empleado_Direcciones.Where(d => d.activo))
+                                {
+                                <tr>
+                                    <td>@item.Tipo_Direccion.nombre</td>
+                                    <td>
+                                        <button type="button" class="btn btn-info btn-sm b_ver_direccion"
+                                                data-dirre="@item.direccion"
+                                                data-municipio="@item.id_municipio"
+                                                data-tipodire="@item.id_tipo_direccion"
+                                                data-id_emp_dir="@item.id_empleado_direcciones" data-target="#ver_direccion" data-toggle="modal">
+                                            <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" type="button" onclick="location.href = '@Url.Action("EliminarDireccion", "Empleado", new { @id_empleado_direcciones = item.id_empleado_direcciones })'">
+                                            <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                                        </button>
+                                    </td>
+                                </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Contacto-->
+            <div class="tab-pane fade" id="contacto">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">@Resources.Resources.telefonos</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#nuevo_telefono">
+                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+                            </button>
+                        </div>
+                        <div class="table-responsive" style="max-height:400px; overflow-y:auto">
+                            <table class="table-striped">
+                                <tr>
+                                    <th>@Resources.Resources.tipo_telefono_nombre</th>
+                                    <th>@Resources.Resources.empleado_telefono_telefono</th>
+                                    <th>@Resources.Resources.empleado_telefono_extension</th>
+                                    <th>@Resources.Resources.acciones</th>
+                                </tr>
+                                @foreach (var item in Model.empleado.Empleado_Telefono.Where(t => t.activo))
+                                {
+                                <tr>
+                                    <td>@item.Tipo_Telefono.nombre</td>
+                                    <td>@item.telefono</td>
+                                    <td>@item.extension</td>
+                                    <td>
+                                        <button type="button" class="btn btn-info btn-sm tel_editar" data-id_tel_emp="@item.id_empleado_telefono" data-ext="@item.extension" data-tipotel="@item.id_tipo_telefono" data-com="@item.comentario" data-tel="@item.telefono" data-toggle="modal" data-target="#ver_telefono">
+                                            <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                                        </button>
+                                        <button class="btn btn-danger btn-sm tel_eliminar" type="button" onclick="location.href = '@Url.Action("BorrarTelefono", "Empleado", new { @id_empleado_telefono = item.id_empleado_telefono })'">
+                                            <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                                        </button>
+                                    </td>
+                                </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Experiencia Laboral-->
+            <div class="tab-pane fade" id="experiencia_laboral">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Experiencia Laboral</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#nueva_experiencia_laboral">
+                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+                            </button>
+                        </div>
+                        <div class="table-responsive" style="max-height:400px; overflow-y:auto">
+                            <table class="table-striped">
+                                <tr>
+                                    <th>Empresa</th>
+                                    <th>Puesto</th>
+                                    <th>Fecha Inicio</th>
+                                    <th>Fecha Fin</th>
+                                    <th></th>
+                                </tr>
+                                @foreach (var item in Model.empleado.Empleado_Experiencia_Laboral.Where(t => t.activo))
+                                {
+                                    <tr>
+                                        <td>@item.empresa</td>
+                                        <td>@item.puesto</td>
+                                        <td>@item.fecha_inicio.ToString("dd/MM/yyyy")</td>
+                                        <td>@item.fecha_fin.ToString("dd/MM/yyyy")</td>
+                                        <td>
+                                            @using (Html.BeginForm("BorrarExperienciaLaboral", "Empleado", FormMethod.Post))
+                                            {
+                                                <button type="button" class="btn btn-info btn-sm el_editar"
+                                                        data-id="@item.id_empleado_experiencia_laboral"
+                                                        data-empresa="@item.empresa"
+                                                        data-puesto="@item.puesto"
+                                                        data-comentario="@item.comentario"
+                                                        data-id_empleado="@item.id_empleado"
+                                                        data-telefono="@item.telefono"
+                                                        data-direccion="@item.direccion"
+                                                        data-jefe="@item.jefe_inmediato"
+                                                        data-fecha_inicio="@item.fecha_inicio.ToString("dd/MM/yyyy")"
+                                                        data-fecha_fin="@item.fecha_fin.ToString("dd/MM/yyyy")"
+                                                        data-toggle="modal" data-target="#ver_experiencia_laboral">
+                                                    <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                                                </button>
+                                                <input type="hidden" name="id" value="@item.id_empleado_experiencia_laboral" />
+                                                <button class="btn btn-danger btn-sm" type="submit">
+                                                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                                                </button>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Archivos-->
+            <div class="tab-pane fade" id="archivos">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">@Resources.Resources.archivos</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#nuevo_archivo">
+                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+                            </button>
+                        </div>
+                        <div class="table-responsive table-striped" style="max-height:400px; overflow-y:auto">
+                            <table class="table-striped">
+                                <tr>
+                                    <th>@Resources.Resources.archivo_nombre</th>
+                                    <th>@Resources.Resources.tipo_archivo_nombre</th>
+                                    <th>@Resources.Resources.acciones</th>
+                                </tr>
+                                @foreach (var item in Model.empleado.Archivo_Empleado.Where(a => a.activo))
+                                {
+                                <tr>
+                                    <td>@item.Archivo.nombre</td>
+                                    <td>@item.Archivo.Tipo_Archivo.nombre</td>
+                                    <td>
+                                        <button class="btn-primary btn-sm" type="button" onclick="location.href = '@Url.Action("GetFile", "FileHandler", new { id_archivo = item.id_archivo })'">
+                                            <span class="glyphicon glyphicon-download"></span>&nbsp;@Resources.Resources.descargar
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" type="button" onclick="location.href = '@Url.Action("EliminarArchivo", "Empleado", new { id_archivo = item.id_archivo, @id_archivo_empleado = item.id_archivo_empleado, @id_empleado = Model.empleado.id_empleado })'">
+                                            <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                                        </button>
+                                    </td>
+                                </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Auditoria-->
+            <div id="auditoria" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-xs-6 col-sm-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" aria-expanded="true" href="#menu_empleado">Empleado</a>
+                                </h4>
+                            </div>
+                            <div id="menu_empleado" class="panel-collapse collapse in" role="tabpanel">
+                                <div class="panel-body">
+                                    <table class="table-striped table-condensed">
+                                        <tr>
+                                            <th></th>
+                                            <th>Creación</th>
+                                            <th>Modificación</th>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Usuario</b></td>
+                                            <td>@Model.empleado.Usuarios1.usuario</td>
+                                            <td>@((Model.empleado.Usuarios2 != null) ? Model.empleado.Usuarios2.usuario : "--")</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Fecha</b></td>
+                                            <td>@Model.empleado.fecha_creacion.ToString()</td>
+                                            <td>@((Model.empleado.fecha_modificacion.HasValue) ? Model.empleado.fecha_modificacion.Value.ToString() : "--")</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-xs-6 col-sm-6">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default panel_auditoria">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" aria-expanded="true" href="#menu_direcciones">Direcciones</a>
+                                    </h4>
+                                </div>
+                                <div id="menu_direcciones" class="panel-collapse collapse" role="tabpanel">
+                                    <div class="panel-body">
+                                        @foreach (var item in Model.empleado.Empleado_Direcciones.Where(a => !a.eliminado))
+                                        {
+                                        <h6>@(item.id_empleado_direcciones + " - " + item.Tipo_Direccion.nombre)</h6>
+                                        <table class="table-striped table-condensed">
+                                            <tr>
+                                                <th></th>
+                                                <th>Creación</th>
+                                                <th>Modificación</th>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Usuario</b></td>
+                                                <td>@item.Usuarios.usuario</td>
+                                                <td>@((item.Usuarios2 != null) ? item.Usuarios2.usuario : "--")</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Fecha</b></td>
+                                                <td>@item.fecha_creacion.ToString()</td>
+                                                <td>@((item.fecha_modificacion.HasValue) ? item.fecha_modificacion.Value.ToString() : "--")</td>
+                                            </tr>
+                                        </table>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default panel_auditoria">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" aria-expanded="true" href="#menu_telefono">Teléfonos</a>
+                                    </h4>
+                                </div>
+                                <div id="menu_telefono" class="panel-collapse collapse" role="tabpanel">
+                                    <div class="panel-body">
+                                        @foreach (var item in Model.empleado.Empleado_Telefono.Where(a => !a.eliminado))
+                                        {
+                                        <h6>@(item.id_empleado_telefono + " - " + item.Tipo_Telefono.nombre)</h6>
+                                        <table class="table-striped table-condensed">
+                                            <tr>
+                                                <th></th>
+                                                <th>Creación</th>
+                                                <th>Modificación</th>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Usuario</b></td>
+                                                <td>@item.Usuarios.usuario</td>
+                                                <td>@((item.Usuarios2 != null) ? item.Usuarios2.usuario : "--")</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Fecha</b></td>
+                                                <td>@item.fecha_creacion</td>
+                                                <td>@((item.fecha_modificacion.HasValue) ? item.fecha_modificacion.Value.ToString() : "--")</td>
+                                            </tr>
+                                        </table>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default panel_auditoria">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" aria-expanded="true" href="#menu_archivo">Archivos</a>
+                                    </h4>
+                                </div>
+                                <div id="menu_archivo" class="panel-collapse collapse" role="tabpanel">
+                                    <div class="panel-body">
+                                        @foreach (var item in Model.empleado.Archivo_Empleado.Where(a => !a.eliminado))
+                                        {
+                                        <h6>@(item.Archivo.id_archivo + " - " + item.Archivo.nombre)</h6>
+                                        <table class="table-striped table-condensed">
+                                            <tr>
+                                                <th></th>
+                                                <th>Creación</th>
+                                                <th>Modificación</th>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Usuario</b></td>
+                                                <td>@item.Archivo.Usuarios.usuario</td>
+                                                <td>@((item.Archivo.Usuarios1 != null) ? item.Archivo.Usuarios1.usuario : "--")</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Fecha</b></td>
+                                                <td>@item.Archivo.fecha_creacion.ToString()</td>
+                                                <td>@((item.Archivo.fecha_modificacion.HasValue) ? item.Archivo.fecha_modificacion.Value.ToString() : "--")</td>
+                                            </tr>
+                                        </table>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="pager" id="div_btn_editar">
+            <button class="btn btn-primary btn-sm" type="button" id="btn_editar">
+                <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+            </button>
+            <button class="btn btn-success btn-sm" disabled="disabled" type="submit" id="btn_guardar" data-loading-text="Guardando...">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+            </button>
+        </div>
+    }
+</div>
+
+<div class="form-group">
+    <button type="button" class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+
+@section Scripts {
+    <!-- Latest compiled and minified CSS -->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
+    <script>
+        //Mostrar en pantalla la imagen seleccionada
+        function onFileSelected(event) {
+            var selectedFile = event.target.files[0];
+            var reader = new FileReader();
+            var imgtag = document.getElementById("empleado_imagen"); //Donde se coloca la imagen
+            imgtag.title = selectedFile.name;
+            reader.onload = function (event) {
+                imgtag.src = event.target.result;
+            };
+            reader.readAsDataURL(selectedFile);
+            $('#tipo_foto').val(1); //1 significa que la imagen de perfil es ingresada desde el input file
+        }
+        $(function () {
+
+            $(document).ready(function () {
+                $(".dropdown_select").select2();
+                $('.form-control').css('max-width', '100%');
+            });
+
+            $('.panel_auditoria').on('shown.bs.collapse', function () {
+                $('.panel_auditoria').not(this).removeClass('panel-primary').addClass('panel-default');
+                $(this).removeClass('panel-default').addClass('panel-primary');
+            });
+
+            $(".highlight").mouseover(function () {
+                $(this).addClass("list-group-item-success");
+                $(this).css('cursor', 'pointer');
+            });
+
+            $(".highlight").mouseout(function () {
+                $(this).removeClass("list-group-item-success");
+            });
+
+
+            var last_correct_value = "@(Model.empleado != null ? Model.empleado.numero_cuenta : "")";
+            $("#numero_cuenta_input").on('focusout', function (e) {
+                val = $(this).val();
+                if (val != "") {
+                    if ((/^(\d{3})-(\d{7})-\d$/).test(val)) {
+                        last_correct_value = val;
+                        $('#validation_numero_cuenta').text("");
+
+                    } else {
+                        $(this).val(last_correct_value);
+                        $('#validation_numero_cuenta').text("Ingrese cuenta solo en formato ###-#######-#");
+                        //alert("Ingrese cuenta solo en formato ###-#######-#");
+                    }
+                }
+                else {
+                    $('#validation_numero_cuenta').text("");
+                    last_correct_value = "";
+                }
+            });
+
+            $('#fecha_contrato').datetimepicker({
+                viewMode: 'days',
+                format: 'DD/MM/YYYY',
+            });
+
+            //Terminar contrato
+            $('#btn_ok').click(function () {
+                $('#confirm_delete').toggle('toggle');
+                var id = $(this).data('id');
+                $.ajax({
+                    url: '@Url.Action("Terminar", "Contratacion")',
+                    type: "POST",
+                    data: { 'id': id },
+                    error: function () {
+                        alert("Error con la conexión con el servidor.");
+                    },
+                    success: function (response) {
+                        if (response.response == true) {
+                            $('#t_' + id.toString()).remove();
+                        }
+                        else {
+                            $('#mensaje').text(response.msg);
+                            $('#titulo').text("Error");
+                            $('#mostrar_mensaje').modal('show');
+                        }
+                    }
+                });
+            });
+
+            $('.a_info').click(function () {
+                $('#div_btn_editar').prop('hidden', true);
+            });
+
+            $('.a_empleado').click(function () {
+                $('#div_btn_editar').prop('hidden', false);
+            });
+
+            //Botones para habilitar los campos del empleado y poder editarlo
+            $('#btn_editar').click(function () {
+                $('#main').find('input, textarea, select').prop('disabled', false);
+                $('#btn_editar').prop('disabled', true);
+                $('#btn_guardar').prop('disabled', false);
+                $('#estatura_input').val($('#estatura_input').val().replace(",", "."));
+            });
+
+            $("#editar_empleado_form").submit(function (event) {
+                var incomplete = false;
+                $(this).find(':input[required=required]').each(function () {
+                    if ($(this).val() == "" || $(this).val() == null) {
+                        var tab = $(this).closest('.tab-pane');
+                        id = tab.attr("id");
+                        $('#nav_menu a[href="#' + id + '"]').trigger('click');
+                        incomplete = true;
+                        event.preventDefault();
+                        return (false);
+                    }
+                });
+                if (!incomplete) {
+                    $('#btn_guardar').button('loading');
+                    return;
+                }
+            });
+
+            $('#fecha_nacimiento').datetimepicker({
+                viewMode: 'days',
+                format: 'DD/MM/YYYY',
+            });
+
+            $('#fecha_vencimiento_licencia').datetimepicker({
+                viewMode: 'days',
+                format: 'DD/MM/YYYY',
+            });
+
+            $('#c_el_fecha_inicio, #c_el_fecha_fin, #ed_el_fecha_inicio, #ed_el_fecha_fin').datetimepicker({
+                viewMode: 'days',
+                format: 'DD/MM/YYYY',
+            });
+            //Cuando se cierra el modal para insertar experiencia laboral
+            $('#nueva_experiencia_laboral').on('hidden.bs.modal', function () {
+                $(this).find("input").val('').end();
+            });
+
+            //Cuando se cierra el modal para experiencia laboral
+            $('#ver_telefono').on('hidden.bs.modal', function () {
+                $("#ed_el_empresa").prop('disabled', true);
+                $("#ed_el_puesto").prop('disabled', true);
+                $("#ed_el_jefe").prop('disabled', true);
+                $("#ed_el_telefono").prop('disabled', true);
+                $("#ed_el_direccion").prop('disabled', true);
+                $("#ed_el_fecha_inicio").prop('disabled', true);
+                $("#ed_el_fecha_fin").prop('disabled', true);
+                $("#ed_el_comentario").prop('disabled', true);
+                $("#desb_ed_el").prop('disabled', false);
+                $("#btn_editar_experiencia_laboral").prop('disabled', true);
+            });
+
+            //Editar experiencia laboral
+            $(".el_editar").click(function () {
+                $('#ver_experiencia_laboral').find("input").prop('disabled', true);
+                $("#ed_el_puesto").val($(this).data('puesto'));
+                $("#ed_el_empresa").val($(this).data('empresa'));
+                $("#ed_el_jefe").val($(this).data('jefe'));
+                $("#ed_el_telefono").val($(this).data('telefono'));
+                $("#ed_el_direccion").val($(this).data('direccion'));
+                $("#ed_el_fecha_inicio").val($(this).data('fecha_inicio'));
+                $("#ed_el_fecha_fin").val($(this).data('fecha_fin'));
+                $("#id_empleado_experiencia_laboral").val($(this).data('id'));
+                $("#ed_el_comentario").val($(this).data('comentario'));
+                $("#btn_editar_experiencia_laboral").prop('disabled', true);
+            });
+
+            //Desbloquear componentes para experiencia laboral
+            $("#desb_ed_el").click(function () {
+                $('#ver_experiencia_laboral').find("input").prop('disabled', false);
+                $("#btn_editar_experiencia_laboral").prop('disabled', false);
+                $("#desb_ed_el").prop('disabled', true);
+            });
+
+            //Cuando se cierra el modal para nuevo archivo
+            $('#nuevo_archivo').on('hidden.bs.modal', function () {
+                $(this).find("input").val('').end();
+            });
+
+            //Cuando se cierra el modal para insertar telefono
+            $('#nuevo_telefono').on('hidden.bs.modal', function () {
+                $(this).find("input").val('').end();
+            });
+            //Cuando se cierra el modal para editar telefono
+            $('#ver_telefono').on('hidden.bs.modal', function () {
+                $("#ed_tipo_telefono").prop('disabled', true);
+                $("#ed_numero").prop('disabled', true);
+                $("#ed_extension").prop('disabled', true);
+                $("#ed_comentario_tel").prop('disabled', true);
+                $("#desb_ed_tel").prop('disabled', false);
+            });
+
+            //Editar de telefono
+            $(".tel_editar").click(function () {
+                $("#ed_numero").val($(this).data('tel'));
+                $("#ed_extension").val($(this).data('ext'));
+                $("#ed_comentario_tel").val($(this).data('com'));
+                $("#id_empleado_telefono").val($(this).data('id_tel_emp'));
+                $("#ed_tipo_telefono option").prop("selected", false);
+                $("#ed_tipo_telefono option").filter(function () {
+                    if ($(this).val() == $(".tel_editar").data('tipotel')) {
+                        return true;
+                    }
+                }).prop('selected', true);
+            });
+
+            //Desbloquear componentes para editar telefono
+            $("#desb_ed_tel").click(function () {
+                $("#ed_tipo_telefono").prop('disabled', false);
+                $("#ed_numero").prop('disabled', false);
+                $("#ed_extension").prop('disabled', false);
+                $("#ed_comentario_tel").prop('disabled', false);
+                $("#desb_ed_tel").prop('disabled', true);
+            });
+
+            //Desbloquear componentes para editar dirección
+            $("#desb_ed_dir").click(function () {
+                $("#ed_direccion_input").prop('disabled', false);
+                $("#ed_tipo_direccion").prop('disabled', false);
+                $("#ed_municipio").prop('disabled', false);
+                $("#desb_ed_dir").prop('disabled', true);
+            });
+
+            //Editar de direccion
+            $(".b_ver_direccion").click(function () {
+                var btn = $(this);
+                $("#ed_direccion_input").val($(this).data('dirre'));
+                $("#id_empleado_direcciones").val($(this).data('id_emp_dir'))
+                //$("#ed_tipo_direccion option").prop("selected", false);
+                $("#ed_tipo_direccion").val(btn.data('tipodire')).trigger('change');
+                /*$("#ed_tipo_direccion option").filter(function () {
+                    if ($(this).val() == $(btn).data('tipodire')) {
+                        return true;
+                    }
+                }).prop('selected', true);*/
+                //console.log(btn.data('municipio'));
+                //$("#ed_municipio option").prop("selected", false);
+                $("#ed_municipio").val(btn.data('municipio')).trigger('change');
+                /*$("#ed_municipio option").filter(function () {
+                    if ($(this).val() == $(btn).data('municipio')) {
+                        return true;
+                    }
+                }).prop('selected', true);*/
+            });
+
+            //Cuando se cierra el modal de nueva dirección
+            $('#nueva_direccion').on('hidden.bs.modal', function () {
+                $(this).find("input").val('').end();
+            });
+
+            //Cuando se cierra el modal de editar dirección
+            $('#ver_direccion').on('hidden.bs.modal', function () {
+                $("#ed_direccion_input").prop('disabled', true);
+                $("#ed_tipo_direccion").prop('disabled', true);
+                $("#ed_municipio").prop('disabled', true);
+                $("#desb_ed_dir").prop('disabled', false);
+            });
+
+            $("#frame_webcam").load(function () {
+                document.getElementById('frame_webcam').contentWindow.webcam.onSave = function () {
+                    var x = new Date().getTime();
+                    $('#empleado_imagen').attr('src', '@Url.Action("OtenerImagenCamara")?' + x);
+                    $('#tipo_foto').val(2); //2 significa que la imagen de perfil es ingresada desde la camara web
+                }
+
+                $('#frame_webcam').contents().find('#tomar_foto').on('click', function () {
+                    document.getElementById('frame_webcam').contentWindow.webcam.capture();
+                });
+            });
+
+        });
+    </script>
+}
+
+
+

@@ -1,0 +1,115 @@
+﻿@model MVC2013.Models.Facturas
+@using System.Globalization
+@{
+    ViewBag.Title = "Detalles de Factura";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles de la Factura</h2>
+<div class="panel panel-info">
+    <div class="panel-heading bg-navy">Información Factura</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                <label class="col-md-3">Serie</label>
+                <div class="col-md-9">@Model.serie</div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                <label class="col-md-3">Numero Factura</label>
+                <div class="col-md-9">@Model.numero_factura</div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                <label class="col-md-3">Fecha</label>
+                <div class="col-md-9">@Model.fecha_factura.ToString("dd/MM/yyyy")</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                <label class="col-md-3">Descripción</label>
+                <div class="col-md-9">@Model.descripcion</div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                <label class="col-md-3">Direccion</label>
+                <div class="col-md-9">@Model.Razones_Sociales.direccion_facturacion</div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                <label class="col-md-3">Nit</label>
+                <div class="col-md-9">@Model.Razones_Sociales.nit</div>
+            </div>
+        </div>
+        <hr />
+        @*<button class="btn btn-sm btn-success" onclick="location.href = '@Url.Action("Create_Factura", new { id_Razon_Social = Model.id_razon_social })'">
+            <span class="glyphicon glyphicon-print"></span>Descargar Factura
+        </button>*@
+        <table class="table-hover">
+            <tr>
+                <th>
+                    Ubicacion
+                </th>
+                <th>
+                    Tipo de Servicio
+                </th>
+
+                <th>
+                    Cantidad
+                </th>
+                <th>
+                    Precio de Venta Unitario
+                </th>
+                <th>
+                    Importe
+                </th>
+            </tr>
+            @foreach (var item_fac_detalle in Model.Facturas_Detalle.Where(x => x.activo && !x.eliminado).OrderBy(x => x.Contratos_Agentes.Ubicaciones.nombre).ThenBy(x => x.descripcion))
+            {
+                <tr>
+                    <td>
+                        @if (@item_fac_detalle.Contratos_Agentes.id_ubicacion.HasValue)
+                        {
+                            @item_fac_detalle.Contratos_Agentes.Ubicaciones.nombre
+                        }
+                        else
+                        {
+                            <text>----</text>
+                        }
+                    </td>
+                    <td>
+                        @item_fac_detalle.descripcion
+                    </td>
+
+                    <td>
+                        @item_fac_detalle.cantidad
+                    </td>
+                    <td>
+                        @item_fac_detalle.precio_venta_unitario.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                    </td>
+                    <td>
+                        @((item_fac_detalle.cantidad * item_fac_detalle.precio_venta_unitario).ToString("C", CultureInfo.GetCultureInfo("es-GT")))
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div class="row">
+            <div class="col-md-9 col-lg-9 col-sm-9 col-xs-9" style="text-align:right">
+                <button class="btn btn-sm btn-warning" type="button" onclick="location.href='@Url.Action("GetFactura", "Clientes", new { id = Model.id_factura })'">
+                    <span class="glyphicon glyphicon-download"></span>&nbsp;Descargar Factura
+                </button>
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                <h3><label>Total:&nbsp;</label>&nbsp;@Model.total.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</h3>
+            </div>
+        </div>
+    </div>
+</div>
+       
+<p>
+    <div>
+
+        <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Details_RS", new {id_Razon_Social = Model.id_razon_social })'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar al Detalle de Razon Social
+        </button>
+
+    </div>
+
+</p>

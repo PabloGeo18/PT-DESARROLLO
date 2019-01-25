@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MVC2013.Models.Bodega_Inventario_Uniformes>
+@using System.Globalization;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Uniformes por Bodega</h2>
+@foreach (var bodega in ViewBag.id_bodega)
+{
+    if (Model.Where(x => x.id_bodega == bodega.id_bodega).Count() != 0)
+    {
+        <h3>@bodega.descripcion</h3>
+        <table class="table-hover">
+            <tr>
+                <th>
+                    @Resources.Resources.uniforme
+                </th>
+                <th>
+                    @Resources.Resources.existencia
+                </th>
+            </tr>
+
+            @foreach (var item in Model.Where(x => x.id_bodega == bodega.id_bodega))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Uniformes.descripcion)
+                        <br>Tipo - @Html.DisplayFor(modelItem => item.Uniformes.Uniforme_Tipo.descripcion),
+                        <br>Talla - @Html.DisplayFor(modelItem => item.Uniformes.talla)
+                        <br>Costo - @item.Uniformes.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                        <br>Costo de Venta - @item.Uniformes.costo_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.existencia)
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+
+    }
+
+}

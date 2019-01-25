@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MVC2013.Models.Tickets_Generacion>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Tickets/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Tickets Generados</h2>
+
+<p>
+    <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+
+</p>
+@if (Model.Where(x => x.activo && !x.eliminado).Count() <= 0)
+{
+    <table class="table table-striped table-bordered table-responsive">
+        <thead style="background-color:cadetblue"></thead>
+        <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+    </table>
+}
+else
+{
+    <table class="table-hover">
+        <thead style="background-color:#969aa2">
+            <tr>
+                <th class="text-center">Acciones</th>
+                <th class="text-center">Usuario Creador</th>
+                <th class="text-center">Tipo de Ticket</th>
+                <th class="text-center">Cantidad Generada</th>
+                <th class="text-center">Desde</th>
+                <th class="text-center">Hasta</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">
+                        <button data-toggle="tooltip" data-placement="top" title="Detalles" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.id_ticket_generacion })'">
+                            <span class="glyphicon glyphicon-list-alt"></span>
+                        </button>
+                        <button data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.id_ticket_generacion })'">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                        <button data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = item.id_ticket_generacion })'">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                    <td class="text-center">@item.Usuarios.nombre_completo_usuario</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Tickets_Tipo.nombre)</td>
+                    <td class="text-center">@item.cantidad</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.desde)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.hasta)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

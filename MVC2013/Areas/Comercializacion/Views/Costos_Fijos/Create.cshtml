@@ -1,0 +1,62 @@
+﻿@model MVC2013.Models.Pt_Costos_Fijos
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+}
+<h2>Agregar Costo Fijo</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ccof_descripcion, "Descripción", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ccof_descripcion, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.ccof_descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ccof_precio_unitario, "Precio Unitario", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ccof_precio_unitario, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.ccof_precio_unitario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn-success btn btn-sm">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;Crear
+                </button>
+            </div>
+        </div>
+    </div>
+}
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar
+    </button>
+</div>
+<script>
+    $('#ccof_precio_unitario').keypress(function (event) {
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) &&
+            ((event.which < 48 || event.which > 57) &&
+                (event.which != 0 && event.which != 8))) {
+            event.preventDefault();
+        }
+
+        var text = $(this).val();
+
+        if ((text.indexOf('.') != -1) &&
+            (text.substring(text.indexOf('.')).length > 2) &&
+            (event.which != 0 && event.which != 8) &&
+            ($(this)[0].selectionStart >= text.length - 2)) {
+            event.preventDefault();
+        }
+    });
+</script>

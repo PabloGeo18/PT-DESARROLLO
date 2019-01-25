@@ -1,0 +1,125 @@
+﻿@model IEnumerable<MVC2013.Models.Procesos_Facturacion_Detalle>
+@using System.Globalization
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+    CultureInfo cultura_chapina = new CultureInfo("es-GT");
+}
+
+<h2>Listado de Detalle del Proceso de Facturacion</h2>
+
+<div class="panel panel-default ">
+    <div class="panel-heading bg-navy">Informacion de Servicios Contratados</div>
+    <div class="panel-body">
+        <table class="table-hover" id="tabla_procesos_facturacion_detalle">
+            <tr>
+                <th>
+                    Cliente
+                </th>
+                <th>
+                    Razon Social
+                </th>
+                <th>
+                    Ubicacion
+                </th>
+                <th>
+                    Servicio
+                </th>
+                <th>
+                    Cantidad
+                </th>
+                <th>
+                    Precio
+                </th>
+                <th>
+                    Total
+                </th>
+                <th>
+                    Fecha Inicio
+                </th>
+                <th>
+                    Fecha Fin
+                </th>
+            </tr>
+            <tr>
+                <td><input type="text" id="nombre_cliente" autocomplete="off" /></td>
+                <td><input type="number" id="nombre_razon_social" autocomplete="off" /></td>
+                <td><input type="text" id="nombre_ubicacion" autocomplete="off" /></td>
+                <td><input type="text" id="nombre_servicio" autocomplete="off" /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="fl_cliente">
+                        @item.Clientes.nombre
+                    </td>
+                    <td class="fl_razon_social">
+                        @item.Razones_Sociales.razon_social
+                    </td>
+                    <td class="fl_ubicacion">
+                        @item.Ubicaciones.direccion
+                    </td>
+                    <td class="fl_descripcion">
+                        @item.descripcion
+                    </td>
+                    <td>
+                        @item.cantidad
+                    </td>
+                    <td>
+                        @item.precio_venta_unitario.ToString("C", cultura_chapina)
+                    </td>
+                    <td>
+                        @((item.cantidad * item.precio_venta_unitario).ToString("C", cultura_chapina))
+                    </td>
+                    <td>
+                        @item.fecha_inicio.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @if (item.fecha_fin.HasValue)
+                        {
+                            @item.fecha_fin.Value.ToString("dd/MM/yyyy")
+                        }
+                        else
+                        {
+                            <label>-----</label>
+                        }
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+
+<script>
+
+    $(function () {
+        //Filtro de la tabla de empleados
+        $('#tabla_procesos_facturacion_detalle').filterByMultiColumn([
+            {
+                filterClass: 'fl_cliente', //Celda
+                field: 'nombre_cliente' //Campo de busqueda
+            },
+            {
+                filterClass: 'fl_razon_social', //Celda
+                field: 'nombre_razon_social'//Campo de busqueda
+            },
+            {
+                filterClass: 'fl_ubicacion', //Celda
+                field: 'nombre_ubicacion' //Campo de busqueda
+            },
+             {
+                 filterClass: 'fl_descripcion', //Celda
+                 field: 'nombre_servicio' //Campo de busqueda
+             }
+
+        ]);
+    });
+
+</script>

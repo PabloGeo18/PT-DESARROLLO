@@ -1,0 +1,38 @@
+﻿@model MVC2013.Models.Empleado_Permisos_Ausencias
+
+@{
+    ViewBag.Title = "Empleado_Permisos_Ausencias_Detalle";
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalle de la Ausencia</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Empleado</dt>
+        <dd>@(Model.Empleado.primer_nombre + " " +
+        (!String.IsNullOrEmpty(Model.Empleado.segundo_nombre) ? Model.Empleado.segundo_nombre + " " : "") +
+        Model.Empleado.primer_apellido + " " +
+        (!String.IsNullOrEmpty(Model.Empleado.segundo_apellido) ? Model.Empleado.segundo_apellido : ""))</dd>
+        <dt>Tipo de Ausencia</dt>
+        <dd>@Model.Tipo_Permiso_Ausencia.descripcion</dd>
+        <dt>Fecha</dt>
+        <dd>@Model.fecha.ToString("dd/MM/yyyy")</dd>
+        <dt>Días</dt>
+        <dd>@Model.dias</dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt></dt>
+        <dd>
+            <button class="btn btn-sm btn-primary" type="button" onclick="location.href='@Url.Action("Edit", new { id = Model.id_empleado_permiso_ausencia })'">
+                <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+            </button>
+        </dd>
+    </dl>
+</div>
+<div class="form-group">
+    <button class="btn-sm btn-bitbucket" type="button" onclick="location.href='@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>

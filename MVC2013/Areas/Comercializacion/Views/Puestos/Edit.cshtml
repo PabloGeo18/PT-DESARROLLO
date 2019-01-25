@@ -1,0 +1,732 @@
+﻿@model MVC2013.Models.Pt_Puestos
+@using System.Globalization
+@{
+    ViewBag.Title = "Conf. Paquete Puesto - Comercialización";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+    CultureInfo gt = new CultureInfo("es-GT");
+    List<MVC2013.Models.Pt_Puesto_Insumos> puestoInsumos = ViewBag.puestoIns;
+    List<MVC2013.Models.Pt_Pagos_Puesto> pagosPuesto = ViewBag.pagosPues;
+    Decimal total = 0;
+    var credito = 1;
+    var debito = 2;
+}
+<style>
+    /* The switch - the box around the slider */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            display: none;
+        }
+
+    /* The slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+</style>
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+<h2>Puesto</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.cpue_id, new { htmlAttributes = new { @id = "cpue_id" } })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cpue_descripcion, "Descripción", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cpue_descripcion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.cpue_descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+}
+<hr style="height:3px; border-style:solid;background-color:#222d32">
+<h2 class="text-center">Manejo de paquete Puesto</h2>
+
+<div class="row">
+    @*Pagos del puesto*@
+    <div class="col-lg-6">
+        <h3><b><u>Créditos/Débitos</u></b></h3>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label class="control-label col-md-2">Tipo de Pago</label>
+                    <div class="col-md-10">
+                        @Html.DropDownList("ctpa_id", (IEnumerable<SelectListItem>)ViewBag.tipoPago, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-6">¿Es salario base?</label>
+                            <div class="col-md-6">
+                                <label class="switch">
+                                    <input type="checkbox" class="form-control" id="es_salario_base">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-6">¿Es prestación?</label>
+                            <div class="col-md-6">
+                                <label class="switch">
+                                    <input checked type="checkbox" class="form-control" id="es_otro_bono">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Descripción</label>
+                    <div class="col-md-10">
+                        <input class="form-control" id="cppu_descripcion" name="cppu_descripcion" autocomplete="off" />
+                    </div>
+                </div>
+                @if (pagosPuesto.Where(pp => pp.cppu_salario_base == true).Count() == 1)
+                {
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Monto</label>
+                        <div class="col-md-10">
+                            <input class="form-control" value="@pagosPuesto.Where(p=>p.activo && p.cppu_salario_base == true).Select(s=>s.cppu_monto).SingleOrDefault()" id="cppu_monto" name="cppu_monto" onkeyup="partial()" />
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Monto</label>
+                        <div class="col-md-10">
+                            <input class="form-control" id="cppu_monto" name="cppu_monto" onkeyup="partial()" />
+                        </div>
+                    </div>
+                }
+                <div class="form-group" id="porcentaje_calculo">
+                    <label class='control-label col-md-2'>Porcentaje de cálculo</label>
+                    <div class='col-md-10'>
+                        <input class="form-control" id="cppu_porcentaje_calculo" name="cppu_porcentaje_calculo" onkeyup="validate(), calcTotal()" />
+                        <span id="error" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group" id="total">
+                    <label class="control-label col-md-2">Monto Total</label>
+                    <div class="col-md-10">
+                        <input class="form-control" readonly type="number" id="cppu_monto_total" name="cppu_monto_total" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="button" class="btn-success btn btn-sm" id="guardarPago">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar Pago
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+        <hr style="height:3px; border-style:solid;background-color:#222d32">
+    </div>
+    @*Costos*@
+    <div class="col-lg-6 margin-bottom">
+        <div class="col-lg-12" style="padding-top:350px">
+            <h3><b><u>Costos</u></b></h3>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal" id="tablaArma">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Agregar</label>
+                        <div class="col-md-10">
+                            @Html.DropDownList("carm_id", (IEnumerable<SelectListItem>)ViewBag.costos, "Seleccione una opción", new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            }
+            <hr style="height:3px; border-style:solid;background-color:#222d32">
+        </div>
+    </div>
+</div>
+<div class="row">
+    @*tabla de pagos del puesto*@
+    <div class="col-lg-6">
+        <div class="form-group">
+            <div class="col-md-12 no-padding table-responsive">
+                <h4 data-toggle="collapse" data-target="#creditos"><b><u><span class="glyphicon glyphicon-large glyphicon-menu-down"></span> Créditos</u></b></h4>
+                <div id="creditos" class="collapse in customCollapseC">
+                    @if (pagosPuesto.Where(p => p.cppu_ctpa_id == credito).Count() > 0)
+                    {
+                        <table class="table table-striped table-bordered">
+                            <thead style="background-color:cadetblue">
+                                <tr>
+                                    <th class="text-center">Acciones</th>
+                                    <th class="text-center">Descripción</th>
+                                    <th class="text-center">Monto</th>
+                                    <th class="text-center">¿Salario Base?</th>
+                                    <th class="text-center">¿Es prestación?</th>
+                                    <th class="text-center">% de cálculo</th>
+                                    @*<th class="text-center">Monto Total</th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var pp in pagosPuesto.Where(x => x.activo && !x.eliminado && x.cppu_ctpa_id == credito))
+                                {
+                                    <tr>
+                                        <td class="text-center"><button data-toggle="tooltip" data-placement="top" title="Eiminar" type='button' onclick='borrarPagoDB(@pp.cppu_id)' class='btn btn-sm btn-danger'><span class="glyphicon glyphicon-trash"></span></button></td>
+                                        <td class="text-center">@pp.cppu_descripcion</td>
+                                        <td class="text-center">@pp.cppu_monto.Value.ToString("c", gt)</td>
+                                        @if (pp.cppu_salario_base == true)
+                                        {
+                                            <td class="text-center">Si</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-center">No</td>
+                                        }
+                                        @if (pp.cppu_depende_sb == true)
+                                        {
+                                            <td class="text-center">Si</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-center">No</td>
+                                        }
+                                        @if (pp.cppu_depende_sb == true)
+                                        {
+                                            <td class="text-center">@((pp.cppu_porcentaje_calculo / 100).Value.ToString("P", gt))</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-center">No aplica</td>
+                                        }
+                                        @*<td class="text-center">@pp.cppu_monto_total.Value.ToString("c", gt)</td>*@
+                                    </tr>
+                                }
+                                <tr>
+                                    <td></td>
+                                    <td colspan="5"><hr style="height:3px; border-style:solid;background-color:#222d32; margin-bottom:0px; margin-top:0px;"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="text-center"><b>Total</b></td>
+                                    <td>@((pagosPuesto.Where(x => x.activo && !x.eliminado && x.cppu_ctpa_id == credito).Select(x => x.cppu_monto).Sum()).Value.ToString("c", gt))</td>
+                                    <td colspan="2"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <table class="table table-striped table-bordered table-responsive">
+                            <thead style="background-color:cadetblue" id="thead"></thead>
+                            <tbody id="armaTemp"><tr><td><input hidden id="arm" value="1" /><p>No hay datos para mostrar</p></td></tr></tbody>
+                        </table>
+                    }
+                </div>
+                <h4 data-toggle="collapse" data-target="#debitos"><b><u><span class="glyphicon glyphicon-large glyphicon-menu-down"></span> Débitos</u></b></h4>
+                <div id="debitos" class="collapse in customCollapseD">
+                    @if (pagosPuesto.Where(p => p.cppu_ctpa_id == debito).Count() > 0)
+                    {
+                        <table class="table table-striped table-bordered">
+                            <thead style="background-color:cadetblue">
+                                <tr>
+                                    <th class="text-center">Acciones</th>
+                                    <th class="text-center">Descripción</th>
+                                    <th class="text-center">Monto</th>
+                                    <th class="text-center">¿Salario Base?</th>
+                                    <th class="text-center">¿Es prestación?</th>
+                                    <th class="text-center">% de cálculo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var pp in pagosPuesto.Where(x => x.activo && !x.eliminado && x.cppu_ctpa_id == debito))
+                                {
+                                    <tr>
+                                        <td class="text-center"><button data-toggle="tooltip" data-placement="top" title="Eiminar" type='button' onclick='borrarPagoDB(@pp.cppu_id)' class='btn btn-sm btn-danger'><span class="glyphicon glyphicon-trash"></span></button></td>
+                                        <td class="text-center">@pp.cppu_descripcion</td>
+                                        <td class="text-center">@pp.cppu_monto.Value.ToString("c", gt)</td>
+                                        @if (pp.cppu_salario_base == true)
+                                        {
+                                            <td class="text-center">Si</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-center">No</td>
+                                        }
+                                        @if (pp.cppu_depende_sb == true)
+                                        {
+                                            <td class="text-center">Si</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-center">No</td>
+                                        }
+                                        @if (pp.cppu_porcentaje_calculo > 0)
+                                        {
+                                            <td class="text-center">@((pp.cppu_porcentaje_calculo / 100).Value.ToString("P", gt))</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="text-center">No aplica</td>
+                                        }
+                                    </tr>
+                                }
+                                <tr>
+                                    <td></td>
+                                    <td colspan="5"><hr style="height:3px; border-style:solid;background-color:#222d32; margin-bottom:0px; margin-top:0px;"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="text-center"><b>Total</b></td>
+                                    <td>@((pagosPuesto.Where(x => x.activo && !x.eliminado && x.cppu_ctpa_id == debito).Select(x => x.cppu_monto).Sum()).Value.ToString("c", gt))</td>
+                                    <td colspan="2"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <table class="table table-striped table-bordered table-responsive">
+                            <thead style="background-color:cadetblue" id="thead"></thead>
+                            <tbody id="armaTemp"><tr><td><input hidden id="arm" value="1" /><p>No hay datos para mostrar</p></td></tr></tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    @*tabla de listado de costos*@
+    <div class="col-lg-6 no-padding">
+        <div class="form-group">
+            <div class="col-md-12 no-padding">
+                <h4 data-toggle="collapse" data-target="#listCostos">
+                    <b>
+                        <u>
+                            <span class="glyphicon glyphicon-large glyphicon-menu-down"></span> Listado de Costos
+                        </u>
+                    </b>
+                </h4>
+                <div class="collapse in customCollapse" id="listCostos">
+                    <table class="table table-striped table-responsive">
+                        @if (puestoInsumos.Where(pi => pi.activo && !pi.eliminado).Count() <= 0)
+                        {
+                            <thead style="background-color:cadetblue" id="thead"></thead>
+                            <tbody id="armaTemp"><tr><td><input hidden id="arm" value="1" /><p>No hay datos para mostrar</p></td></tr></tbody>
+                        }
+                        else
+                        {
+                            <thead style="background-color:cadetblue">
+                                <tr>
+                                    <th></th>
+                                    <th class="text-center">Insumo</th>
+                                    <th class="text-center">Cantidad</th>
+                                    <th class="text-center">PC/U</th>
+                                    <th class="text-center">Total</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="arma">
+                                @foreach (var costosList in puestoInsumos.Where(x => x.activo && !x.eliminado))
+                                {
+                                    <tr>
+                                        <td class="text-center"><button data-toggle="tooltip" data-placement="top" title="Eiminar" type='button' onclick='borrarInsumoDB(@costosList.cpin_id)' class='btn btn-sm btn-danger'><span class="glyphicon glyphicon-trash"></span></button></td>
+                                        <td class="text-center"><p>@costosList.Pt_Insumos.cins_descripcion</p></td>
+                                        <td class="text-center">
+                                            <p class="text-center">@costosList.cpin_cantidad</p>
+                                        </td>
+                                        <td class="text-center">@costosList.Pt_Insumos.cins_precio_costo.Value.ToString("c", gt)</td>
+                                        <td>@(((costosList.cpin_cantidad) * (costosList.Pt_Insumos.cins_precio_costo)).Value.ToString("c", gt))</td>
+                                        <td class="text-center">
+                                            <button data-toggle="tooltip" data-placement="top" title="Aumentar Cantidad" onclick='addCant(@costosList.cpin_id)' class='btn btn-sm btn-info' type='button'><span class="glyphicon glyphicon-chevron-up"></span></button>
+                                            @if (costosList.cpin_cantidad > 1)
+                                            {
+                                                <button data-toggle="tooltip" data-placement="top" title="Disminuir Cantidad" onclick='disCant(@costosList.cpin_id)' class='btn btn-sm btn-info' type='button'><span class="glyphicon glyphicon-chevron-down"></span></button>
+                                            }
+                                            else
+                                            {
+                                                <button disabled data-toggle="tooltip" data-placement="top" title="Disminuir Cantidad" onclick='disCant(@costosList.cpin_id)' class='btn btn-sm btn-info' type='button'><span class="glyphicon glyphicon-chevron-down"></span></button>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td></td>
+                                    <td colspan="4"><hr style="height:3px; border-style:solid;background-color:#222d32; margin-bottom:0px; margin-top:0px;"></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    @*@foreach (var sumtotal in puestoInsumos.Where(x => x.activo && !x.eliminado)) {
+                            total += (((sumtotal.cpin_cantidad.Value) * (sumtotal.Pt_Insumos.cins_precio_costo.Value)));
+                        }*@
+                                    <td colspan="4" class="text-right"><b>Total</b></td>
+                                    <td>@ViewBag.total</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        var listSelect = new Array();
+        var listAsigna = new Array();
+        var armId = [];
+        var armDes = [];
+        cppu_monto = $("#cppu_monto").val();
+        var replaceCommand = [',', 'goodbye'];
+        var replaceOutput = ['.', 'hello'];
+        for (var i = 0; i < replaceCommand.length; i++) {
+            cppu_monto = cppu_monto.replace(replaceCommand[i], replaceOutput[i]);
+        }
+        $('#cppu_monto').val(cppu_monto);
+        function partial() {
+            monto = $("#cppu_monto").val();
+            document.getElementById('cppu_monto_total').value = (Math.round(monto * 100) / 100).toFixed(2);
+        }
+        function validate() {
+            var porcentaje = document.getElementById('cppu_porcentaje_calculo').value;
+            if (porcentaje <= 0 || porcentaje > 100) {
+                document.getElementById('error').innerHTML = "ERROR: Porcentaje inválido. Debe de ser entre 1 y 100";
+            } else {
+                document.getElementById('error').innerHTML = "";
+            }
+        }
+        function calcTotal() {
+            var monto = document.getElementById('cppu_monto').value;
+            var porcentaje = document.getElementById('cppu_porcentaje_calculo').value;
+            var percent = (porcentaje / 100);
+            var multi = parseFloat(monto) * parseFloat(percent);
+            document.getElementById('cppu_monto_total').value = (Math.round(multi * 100) / 100).toFixed(2);
+        }
+        var addCant = function (i) {
+            cpin_id = i;
+            $.ajax({
+                url: '@Url.Action("AumentarCantidadPuestoInsumos")',
+                data: { cpin_id },
+                type: "POST",
+                success: function (data, status) {
+                    window.location.reload();
+                },
+                error: function () {
+                }
+            });
+        }
+        var disCant = function (i) {
+            cpin_id = i;
+            $.ajax({
+                url: '@Url.Action("DisminuirCantidadPuestoInsumos")',
+                data: { cpin_id },
+                type: "POST",
+                success: function (data, status) {
+                    window.location.reload();
+                },
+                error: function () {
+                }
+            });
+        }
+        var borrarInsumoDB = function (i) {
+            cpin_id = i;
+            $.ajax({
+                url: '@Url.Action("EliminarPuestoInsumos")',
+                data: { cpin_id },
+                type: "POST",
+                success: function (data, status) {
+                    window.location.reload();
+                },
+                error: function () {
+                }
+            });
+        }
+        var borrarPagoDB = function (i) {
+            cppu_id = i;
+            console.log("cpp", cppu_id)
+            $.ajax({
+                url: '@Url.Action("EliminarPagoPuesto")',
+                data: { cppu_id },
+                type: "POST",
+                success: function (data, status) {
+                    window.location.reload();
+                },
+                error: function () {
+                }
+            });
+        }
+        if (@pagosPuesto.Where(pp=>pp.cppu_salario_base==true && pp.activo && !pp.eliminado).Count()== 1) {
+                $('#es_salario_base').attr('disabled', 'disabled');
+            }
+        //agrega o elimina input para ingresar porcentaje de cálculo
+        $("#es_salario_base").change(function () {
+            if ($(this).prop("checked") == true) {
+                $('#es_otro_bono').attr('checked', false);
+                $("#porcentaje_calculo").hide();
+                partial();
+            }
+            if ($(this).prop("checked") == false) {
+                $('#es_otro_bono').attr('checked', true);
+                $("#porcentaje_calculo").show();
+                calcTotal();
+            }
+        });
+        $("#es_otro_bono").change(function () {
+            if ($(this).prop("checked") == true) {
+                $('#es_salario_base').attr('checked', false);
+                $("#porcentaje_calculo").show();
+                calcTotal();
+            }
+            if ($(this).prop("checked") == false) {
+                document.getElementById('cppu_monto').value = "";
+                $("#porcentaje_calculo").hide();
+                partial();
+            }
+        });
+
+        //se obtiene el valor de cada select y llaman las funciones para agregar los tr
+        $("#carm_id").change(function () {
+            var id = $('option:selected', $(this)).val();
+            var Des = $('option:selected', $(this)).text();
+            listSelect.push({id});
+            listAsigna.splice({ id });
+            //armDes.push({ Des });
+            console.log("select", listSelect);
+            console.log("asigna",listAsigna);
+            $("#carm_id")
+                .find("option")
+                .show()
+                .not("option[value*='" + id + "']").hide();
+            for (i = armDes.length - 1; i < armDes.length; i++) {
+                cpin_cpue_id = $("#cpue_id").val();
+            cpin_cins_id = id;
+            cpin_cantidad = 1;
+            $.ajax({
+                url: '@Url.Action("CrearPuestoInsumos")',
+                data: { cpin_cpue_id, cpin_cins_id, cpin_cantidad },
+                type: "POST",
+                success: function (data, status) {
+                    window.location.reload();
+                },
+                error: function () {
+                }
+            });
+            }
+            //var Des = $('option:selected', $(this)).text();
+        });
+
+        $("#cins_id").change(function () {
+            var id = $('option:selected', $(this)).val();
+            //var Des = $('option:selected', $(this)).text();
+            //insId.push({ id });
+            //insDes.push({ Des });
+            //verTablaInsumos();
+            cpin_cpue_id = $("#cpue_id").val();
+            cpin_cins_id = id;
+            cpin_cantidad = 1;
+            $.ajax({
+                url: '@Url.Action("CrearPuestoInsumos")',
+                data: { cpin_cpue_id, cpin_cins_id, cpin_cantidad },
+                type: "POST",
+                success: function (data, status) {
+                    window.location.reload();
+                },
+                error: function () {
+                }
+            });
+        });
+
+        $("#cuni_id").change(function () {
+            var id = $('option:selected', $(this)).val();
+            cpin_cpue_id = $("#cpue_id").val();
+            cpin_cins_id = id;
+            cpin_cantidad = 1;
+            $.ajax({
+                url: '@Url.Action("CrearPuestoInsumos")',
+                data: { cpin_cpue_id, cpin_cins_id, cpin_cantidad },
+                type: "POST",
+                success: function (data, status) {
+                    window.location.reload();
+                },
+                error: function () {
+                }
+            });
+        });
+
+        $("#guardarPago").click(function () {
+            if ($('#es_salario_base').is(":checked")) {
+                cppu_monto = $("#cppu_monto").val();
+                cppu_salario_base = true;
+            } else {
+                cppu_salario_base = false;
+            }
+            if ($('#es_otro_bono').is(":checked")) {
+                cppu_monto = $("#cppu_monto_total").val();
+                cppu_depende_sb = true;
+            } else {
+                cppu_monto = $("#cppu_monto").val();
+                cppu_depende_sb = false;
+            }
+            cppu_descripcion = $("#cppu_descripcion").val();
+            cppu_cpue_id = $("#cpue_id").val();
+            cppu_porcentaje_calculo = $("#cppu_porcentaje_calculo").val();
+            cppu_ctpa_id = $("#ctpa_id").val();
+            console.log("sb", cppu_salario_base)
+            console.log("dpsb", cppu_depende_sb);
+            if (cppu_salario_base == true) {
+                $.ajax({
+                    url: '@Url.Action("CrearPagosPuesto")',
+                    data: { cppu_descripcion, cppu_ctpa_id, cppu_cpue_id, cppu_monto, cppu_salario_base, cppu_depende_sb },
+                    type: "POST",
+                    success: function (data, status) {
+                        window.location.reload();
+                    },
+                    error: function () {
+                    }
+                });
+            } else if (cppu_depende_sb == false) {
+                $.ajax({
+                    url: '@Url.Action("CrearPagosPuesto")',
+                    data: { cppu_descripcion, cppu_ctpa_id, cppu_cpue_id, cppu_monto, cppu_salario_base, cppu_depende_sb },
+                    type: "POST",
+                    success: function (data, status) {
+                        window.location.reload();
+                    },
+                    error: function () {
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                url: '@Url.Action("CrearPagosPuesto")',
+                data: { cppu_descripcion, cppu_ctpa_id, cppu_cpue_id, cppu_monto, cppu_salario_base, cppu_depende_sb, cppu_porcentaje_calculo },
+                type: "POST",
+                success: function (data, status) {
+                    window.location.reload();
+                },
+                error: function () {
+                }
+            });
+            }
+        });
+        $('#cppu_monto').keypress(function (event) {
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) &&
+                ((event.which < 48 || event.which > 57) &&
+                    (event.which != 0 && event.which != 8))) {
+                event.preventDefault();
+            }
+
+            var text = $(this).val();
+
+            if ((text.indexOf('.') != -1) &&
+                (text.substring(text.indexOf('.')).length > 2) &&
+                (event.which != 0 && event.which != 8) &&
+                ($(this)[0].selectionStart >= text.length - 2)) {
+                event.preventDefault();
+            }
+        });
+        $('#cppu_porcentaje_calculo').keypress(function (event) {
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) &&
+                ((event.which < 48 || event.which > 57) &&
+                    (event.which != 0 && event.which != 8))) {
+                event.preventDefault();
+            }
+
+            var text = $(this).val();
+
+            if ((text.indexOf('.') != -1) &&
+                (text.substring(text.indexOf('.')).length > 2) &&
+                (event.which != 0 && event.which != 8) &&
+                ($(this)[0].selectionStart >= text.length - 2)) {
+                event.preventDefault();
+            }
+        });
+
+        $('.customCollapse').on('shown.bs.collapse', function () {
+            $(this).parent().find(".glyphicon").removeClass("glyphicon-menu-down").addClass("glyphicon-menu-up");
+        });
+
+        $('.customCollapse').on('hidden.bs.collapse', function () {
+            $(this).parent().find(".glyphicon").removeClass("glyphicon-menu-up").addClass("glyphicon-menu-down");
+        });
+        $('.customCollapseC').on('shown.bs.collapse', function () {
+            $(this).parent().find(".glyphicon-large").removeClass("glyphicon-menu-down").addClass("glyphicon-menu-up");
+        });
+
+        $('.customCollapseC').on('hidden.bs.collapse', function () {
+            $(this).parent().find(".glyphicon-large").removeClass("glyphicon-menu-up").addClass("glyphicon-menu-down");
+        });
+        $('.customCollapseD').on('shown.bs.collapse', function () {
+            $(this).parent().find(".glyphicon-large").removeClass("glyphicon-menu-down").addClass("glyphicon-menu-up");
+        });
+
+        $('.customCollapseD').on('hidden.bs.collapse', function () {
+            $(this).parent().find(".glyphicon-large").removeClass("glyphicon-menu-up").addClass("glyphicon-menu-down");
+        });
+    </script>
+}

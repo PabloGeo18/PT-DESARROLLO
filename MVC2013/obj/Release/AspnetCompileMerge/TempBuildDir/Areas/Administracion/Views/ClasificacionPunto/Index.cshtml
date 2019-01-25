@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MVC2013.Models.Clasificacion_Punto>
+
+@{
+    ViewBag.Title = @Resources.Resources.clasificacion_punto + "_" + @Resources.Resources.lista;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.clasificacion_punto_lista</h2>
+
+<p>
+    @Html.ActionLink(@Resources.Resources.crear_nuevo, "Create")
+</p>
+<table class="zebra-striped">
+    <thead>
+        <th>@Resources.Resources.clasificacion_punto_nombre</th>
+        <th>@Resources.Resources.clasificacion_punto_activo</th>
+        <th></th>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.nombre)</td>
+            <td>@Html.DisplayFor(modelItem => item.activo)</td>
+           
+            <td>
+                @Html.ActionLink(@Resources.Resources.editar, "Edit", new { id = item.id_clasificacion_punto }) |
+                @Html.ActionLink(@Resources.Resources.detalle, "Details", new { id = item.id_clasificacion_punto }) |
+                @Html.ActionLink(@Resources.Resources.eliminar, "Delete", new { id = item.id_clasificacion_punto })
+            </td>
+        </tr>
+    }
+
+</table>

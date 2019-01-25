@@ -1,0 +1,179 @@
+﻿@model MVC2013.Models.Estado_Fuerza
+
+@{
+    ViewBag.Title = "Estado_Fuerza_Consulta";
+    Layout = "~/Areas/EstadoFuerza/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Consulta de Estado de Fuerza</h2>
+
+<div class="form-group">
+    <button class="btn btn-sm btn-success" type="button" onclick="location.href='@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 form-group">
+        <div class="form-inline">
+            <div class="form-group">
+                <input type='text' class="form-control" id="fecha_desde" placeholder="Fecha desde..."  name="fecha_inicio_contrato" />
+            </div> &nbsp;&nbsp;
+            <div class="form-group">
+                <input type='text' class="form-control" id="fecha_hasta" placeholder="Fecha hasta..." name="fecha_inicio_contrato" />
+            </div> &nbsp;&nbsp;
+            <div class="form-group">
+                <input type="number" min="0" id="codigo_empleado" class="form-control" placeholder="Código Empleado" />
+            </div> &nbsp;&nbsp;
+            <div class="form-group">
+                <button class="btn btn-sm btn-success" type="button" id="btn_consultar" data-loading-text="Buscando...">
+                    <span class="glyphicon glyphicon-search"></span>&nbsp;Consultar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table-striped" id="tabla_estado_fuerza">
+        <thead>
+            <tr>
+                <th>Código Empleado</th>
+                <th>Empleado</th>
+                <th>Cliente</th>
+                <th>Razón Social</th>
+                <th>Ubicación</th>
+                <th>Tipo de Agente</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td><input type="number" id="id_empleado" style="text-transform:uppercase" autocomplete="off" class="form-control" /></td>
+                <td><input type="text" id="empleado" style="text-transform:uppercase" autocomplete="off" class="form-control toUpper" /></td>
+                <td><input type="text" id="cliente" style="text-transform:uppercase" autocomplete="off" class="form-control toUpper" /></td>
+                <td><input type="text" id="razon_social" style="text-transform:uppercase" autocomplete="off" class="form-control toUpper" /></td>
+                <td><input type="text" id="ubicacion" style="text-transform:uppercase" autocomplete="off" class="form-control toUpper" /></td>
+                <td><input type="text" id="tipo_agente" style="text-transform:uppercase" autocomplete="off" class="form-control toUpper" /></td>
+                <td><input type="text" id="situacion" style="text-transform:uppercase" autocomplete="off" class="form-control toUpper" /></td>
+                <td><input type="text" id="fecha" style="text-transform:uppercase" autocomplete="off" class="form-control" /></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody id="resultado_estado_fuerza"></tbody>
+    </table>
+</div>
+
+<script>
+    $(function () {
+
+        //Filtro de la tabla de empleados
+        $('#tabla_estado_fuerza').filterByMultiColumn([
+            {
+                filterClass: 'c_id_empleado',
+                field: 'id_empleado'
+            },
+            {
+                filterClass: 'c_empleado',
+                field: 'empleado'
+            },
+            {
+                filterClass: 'c_fecha',
+                field: 'fecha'
+            },
+            {
+                filterClass: 'c_cliente',
+                field: 'cliente'
+            },
+            {
+                filterClass: 'c_tipo_agente',
+                field: 'tipo_agente'
+            },
+            {
+                filterClass: 'c_ubicacion',
+                field: 'ubicacion'
+            },
+            {
+                filterClass: 'c_razon_social',
+                field: 'razon_social'
+            },
+            {
+                filterClass: 'c_situacion',
+                field: 'situacion'
+            }
+        ]);
+
+        $('#btn_consultar').click(function () {
+            var fecha_desde = $('#fecha_desde').val();
+            var fecha_hasta = $('#fecha_hasta').val();
+            var empleado = $('#codigo_empleado').val();
+            if (fecha_desde != "") {
+                var btn = $(this);
+                btn.button('loading');
+                $.ajax({
+                    url: '@Url.Action("Search", "Estado_Fuerza_Detalle")',
+                    type: "GET",
+                    data: { 'fecha_desde': fecha_desde, 'fecha_hasta': fecha_hasta, 'id_empleado': empleado },
+                    error: function () {
+                        btn.button('reset');
+                        alert("Error en la obtención de datos del servidor.");
+                    },
+                    success: function (response) {
+                        btn.button('reset');
+                        selector = "#resultado_estado_fuerza";
+                        target = $(selector);
+                        target.html('');
+                        $.each(response, function ($in, item) {
+                            target.append("<tr>"
+                                + "<td class =\"c_id_empleado\" >" + item.id_empleado + "</td>"
+                                + "<td class =\"c_empleado\" >" + item.empleado + "</td><td class =\"c_cliente\">"
+                                + item.cliente + "</td><td class =\"c_razon_social\">"
+                                + item.razon_social + "</td><td class =\"c_ubicacion\">"
+                                + item.ubicacion + "</td><td class =\"c_tipo_agente\">"
+                                + item.tipo_servicio + "</td><td class =\"c_situacion\">"
+                                + item.situacion + "</td><td class =\"c_fecha\">"
+                                + item.fecha + "</td><td>"
+                                + "<button class=\"btn btn-info btn-sm btn_details_efd\" data-id=\"" + item.id_estado_fuerza_detalle + "\" ><span class=\"glyphicon glyphicon-list-alt\"></span>&nbsp;@Resources.Resources.detalle</button>"
+                                + "<button class=\"btn btn-primary btn-sm btn_edit_efd\" data-id=\"" + item.id_estado_fuerza_detalle + "\" ><span class=\"glyphicon glyphicon-edit\"></span>&nbsp;@Resources.Resources.editar</button>"
+                                + "<button class=\"btn btn-danger btn-sm btn_delete_efd\" data-id=\"" + item.id_estado_fuerza_detalle + "\" ><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;@Resources.Resources.eliminar</button>"
+                                + "</td><tr>");
+                        });
+                    }
+                });
+            }
+        });
+
+        //Boton para ver el detalle del registro de estado de fuerza
+        $(document).on('click', '.btn_details_efd', function () {
+            var id = $(this).data('id');
+            var url = "@Url.Action("Details", new { id = "val"})";
+            url = url.replace("val", id);
+            //window.location.href = url;
+            window.open(url, "_blank");
+        });
+        //Boton para editar el registro de estado de fuerza
+        $(document).on('click', '.btn_edit_efd', function () {
+            var id = $(this).data('id');
+            var url = "@Url.Action("Edit", new { id = "val" })";
+            url = url.replace("val", id);
+            window.open(url, "_blank");
+        });
+        //Boton para eliminar el registro de estado de fuerza
+        $(document).on('click', '.btn_delete_efd', function () {
+            var id = $(this).data('id');
+            var url = "@Url.Action("Delete", new { id = "val" })";
+            url = url.replace("val", id);
+            window.open(url, "_blank");
+        });
+
+        $('#fecha_hasta').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+
+        $('#fecha_desde').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+    });
+</script>

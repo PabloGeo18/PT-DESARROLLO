@@ -1,0 +1,108 @@
+﻿@model MVC2013.Models.Razon_Social_Grupos_Factura
+
+@{
+    ViewBag.Title = "Editar Grupo Factura";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+    string meses = "@Meses";
+}
+
+<h2>Editar Agrupacion de Factura</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Razon_Social_Grupos_Factura</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_razon_social_grupo_factura)
+        <div class="panel panel-default">
+            <div class="panel-heading bg-purple">Informacion</div>
+            <div class="panel-body">
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nombre, "Nombre", htmlAttributes: new { @class = "control-label col-md-1", @style = "padding: 5px", @id = "focus" })
+                        <div class="col-md-11">
+                            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.descripcion_factura, "Descripcion Factura", htmlAttributes: new { @class = "control-label col-md-1", @style = "padding: 5px" })
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <input type="text" class="form-control" style="display:inline-block;margin-left:25px" id="comentario1" name="descripcion_factura1" value="@ViewBag.descripcion1" />
+                                &nbsp;@meses&nbsp;
+                                <input type="text" class="form-control" style="display:inline-block" id="comentario2" name="descripcion_factura2" value="@ViewBag.descripcion2" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        @Html.Label("ejemplo1", "Ejemplo", htmlAttributes: new { @class = "control-label col-md-1", @style = "padding: 0px" })
+                        <div class="col-md-11">
+                            <h5 style="display:inline-block" id="Ejemplo1" name="Ejemplo1"></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        @Html.Label("ejemplo2", "Ejemplo", htmlAttributes: new { @class = "control-label col-md-1", @style = "padding: 0px" })
+                        <div class="col-md-11">
+                            <h5 style="display:inline-block" id="Ejemplo2" name="Ejemplo2"></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-success btn-sm" type="submit">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                </button>
+            </div>
+        </div>
+
+    </div>
+}
+
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Details_RS", "Clientes", new { id_Razon_Social = @Model.id_razon_social })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar al Detalle de la Razon Social
+    </button>
+</div>
+
+<script>
+    $('#focus').focus();
+
+    $('#comentario1, #comentario2').on("keyup", function () {
+        var comentario1 = $('#comentario1').val();
+        var comentario2 = $('#comentario2').val();
+        $.ajax({
+            url: '@Url.Action("Obtener_Ejemplos", "Clientes")',
+            type: "GET",
+            data: { 'Texto1': comentario1, 'Texto2': comentario2 },
+            datatype: JSON,
+            error: function () {
+                target = $('#Ejemplo1')
+                target.html("Error")
+                target2 = $('#Ejemplo2')
+                target2.html("Error")
+            },
+            success: function (response) {
+                target = $('#Ejemplo1')
+                target.html(response.Ejemplo1)
+                target2 = $('#Ejemplo2')
+                target2.html(response.Ejemplo2)
+            }
+        });
+
+    });
+
+</script>

@@ -1,0 +1,132 @@
+﻿@model MVC2013.Models.pt_estadofuerza_encabezado
+
+@{
+    ViewBag.Title = "Administrativo";
+    Layout = "~/Areas/EstadoFuerza/Views/Shared/_Layout.cshtml";
+    DateTime fecha = DateTime.Today;
+    DateTime fecha_ultima = DateTime.Today;
+    if (Model != null) { fecha = (DateTime)Model.fecha_inicio; 
+    } else {
+        fecha_ultima = (DateTime)ViewBag.fecha_ultima;
+        fecha_ultima = fecha_ultima.AddDays(1);
+    }
+
+
+}
+
+
+@if (Model == null)
+{
+
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            @using (Html.BeginForm("IniciarDia", "pt_estadofuerza", FormMethod.Get, new { @class = "form-inline" }))
+    {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Estado de Fuerza</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.fecha_inicio, "Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input placeholder="Seleccionar fecha..." type="text" id="date" name="date" class="form-control" />
+                            
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Iniciar Estado de Fuerza" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+    }
+            </div>
+        </div>
+            }
+            else
+            {
+            <h2>Administrativo</h2>
+
+            <div>
+                <h4>Estado de Fuerza</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        Fecha del Estado de Fuerza
+                    </dt>
+
+                    <dd>
+                        <h4>@fecha.ToShortDateString()</h4>
+                    </dd>
+
+                    <dt>
+                        Fecha de Creacion
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.creado_el)
+                    </dd>
+
+                    <dt>
+                        Usuario Creacion
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.creado_por)
+                    </dd>
+
+                    <dt>
+                        Estado
+                    </dt>
+
+                    <dd>
+                        @if (Model.estado == 1) { <text>Activo</text> }
+            else
+            { <text>Finalizado</text> }
+                    </dd>
+
+                    @*        <dt>
+                            Usuario Finalizacion
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.modificado_por)
+                        </dd>
+
+                        <dt>
+                            Fecha Finalizacion
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.modificado_el)
+                        </dd>
+                    *@
+
+                </dl>
+                @Html.ActionLink("Finalizar Dia", "FinalizarDia", new { id = Model.id }, new  { @class = "btn btn-danger" })
+            </div>
+            <p>
+
+                @Html.ActionLink("Listado Estado de Fuerza", "Index", null, new  { @class = "btn btn-primary" })
+                @Html.ActionLink("Carga Masiva Estado de Fuerza", "Index", "CargaMasiva", null, new { @class = "btn btn-info" })
+            </p>
+
+            }
+
+
+            @section Scripts {
+
+                <script>
+                    $(function () {
+                        $("#date").datetimepicker({
+                            format: "DD/MM/YYYY",
+                            minDate: "@fecha_ultima.Month/@fecha_ultima.Day/@fecha_ultima.Year"
+                        });
+
+                    });
+                </script>
+            }

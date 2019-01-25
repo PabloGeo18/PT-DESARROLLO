@@ -1,0 +1,64 @@
+﻿@model MVC2013.Models.Token_Cliente_Conf
+
+@{
+    ViewBag.Title = @Resources.Resources.token_cliente_conf + "_" + Resources.Resources.eliminar;
+    Layout = "~/Areas/TransporteValores/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.token_cliente_conf_eliminar</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>@Resources.Resources.cliente</dt>
+        <dd>@Html.DisplayFor(model => model.Clientes.nombre)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.volumen</dt>
+        <dd>@Html.DisplayFor(model => model.volumen)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.volumen_asignacion</dt>
+        <dd>@Html.DisplayFor(model => model.volumen_asignacion)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.volumen_minimo_autogeneracion</dt>
+        <dd>@Html.DisplayFor(model => model.volumen_minimo_autogeneracion)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.emails_notificacion</dt>
+        <dd>@Html.DisplayFor(model => model.emails_notificacion)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.autogenerar</dt>
+        <dd>@Html.DisplayFor(model => model.autogenerar)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.activo</dt>
+        <dd>@Html.DisplayFor(model => model.activo)</dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value=@Resources.Resources.eliminar class="btn btn-default" /> |
+            @Html.ActionLink(@Resources.Resources.listado_regresar, "Index")
+        </div>
+    }
+</div>

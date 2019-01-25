@@ -1,0 +1,46 @@
+﻿@model MVC2013.Models.Solicitud_Tipo
+
+@{
+    ViewBag.Title = @Resources.Resources.tipo_solicitud + "_" + @Resources.Resources.eliminar;
+    Layout = "~/Areas/TransporteValores/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.tipo_solicitud_eliminacion</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Resources.Resources.codigo</dt>
+        <dd>@Html.DisplayFor(model => model.codigo)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.nombre</dt>
+        <dd>@Html.DisplayFor(model => model.nombre)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.descripcion</dt>
+        <dd>@Html.DisplayFor(model => model.descripcion)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.activo</dt>
+        <dd>@Html.DisplayFor(model => model.activo)</dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value=@Resources.Resources.eliminar class="btn btn-default" /> |
+            @Html.ActionLink(@Resources.Resources.listado_regresar, "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,101 @@
+﻿@model MVC2013.Areas.rrhh.Models.Finiquito
+@using System.Globalization;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TestContrato</title>
+</head>
+<body style="margin:50px 50px 50px 50px;">
+    <div style="text-align:center;font-size:48px; font-family:'Times New Roman'">
+        <label><b>Finiquito Laboral</b></label>
+        <br />
+        <br />
+    </div>
+
+    <div style="text-align:justify; font-size:16px; font-family:Arial">
+        En la ciudad Guatemala, el día @Model.finiquito.fecha_hoy, YO: @Model.finiquito.empleado_nombre de @Model.finiquito.edad años de edad, @Model.finiquito.estado_civil, @Model.finiquito.nacionalidad
+        con residencia en @Model.finiquito.direcciont, @Model.finiquito.municipiot, @Model.finiquito.departamentot, con número de identificacion @Model.finiquito.dpi extendido por la municipalidad de
+        @Model.finiquito.municipio_dpi, por el presente documento vengo a dejar constancia de lo siguiente:
+        <br />
+        <br />
+        PRIMERO: Que ingresé a laborar con la entidad @Model.finiquito.empresa el @Model.finiquito.fecha_inicio, habiendo concluido la relación laboral por @Model.finiquito.motivo_baja, el día @Model.finiquito.fecha_fin.
+        <br />
+        SEGUNDO: Derivado de la terminación laboral declaro en este momento y a mi entera satisfacción que la entidad , me cancelo todos mi sueldos en fecha y prestaciones de conformidad a la ley y después de haber analizado y estudiado detenidamente dicha liquidación, aceptándola en todas sus partes, sin tener observación alguna que formularle, y que se detallada a continuación:
+        <br />
+        <br />
+    </div>
+    <div style="text-align:center; font-size:16px; font-family:Arial">
+        <table class="table-striped" style="border:solid; border-width:thin;  border-color:black; text-align:left" align="center">
+            <tr>
+                <td width="200px">INDEMNIZACION</td>
+                <td>@Model.indemnizacion.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+            </tr>
+            <tr>
+                <td>AGUINALDO</td>
+                <td>@Model.aguinaldo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+            </tr>
+            <tr>
+                <td>BONO 14</td>
+                <td>@Model.bono_14.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+            </tr>
+            <tr>
+                <td>VACACIONES</td>
+                <td>@Model.vacaciones.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+            </tr>
+            <tr>
+                <td>SUELDOS PENDIENTES</td>
+                <td>@Model.sueldos_pendientes.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+            </tr>
+            <tr>
+                <td>DEDUCCIONES</td>
+                <td>@Model.deducciones.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+            </tr>
+        </table>
+        <br />
+        <br />
+        <table class="table-condensed" style="text-align:center" align="center">
+            <tr>
+                <td width="200px" style="border-bottom:solid; border-bottom-width:thin; border-bottom-color:black; border-top:solid; border-top-width:thin; border-top-color:black">
+                    <b>TOTAL A RECIBIR</b>
+                </td>
+                <td style="border-bottom:solid; border-bottom-width:thin; border-bottom-color:black;  border-top:solid; border-top-width:thin; border-top-color:black">
+                    @Model.total.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                </td>
+            </tr>
+        </table>
+        <br />
+        <br />
+        _______________________________________________________________
+        <br />
+        _______________________________________________________________
+        <br /> <br />
+    </div>
+    <div style="text-align:justify; font-size:16px; font-family:Arial">
+        TERCERO: Por lo expuesto anterior otorgo a favor de la entidad @Model.finiquito.empresa el más amplio, completo y eficaz FINIQUITO LABORAL, por todo el tiempo servido con dicha empleadora,
+        derivado de los hechos indicados anteriormente, haciendo extensivo el mismo a los ramos laboral, civil, penal, administrativo, mercantil y de cualquier otra índole, así como a cualquier otra
+        persona individual o jurídica en contra de la cual pudiera reclamar, obligándome en pacto de no pedir, sin reservarme acción alguna, <br />
+        Leo íntegramente lo escrito, lo ratifico, acepto y firmo.
+        <br /><br /><br />
+        <b>F.</b>
+        <br /><br />
+        En la ciudad de Guatemala, el día @Model.finiquito.dia_actual_letras de @Model.finiquito.mes_actual del @Model.finiquito.ano_actual_letras Yo: el Infrascrito Notario, doy fe: a)
+        que la firma que antecede es auténtica por haber sido puesta el día de hoy en mi presencia por @Model.finiquito.empleado_nombre, quien se identifica con número @Model.finiquito.dpi extendida por la municipalidad
+        de @Model.finiquito.municipio_dpi, y b) el signatario vuelve a firmar conmigo al pie de la presente acta.
+        <br /><br /><br />
+        <b>F.</b>
+        <br /><br /><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ANTE MI:
+    </div>
+
+
+
+
+</body>
+</html>

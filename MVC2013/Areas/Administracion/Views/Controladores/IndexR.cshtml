@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "IndexR";
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+    List<MVC2013.Src.Comun.Helper.AreaControladorMetodo> listado = (List<MVC2013.Src.Comun.Helper.AreaControladorMetodo>)ViewBag.listado;
+    
+}
+
+<h2>IndexR</h2>
+
+<table>
+    <tr>
+        <td>Area</td>
+        <td>Existe Area</td>
+        <td>Controlador</td>
+        <td>Existe Controlador</td>
+        <td>Metodo</td>
+        <td>Existe Metodo</td>
+    </tr>
+    @foreach (MVC2013.Src.Comun.Helper.AreaControladorMetodo item in listado)
+    {
+        <tr>
+            <td>@item.Area</td><td> @item.existeArea</td>
+            <td>@item.Contolador </td><td>@item.existeControlador</td>
+            <td>@item.Metodo</td><td> @item.existeMetodo</td>
+        </tr>
+    }
+
+</table>
+

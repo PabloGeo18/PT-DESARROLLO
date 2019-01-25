@@ -1,0 +1,116 @@
+﻿@model MVC2013.Models.Clientes
+
+@{
+    ViewBag.Title = @Resources.Resources.clientes + "_" + @Resources.Resources.editar;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.clientes_editar</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_cliente)
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.clientes_tipo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_tipo_cliente", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_tipo_cliente, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.clientes_pais, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_pais", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_pais, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.clientes_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.clientes_nombre_corto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nombre_corto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nombre_corto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.clientes_activo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.activo)
+                    @Html.ValidationMessageFor(model => model.activo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value=@Resources.Resources.guardar class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink(@Resources.Resources.listado_regresar, "Index")
+</div>
+
+
+<hr style="height:3px; border-style:solid;background-color:#222d32">
+
+<!-- MANTENIMIENTO DE PUNTOS -->
+
+<h2>@Resources.Resources.punto_lista_por_cliente</h2>
+
+<p>
+    @Html.ActionLink(@Resources.Resources.crear_nuevo, "CreateByCliente", "Puntos", new { idCliente = Model.id_cliente }, null)
+</p>
+
+<table class="zebra-striped">
+    <thead>
+    <th>@Resources.Resources.punto</th>
+    <th>@Resources.Resources.punto_pais</th>
+    <th>@Resources.Resources.punto_departamento</th>
+    <th>@Resources.Resources.punto_municipio</th>
+    <th>@Resources.Resources.punto_activo</th>
+
+    <th></th>
+    </thead>
+    @foreach (var punto in Model.Puntos)
+    {
+        if (punto.eliminado == false)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => punto.nombre)</td>
+                <td>@Html.DisplayFor(modelItem => punto.Paises.nombre)</td>
+                <td>@Html.DisplayFor(modelItem => punto.Departamentos.nombre)</td>
+                <td>@Html.DisplayFor(modelItem => punto.Municipios.nombre)</td>
+                <td>@Html.DisplayFor(modelItem => punto.activo)</td>
+                <td>
+                    @Html.ActionLink(@Resources.Resources.editar, "Edit", "Puntos", new { idCliente = Model.id_cliente, idPunto = punto.id_punto }, null) |
+                    @Html.ActionLink(@Resources.Resources.detalle, "Details", "Puntos", new { idCliente = Model.id_cliente, idPunto = punto.id_punto }, null) |
+                    @Html.ActionLink(@Resources.Resources.eliminar, "Delete", "Puntos", new { idCliente = Model.id_cliente, idPunto = punto.id_punto }, null)
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+
+@section Scripts {}

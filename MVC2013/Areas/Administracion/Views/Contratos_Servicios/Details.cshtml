@@ -1,0 +1,176 @@
+﻿@model MVC2013.Models.Contratos_Servicios
+@using System.Globalization
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles del Contrato</h2>
+
+<div>
+    <hr />
+    <div class="panel panel-default">
+        <div class="panel-heading bg-purple">Informacion del Contrato</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Cliente
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Ubicaciones.Razones_Sociales.Clientes.nombre)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Razon Social
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Ubicaciones.Razones_Sociales.razon_social)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Cliente
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Ubicaciones.direccion)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Estado de Contrato
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Cat_Estados_Servicio_Contratado.nombre)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Tipo de Factura
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Cat_Tipos_Facturacion.nombre)
+                        </dd>
+                    </dl>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading bg-maroon-active">Servicios Adquiridos</div>
+        <div class="panel-body">
+            <table class="table-hover">
+                <tr>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Cantidad
+                    </th>
+                    <th>
+                        Costo
+                    </th>
+                    <th>
+                        Precio
+                    </th>
+                    <th>
+                        Fecha de Inicio
+                    </th>
+                    <th>
+                        Fecha de Fin
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
+                </tr>
+                @foreach (var item_agente in Model.Contratos_Agentes.Where(x => x.activo && !x.eliminado))
+                {
+                    <tr>
+                        <td>
+                            @item_agente.Cat_Tipos_Agente.nombre
+                        </td>
+                        <td>
+                            @item_agente.cantidad
+                        </td>
+                        <td>
+                            @item_agente.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                        </td>
+                        <td>
+                            @item_agente.precio_venta_unitario.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                        </td>
+                        <td>
+                            @item_agente.fecha_inicio.ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @if (item_agente.fecha_fin.HasValue)
+                            {
+                                @item_agente.fecha_fin.Value.ToString("dd/MM/yyyy")
+                            }
+                            else
+                            {
+                                <label>----</label>
+                            }
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                }
+                @foreach (var item_otro_servicio in Model.Contratos_Otros_Servicios.Where(x => x.activo && !x.eliminado))
+                {
+                    <tr>
+                        <td>
+                            @item_otro_servicio.Cat_Otros_Servicios.nombre
+                        </td>
+                        <td>
+                            @item_otro_servicio.cantidad
+                        </td>
+                        <td>
+                            @item_otro_servicio.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                        </td>
+                        <td>
+                            @item_otro_servicio.precio_venta_unitario.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                        </td>
+                        <td>
+                            @item_otro_servicio.fecha_inicio.ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @if (item_otro_servicio.fecha_fin.HasValue)
+                            {
+                                @item_otro_servicio.fecha_fin.Value.ToString("dd/MM/yyyy")
+                            }
+                            else
+                            {
+                                <label>----</label>
+                            }
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+
+</div>
+<p>
+    <div>
+        <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Details_U", "Clientes", new { id_ubicacion = Model.id_ubicacion})'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;Retornar a Detalles de Ubicacion
+        </button>
+    </div>
+</p>

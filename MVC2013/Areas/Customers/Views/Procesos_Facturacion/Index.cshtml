@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MVC2013.Models.Procesos_Facturacion>
+@using System.Globalization
+@using MVC2013.Src.Comun.Util
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+    CultureInfo cultura_chapina = new CultureInfo("es-GT");
+}
+
+<h2>Listado de Procesos de Facturacion Mensual</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading bg-blue">Procesos Facturacion</div>
+    <div class="panel-body">
+        <table class="table-hover">
+            <tr>
+                <th>
+                    Descripcion
+                </th>
+                <th>
+                    Cantidad de Contratos
+                </th>
+                <th>
+                    Total Activo
+                </th>
+
+                <th>
+                    Total Facturado
+                </th>
+                <th>
+                    Total Pagado
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.fecha_proceso.ToString("MMMM", cultura_chapina).ToUpper()&nbsp;&nbsp;@item.fecha_proceso.Year
+                    </td>
+                    <td>
+                        @item.Procesos_Facturacion_Detalle.Where(x => x.activo && !x.eliminado).Count()
+                    </td>
+                    <td>
+                        @item.Procesos_Facturacion_Detalle.Where(x => x.activo && !x.eliminado && x.id_cat_estado_proceso_facturacion_detalle == (int)Catalogos.Estado_Proceso_Facturacion_Detalle.Activo).Sum(x => x.cantidad * x.precio_venta_unitario).ToString("C", cultura_chapina)
+                    </td>
+                    <td>
+                        @item.Procesos_Facturacion_Detalle.Where(x => x.activo && !x.eliminado && x.id_cat_estado_proceso_facturacion_detalle == (int)Catalogos.Estado_Proceso_Facturacion_Detalle.Facturado).Sum(x => x.cantidad * x.precio_venta_unitario).ToString("C", cultura_chapina)
+                    </td>
+                    <td>
+                        @item.Procesos_Facturacion_Detalle.Where(x => x.activo && !x.eliminado && x.id_cat_estado_proceso_facturacion_detalle == (int)Catalogos.Estado_Proceso_Facturacion_Detalle.Pagado).Sum(x => x.cantidad * x.precio_venta_unitario).ToString("C", cultura_chapina)
+                    </td>
+                    <td>
+                        <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Facturacion_Detalle", "Procesos_Facturacion_Detalle", new { id = item.id_proceso_facturacion })'">
+                            <span class="glyphicon glyphicon-search"></span>&nbsp;     @Resources.Resources.detalle
+                        </button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+

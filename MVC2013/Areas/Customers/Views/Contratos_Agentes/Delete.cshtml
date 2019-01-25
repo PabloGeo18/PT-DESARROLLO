@@ -1,0 +1,169 @@
+﻿@model MVC2013.Models.Contratos_Agentes
+@using System.Globalization
+@{
+    ViewBag.Title = "Eliminar Contrato Agente";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Contrato de Agente</h2>
+<h4><label>Cliente:</label>@Model.Contratos_Servicios.Razones_Sociales.Clientes.nombre</h4>
+<h4><label>Razon Social:</label>@Model.Contratos_Servicios.Razones_Sociales.razon_social</h4>
+
+<h3>¿Está seguro de eliminar el registro?</h3>
+<div>
+    <hr />
+    <div class="panel panel-default">
+        <div class="panel-heading bg-red">Informacion del Contrato</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Nombre del Servicio
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Cat_Tipos_Agente.nombre)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <dl class="dl-horizontal">
+
+                        <dt>
+                            Cantidad
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.cantidad)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Costo
+                        </dt>
+
+                        <dd>
+                            @Model.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Precio de Venta
+                        </dt>
+
+                        <dd>
+                            @Model.precio_venta_unitario.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Fecha Inicio
+                        </dt>
+
+                        <dd>
+                            @Model.fecha_inicio.ToString("dd/MM/yyyy")
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Fecha Fin
+                        </dt>
+
+                        <dd>
+                            @if (Model.fecha_fin.HasValue)
+                            {
+                                @Model.fecha_fin.Value.ToString("dd/MM/yyyy")
+                            }
+                            else
+                            {
+                                <label>-----</label>
+                            }
+                            
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Grupo de Factura
+                        </dt>
+
+                        <dd>
+                            @if (Model.id_razon_social_grupo_factura.HasValue)
+                            {
+                                @Model.Razon_Social_Grupos_Factura.nombre
+                            }
+                            else
+                            {
+                                <text>-----</text>                                
+                            }
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Grupo de Factura
+                        </dt>
+
+                        <dd>
+                            @if (Model.id_ubicacion.HasValue)
+                            {
+                                @Model.Ubicaciones.nombre
+                            }
+                            else
+                            {
+                                <text>-----</text>
+                            }
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            @using (Html.BeginForm("Delete", "Contratos_Agentes", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="row">
+                    <label class="col-md-3">Comentario</label>
+                    <div class="col-md-offset-2 col-md-9">
+                        <textarea placeholder="Ingresar comentario..." rows="5" cols="28" required id="Comentario" name="Comentario"></textarea>
+                    </div>
+                </div>
+                <dl class="dl-horizontal">
+                    <dd>
+
+
+                        <button class="btn btn-danger btn-sm" type="submit">
+                            <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                        </button>
+
+                    </dd>
+
+                </dl>
+            }
+        </div>
+    </div>
+
+
+</div>
+
+<p>
+    <div>
+        <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Details", "Contratos_Servicios", new {id = Model.id_contrato_servicio})'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+        </button>
+    </div>
+
+</p>

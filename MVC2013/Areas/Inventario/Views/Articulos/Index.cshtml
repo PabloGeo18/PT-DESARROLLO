@@ -1,0 +1,149 @@
+﻿@model IEnumerable<MVC2013.Models.Articulos>
+@using System.Globalization;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Artículos</h2>
+@foreach (var bodega in ViewBag.id_bodega)
+{
+    if (Model.Where(x => x.id_bodega == bodega.id_bodega).Count() != 0)
+    {
+        <h3>@bodega.descripcion</h3>
+        <table class="table-hover">
+            <tr>
+                <th>
+                    @Resources.Resources.serie
+                </th>
+                <th>
+                    @Resources.Resources.costo
+                </th>
+                <th>
+                    @Resources.Resources.costo_venta
+                </th>
+                <th>
+                    @Resources.Resources.ubicacion
+                </th>
+                <th>
+                    @Resources.Resources.articulo_tipo
+                </th>
+                <th>
+                    @Resources.Resources.marca
+                </th>
+                <th>
+                    @Resources.Resources.proveedor
+                </th>
+            </tr>
+
+            @foreach (var item in Model.Where(x => x.id_bodega == bodega.id_bodega))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.serie)
+                    </td>
+                    <td>
+                        @item.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                    </td>
+                    <td>
+                        @item.costo_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                    </td>
+                    <td>
+                        @if (item.id_cliente != null)
+                        {
+                            <text>Cliente - </text>
+                            @Html.DisplayFor(modelItem => item.Clientes.nombre)
+                        }
+                        @if (item.id_bodega != null)
+                        {
+                            <text>Bodega - </text>
+                            @Html.DisplayFor(modelItem => item.Bodegas.descripcion)
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Articulo_Tipo.descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Marcas.descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Proveedores.descripcion)
+                    </td>
+
+                </tr>
+                
+            }
+
+        </table>
+
+    }
+}
+
+
+@if (Model.Where(x => x.id_bodega == null && x.id_cliente != null).Count() != 0)
+{
+    <h3>Clientes</h3>
+    <table class="table-hover">
+        <tr>
+            <th>
+                @Resources.Resources.serie
+            </th>
+            <th>
+                @Resources.Resources.costo
+            </th>
+            <th>
+                @Resources.Resources.costo_venta
+            </th>
+            <th>
+                @Resources.Resources.ubicacion
+            </th>
+            <th>
+                @Resources.Resources.articulo_tipo
+            </th>
+            <th>
+                @Resources.Resources.marca
+            </th>
+            <th>
+                @Resources.Resources.proveedor
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Where(x => x.id_bodega == null && x.id_cliente != null))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.serie)
+                </td>
+                <td>
+                    @item.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                </td>
+                <td>
+                    @item.costo_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                </td>
+                <td>
+                    @if (item.id_cliente != null)
+                    {
+                        <text>Cliente - </text>
+                        @Html.DisplayFor(modelItem => item.Clientes.nombre)
+                    }
+                    @if (item.id_bodega != null)
+                    {
+                        <text>Bodega - </text>
+                        @Html.DisplayFor(modelItem => item.Bodegas.descripcion)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Articulo_Tipo.descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marcas.descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Proveedores.descripcion)
+                </td>
+            </tr>
+
+        }
+
+    </table>
+}

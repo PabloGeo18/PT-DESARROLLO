@@ -1,0 +1,139 @@
+﻿@model MVC2013.Models.Contratos_Agentes
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Contratos_Agentes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.costo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.costo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precio_venta_unitario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio_venta_unitario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_inicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_inicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_fin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_fin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eliminado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eliminado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_creacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_modificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_eliminacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_eliminacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios1.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios1.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios2.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios2.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cat_Tipos_Agente.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cat_Tipos_Agente.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contratos_Servicios.id_contrato_servicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contratos_Servicios.id_contrato_servicio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_contrato_agente }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

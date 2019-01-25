@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MVC2013.Models.Usuarios>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = @Resources.Resources.lista;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.usuario_usuarios</h2>
+
+<div class="form-group">
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</div>
+
+
+@Html.Grid(Model).Columns(columns =>
+          {
+              columns.Add(foo => foo.usuario).Titled(@Resources.Resources.usuario_usuario).SetWidth(50).Filterable(true).Sortable(true);
+              columns.Add(foo => foo.nombre_completo_usuario).Titled(@Resources.Resources.usuario_nombre).SetWidth(125).Filterable(true).Sortable(true);
+              columns.Add(foo => foo.email).Titled(@Resources.Resources.usuario_email).SetWidth(125).Filterable(true).Sortable(true);
+              columns.Add().Titled(@Resources.Resources.usuario_externo).Encoded(false).Sanitized(false).SetWidth(50).RenderValueAs(d =>
+                     @Html.DisplayFor(modelItem => d.usuario_externo)
+              );
+              columns.Add().Titled(@Resources.Resources.acciones).Encoded(false).Sanitized(false).SetWidth(180).RenderValueAs(d =>
+                @<b>
+                    <button class="btn btn-sm btn-primary" type="button" onclick="location.href='@Url.Action("Edit", new { id= d.id_usuario })'">
+                        <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                    </button>
+                    <button class="btn btn-sm btn-info" type="button" onclick="location.href='@Url.Action("Details", new { id= d.id_usuario })'">
+                        <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                    </button>
+                    <button class="btn btn-sm btn-danger" type="button" onclick="location.href='@Url.Action("Delete", new { id= d.id_usuario })'">
+                        <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                    </button>
+                </b>);
+          }).WithPaging(MVC2013.Src.Comun.Util.Constantes.getPagerSize())

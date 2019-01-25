@@ -1,0 +1,115 @@
+﻿@model MVC2013.Models.Razones_Sociales
+
+@{
+    ViewBag.Title = Resources.Resources.razon_social + "_" + Resources.Resources.eliminar;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.razon_social_eliminar</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Resources.Resources.razon_social
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.razon_social)
+            </dd>
+
+            <dt>
+                @Resources.Resources.nombre_comercial
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nombre_comercial)
+            </dd>
+
+            <dt>
+                @Resources.Resources.nit
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nit)
+            </dd>
+
+            <dt>
+                @Resources.Resources.cliente
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Clientes.nombre)
+            </dd>
+
+            <dt>
+                @Resources.Resources.direccion_fisica
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.direccion_fisica)
+            </dd>
+
+            <dt>
+                @Resources.Resources.municipios_nombre
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Municipios.nombre)
+            </dd>
+
+            <dt>
+                @Resources.Resources.direccion_fiscal
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.direccion_fiscal)
+            </dd>
+
+            <dt>
+                @Resources.Resources.municipios_nombre
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Municipios1.nombre)
+            </dd>
+
+            <dt>
+                @Resources.Resources.direccion_facturacion
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.direccion_facturacion)
+            </dd>
+
+            <dt>
+                @Resources.Resources.municipios_nombre
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Municipios2.nombre)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-sm btn-danger" type="submit">
+                        <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                    </button>
+                </div>
+            </div>
+
+        }
+    </div>
+    <div>
+        <button class="btn-sm btn-bitbucket" onclick="location.href = '@Url.Action("Index")'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+        </button>
+    </div>

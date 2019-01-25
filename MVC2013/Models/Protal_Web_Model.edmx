@@ -1,0 +1,2347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Protal_webModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="pt_tipo_ubicacion">
+          <Key>
+            <PropertyRef Name="PTTIPOID" />
+          </Key>
+          <Property Name="PTTIPOID" Type="int" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="100" />
+          <Property Name="CREADO_POR" Type="nvarchar" MaxLength="25" />
+          <Property Name="CREADO_EL" Type="date" />
+        </EntityType>
+        <EntityType Name="pt_ubicacion">
+          <Key>
+            <PropertyRef Name="PTUBICACIONID" />
+          </Key>
+          <Property Name="PTUBICACIONID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DIRECCION" Type="nvarchar" MaxLength="100" />
+          <Property Name="PTRAZONSOCIALID" Type="int" />
+          <Property Name="CANTIDAD" Type="int" />
+          <Property Name="CONTRATADOS" Type="int" />
+          <Property Name="CREADO_POR" Type="nvarchar" MaxLength="25" />
+          <Property Name="CREADO_EL" Type="datetime2" Precision="7" />
+          <Property Name="MODIFICADO_POR" Type="nvarchar" MaxLength="25" />
+          <Property Name="MODIFICADO_EL" Type="datetime2" Precision="7" />
+          <Property Name="ESTADO" Type="nvarchar" MaxLength="5" />
+          <Property Name="ENCARGADO" Type="nvarchar" MaxLength="50" />
+          <Property Name="responsable" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Pt_Cantidad_Planilla_Mes_Anio">
+          <Key>
+            <PropertyRef Name="ccpma_id" />
+          </Key>
+          <Property Name="ccpma_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ccpma_descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="ccpma_mes" Type="int" />
+          <Property Name="ccpma_anio" Type="int" />
+          <Property Name="ccpma_cantidad_planilla" Type="int" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pt_Costos_Fijos">
+          <Key>
+            <PropertyRef Name="ccof_id" />
+          </Key>
+          <Property Name="ccof_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ccof_descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="ccof_precio_unitario" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+          <Property Name="ccof_consumible" Type="bit" />
+          <Property Name="ccof_depreciable" Type="bit" />
+        </EntityType>
+        <EntityType Name="Pt_Costos_Fijos_Mes_Anio">
+          <Key>
+            <PropertyRef Name="ccfma_id" />
+          </Key>
+          <Property Name="ccfma_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ccfma_descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="ccfma_mes" Type="int" />
+          <Property Name="ccfma_anio" Type="int" />
+          <Property Name="ccfma_monto_gasto_administrativo" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+          <Property Name="ccfma_monto_gasto_operativo" Type="money" />
+        </EntityType>
+        <EntityType Name="Pt_Cotizaciones">
+          <Key>
+            <PropertyRef Name="ccot_id" />
+          </Key>
+          <Property Name="ccot_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ccot_nombre_proyecto" Type="varchar" MaxLength="500" />
+          <Property Name="ccot_descripcion_general" Type="varchar(max)" />
+          <Property Name="ccot_contacto" Type="varchar" MaxLength="100" />
+          <Property Name="ccot_telefono_contacto" Type="int" />
+          <Property Name="ccot_correo_contacto" Type="varchar" MaxLength="250" />
+          <Property Name="ccot_direccion_contacto" Type="varchar" MaxLength="500" />
+          <Property Name="ccot_fecha_entrega" Type="date" />
+          <Property Name="ccot_finaliza_cotizacion" Type="bit" />
+          <Property Name="ccot_fecha_finalizacion" Type="date" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+          <Property Name="ccot_id_usuario_finalizacion" Type="int" />
+          <Property Name="ccot_ctpo_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Pt_Estados_Fase">
+          <Key>
+            <PropertyRef Name="cefa_id" />
+          </Key>
+          <Property Name="cefa_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cefa_descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pt_Fases_Cotizacion">
+          <Key>
+            <PropertyRef Name="cfas_id" />
+          </Key>
+          <Property Name="cfas_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cfas_nombre" Type="varchar" MaxLength="150" />
+          <Property Name="cfas_descripcion" Type="varchar(max)" />
+          <Property Name="cfas_fecha_entrega" Type="date" />
+          <Property Name="cfas_cefa_id" Type="int" />
+          <Property Name="cfas_ccot_id" Type="int" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+          <Property Name="cfas_rev_ven" Type="bit" Nullable="false" />
+          <Property Name="cfas_rev_ope" Type="bit" Nullable="false" />
+          <Property Name="cfas_rev_gge" Type="bit" Nullable="false" />
+          <Property Name="cfas_ok_ope" Type="bit" Nullable="false" />
+          <Property Name="cfas_ok_ven" Type="bit" Nullable="false" />
+          <Property Name="cfas_ok_gge" Type="bit" Nullable="false" />
+          <Property Name="cfas_id_usuario_ven" Type="int" Nullable="false" />
+          <Property Name="cfas_id_usuario_ope" Type="int" />
+          <Property Name="cfas_id_usuario_gge" Type="int" />
+          <Property Name="cfas_rc_gge" Type="bit" Nullable="false" />
+          <Property Name="historico" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pt_Gastos_Costos_Fijos_Mes_Anio">
+          <Key>
+            <PropertyRef Name="cgcf_id" />
+          </Key>
+          <Property Name="cgcf_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cgcf_ccfma_id" Type="int" />
+          <Property Name="cgcf_descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="cgcf_precio_unitario" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="cgcf_cantidad" Type="int" />
+          <Property Name="cgcf_consumible" Type="bit" />
+          <Property Name="cgcf_depreciable" Type="bit" />
+          <Property Name="cgcf_porcentaje_depreciacion" Type="decimal" Precision="7" Scale="5" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pt_Insumos">
+          <Key>
+            <PropertyRef Name="cins_id" />
+          </Key>
+          <Property Name="cins_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cins_descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="cins_precio_costo" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="cins_precio_venta" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="cins_talla" Type="varchar" MaxLength="5" />
+          <Property Name="cins_es_insumo" Type="bit" />
+          <Property Name="cins_es_arma" Type="bit" />
+          <Property Name="cins_es_uniforme" Type="bit" />
+          <Property Name="cins_depreciacion" Type="bit" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+          <Property Name="cins_porcentaje_depreciacion" Type="decimal" Precision="7" Scale="5" />
+        </EntityType>
+        <EntityType Name="Pt_Meses">
+          <Key>
+            <PropertyRef Name="cmes_id" />
+          </Key>
+          <Property Name="cmes_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cmes_descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pt_Pagos_Puesto">
+          <Key>
+            <PropertyRef Name="cppu_id" />
+          </Key>
+          <Property Name="cppu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cppu_ctpa_id" Type="int" Nullable="false" />
+          <Property Name="cppu_cpue_id" Type="int" Nullable="false" />
+          <Property Name="cppu_monto" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="cppu_salario_base" Type="bit" />
+          <Property Name="cppu_porcentaje_calculo" Type="decimal" Precision="7" Scale="5" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+          <Property Name="cppu_descripcion" Type="varchar" MaxLength="150" />
+          <Property Name="cppu_depende_sb" Type="bit" />
+        </EntityType>
+        <EntityType Name="Pt_Puesto_Insumos">
+          <Key>
+            <PropertyRef Name="cpin_id" />
+          </Key>
+          <Property Name="cpin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cpin_cpue_id" Type="int" Nullable="false" />
+          <Property Name="cpin_cins_id" Type="int" Nullable="false" />
+          <Property Name="cpin_cantidad" Type="int" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pt_Puestos">
+          <Key>
+            <PropertyRef Name="cpue_id" />
+          </Key>
+          <Property Name="cpue_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cpue_descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pt_Tipo_Gasto">
+          <Key>
+            <PropertyRef Name="ctga_id" />
+          </Key>
+          <Property Name="ctga_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ctga_descripcion" Type="varchar" MaxLength="300" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pt_Tipo_Pagos">
+          <Key>
+            <PropertyRef Name="ctpa_id" />
+          </Key>
+          <Property Name="ctpa_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ctpa_descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pt_Tipos_Proyecto">
+          <Key>
+            <PropertyRef Name="ctpo_id" />
+          </Key>
+          <Property Name="ctpo_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ctpo_descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pt_Tmp_Cotizacion_Fase_Insumos">
+          <Key>
+            <PropertyRef Name="ctpfi_id" />
+          </Key>
+          <Property Name="ctpfi_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ctpfi_cins_id" Type="int" />
+          <Property Name="ctpfi_cantidad" Type="int" />
+          <Property Name="ctpfi_cfas_id" Type="int" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pt_Tmp_Cotizacion_Fase_Insumos_New">
+          <Key>
+            <PropertyRef Name="ctpfin_id" />
+          </Key>
+          <Property Name="ctpfin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ctpfin_descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="ctpfin_precio_costo" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="ctpfin_precio_venta" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="ctpfin_talla" Type="varchar" MaxLength="5" />
+          <Property Name="ctpfin_es_insumo" Type="bit" />
+          <Property Name="ctpfin_es_arma" Type="bit" />
+          <Property Name="ctpfin_es_uniforme" Type="bit" />
+          <Property Name="ctpfin_depreciacion" Type="bit" />
+          <Property Name="ctpfin_porcentaje_depreciacion" Type="decimal" Precision="7" Scale="5" />
+          <Property Name="ctpfin_cantidad" Type="int" />
+          <Property Name="ctpfin_cfas_id" Type="int" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pt_Tmp_Cotizacion_Fase_Margen_Conf">
+          <Key>
+            <PropertyRef Name="ctcfm_id" />
+          </Key>
+          <Property Name="ctcfm_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ctcfm_margen" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="ctcfm_cfas_id" Type="int" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pt_Tmp_Propuesta_Fase_Puesto">
+          <Key>
+            <PropertyRef Name="ctpf_id" />
+          </Key>
+          <Property Name="ctpf_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ctpf_cpue_id" Type="int" />
+          <Property Name="ctpf_cfas_id" Type="int" />
+          <Property Name="ctpf_personal" Type="int" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+          <Property Name="ctpf_facConIVA" Type="decimal" Precision="16" Scale="2" />
+        </EntityType>
+        <EntityType Name="pt_estadofuerza">
+          <Key>
+            <PropertyRef Name="pt_id" />
+          </Key>
+          <Property Name="pt_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ptempleadoid" Type="int" />
+          <Property Name="ptubicacionid" Type="int" />
+          <Property Name="pttipoid" Type="int" />
+          <Property Name="estado" Type="int" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="observaciones" Type="nvarchar" MaxLength="50" />
+          <Property Name="modificado_el" Type="datetime" />
+          <Property Name="id_encabezado" Type="int" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="pt_estadofuerza_encabezado">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="fecha_inicio" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha_inicio" Type="date" Nullable="false" />
+          <Property Name="fecha_fin" Type="datetime" />
+          <Property Name="creado_el" Type="datetime" />
+          <Property Name="creado_por" Type="varchar" MaxLength="50" />
+          <Property Name="estado" Type="int" />
+          <Property Name="modificado_por" Type="varchar" MaxLength="50" />
+          <Property Name="modificado_el" Type="datetime" />
+        </EntityType>
+        <EntityType Name="pt_situacion">
+          <Key>
+            <PropertyRef Name="id_situacion" />
+          </Key>
+          <Property Name="id_situacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="25" />
+          <Property Name="es_pago" Type="int" />
+          <Property Name="baja_rrhh" Type="int" />
+        </EntityType>
+        <EntityType Name="pt_contratacion">
+          <Key>
+            <PropertyRef Name="PTCONTRATOID" />
+            <PropertyRef Name="PTPRESTACIONID" />
+            <PropertyRef Name="PTEMPLEADOID" />
+            <PropertyRef Name="PTEMPRESAID" />
+            <PropertyRef Name="PTCATEGORIAID" />
+            <PropertyRef Name="PTCONTRATACIONID" />
+          </Key>
+          <Property Name="PTCONTRATOID" Type="int" Nullable="false" />
+          <Property Name="PTPRESTACIONID" Type="int" Nullable="false" />
+          <Property Name="PTEMPLEADOID" Type="int" Nullable="false" />
+          <Property Name="PTEMPRESAID" Type="int" Nullable="false" />
+          <Property Name="PTCATEGORIAID" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_REFERIDO" Type="varchar" MaxLength="128" />
+          <Property Name="FECHA_APRENDIZ" Type="datetime" />
+          <Property Name="FECHA_APRENDIZ_FIN" Type="datetime" />
+          <Property Name="FECHA_ALTA" Type="datetime" />
+          <Property Name="FECHA_BAJA" Type="datetime" />
+          <Property Name="CAPACITACION" Type="varchar" MaxLength="2" />
+          <Property Name="OBSERVACIONES_ALTA" Type="varchar" MaxLength="300" />
+          <Property Name="OBSERVACIONES_BAJA" Type="varchar" MaxLength="300" />
+          <Property Name="MOTIVO_BAJA" Type="varchar" MaxLength="50" />
+          <Property Name="CREADO_POR" Type="varchar" MaxLength="30" />
+          <Property Name="creado_el" Type="datetime" />
+          <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="30" />
+          <Property Name="modificado_el" Type="datetime" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="PTCONTRATACIONID" Type="int" Nullable="false" />
+          <Property Name="PTTIPOID" Type="int" />
+          <Property Name="PTAREAID" Type="int" />
+          <Property Name="OBSERVACIONES_APRENDIZ" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="pt_empleado">
+          <Key>
+            <PropertyRef Name="PTEMPLEADOID" />
+          </Key>
+          <Property Name="PTEMPLEADOID" Type="int" Nullable="false" />
+          <Property Name="FOTO" Type="varbinary(max)" />
+          <Property Name="IDENTIFICACION" Type="varchar" MaxLength="32" />
+          <Property Name="CEDULA" Type="varchar" MaxLength="32" />
+          <Property Name="NOMBRE1" Type="varchar" MaxLength="64" />
+          <Property Name="NOMBRE2" Type="varchar" MaxLength="64" />
+          <Property Name="APELLIDO1" Type="varchar" MaxLength="64" />
+          <Property Name="APELLIDO2" Type="varchar" MaxLength="64" />
+          <Property Name="APELLIDO_CASADA" Type="varchar" MaxLength="64" />
+          <Property Name="SEXO" Type="varchar" MaxLength="1" />
+          <Property Name="ESTADO_CIVIL" Type="varchar" MaxLength="64" />
+          <Property Name="FECHA_NACIMIENTO" Type="datetime" />
+          <Property Name="NIT" Type="varchar" MaxLength="15" />
+          <Property Name="NUMERO_IGSS" Type="varchar" MaxLength="30" />
+          <Property Name="NUMERO_IRTRA" Type="varchar" MaxLength="30" />
+          <Property Name="estatura" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="peso" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="DPI" Type="varchar" MaxLength="1" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="NACIONALIDAD" Type="varchar" MaxLength="64" />
+          <Property Name="SERVICIO_MILITAR" Type="varchar" MaxLength="2" />
+          <Property Name="SABE_LEER" Type="varchar" MaxLength="2" />
+          <Property Name="SABE_ESCRIBIR" Type="varchar" MaxLength="2" />
+          <Property Name="DIR_NACIMIENTO" Type="varchar" MaxLength="128" />
+          <Property Name="MUN_NACIMIENTO" Type="varchar" MaxLength="100" />
+          <Property Name="DEPTO_NACIMIENTO" Type="varchar" MaxLength="100" />
+          <Property Name="ptescolaridadid" Type="int" />
+          <Property Name="ptprofesionid" Type="int" />
+          <Property Name="TIPOCUENTA" Type="varchar" MaxLength="25" />
+          <Property Name="CUENTA" Type="varchar" MaxLength="25" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="25" />
+          <Property Name="EXTENDIDA_EN" Type="varchar" MaxLength="100" />
+          <Property Name="CREADO_POR" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="creado_el" Type="datetime" />
+          <Property Name="MODIFICADO_POR" Type="varchar" MaxLength="30" />
+          <Property Name="modificado_el" Type="datetime" />
+          <Property Name="tipo_licencia" Type="varchar" MaxLength="15" />
+          <Property Name="licencia" Type="varchar" MaxLength="15" />
+          <Property Name="fecha_vencimiento" Type="datetime" />
+          <Property Name="cuadra" Type="varchar" MaxLength="5" />
+          <Property Name="ptcamaid" Type="int" />
+          <Property Name="PTBANCOID" Type="int" />
+        </EntityType>
+        <Association Name="FK_Pt_Cantidad_Planilla_Mes_Anio_Pt_Meses">
+          <End Role="Pt_Meses" Type="Self.Pt_Meses" Multiplicity="0..1" />
+          <End Role="Pt_Cantidad_Planilla_Mes_Anio" Type="Self.Pt_Cantidad_Planilla_Mes_Anio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Meses">
+              <PropertyRef Name="cmes_id" />
+            </Principal>
+            <Dependent Role="Pt_Cantidad_Planilla_Mes_Anio">
+              <PropertyRef Name="ccpma_mes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Costos_Fijos_Mes_Anio_Pt_Meses">
+          <End Role="Pt_Meses" Type="Self.Pt_Meses" Multiplicity="0..1" />
+          <End Role="Pt_Costos_Fijos_Mes_Anio" Type="Self.Pt_Costos_Fijos_Mes_Anio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Meses">
+              <PropertyRef Name="cmes_id" />
+            </Principal>
+            <Dependent Role="Pt_Costos_Fijos_Mes_Anio">
+              <PropertyRef Name="ccfma_mes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Fase_Cotizacion_Pt_Cotizaciones">
+          <End Role="Pt_Cotizaciones" Type="Self.Pt_Cotizaciones" Multiplicity="0..1" />
+          <End Role="Pt_Fases_Cotizacion" Type="Self.Pt_Fases_Cotizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Cotizaciones">
+              <PropertyRef Name="ccot_id" />
+            </Principal>
+            <Dependent Role="Pt_Fases_Cotizacion">
+              <PropertyRef Name="cfas_ccot_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Fase_Cotizacion_Pt_Tipos_Proyecto">
+          <End Role="Pt_Tipos_Proyecto" Type="Self.Pt_Tipos_Proyecto" Multiplicity="0..1" />
+          <End Role="Pt_Cotizaciones" Type="Self.Pt_Cotizaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Tipos_Proyecto">
+              <PropertyRef Name="ctpo_id" />
+            </Principal>
+            <Dependent Role="Pt_Cotizaciones">
+              <PropertyRef Name="ccot_ctpo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Fases_Cotizacion_Pt_Estado_Fase">
+          <End Role="Pt_Estados_Fase" Type="Self.Pt_Estados_Fase" Multiplicity="0..1" />
+          <End Role="Pt_Fases_Cotizacion" Type="Self.Pt_Fases_Cotizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Estados_Fase">
+              <PropertyRef Name="cefa_id" />
+            </Principal>
+            <Dependent Role="Pt_Fases_Cotizacion">
+              <PropertyRef Name="cfas_cefa_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Gastos_Costos_Fijos_Mes_Anio_Pt_Costos_Fijos_Mes_Anio">
+          <End Role="Pt_Costos_Fijos_Mes_Anio" Type="Self.Pt_Costos_Fijos_Mes_Anio" Multiplicity="0..1" />
+          <End Role="Pt_Gastos_Costos_Fijos_Mes_Anio" Type="Self.Pt_Gastos_Costos_Fijos_Mes_Anio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Costos_Fijos_Mes_Anio">
+              <PropertyRef Name="ccfma_id" />
+            </Principal>
+            <Dependent Role="Pt_Gastos_Costos_Fijos_Mes_Anio">
+              <PropertyRef Name="cgcf_ccfma_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Pagos_Puesto_Pt_Puesto">
+          <End Role="Pt_Puestos" Type="Self.Pt_Puestos" Multiplicity="1" />
+          <End Role="Pt_Pagos_Puesto" Type="Self.Pt_Pagos_Puesto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Puestos">
+              <PropertyRef Name="cpue_id" />
+            </Principal>
+            <Dependent Role="Pt_Pagos_Puesto">
+              <PropertyRef Name="cppu_cpue_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Pagos_Puesto_Pt_Tipo_Pago">
+          <End Role="Pt_Tipo_Pagos" Type="Self.Pt_Tipo_Pagos" Multiplicity="1" />
+          <End Role="Pt_Pagos_Puesto" Type="Self.Pt_Pagos_Puesto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Tipo_Pagos">
+              <PropertyRef Name="ctpa_id" />
+            </Principal>
+            <Dependent Role="Pt_Pagos_Puesto">
+              <PropertyRef Name="cppu_ctpa_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Puesto_Insumos_Pt_Insumos">
+          <End Role="Pt_Insumos" Type="Self.Pt_Insumos" Multiplicity="1" />
+          <End Role="Pt_Puesto_Insumos" Type="Self.Pt_Puesto_Insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Insumos">
+              <PropertyRef Name="cins_id" />
+            </Principal>
+            <Dependent Role="Pt_Puesto_Insumos">
+              <PropertyRef Name="cpin_cins_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Puesto_Insumos_Pt_Puesto">
+          <End Role="Pt_Puestos" Type="Self.Pt_Puestos" Multiplicity="1" />
+          <End Role="Pt_Puesto_Insumos" Type="Self.Pt_Puesto_Insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Puestos">
+              <PropertyRef Name="cpue_id" />
+            </Principal>
+            <Dependent Role="Pt_Puesto_Insumos">
+              <PropertyRef Name="cpin_cpue_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Tmp_Cotizacion_Fase_Insumos_New_Pt_Fases_Cotizacion">
+          <End Role="Pt_Fases_Cotizacion" Type="Self.Pt_Fases_Cotizacion" Multiplicity="0..1" />
+          <End Role="Pt_Tmp_Cotizacion_Fase_Insumos_New" Type="Self.Pt_Tmp_Cotizacion_Fase_Insumos_New" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Fases_Cotizacion">
+              <PropertyRef Name="cfas_id" />
+            </Principal>
+            <Dependent Role="Pt_Tmp_Cotizacion_Fase_Insumos_New">
+              <PropertyRef Name="ctpfin_cfas_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Fases_Cotizacion">
+          <End Role="Pt_Fases_Cotizacion" Type="Self.Pt_Fases_Cotizacion" Multiplicity="0..1" />
+          <End Role="Pt_Tmp_Cotizacion_Fase_Insumos" Type="Self.Pt_Tmp_Cotizacion_Fase_Insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Fases_Cotizacion">
+              <PropertyRef Name="cfas_id" />
+            </Principal>
+            <Dependent Role="Pt_Tmp_Cotizacion_Fase_Insumos">
+              <PropertyRef Name="ctpfi_cfas_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Puestos">
+          <End Role="Pt_Insumos" Type="Self.Pt_Insumos" Multiplicity="0..1" />
+          <End Role="Pt_Tmp_Cotizacion_Fase_Insumos" Type="Self.Pt_Tmp_Cotizacion_Fase_Insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Insumos">
+              <PropertyRef Name="cins_id" />
+            </Principal>
+            <Dependent Role="Pt_Tmp_Cotizacion_Fase_Insumos">
+              <PropertyRef Name="ctpfi_cins_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Tmp_Cotizacion_Fase_Margen_Conf_Pt_Fases_Cotizacion">
+          <End Role="Pt_Fases_Cotizacion" Type="Self.Pt_Fases_Cotizacion" Multiplicity="0..1" />
+          <End Role="Pt_Tmp_Cotizacion_Fase_Margen_Conf" Type="Self.Pt_Tmp_Cotizacion_Fase_Margen_Conf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Fases_Cotizacion">
+              <PropertyRef Name="cfas_id" />
+            </Principal>
+            <Dependent Role="Pt_Tmp_Cotizacion_Fase_Margen_Conf">
+              <PropertyRef Name="ctcfm_cfas_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Fases_Cotizacion">
+          <End Role="Pt_Fases_Cotizacion" Type="Self.Pt_Fases_Cotizacion" Multiplicity="0..1" />
+          <End Role="Pt_Tmp_Propuesta_Fase_Puesto" Type="Self.Pt_Tmp_Propuesta_Fase_Puesto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Fases_Cotizacion">
+              <PropertyRef Name="cfas_id" />
+            </Principal>
+            <Dependent Role="Pt_Tmp_Propuesta_Fase_Puesto">
+              <PropertyRef Name="ctpf_cfas_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Puestos">
+          <End Role="Pt_Puestos" Type="Self.Pt_Puestos" Multiplicity="0..1" />
+          <End Role="Pt_Tmp_Propuesta_Fase_Puesto" Type="Self.Pt_Tmp_Propuesta_Fase_Puesto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Puestos">
+              <PropertyRef Name="cpue_id" />
+            </Principal>
+            <Dependent Role="Pt_Tmp_Propuesta_Fase_Puesto">
+              <PropertyRef Name="ctpf_cpue_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_detalle_estado_fuerza_dia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="esf">
+          <Parameter Name="fecha_desde" Type="datetime" Mode="In" />
+          <Parameter Name="fecha_hasta" Type="datetime" Mode="In" />
+          <Parameter Name="id_empleado" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="id_estado_fuerza" Type="bigint" />
+                <Property Name="fecha" Type="datetime" />
+                <Property Name="id_empleado" Type="bigint" />
+                <Property Name="nombre_empleado" Type="varchar" MaxLength="200" />
+                <Property Name="nombre_cliente" Type="varchar" MaxLength="150" />
+                <Property Name="razon_social" Type="varchar" MaxLength="150" />
+                <Property Name="ubicacion" Type="varchar" MaxLength="100" />
+                <Property Name="tipo_servicio" Type="varchar" MaxLength="100" />
+                <Property Name="estado" Type="varchar" MaxLength="100" />
+                <Property Name="observaciones" Type="varchar" MaxLength="200" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="sp_ausentes_automatico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="esf">
+          <Parameter Name="Id_encabezado" Type="int" Mode="In" />
+          <Parameter Name="fechaInicio" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_ausentes_baja_automatico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="esf">
+          <Parameter Name="fecha" Type="date" Mode="In" />
+        </Function>
+        <EntityContainer Name="Protal_webModelStoreContainer">
+          <EntitySet Name="pt_tipo_ubicacion" EntityType="Self.pt_tipo_ubicacion" Schema="adm" store:Type="Tables" />
+          <EntitySet Name="pt_ubicacion" EntityType="Self.pt_ubicacion" Schema="adm" store:Type="Tables" />
+          <EntitySet Name="Pt_Cantidad_Planilla_Mes_Anio" EntityType="Self.Pt_Cantidad_Planilla_Mes_Anio" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Costos_Fijos" EntityType="Self.Pt_Costos_Fijos" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Costos_Fijos_Mes_Anio" EntityType="Self.Pt_Costos_Fijos_Mes_Anio" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Cotizaciones" EntityType="Self.Pt_Cotizaciones" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Estados_Fase" EntityType="Self.Pt_Estados_Fase" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Fases_Cotizacion" EntityType="Self.Pt_Fases_Cotizacion" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Gastos_Costos_Fijos_Mes_Anio" EntityType="Self.Pt_Gastos_Costos_Fijos_Mes_Anio" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Insumos" EntityType="Self.Pt_Insumos" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Meses" EntityType="Self.Pt_Meses" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Pagos_Puesto" EntityType="Self.Pt_Pagos_Puesto" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Puesto_Insumos" EntityType="Self.Pt_Puesto_Insumos" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Puestos" EntityType="Self.Pt_Puestos" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Tipo_Gasto" EntityType="Self.Pt_Tipo_Gasto" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Tipo_Pagos" EntityType="Self.Pt_Tipo_Pagos" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Tipos_Proyecto" EntityType="Self.Pt_Tipos_Proyecto" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Tmp_Cotizacion_Fase_Insumos" EntityType="Self.Pt_Tmp_Cotizacion_Fase_Insumos" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Tmp_Cotizacion_Fase_Insumos_New" EntityType="Self.Pt_Tmp_Cotizacion_Fase_Insumos_New" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Tmp_Cotizacion_Fase_Margen_Conf" EntityType="Self.Pt_Tmp_Cotizacion_Fase_Margen_Conf" Schema="com" store:Type="Tables" />
+          <EntitySet Name="Pt_Tmp_Propuesta_Fase_Puesto" EntityType="Self.Pt_Tmp_Propuesta_Fase_Puesto" Schema="com" store:Type="Tables" />
+          <EntitySet Name="pt_estadofuerza" EntityType="Self.pt_estadofuerza" Schema="esf" store:Type="Tables" />
+          <EntitySet Name="pt_estadofuerza_encabezado" EntityType="Self.pt_estadofuerza_encabezado" Schema="esf" store:Type="Tables" />
+          <EntitySet Name="pt_situacion" EntityType="Self.pt_situacion" Schema="esf" store:Type="Tables" />
+          <EntitySet Name="pt_contratacion" EntityType="Self.pt_contratacion" Schema="pln" store:Type="Tables" />
+          <EntitySet Name="pt_empleado" EntityType="Self.pt_empleado" Schema="pln" store:Type="Tables" />
+          <AssociationSet Name="FK_Pt_Cantidad_Planilla_Mes_Anio_Pt_Meses" Association="Self.FK_Pt_Cantidad_Planilla_Mes_Anio_Pt_Meses">
+            <End Role="Pt_Meses" EntitySet="Pt_Meses" />
+            <End Role="Pt_Cantidad_Planilla_Mes_Anio" EntitySet="Pt_Cantidad_Planilla_Mes_Anio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Costos_Fijos_Mes_Anio_Pt_Meses" Association="Self.FK_Pt_Costos_Fijos_Mes_Anio_Pt_Meses">
+            <End Role="Pt_Meses" EntitySet="Pt_Meses" />
+            <End Role="Pt_Costos_Fijos_Mes_Anio" EntitySet="Pt_Costos_Fijos_Mes_Anio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Fase_Cotizacion_Pt_Cotizaciones" Association="Self.FK_Pt_Fase_Cotizacion_Pt_Cotizaciones">
+            <End Role="Pt_Cotizaciones" EntitySet="Pt_Cotizaciones" />
+            <End Role="Pt_Fases_Cotizacion" EntitySet="Pt_Fases_Cotizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Fase_Cotizacion_Pt_Tipos_Proyecto" Association="Self.FK_Pt_Fase_Cotizacion_Pt_Tipos_Proyecto">
+            <End Role="Pt_Tipos_Proyecto" EntitySet="Pt_Tipos_Proyecto" />
+            <End Role="Pt_Cotizaciones" EntitySet="Pt_Cotizaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Fases_Cotizacion_Pt_Estado_Fase" Association="Self.FK_Pt_Fases_Cotizacion_Pt_Estado_Fase">
+            <End Role="Pt_Estados_Fase" EntitySet="Pt_Estados_Fase" />
+            <End Role="Pt_Fases_Cotizacion" EntitySet="Pt_Fases_Cotizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Gastos_Costos_Fijos_Mes_Anio_Pt_Costos_Fijos_Mes_Anio" Association="Self.FK_Pt_Gastos_Costos_Fijos_Mes_Anio_Pt_Costos_Fijos_Mes_Anio">
+            <End Role="Pt_Costos_Fijos_Mes_Anio" EntitySet="Pt_Costos_Fijos_Mes_Anio" />
+            <End Role="Pt_Gastos_Costos_Fijos_Mes_Anio" EntitySet="Pt_Gastos_Costos_Fijos_Mes_Anio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Pagos_Puesto_Pt_Puesto" Association="Self.FK_Pt_Pagos_Puesto_Pt_Puesto">
+            <End Role="Pt_Puestos" EntitySet="Pt_Puestos" />
+            <End Role="Pt_Pagos_Puesto" EntitySet="Pt_Pagos_Puesto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Pagos_Puesto_Pt_Tipo_Pago" Association="Self.FK_Pt_Pagos_Puesto_Pt_Tipo_Pago">
+            <End Role="Pt_Tipo_Pagos" EntitySet="Pt_Tipo_Pagos" />
+            <End Role="Pt_Pagos_Puesto" EntitySet="Pt_Pagos_Puesto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Puesto_Insumos_Pt_Insumos" Association="Self.FK_Pt_Puesto_Insumos_Pt_Insumos">
+            <End Role="Pt_Insumos" EntitySet="Pt_Insumos" />
+            <End Role="Pt_Puesto_Insumos" EntitySet="Pt_Puesto_Insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Puesto_Insumos_Pt_Puesto" Association="Self.FK_Pt_Puesto_Insumos_Pt_Puesto">
+            <End Role="Pt_Puestos" EntitySet="Pt_Puestos" />
+            <End Role="Pt_Puesto_Insumos" EntitySet="Pt_Puesto_Insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Tmp_Cotizacion_Fase_Insumos_New_Pt_Fases_Cotizacion" Association="Self.FK_Pt_Tmp_Cotizacion_Fase_Insumos_New_Pt_Fases_Cotizacion">
+            <End Role="Pt_Fases_Cotizacion" EntitySet="Pt_Fases_Cotizacion" />
+            <End Role="Pt_Tmp_Cotizacion_Fase_Insumos_New" EntitySet="Pt_Tmp_Cotizacion_Fase_Insumos_New" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Fases_Cotizacion" Association="Self.FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Fases_Cotizacion">
+            <End Role="Pt_Fases_Cotizacion" EntitySet="Pt_Fases_Cotizacion" />
+            <End Role="Pt_Tmp_Cotizacion_Fase_Insumos" EntitySet="Pt_Tmp_Cotizacion_Fase_Insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Puestos" Association="Self.FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Puestos">
+            <End Role="Pt_Insumos" EntitySet="Pt_Insumos" />
+            <End Role="Pt_Tmp_Cotizacion_Fase_Insumos" EntitySet="Pt_Tmp_Cotizacion_Fase_Insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Tmp_Cotizacion_Fase_Margen_Conf_Pt_Fases_Cotizacion" Association="Self.FK_Pt_Tmp_Cotizacion_Fase_Margen_Conf_Pt_Fases_Cotizacion">
+            <End Role="Pt_Fases_Cotizacion" EntitySet="Pt_Fases_Cotizacion" />
+            <End Role="Pt_Tmp_Cotizacion_Fase_Margen_Conf" EntitySet="Pt_Tmp_Cotizacion_Fase_Margen_Conf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Fases_Cotizacion" Association="Self.FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Fases_Cotizacion">
+            <End Role="Pt_Fases_Cotizacion" EntitySet="Pt_Fases_Cotizacion" />
+            <End Role="Pt_Tmp_Propuesta_Fase_Puesto" EntitySet="Pt_Tmp_Propuesta_Fase_Puesto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Puestos" Association="Self.FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Puestos">
+            <End Role="Pt_Puestos" EntitySet="Pt_Puestos" />
+            <End Role="Pt_Tmp_Propuesta_Fase_Puesto" EntitySet="Pt_Tmp_Propuesta_Fase_Puesto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Protal_webModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="pt_estadofuerza">
+          <Key>
+            <PropertyRef Name="pt_id" />
+          </Key>
+          <Property Name="pt_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ptempleadoid" Type="Int32" />
+          <Property Name="ptubicacionid" Type="Int32" />
+          <Property Name="pttipoid" Type="Int32" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="observaciones" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="modificado_el" Type="DateTime" Precision="3" />
+          <Property Name="id_encabezado" Type="Int32" />
+          <NavigationProperty Name="pt_empleado" Relationship="Protal_webModel.pt_estadofuerzapt_empleado" FromRole="pt_estadofuerza" ToRole="pt_empleado" />
+          <NavigationProperty Name="pt_estadofuerza_encabezado" Relationship="Protal_webModel.pt_estadofuerza_encabezadopt_estadofuerza" FromRole="pt_estadofuerza" ToRole="pt_estadofuerza_encabezado" />
+          <NavigationProperty Name="pt_situacion" Relationship="Protal_webModel.pt_situacionpt_estadofuerza" FromRole="pt_estadofuerza" ToRole="pt_situacion" />
+          <NavigationProperty Name="pt_ubicacion" Relationship="Protal_webModel.pt_estadofuerzapt_ubicacion" FromRole="pt_estadofuerza" ToRole="pt_ubicacion" />
+          <NavigationProperty Name="pt_tipo_ubicacion" Relationship="Protal_webModel.pt_estadofuerzapt_tipo_ubicacion" FromRole="pt_estadofuerza" ToRole="pt_tipo_ubicacion" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="pt_estadofuerza_encabezado">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="fecha_inicio" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_fin" Type="DateTime" Precision="3" />
+          <Property Name="creado_el" Type="DateTime" Precision="3" />
+          <Property Name="creado_por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="modificado_por" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="modificado_el" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="pt_estadofuerza" Relationship="Protal_webModel.pt_estadofuerza_encabezadopt_estadofuerza" FromRole="pt_estadofuerza_encabezado" ToRole="pt_estadofuerza" />
+        </EntityType>
+        <EntityType Name="pt_situacion">
+          <Key>
+            <PropertyRef Name="id_situacion" />
+          </Key>
+          <Property Name="id_situacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="es_pago" Type="Int32" />
+          <Property Name="baja_rrhh" Type="Int32" />
+          <NavigationProperty Name="pt_estadofuerza" Relationship="Protal_webModel.pt_situacionpt_estadofuerza" FromRole="pt_situacion" ToRole="pt_estadofuerza" />
+        </EntityType>
+        <EntityType Name="pt_contratacion">
+          <Key>
+            <PropertyRef Name="PTCONTRATOID" />
+            <PropertyRef Name="PTPRESTACIONID" />
+            <PropertyRef Name="PTEMPLEADOID" />
+            <PropertyRef Name="PTEMPRESAID" />
+            <PropertyRef Name="PTCATEGORIAID" />
+            <PropertyRef Name="PTCONTRATACIONID" />
+          </Key>
+          <Property Name="PTCONTRATOID" Type="Int32" Nullable="false" />
+          <Property Name="PTPRESTACIONID" Type="Int32" Nullable="false" />
+          <Property Name="PTEMPLEADOID" Type="Int32" Nullable="false" />
+          <Property Name="PTEMPRESAID" Type="Int32" Nullable="false" />
+          <Property Name="PTCATEGORIAID" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_REFERIDO" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_APRENDIZ" Type="DateTime" Precision="3" />
+          <Property Name="FECHA_APRENDIZ_FIN" Type="DateTime" Precision="3" />
+          <Property Name="FECHA_ALTA" Type="DateTime" Precision="3" />
+          <Property Name="FECHA_BAJA" Type="DateTime" Precision="3" />
+          <Property Name="CAPACITACION" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="OBSERVACIONES_ALTA" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="OBSERVACIONES_BAJA" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="MOTIVO_BAJA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CREADO_POR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="creado_el" Type="DateTime" Precision="3" />
+          <Property Name="MODIFICADO_POR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="modificado_el" Type="DateTime" Precision="3" />
+          <Property Name="ESTADO" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PTCONTRATACIONID" Type="Int32" Nullable="false" />
+          <Property Name="PTTIPOID" Type="Int32" />
+          <Property Name="PTAREAID" Type="Int32" />
+          <Property Name="OBSERVACIONES_APRENDIZ" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="pt_empleado" Relationship="Protal_webModel.pt_empleadopt_contratacion" FromRole="pt_contratacion" ToRole="pt_empleado" />
+        </EntityType>
+        <EntityType Name="pt_empleado">
+          <Key>
+            <PropertyRef Name="PTEMPLEADOID" />
+          </Key>
+          <Property Name="PTEMPLEADOID" Type="Int32" Nullable="false" />
+          <Property Name="FOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IDENTIFICACION" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="CEDULA" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE2" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDO1" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDO2" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDO_CASADA" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="SEXO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_CIVIL" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_NACIMIENTO" Type="DateTime" Precision="3" />
+          <Property Name="NIT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="NUMERO_IGSS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="NUMERO_IRTRA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="estatura" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="peso" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="DPI" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NACIONALIDAD" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="SERVICIO_MILITAR" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="SABE_LEER" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="SABE_ESCRIBIR" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="DIR_NACIMIENTO" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="MUN_NACIMIENTO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DEPTO_NACIMIENTO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ptescolaridadid" Type="Int32" />
+          <Property Name="ptprofesionid" Type="Int32" />
+          <Property Name="TIPOCUENTA" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="CUENTA" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="EXTENDIDA_EN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CREADO_POR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="creado_el" Type="DateTime" Precision="3" />
+          <Property Name="MODIFICADO_POR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="modificado_el" Type="DateTime" Precision="3" />
+          <Property Name="tipo_licencia" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="licencia" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_vencimiento" Type="DateTime" Precision="3" />
+          <Property Name="cuadra" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ptcamaid" Type="Int32" />
+          <Property Name="PTBANCOID" Type="Int32" />
+          <NavigationProperty Name="pt_estadofuerza" Relationship="Protal_webModel.pt_estadofuerzapt_empleado" FromRole="pt_empleado" ToRole="pt_estadofuerza" />
+          <NavigationProperty Name="pt_contratacion" Relationship="Protal_webModel.pt_empleadopt_contratacion" FromRole="pt_empleado" ToRole="pt_contratacion" />
+        </EntityType>
+        <EntityContainer Name="Protal_webEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="pt_estadofuerza" EntityType="Self.pt_estadofuerza" />
+          <EntitySet Name="pt_estadofuerza_encabezado" EntityType="Self.pt_estadofuerza_encabezado" />
+          <EntitySet Name="pt_situacion" EntityType="Self.pt_situacion" />
+          <EntitySet Name="pt_contratacion" EntityType="Self.pt_contratacion" />
+          <EntitySet Name="pt_empleado" EntityType="Self.pt_empleado" />
+          <FunctionImport Name="sp_ausentes_automatico" ReturnType="Collection(Int32)">
+            <Parameter Name="Id_encabezado" Mode="In" Type="Int32" />
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <AssociationSet Name="pt_estadofuerzapt_empleado" Association="Protal_webModel.pt_estadofuerzapt_empleado">
+            <End Role="pt_estadofuerza" EntitySet="pt_estadofuerza" />
+            <End Role="pt_empleado" EntitySet="pt_empleado" />
+          </AssociationSet>
+          <AssociationSet Name="pt_estadofuerza_encabezadopt_estadofuerza" Association="Protal_webModel.pt_estadofuerza_encabezadopt_estadofuerza">
+            <End Role="pt_estadofuerza_encabezado" EntitySet="pt_estadofuerza_encabezado" />
+            <End Role="pt_estadofuerza" EntitySet="pt_estadofuerza" />
+          </AssociationSet>
+          <AssociationSet Name="pt_situacionpt_estadofuerza" Association="Protal_webModel.pt_situacionpt_estadofuerza">
+            <End Role="pt_situacion" EntitySet="pt_situacion" />
+            <End Role="pt_estadofuerza" EntitySet="pt_estadofuerza" />
+          </AssociationSet>
+          <AssociationSet Name="pt_empleadopt_contratacion" Association="Protal_webModel.pt_empleadopt_contratacion">
+            <End Role="pt_empleado" EntitySet="pt_empleado" />
+            <End Role="pt_contratacion" EntitySet="pt_contratacion" />
+          </AssociationSet>
+          <EntitySet Name="pt_ubicacion" EntityType="Protal_webModel.pt_ubicacion" />
+          <AssociationSet Name="pt_estadofuerzapt_ubicacion" Association="Protal_webModel.pt_estadofuerzapt_ubicacion">
+            <End Role="pt_estadofuerza" EntitySet="pt_estadofuerza" />
+            <End Role="pt_ubicacion" EntitySet="pt_ubicacion" />
+          </AssociationSet>
+          <EntitySet Name="pt_tipo_ubicacion" EntityType="Protal_webModel.pt_tipo_ubicacion" />
+          <AssociationSet Name="pt_estadofuerzapt_tipo_ubicacion" Association="Protal_webModel.pt_estadofuerzapt_tipo_ubicacion">
+            <End Role="pt_estadofuerza" EntitySet="pt_estadofuerza" />
+            <End Role="pt_tipo_ubicacion" EntitySet="pt_tipo_ubicacion" />
+          </AssociationSet>
+          <FunctionImport Name="fn_detalle_estado_fuerza_dia" IsComposable="true" ReturnType="Collection(Protal_webModel.fn_detalle_estado_fuerza_dia_Result)">
+            <Parameter Name="fecha_desde" Mode="In" Type="DateTime" />
+            <Parameter Name="fecha_hasta" Mode="In" Type="DateTime" />
+            <Parameter Name="id_empleado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ausentes_baja_automatico">
+          <Parameter Name="fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="Pt_Puestos" EntityType="Protal_webModel.Pt_Puestos" />
+          <EntitySet Name="Pt_Tipo_Pagos" EntityType="Protal_webModel.Pt_Tipo_Pagos" />
+          <EntitySet Name="Pt_Puesto_Insumos" EntityType="Protal_webModel.Pt_Puesto_Insumos" />
+          <AssociationSet Name="FK_Pt_Puesto_Insumos_Pt_Puesto" Association="Protal_webModel.FK_Pt_Puesto_Insumos_Pt_Puesto">
+            <End Role="Pt_Puestos" EntitySet="Pt_Puestos" />
+            <End Role="Pt_Puesto_Insumos" EntitySet="Pt_Puesto_Insumos" />
+          </AssociationSet>
+          <EntitySet Name="Pt_Costos_Fijos" EntityType="Protal_webModel.Pt_Costos_Fijos" />
+          <EntitySet Name="Pt_Pagos_Puesto" EntityType="Protal_webModel.Pt_Pagos_Puesto" />
+          <AssociationSet Name="FK_Pt_Pagos_Puesto_Pt_Puesto" Association="Protal_webModel.FK_Pt_Pagos_Puesto_Pt_Puesto">
+            <End Role="Pt_Puestos" EntitySet="Pt_Puestos" />
+            <End Role="Pt_Pagos_Puesto" EntitySet="Pt_Pagos_Puesto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Pagos_Puesto_Pt_Tipo_Pago" Association="Protal_webModel.FK_Pt_Pagos_Puesto_Pt_Tipo_Pago">
+            <End Role="Pt_Tipo_Pagos" EntitySet="Pt_Tipo_Pagos" />
+            <End Role="Pt_Pagos_Puesto" EntitySet="Pt_Pagos_Puesto" />
+          </AssociationSet>
+          <EntitySet Name="Pt_Insumos" EntityType="Protal_webModel.Pt_Insumos" />
+          <AssociationSet Name="FK_Pt_Puesto_Insumos_Pt_Insumos" Association="Protal_webModel.FK_Pt_Puesto_Insumos_Pt_Insumos">
+            <End Role="Pt_Insumos" EntitySet="Pt_Insumos" />
+            <End Role="Pt_Puesto_Insumos" EntitySet="Pt_Puesto_Insumos" />
+          </AssociationSet>
+          <EntitySet Name="Pt_Estados_Fase" EntityType="Protal_webModel.Pt_Estados_Fase" />
+          <EntitySet Name="Pt_Cotizaciones" EntityType="Protal_webModel.Pt_Cotizaciones" />
+          <EntitySet Name="Pt_Fases_Cotizacion" EntityType="Protal_webModel.Pt_Fases_Cotizacion" />
+          <EntitySet Name="Pt_Tipos_Proyecto" EntityType="Protal_webModel.Pt_Tipos_Proyecto" />
+          <AssociationSet Name="FK_Pt_Fase_Cotizacion_Pt_Cotizaciones" Association="Protal_webModel.FK_Pt_Fase_Cotizacion_Pt_Cotizaciones">
+            <End Role="Pt_Cotizaciones" EntitySet="Pt_Cotizaciones" />
+            <End Role="Pt_Fases_Cotizacion" EntitySet="Pt_Fases_Cotizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Fase_Cotizacion_Pt_Tipos_Proyecto" Association="Protal_webModel.FK_Pt_Fase_Cotizacion_Pt_Tipos_Proyecto">
+            <End Role="Pt_Tipos_Proyecto" EntitySet="Pt_Tipos_Proyecto" />
+            <End Role="Pt_Cotizaciones" EntitySet="Pt_Cotizaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Fases_Cotizacion_Pt_Estado_Fase" Association="Protal_webModel.FK_Pt_Fases_Cotizacion_Pt_Estado_Fase">
+            <End Role="Pt_Estados_Fase" EntitySet="Pt_Estados_Fase" />
+            <End Role="Pt_Fases_Cotizacion" EntitySet="Pt_Fases_Cotizacion" />
+          </AssociationSet>
+          <EntitySet Name="Pt_Meses" EntityType="Protal_webModel.Pt_Meses" />
+          <EntitySet Name="Pt_Tipo_Gasto" EntityType="Protal_webModel.Pt_Tipo_Gasto" />
+          <EntitySet Name="Pt_Gastos_Costos_Fijos_Mes_Anio" EntityType="Protal_webModel.Pt_Gastos_Costos_Fijos_Mes_Anio" />
+          <EntitySet Name="Pt_Cantidad_Planilla_Mes_Anio" EntityType="Protal_webModel.Pt_Cantidad_Planilla_Mes_Anio" />
+          <AssociationSet Name="FK_Pt_Cantidad_Planilla_Mes_Anio_Pt_Meses" Association="Protal_webModel.FK_Pt_Cantidad_Planilla_Mes_Anio_Pt_Meses">
+            <End Role="Pt_Meses" EntitySet="Pt_Meses" />
+            <End Role="Pt_Cantidad_Planilla_Mes_Anio" EntitySet="Pt_Cantidad_Planilla_Mes_Anio" />
+          </AssociationSet>
+          <EntitySet Name="Pt_Tmp_Cotizacion_Fase_Insumos" EntityType="Protal_webModel.Pt_Tmp_Cotizacion_Fase_Insumos" />
+          <AssociationSet Name="FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Fases_Cotizacion" Association="Protal_webModel.FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Fases_Cotizacion">
+            <End Role="Pt_Fases_Cotizacion" EntitySet="Pt_Fases_Cotizacion" />
+            <End Role="Pt_Tmp_Cotizacion_Fase_Insumos" EntitySet="Pt_Tmp_Cotizacion_Fase_Insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Puestos" Association="Protal_webModel.FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Puestos">
+            <End Role="Pt_Insumos" EntitySet="Pt_Insumos" />
+            <End Role="Pt_Tmp_Cotizacion_Fase_Insumos" EntitySet="Pt_Tmp_Cotizacion_Fase_Insumos" />
+          </AssociationSet>
+          <EntitySet Name="Pt_Tmp_Cotizacion_Fase_Insumos_New" EntityType="Protal_webModel.Pt_Tmp_Cotizacion_Fase_Insumos_New" />
+          <AssociationSet Name="FK_Pt_Tmp_Cotizacion_Fase_Insumos_New_Pt_Fases_Cotizacion" Association="Protal_webModel.FK_Pt_Tmp_Cotizacion_Fase_Insumos_New_Pt_Fases_Cotizacion">
+            <End Role="Pt_Fases_Cotizacion" EntitySet="Pt_Fases_Cotizacion" />
+            <End Role="Pt_Tmp_Cotizacion_Fase_Insumos_New" EntitySet="Pt_Tmp_Cotizacion_Fase_Insumos_New" />
+          </AssociationSet>
+          <EntitySet Name="Pt_Tmp_Propuesta_Fase_Puesto" EntityType="Protal_webModel.Pt_Tmp_Propuesta_Fase_Puesto" />
+          <AssociationSet Name="FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Fases_Cotizacion" Association="Protal_webModel.FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Fases_Cotizacion">
+            <End Role="Pt_Fases_Cotizacion" EntitySet="Pt_Fases_Cotizacion" />
+            <End Role="Pt_Tmp_Propuesta_Fase_Puesto" EntitySet="Pt_Tmp_Propuesta_Fase_Puesto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Puestos" Association="Protal_webModel.FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Puestos">
+            <End Role="Pt_Puestos" EntitySet="Pt_Puestos" />
+            <End Role="Pt_Tmp_Propuesta_Fase_Puesto" EntitySet="Pt_Tmp_Propuesta_Fase_Puesto" />
+          </AssociationSet>
+          <EntitySet Name="Pt_Tmp_Cotizacion_Fase_Margen_Conf" EntityType="Protal_webModel.Pt_Tmp_Cotizacion_Fase_Margen_Conf" />
+          <AssociationSet Name="FK_Pt_Tmp_Cotizacion_Fase_Margen_Conf_Pt_Fases_Cotizacion" Association="Protal_webModel.FK_Pt_Tmp_Cotizacion_Fase_Margen_Conf_Pt_Fases_Cotizacion">
+            <End Role="Pt_Fases_Cotizacion" EntitySet="Pt_Fases_Cotizacion" />
+            <End Role="Pt_Tmp_Cotizacion_Fase_Margen_Conf" EntitySet="Pt_Tmp_Cotizacion_Fase_Margen_Conf" />
+          </AssociationSet>
+          <EntitySet Name="Pt_Costos_Fijos_Mes_Anio" EntityType="Protal_webModel.Pt_Costos_Fijos_Mes_Anio" />
+          <AssociationSet Name="FK_Pt_Costos_Fijos_Mes_Anio_Pt_Meses" Association="Protal_webModel.FK_Pt_Costos_Fijos_Mes_Anio_Pt_Meses">
+            <End Role="Pt_Meses" EntitySet="Pt_Meses" />
+            <End Role="Pt_Costos_Fijos_Mes_Anio" EntitySet="Pt_Costos_Fijos_Mes_Anio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pt_Gastos_Costos_Fijos_Mes_Anio_Pt_Costos_Fijos_Mes_Anio" Association="Protal_webModel.FK_Pt_Gastos_Costos_Fijos_Mes_Anio_Pt_Costos_Fijos_Mes_Anio">
+            <End Role="Pt_Costos_Fijos_Mes_Anio" EntitySet="Pt_Costos_Fijos_Mes_Anio" />
+            <End Role="Pt_Gastos_Costos_Fijos_Mes_Anio" EntitySet="Pt_Gastos_Costos_Fijos_Mes_Anio" />
+          </AssociationSet>
+          </EntityContainer>
+        <Association Name="pt_estadofuerzapt_empleado">
+          <End Type="Protal_webModel.pt_estadofuerza" Role="pt_estadofuerza" Multiplicity="*" />
+          <End Type="Protal_webModel.pt_empleado" Role="pt_empleado" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="pt_empleado">
+              <PropertyRef Name="PTEMPLEADOID" />
+            </Principal>
+            <Dependent Role="pt_estadofuerza">
+              <PropertyRef Name="ptempleadoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pt_estadofuerza_encabezadopt_estadofuerza">
+          <End Type="Protal_webModel.pt_estadofuerza_encabezado" Role="pt_estadofuerza_encabezado" Multiplicity="0..1" />
+          <End Type="Protal_webModel.pt_estadofuerza" Role="pt_estadofuerza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pt_estadofuerza_encabezado">
+              <PropertyRef Name="id" />
+              <PropertyRef Name="fecha_inicio" />
+            </Principal>
+            <Dependent Role="pt_estadofuerza">
+              <PropertyRef Name="id_encabezado" />
+              <PropertyRef Name="fecha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pt_situacionpt_estadofuerza">
+          <End Type="Protal_webModel.pt_situacion" Role="pt_situacion" Multiplicity="0..1" />
+          <End Type="Protal_webModel.pt_estadofuerza" Role="pt_estadofuerza" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pt_situacion">
+              <PropertyRef Name="id_situacion" />
+            </Principal>
+            <Dependent Role="pt_estadofuerza">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pt_empleadopt_contratacion">
+          <End Type="Protal_webModel.pt_empleado" Role="pt_empleado" Multiplicity="1" />
+          <End Type="Protal_webModel.pt_contratacion" Role="pt_contratacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pt_empleado">
+              <PropertyRef Name="PTEMPLEADOID" />
+            </Principal>
+            <Dependent Role="pt_contratacion">
+              <PropertyRef Name="PTEMPLEADOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="pt_ubicacion">
+          <Key>
+            <PropertyRef Name="PTUBICACIONID" />
+          </Key>
+          <Property Name="PTUBICACIONID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DIRECCION" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PTRAZONSOCIALID" Type="Int32" />
+          <Property Name="CANTIDAD" Type="Int32" />
+          <Property Name="CONTRATADOS" Type="Int32" />
+          <Property Name="CREADO_POR" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="CREADO_EL" Type="DateTime" Precision="7" />
+          <Property Name="MODIFICADO_POR" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="MODIFICADO_EL" Type="DateTime" Precision="7" />
+          <Property Name="ESTADO" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="ENCARGADO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="responsable" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="pt_estadofuerza" Relationship="Protal_webModel.pt_estadofuerzapt_ubicacion" FromRole="pt_ubicacion" ToRole="pt_estadofuerza" />
+        </EntityType>
+        <Association Name="pt_estadofuerzapt_ubicacion">
+          <End Type="Protal_webModel.pt_estadofuerza" Role="pt_estadofuerza" Multiplicity="*" />
+          <End Type="Protal_webModel.pt_ubicacion" Role="pt_ubicacion" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="pt_ubicacion">
+              <PropertyRef Name="PTUBICACIONID" />
+            </Principal>
+            <Dependent Role="pt_estadofuerza">
+              <PropertyRef Name="ptubicacionid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="pt_tipo_ubicacion">
+          <Key>
+            <PropertyRef Name="PTTIPOID" />
+          </Key>
+          <Property Name="PTTIPOID" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CREADO_POR" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="CREADO_EL" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="pt_estadofuerza" Relationship="Protal_webModel.pt_estadofuerzapt_tipo_ubicacion" FromRole="pt_tipo_ubicacion" ToRole="pt_estadofuerza" />
+        </EntityType>
+        <Association Name="pt_estadofuerzapt_tipo_ubicacion">
+          <End Type="Protal_webModel.pt_estadofuerza" Role="pt_estadofuerza" Multiplicity="*" />
+          <End Type="Protal_webModel.pt_tipo_ubicacion" Role="pt_tipo_ubicacion" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="pt_tipo_ubicacion">
+              <PropertyRef Name="PTTIPOID" />
+            </Principal>
+            <Dependent Role="pt_estadofuerza">
+              <PropertyRef Name="pttipoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="fn_detalle_estado_fuerza_dia_Result">
+          <Property Type="Int64" Name="id_estado_fuerza" Nullable="true" />
+          <Property Type="DateTime" Name="fecha" Nullable="true" Precision="23" />
+          <Property Type="Int64" Name="id_empleado" Nullable="true" />
+          <Property Type="String" Name="nombre_empleado" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="nombre_cliente" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="razon_social" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ubicacion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="tipo_servicio" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="observaciones" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <EntityType Name="Pt_Puestos">
+          <Key>
+            <PropertyRef Name="cpue_id" />
+          </Key>
+          <Property Name="cpue_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cpue_descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pt_Puesto_Insumos" Relationship="Protal_webModel.FK_Pt_Puesto_Insumos_Pt_Puesto" FromRole="Pt_Puestos" ToRole="Pt_Puesto_Insumos" />
+          <NavigationProperty Name="Pt_Pagos_Puesto" Relationship="Protal_webModel.FK_Pt_Pagos_Puesto_Pt_Puesto" FromRole="Pt_Puestos" ToRole="Pt_Pagos_Puesto" />
+          <NavigationProperty Name="Pt_Tmp_Propuesta_Fase_Puesto" Relationship="Protal_webModel.FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Puestos" FromRole="Pt_Puestos" ToRole="Pt_Tmp_Propuesta_Fase_Puesto" />
+        </EntityType>
+        <EntityType Name="Pt_Tipo_Pagos">
+          <Key>
+            <PropertyRef Name="ctpa_id" />
+          </Key>
+          <Property Name="ctpa_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ctpa_descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pt_Pagos_Puesto" Relationship="Protal_webModel.FK_Pt_Pagos_Puesto_Pt_Tipo_Pago" FromRole="Pt_Tipo_Pagos" ToRole="Pt_Pagos_Puesto" />
+        </EntityType>
+        <EntityType Name="Pt_Puesto_Insumos">
+          <Key>
+            <PropertyRef Name="cpin_id" />
+          </Key>
+          <Property Name="cpin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cpin_cpue_id" Type="Int32" Nullable="false" />
+          <Property Name="cpin_cins_id" Type="Int32" Nullable="false" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pt_Puestos" Relationship="Protal_webModel.FK_Pt_Puesto_Insumos_Pt_Puesto" FromRole="Pt_Puesto_Insumos" ToRole="Pt_Puestos" />
+          <Property Name="cpin_cantidad" Type="Int32" />
+          <NavigationProperty Name="Pt_Insumos" Relationship="Protal_webModel.FK_Pt_Puesto_Insumos_Pt_Insumos" FromRole="Pt_Puesto_Insumos" ToRole="Pt_Insumos" />
+        </EntityType>
+        <Association Name="FK_Pt_Puesto_Insumos_Pt_Puesto">
+          <End Type="Protal_webModel.Pt_Puestos" Role="Pt_Puestos" Multiplicity="1" />
+          <End Type="Protal_webModel.Pt_Puesto_Insumos" Role="Pt_Puesto_Insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Puestos">
+              <PropertyRef Name="cpue_id" />
+            </Principal>
+            <Dependent Role="Pt_Puesto_Insumos">
+              <PropertyRef Name="cpin_cpue_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Pt_Costos_Fijos">
+          <Key>
+            <PropertyRef Name="ccof_id" />
+          </Key>
+          <Property Name="ccof_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ccof_descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ccof_precio_unitario" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="ccof_consumible" Type="Boolean" />
+          <Property Name="ccof_depreciable" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Pt_Pagos_Puesto">
+          <Key>
+            <PropertyRef Name="cppu_id" />
+          </Key>
+          <Property Name="cppu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cppu_ctpa_id" Type="Int32" Nullable="false" />
+          <Property Name="cppu_cpue_id" Type="Int32" Nullable="false" />
+          <Property Name="cppu_monto" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="cppu_salario_base" Type="Boolean" />
+          <Property Name="cppu_porcentaje_calculo" Type="Decimal" Precision="7" Scale="5" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="cppu_descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="cppu_depende_sb" Type="Boolean" />
+          <NavigationProperty Name="Pt_Puestos" Relationship="Protal_webModel.FK_Pt_Pagos_Puesto_Pt_Puesto" FromRole="Pt_Pagos_Puesto" ToRole="Pt_Puestos" />
+          <NavigationProperty Name="Pt_Tipo_Pagos" Relationship="Protal_webModel.FK_Pt_Pagos_Puesto_Pt_Tipo_Pago" FromRole="Pt_Pagos_Puesto" ToRole="Pt_Tipo_Pagos" />
+        </EntityType>
+        <Association Name="FK_Pt_Pagos_Puesto_Pt_Puesto">
+          <End Type="Protal_webModel.Pt_Puestos" Role="Pt_Puestos" Multiplicity="1" />
+          <End Type="Protal_webModel.Pt_Pagos_Puesto" Role="Pt_Pagos_Puesto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Puestos">
+              <PropertyRef Name="cpue_id" />
+            </Principal>
+            <Dependent Role="Pt_Pagos_Puesto">
+              <PropertyRef Name="cppu_cpue_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Pagos_Puesto_Pt_Tipo_Pago">
+          <End Type="Protal_webModel.Pt_Tipo_Pagos" Role="Pt_Tipo_Pagos" Multiplicity="1" />
+          <End Type="Protal_webModel.Pt_Pagos_Puesto" Role="Pt_Pagos_Puesto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Tipo_Pagos">
+              <PropertyRef Name="ctpa_id" />
+            </Principal>
+            <Dependent Role="Pt_Pagos_Puesto">
+              <PropertyRef Name="cppu_ctpa_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Pt_Insumos">
+          <Key>
+            <PropertyRef Name="cins_id" />
+          </Key>
+          <Property Name="cins_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cins_descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cins_precio_costo" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="cins_precio_venta" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="cins_talla" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="cins_es_insumo" Type="Boolean" />
+          <Property Name="cins_es_arma" Type="Boolean" />
+          <Property Name="cins_es_uniforme" Type="Boolean" />
+          <Property Name="cins_depreciacion" Type="Boolean" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="cins_porcentaje_depreciacion" Type="Decimal" Precision="7" Scale="5" />
+          <NavigationProperty Name="Pt_Puesto_Insumos" Relationship="Protal_webModel.FK_Pt_Puesto_Insumos_Pt_Insumos" FromRole="Pt_Insumos" ToRole="Pt_Puesto_Insumos" />
+          <NavigationProperty Name="Pt_Tmp_Cotizacion_Fase_Insumos" Relationship="Protal_webModel.FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Puestos" FromRole="Pt_Insumos" ToRole="Pt_Tmp_Cotizacion_Fase_Insumos" />
+        </EntityType>
+        <Association Name="FK_Pt_Puesto_Insumos_Pt_Insumos">
+          <End Type="Protal_webModel.Pt_Insumos" Role="Pt_Insumos" Multiplicity="1" />
+          <End Type="Protal_webModel.Pt_Puesto_Insumos" Role="Pt_Puesto_Insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Insumos">
+              <PropertyRef Name="cins_id" />
+            </Principal>
+            <Dependent Role="Pt_Puesto_Insumos">
+              <PropertyRef Name="cpin_cins_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Pt_Estados_Fase">
+          <Key>
+            <PropertyRef Name="cefa_id" />
+          </Key>
+          <Property Name="cefa_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cefa_descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pt_Fases_Cotizacion" Relationship="Protal_webModel.FK_Pt_Fases_Cotizacion_Pt_Estado_Fase" FromRole="Pt_Estados_Fase" ToRole="Pt_Fases_Cotizacion" />
+        </EntityType>
+        <EntityType Name="Pt_Cotizaciones">
+          <Key>
+            <PropertyRef Name="ccot_id" />
+          </Key>
+          <Property Name="ccot_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ccot_nombre_proyecto" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ccot_descripcion_general" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ccot_contacto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ccot_telefono_contacto" Type="Int32" />
+          <Property Name="ccot_correo_contacto" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ccot_direccion_contacto" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ccot_fecha_entrega" Type="DateTime" Precision="0" />
+          <Property Name="ccot_finaliza_cotizacion" Type="Boolean" />
+          <Property Name="ccot_fecha_finalizacion" Type="DateTime" Precision="0" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="ccot_id_usuario_finalizacion" Type="Int32" />
+          <Property Name="ccot_ctpo_id" Type="Int32" />
+          <NavigationProperty Name="Pt_Fases_Cotizacion" Relationship="Protal_webModel.FK_Pt_Fase_Cotizacion_Pt_Cotizaciones" FromRole="Pt_Cotizaciones" ToRole="Pt_Fases_Cotizacion" />
+          <NavigationProperty Name="Pt_Tipos_Proyecto" Relationship="Protal_webModel.FK_Pt_Fase_Cotizacion_Pt_Tipos_Proyecto" FromRole="Pt_Cotizaciones" ToRole="Pt_Tipos_Proyecto" />
+        </EntityType>
+        <EntityType Name="Pt_Fases_Cotizacion">
+          <Key>
+            <PropertyRef Name="cfas_id" />
+          </Key>
+          <Property Name="cfas_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cfas_nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="cfas_descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cfas_fecha_entrega" Type="DateTime" Precision="0" />
+          <Property Name="cfas_cefa_id" Type="Int32" />
+          <Property Name="cfas_ccot_id" Type="Int32" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pt_Cotizaciones" Relationship="Protal_webModel.FK_Pt_Fase_Cotizacion_Pt_Cotizaciones" FromRole="Pt_Fases_Cotizacion" ToRole="Pt_Cotizaciones" />
+          <NavigationProperty Name="Pt_Estados_Fase" Relationship="Protal_webModel.FK_Pt_Fases_Cotizacion_Pt_Estado_Fase" FromRole="Pt_Fases_Cotizacion" ToRole="Pt_Estados_Fase" />
+          <NavigationProperty Name="Pt_Tmp_Cotizacion_Fase_Insumos" Relationship="Protal_webModel.FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Fases_Cotizacion" FromRole="Pt_Fases_Cotizacion" ToRole="Pt_Tmp_Cotizacion_Fase_Insumos" />
+          <NavigationProperty Name="Pt_Tmp_Cotizacion_Fase_Insumos_New" Relationship="Protal_webModel.FK_Pt_Tmp_Cotizacion_Fase_Insumos_New_Pt_Fases_Cotizacion" FromRole="Pt_Fases_Cotizacion" ToRole="Pt_Tmp_Cotizacion_Fase_Insumos_New" />
+          <NavigationProperty Name="Pt_Tmp_Propuesta_Fase_Puesto" Relationship="Protal_webModel.FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Fases_Cotizacion" FromRole="Pt_Fases_Cotizacion" ToRole="Pt_Tmp_Propuesta_Fase_Puesto" />
+          <Property Name="cfas_rev_ven" Type="Boolean" Nullable="false" />
+          <Property Name="cfas_rev_ope" Type="Boolean" Nullable="false" />
+          <Property Name="cfas_rev_gge" Type="Boolean" Nullable="false" />
+          <Property Name="cfas_ok_ope" Type="Boolean" Nullable="false" />
+          <Property Name="cfas_ok_ven" Type="Boolean" Nullable="false" />
+          <Property Name="cfas_ok_gge" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pt_Tmp_Cotizacion_Fase_Margen_Conf" Relationship="Protal_webModel.FK_Pt_Tmp_Cotizacion_Fase_Margen_Conf_Pt_Fases_Cotizacion" FromRole="Pt_Fases_Cotizacion" ToRole="Pt_Tmp_Cotizacion_Fase_Margen_Conf" />
+          <Property Name="cfas_id_usuario_ven" Type="Int32" Nullable="false" />
+          <Property Name="cfas_id_usuario_ope" Type="Int32" />
+          <Property Name="cfas_id_usuario_gge" Type="Int32" />
+          <Property Name="cfas_rc_gge" Type="Boolean" Nullable="false" />
+          <Property Name="historico" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pt_Tipos_Proyecto">
+          <Key>
+            <PropertyRef Name="ctpo_id" />
+          </Key>
+          <Property Name="ctpo_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ctpo_descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pt_Cotizaciones" Relationship="Protal_webModel.FK_Pt_Fase_Cotizacion_Pt_Tipos_Proyecto" FromRole="Pt_Tipos_Proyecto" ToRole="Pt_Cotizaciones" />
+        </EntityType>
+        <Association Name="FK_Pt_Fase_Cotizacion_Pt_Cotizaciones">
+          <End Type="Protal_webModel.Pt_Cotizaciones" Role="Pt_Cotizaciones" Multiplicity="0..1" />
+          <End Type="Protal_webModel.Pt_Fases_Cotizacion" Role="Pt_Fases_Cotizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Cotizaciones">
+              <PropertyRef Name="ccot_id" />
+            </Principal>
+            <Dependent Role="Pt_Fases_Cotizacion">
+              <PropertyRef Name="cfas_ccot_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Fase_Cotizacion_Pt_Tipos_Proyecto">
+          <End Type="Protal_webModel.Pt_Tipos_Proyecto" Role="Pt_Tipos_Proyecto" Multiplicity="0..1" />
+          <End Type="Protal_webModel.Pt_Cotizaciones" Role="Pt_Cotizaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Tipos_Proyecto">
+              <PropertyRef Name="ctpo_id" />
+            </Principal>
+            <Dependent Role="Pt_Cotizaciones">
+              <PropertyRef Name="ccot_ctpo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Fases_Cotizacion_Pt_Estado_Fase">
+          <End Type="Protal_webModel.Pt_Estados_Fase" Role="Pt_Estados_Fase" Multiplicity="0..1" />
+          <End Type="Protal_webModel.Pt_Fases_Cotizacion" Role="Pt_Fases_Cotizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Estados_Fase">
+              <PropertyRef Name="cefa_id" />
+            </Principal>
+            <Dependent Role="Pt_Fases_Cotizacion">
+              <PropertyRef Name="cfas_cefa_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Pt_Meses">
+          <Key>
+            <PropertyRef Name="cmes_id" />
+          </Key>
+          <Property Name="cmes_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cmes_descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pt_Cantidad_Planilla_Mes_Anio" Relationship="Protal_webModel.FK_Pt_Cantidad_Planilla_Mes_Anio_Pt_Meses" FromRole="Pt_Meses" ToRole="Pt_Cantidad_Planilla_Mes_Anio" />
+          <NavigationProperty Name="Pt_Costos_Fijos_Mes_Anio" Relationship="Protal_webModel.FK_Pt_Costos_Fijos_Mes_Anio_Pt_Meses" FromRole="Pt_Meses" ToRole="Pt_Costos_Fijos_Mes_Anio" />
+        </EntityType>
+        <EntityType Name="Pt_Tipo_Gasto">
+          <Key>
+            <PropertyRef Name="ctga_id" />
+          </Key>
+          <Property Name="ctga_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ctga_descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pt_Gastos_Costos_Fijos_Mes_Anio">
+          <Key>
+            <PropertyRef Name="cgcf_id" />
+          </Key>
+          <Property Name="cgcf_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cgcf_ccfma_id" Type="Int32" />
+          <Property Name="cgcf_descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cgcf_precio_unitario" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="cgcf_cantidad" Type="Int32" />
+          <Property Name="cgcf_consumible" Type="Boolean" />
+          <Property Name="cgcf_depreciable" Type="Boolean" />
+          <Property Name="cgcf_porcentaje_depreciacion" Type="Decimal" Precision="7" Scale="5" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pt_Costos_Fijos_Mes_Anio" Relationship="Protal_webModel.FK_Pt_Gastos_Costos_Fijos_Mes_Anio_Pt_Costos_Fijos_Mes_Anio" FromRole="Pt_Gastos_Costos_Fijos_Mes_Anio" ToRole="Pt_Costos_Fijos_Mes_Anio" />
+        </EntityType>
+        <EntityType Name="Pt_Cantidad_Planilla_Mes_Anio">
+          <Key>
+            <PropertyRef Name="ccpma_id" />
+          </Key>
+          <Property Name="ccpma_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ccpma_descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ccpma_mes" Type="Int32" />
+          <Property Name="ccpma_anio" Type="Int32" />
+          <Property Name="ccpma_cantidad_planilla" Type="Int32" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pt_Meses" Relationship="Protal_webModel.FK_Pt_Cantidad_Planilla_Mes_Anio_Pt_Meses" FromRole="Pt_Cantidad_Planilla_Mes_Anio" ToRole="Pt_Meses" />
+        </EntityType>
+        <Association Name="FK_Pt_Cantidad_Planilla_Mes_Anio_Pt_Meses">
+          <End Type="Protal_webModel.Pt_Meses" Role="Pt_Meses" Multiplicity="0..1" />
+          <End Type="Protal_webModel.Pt_Cantidad_Planilla_Mes_Anio" Role="Pt_Cantidad_Planilla_Mes_Anio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Meses">
+              <PropertyRef Name="cmes_id" />
+            </Principal>
+            <Dependent Role="Pt_Cantidad_Planilla_Mes_Anio">
+              <PropertyRef Name="ccpma_mes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Pt_Tmp_Cotizacion_Fase_Insumos">
+          <Key>
+            <PropertyRef Name="ctpfi_id" />
+          </Key>
+          <Property Name="ctpfi_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ctpfi_cins_id" Type="Int32" />
+          <Property Name="ctpfi_cantidad" Type="Int32" />
+          <Property Name="ctpfi_cfas_id" Type="Int32" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pt_Fases_Cotizacion" Relationship="Protal_webModel.FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Fases_Cotizacion" FromRole="Pt_Tmp_Cotizacion_Fase_Insumos" ToRole="Pt_Fases_Cotizacion" />
+          <NavigationProperty Name="Pt_Insumos" Relationship="Protal_webModel.FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Puestos" FromRole="Pt_Tmp_Cotizacion_Fase_Insumos" ToRole="Pt_Insumos" />
+        </EntityType>
+        <Association Name="FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Fases_Cotizacion">
+          <End Type="Protal_webModel.Pt_Fases_Cotizacion" Role="Pt_Fases_Cotizacion" Multiplicity="0..1" />
+          <End Type="Protal_webModel.Pt_Tmp_Cotizacion_Fase_Insumos" Role="Pt_Tmp_Cotizacion_Fase_Insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Fases_Cotizacion">
+              <PropertyRef Name="cfas_id" />
+            </Principal>
+            <Dependent Role="Pt_Tmp_Cotizacion_Fase_Insumos">
+              <PropertyRef Name="ctpfi_cfas_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Puestos">
+          <End Type="Protal_webModel.Pt_Insumos" Role="Pt_Insumos" Multiplicity="0..1" />
+          <End Type="Protal_webModel.Pt_Tmp_Cotizacion_Fase_Insumos" Role="Pt_Tmp_Cotizacion_Fase_Insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Insumos">
+              <PropertyRef Name="cins_id" />
+            </Principal>
+            <Dependent Role="Pt_Tmp_Cotizacion_Fase_Insumos">
+              <PropertyRef Name="ctpfi_cins_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Pt_Tmp_Cotizacion_Fase_Insumos_New">
+          <Key>
+            <PropertyRef Name="ctpfin_id" />
+          </Key>
+          <Property Name="ctpfin_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ctpfin_descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ctpfin_precio_costo" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="ctpfin_precio_venta" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="ctpfin_talla" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ctpfin_es_insumo" Type="Boolean" />
+          <Property Name="ctpfin_es_arma" Type="Boolean" />
+          <Property Name="ctpfin_es_uniforme" Type="Boolean" />
+          <Property Name="ctpfin_depreciacion" Type="Boolean" />
+          <Property Name="ctpfin_porcentaje_depreciacion" Type="Decimal" Precision="7" Scale="5" />
+          <Property Name="ctpfin_cantidad" Type="Int32" />
+          <Property Name="ctpfin_cfas_id" Type="Int32" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pt_Fases_Cotizacion" Relationship="Protal_webModel.FK_Pt_Tmp_Cotizacion_Fase_Insumos_New_Pt_Fases_Cotizacion" FromRole="Pt_Tmp_Cotizacion_Fase_Insumos_New" ToRole="Pt_Fases_Cotizacion" />
+        </EntityType>
+        <Association Name="FK_Pt_Tmp_Cotizacion_Fase_Insumos_New_Pt_Fases_Cotizacion">
+          <End Type="Protal_webModel.Pt_Fases_Cotizacion" Role="Pt_Fases_Cotizacion" Multiplicity="0..1" />
+          <End Type="Protal_webModel.Pt_Tmp_Cotizacion_Fase_Insumos_New" Role="Pt_Tmp_Cotizacion_Fase_Insumos_New" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Fases_Cotizacion">
+              <PropertyRef Name="cfas_id" />
+            </Principal>
+            <Dependent Role="Pt_Tmp_Cotizacion_Fase_Insumos_New">
+              <PropertyRef Name="ctpfin_cfas_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Pt_Tmp_Propuesta_Fase_Puesto">
+          <Key>
+            <PropertyRef Name="ctpf_id" />
+          </Key>
+          <Property Name="ctpf_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ctpf_cpue_id" Type="Int32" />
+          <Property Name="ctpf_cfas_id" Type="Int32" />
+          <Property Name="ctpf_personal" Type="Int32" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pt_Fases_Cotizacion" Relationship="Protal_webModel.FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Fases_Cotizacion" FromRole="Pt_Tmp_Propuesta_Fase_Puesto" ToRole="Pt_Fases_Cotizacion" />
+          <NavigationProperty Name="Pt_Puestos" Relationship="Protal_webModel.FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Puestos" FromRole="Pt_Tmp_Propuesta_Fase_Puesto" ToRole="Pt_Puestos" />
+          <Property Name="ctpf_facConIVA" Type="Decimal" Precision="16" Scale="2" />
+        </EntityType>
+        <Association Name="FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Fases_Cotizacion">
+          <End Type="Protal_webModel.Pt_Fases_Cotizacion" Role="Pt_Fases_Cotizacion" Multiplicity="0..1" />
+          <End Type="Protal_webModel.Pt_Tmp_Propuesta_Fase_Puesto" Role="Pt_Tmp_Propuesta_Fase_Puesto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Fases_Cotizacion">
+              <PropertyRef Name="cfas_id" />
+            </Principal>
+            <Dependent Role="Pt_Tmp_Propuesta_Fase_Puesto">
+              <PropertyRef Name="ctpf_cfas_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Puestos">
+          <End Type="Protal_webModel.Pt_Puestos" Role="Pt_Puestos" Multiplicity="0..1" />
+          <End Type="Protal_webModel.Pt_Tmp_Propuesta_Fase_Puesto" Role="Pt_Tmp_Propuesta_Fase_Puesto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Puestos">
+              <PropertyRef Name="cpue_id" />
+            </Principal>
+            <Dependent Role="Pt_Tmp_Propuesta_Fase_Puesto">
+              <PropertyRef Name="ctpf_cpue_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Pt_Tmp_Cotizacion_Fase_Margen_Conf">
+          <Key>
+            <PropertyRef Name="ctcfm_id" />
+          </Key>
+          <Property Name="ctcfm_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ctcfm_margen" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="ctcfm_cfas_id" Type="Int32" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pt_Fases_Cotizacion" Relationship="Protal_webModel.FK_Pt_Tmp_Cotizacion_Fase_Margen_Conf_Pt_Fases_Cotizacion" FromRole="Pt_Tmp_Cotizacion_Fase_Margen_Conf" ToRole="Pt_Fases_Cotizacion" />
+        </EntityType>
+        <Association Name="FK_Pt_Tmp_Cotizacion_Fase_Margen_Conf_Pt_Fases_Cotizacion">
+          <End Type="Protal_webModel.Pt_Fases_Cotizacion" Role="Pt_Fases_Cotizacion" Multiplicity="0..1" />
+          <End Type="Protal_webModel.Pt_Tmp_Cotizacion_Fase_Margen_Conf" Role="Pt_Tmp_Cotizacion_Fase_Margen_Conf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Fases_Cotizacion">
+              <PropertyRef Name="cfas_id" />
+            </Principal>
+            <Dependent Role="Pt_Tmp_Cotizacion_Fase_Margen_Conf">
+              <PropertyRef Name="ctcfm_cfas_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Pt_Costos_Fijos_Mes_Anio">
+          <Key>
+            <PropertyRef Name="ccfma_id" />
+          </Key>
+          <Property Name="ccfma_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ccfma_descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ccfma_mes" Type="Int32" />
+          <Property Name="ccfma_anio" Type="Int32" />
+          <Property Name="ccfma_monto_gasto_administrativo" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="ccfma_monto_gasto_operativo" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Pt_Meses" Relationship="Protal_webModel.FK_Pt_Costos_Fijos_Mes_Anio_Pt_Meses" FromRole="Pt_Costos_Fijos_Mes_Anio" ToRole="Pt_Meses" />
+          <NavigationProperty Name="Pt_Gastos_Costos_Fijos_Mes_Anio" Relationship="Protal_webModel.FK_Pt_Gastos_Costos_Fijos_Mes_Anio_Pt_Costos_Fijos_Mes_Anio" FromRole="Pt_Costos_Fijos_Mes_Anio" ToRole="Pt_Gastos_Costos_Fijos_Mes_Anio" />
+        </EntityType>
+        <Association Name="FK_Pt_Costos_Fijos_Mes_Anio_Pt_Meses">
+          <End Type="Protal_webModel.Pt_Meses" Role="Pt_Meses" Multiplicity="0..1" />
+          <End Type="Protal_webModel.Pt_Costos_Fijos_Mes_Anio" Role="Pt_Costos_Fijos_Mes_Anio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Meses">
+              <PropertyRef Name="cmes_id" />
+            </Principal>
+            <Dependent Role="Pt_Costos_Fijos_Mes_Anio">
+              <PropertyRef Name="ccfma_mes" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pt_Gastos_Costos_Fijos_Mes_Anio_Pt_Costos_Fijos_Mes_Anio">
+          <End Type="Protal_webModel.Pt_Costos_Fijos_Mes_Anio" Role="Pt_Costos_Fijos_Mes_Anio" Multiplicity="0..1" />
+          <End Type="Protal_webModel.Pt_Gastos_Costos_Fijos_Mes_Anio" Role="Pt_Gastos_Costos_Fijos_Mes_Anio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pt_Costos_Fijos_Mes_Anio">
+              <PropertyRef Name="ccfma_id" />
+            </Principal>
+            <Dependent Role="Pt_Gastos_Costos_Fijos_Mes_Anio">
+              <PropertyRef Name="cgcf_ccfma_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Protal_webModelStoreContainer" CdmEntityContainer="Protal_webEntities">
+          <EntitySetMapping Name="pt_estadofuerza">
+            <EntityTypeMapping TypeName="Protal_webModel.pt_estadofuerza">
+              <MappingFragment StoreEntitySet="pt_estadofuerza">
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="pt_id" ColumnName="pt_id" />
+                <ScalarProperty Name="ptempleadoid" ColumnName="ptempleadoid" />
+                <ScalarProperty Name="ptubicacionid" ColumnName="ptubicacionid" />
+                <ScalarProperty Name="pttipoid" ColumnName="pttipoid" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="modificado_el" ColumnName="modificado_el" />
+                <ScalarProperty Name="id_encabezado" ColumnName="id_encabezado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pt_estadofuerza_encabezado">
+            <EntityTypeMapping TypeName="Protal_webModel.pt_estadofuerza_encabezado">
+              <MappingFragment StoreEntitySet="pt_estadofuerza_encabezado">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="creado_el" ColumnName="creado_el" />
+                <ScalarProperty Name="creado_por" ColumnName="creado_por" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="modificado_por" ColumnName="modificado_por" />
+                <ScalarProperty Name="modificado_el" ColumnName="modificado_el" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pt_situacion">
+            <EntityTypeMapping TypeName="Protal_webModel.pt_situacion">
+              <MappingFragment StoreEntitySet="pt_situacion">
+                <ScalarProperty Name="id_situacion" ColumnName="id_situacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="es_pago" ColumnName="es_pago" />
+                <ScalarProperty Name="baja_rrhh" ColumnName="baja_rrhh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pt_contratacion">
+            <EntityTypeMapping TypeName="Protal_webModel.pt_contratacion">
+              <MappingFragment StoreEntitySet="pt_contratacion">
+                <ScalarProperty Name="PTCONTRATOID" ColumnName="PTCONTRATOID" />
+                <ScalarProperty Name="PTPRESTACIONID" ColumnName="PTPRESTACIONID" />
+                <ScalarProperty Name="PTEMPLEADOID" ColumnName="PTEMPLEADOID" />
+                <ScalarProperty Name="PTEMPRESAID" ColumnName="PTEMPRESAID" />
+                <ScalarProperty Name="PTCATEGORIAID" ColumnName="PTCATEGORIAID" />
+                <ScalarProperty Name="NOMBRE_REFERIDO" ColumnName="NOMBRE_REFERIDO" />
+                <ScalarProperty Name="FECHA_APRENDIZ" ColumnName="FECHA_APRENDIZ" />
+                <ScalarProperty Name="FECHA_APRENDIZ_FIN" ColumnName="FECHA_APRENDIZ_FIN" />
+                <ScalarProperty Name="FECHA_ALTA" ColumnName="FECHA_ALTA" />
+                <ScalarProperty Name="FECHA_BAJA" ColumnName="FECHA_BAJA" />
+                <ScalarProperty Name="CAPACITACION" ColumnName="CAPACITACION" />
+                <ScalarProperty Name="OBSERVACIONES_ALTA" ColumnName="OBSERVACIONES_ALTA" />
+                <ScalarProperty Name="OBSERVACIONES_BAJA" ColumnName="OBSERVACIONES_BAJA" />
+                <ScalarProperty Name="MOTIVO_BAJA" ColumnName="MOTIVO_BAJA" />
+                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+                <ScalarProperty Name="creado_el" ColumnName="creado_el" />
+                <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
+                <ScalarProperty Name="modificado_el" ColumnName="modificado_el" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="PTCONTRATACIONID" ColumnName="PTCONTRATACIONID" />
+                <ScalarProperty Name="PTTIPOID" ColumnName="PTTIPOID" />
+                <ScalarProperty Name="PTAREAID" ColumnName="PTAREAID" />
+                <ScalarProperty Name="OBSERVACIONES_APRENDIZ" ColumnName="OBSERVACIONES_APRENDIZ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pt_empleado">
+            <EntityTypeMapping TypeName="Protal_webModel.pt_empleado">
+              <MappingFragment StoreEntitySet="pt_empleado">
+                <ScalarProperty Name="PTEMPLEADOID" ColumnName="PTEMPLEADOID" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="IDENTIFICACION" ColumnName="IDENTIFICACION" />
+                <ScalarProperty Name="CEDULA" ColumnName="CEDULA" />
+                <ScalarProperty Name="NOMBRE1" ColumnName="NOMBRE1" />
+                <ScalarProperty Name="NOMBRE2" ColumnName="NOMBRE2" />
+                <ScalarProperty Name="APELLIDO1" ColumnName="APELLIDO1" />
+                <ScalarProperty Name="APELLIDO2" ColumnName="APELLIDO2" />
+                <ScalarProperty Name="APELLIDO_CASADA" ColumnName="APELLIDO_CASADA" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="ESTADO_CIVIL" ColumnName="ESTADO_CIVIL" />
+                <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
+                <ScalarProperty Name="NIT" ColumnName="NIT" />
+                <ScalarProperty Name="NUMERO_IGSS" ColumnName="NUMERO_IGSS" />
+                <ScalarProperty Name="NUMERO_IRTRA" ColumnName="NUMERO_IRTRA" />
+                <ScalarProperty Name="estatura" ColumnName="estatura" />
+                <ScalarProperty Name="peso" ColumnName="peso" />
+                <ScalarProperty Name="DPI" ColumnName="DPI" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="NACIONALIDAD" ColumnName="NACIONALIDAD" />
+                <ScalarProperty Name="SERVICIO_MILITAR" ColumnName="SERVICIO_MILITAR" />
+                <ScalarProperty Name="SABE_LEER" ColumnName="SABE_LEER" />
+                <ScalarProperty Name="SABE_ESCRIBIR" ColumnName="SABE_ESCRIBIR" />
+                <ScalarProperty Name="DIR_NACIMIENTO" ColumnName="DIR_NACIMIENTO" />
+                <ScalarProperty Name="MUN_NACIMIENTO" ColumnName="MUN_NACIMIENTO" />
+                <ScalarProperty Name="DEPTO_NACIMIENTO" ColumnName="DEPTO_NACIMIENTO" />
+                <ScalarProperty Name="ptescolaridadid" ColumnName="ptescolaridadid" />
+                <ScalarProperty Name="ptprofesionid" ColumnName="ptprofesionid" />
+                <ScalarProperty Name="TIPOCUENTA" ColumnName="TIPOCUENTA" />
+                <ScalarProperty Name="CUENTA" ColumnName="CUENTA" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="EXTENDIDA_EN" ColumnName="EXTENDIDA_EN" />
+                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+                <ScalarProperty Name="creado_el" ColumnName="creado_el" />
+                <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
+                <ScalarProperty Name="modificado_el" ColumnName="modificado_el" />
+                <ScalarProperty Name="tipo_licencia" ColumnName="tipo_licencia" />
+                <ScalarProperty Name="licencia" ColumnName="licencia" />
+                <ScalarProperty Name="fecha_vencimiento" ColumnName="fecha_vencimiento" />
+                <ScalarProperty Name="cuadra" ColumnName="cuadra" />
+                <ScalarProperty Name="ptcamaid" ColumnName="ptcamaid" />
+                <ScalarProperty Name="PTBANCOID" ColumnName="PTBANCOID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_ausentes_automatico" FunctionName="Protal_webModel.Store.sp_ausentes_automatico" />
+          <EntitySetMapping Name="pt_ubicacion">
+            <EntityTypeMapping TypeName="Protal_webModel.pt_ubicacion">
+              <MappingFragment StoreEntitySet="pt_ubicacion">
+                <ScalarProperty Name="responsable" ColumnName="responsable" />
+                <ScalarProperty Name="ENCARGADO" ColumnName="ENCARGADO" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="MODIFICADO_EL" ColumnName="MODIFICADO_EL" />
+                <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
+                <ScalarProperty Name="CREADO_EL" ColumnName="CREADO_EL" />
+                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+                <ScalarProperty Name="CONTRATADOS" ColumnName="CONTRATADOS" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="PTRAZONSOCIALID" ColumnName="PTRAZONSOCIALID" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="PTUBICACIONID" ColumnName="PTUBICACIONID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pt_tipo_ubicacion">
+            <EntityTypeMapping TypeName="Protal_webModel.pt_tipo_ubicacion">
+              <MappingFragment StoreEntitySet="pt_tipo_ubicacion">
+                <ScalarProperty Name="CREADO_EL" ColumnName="CREADO_EL" />
+                <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="PTTIPOID" ColumnName="PTTIPOID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fn_detalle_estado_fuerza_dia" FunctionName="Protal_webModel.Store.fn_detalle_estado_fuerza_dia">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Protal_webModel.fn_detalle_estado_fuerza_dia_Result">
+                <ScalarProperty Name="id_estado_fuerza" ColumnName="id_estado_fuerza" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="nombre_empleado" ColumnName="nombre_empleado" />
+                <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
+                <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+                <ScalarProperty Name="tipo_servicio" ColumnName="tipo_servicio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ausentes_baja_automatico" FunctionName="Protal_webModel.Store.sp_ausentes_baja_automatico" />
+          <EntitySetMapping Name="Pt_Puestos">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Puestos">
+              <MappingFragment StoreEntitySet="Pt_Puestos">
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="cpue_descripcion" ColumnName="cpue_descripcion" />
+                <ScalarProperty Name="cpue_id" ColumnName="cpue_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Tipo_Pagos">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Tipo_Pagos">
+              <MappingFragment StoreEntitySet="Pt_Tipo_Pagos">
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="ctpa_descripcion" ColumnName="ctpa_descripcion" />
+                <ScalarProperty Name="ctpa_id" ColumnName="ctpa_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Puesto_Insumos">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Puesto_Insumos">
+              <MappingFragment StoreEntitySet="Pt_Puesto_Insumos">
+                <ScalarProperty Name="cpin_cantidad" ColumnName="cpin_cantidad" />
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="cpin_cins_id" ColumnName="cpin_cins_id" />
+                <ScalarProperty Name="cpin_cpue_id" ColumnName="cpin_cpue_id" />
+                <ScalarProperty Name="cpin_id" ColumnName="cpin_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Costos_Fijos">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Costos_Fijos">
+              <MappingFragment StoreEntitySet="Pt_Costos_Fijos">
+                <ScalarProperty Name="ccof_depreciable" ColumnName="ccof_depreciable" />
+                <ScalarProperty Name="ccof_consumible" ColumnName="ccof_consumible" />
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="ccof_precio_unitario" ColumnName="ccof_precio_unitario" />
+                <ScalarProperty Name="ccof_descripcion" ColumnName="ccof_descripcion" />
+                <ScalarProperty Name="ccof_id" ColumnName="ccof_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Pagos_Puesto">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Pagos_Puesto">
+              <MappingFragment StoreEntitySet="Pt_Pagos_Puesto">
+                <ScalarProperty Name="cppu_depende_sb" ColumnName="cppu_depende_sb" />
+                <ScalarProperty Name="cppu_descripcion" ColumnName="cppu_descripcion" />
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="cppu_porcentaje_calculo" ColumnName="cppu_porcentaje_calculo" />
+                <ScalarProperty Name="cppu_salario_base" ColumnName="cppu_salario_base" />
+                <ScalarProperty Name="cppu_monto" ColumnName="cppu_monto" />
+                <ScalarProperty Name="cppu_cpue_id" ColumnName="cppu_cpue_id" />
+                <ScalarProperty Name="cppu_ctpa_id" ColumnName="cppu_ctpa_id" />
+                <ScalarProperty Name="cppu_id" ColumnName="cppu_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Insumos">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Insumos">
+              <MappingFragment StoreEntitySet="Pt_Insumos">
+                <ScalarProperty Name="cins_porcentaje_depreciacion" ColumnName="cins_porcentaje_depreciacion" />
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="cins_depreciacion" ColumnName="cins_depreciacion" />
+                <ScalarProperty Name="cins_es_uniforme" ColumnName="cins_es_uniforme" />
+                <ScalarProperty Name="cins_es_arma" ColumnName="cins_es_arma" />
+                <ScalarProperty Name="cins_es_insumo" ColumnName="cins_es_insumo" />
+                <ScalarProperty Name="cins_talla" ColumnName="cins_talla" />
+                <ScalarProperty Name="cins_precio_venta" ColumnName="cins_precio_venta" />
+                <ScalarProperty Name="cins_precio_costo" ColumnName="cins_precio_costo" />
+                <ScalarProperty Name="cins_descripcion" ColumnName="cins_descripcion" />
+                <ScalarProperty Name="cins_id" ColumnName="cins_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Estados_Fase">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Estados_Fase">
+              <MappingFragment StoreEntitySet="Pt_Estados_Fase">
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="cefa_descripcion" ColumnName="cefa_descripcion" />
+                <ScalarProperty Name="cefa_id" ColumnName="cefa_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Cotizaciones">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Cotizaciones">
+              <MappingFragment StoreEntitySet="Pt_Cotizaciones">
+                <ScalarProperty Name="ccot_ctpo_id" ColumnName="ccot_ctpo_id" />
+                <ScalarProperty Name="ccot_id_usuario_finalizacion" ColumnName="ccot_id_usuario_finalizacion" />
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="ccot_fecha_finalizacion" ColumnName="ccot_fecha_finalizacion" />
+                <ScalarProperty Name="ccot_finaliza_cotizacion" ColumnName="ccot_finaliza_cotizacion" />
+                <ScalarProperty Name="ccot_fecha_entrega" ColumnName="ccot_fecha_entrega" />
+                <ScalarProperty Name="ccot_direccion_contacto" ColumnName="ccot_direccion_contacto" />
+                <ScalarProperty Name="ccot_correo_contacto" ColumnName="ccot_correo_contacto" />
+                <ScalarProperty Name="ccot_telefono_contacto" ColumnName="ccot_telefono_contacto" />
+                <ScalarProperty Name="ccot_contacto" ColumnName="ccot_contacto" />
+                <ScalarProperty Name="ccot_descripcion_general" ColumnName="ccot_descripcion_general" />
+                <ScalarProperty Name="ccot_nombre_proyecto" ColumnName="ccot_nombre_proyecto" />
+                <ScalarProperty Name="ccot_id" ColumnName="ccot_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Fases_Cotizacion">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Fases_Cotizacion">
+              <MappingFragment StoreEntitySet="Pt_Fases_Cotizacion">
+                <ScalarProperty Name="historico" ColumnName="historico" />
+                <ScalarProperty Name="cfas_rc_gge" ColumnName="cfas_rc_gge" />
+                <ScalarProperty Name="cfas_id_usuario_gge" ColumnName="cfas_id_usuario_gge" />
+                <ScalarProperty Name="cfas_id_usuario_ope" ColumnName="cfas_id_usuario_ope" />
+                <ScalarProperty Name="cfas_id_usuario_ven" ColumnName="cfas_id_usuario_ven" />
+                <ScalarProperty Name="cfas_ok_gge" ColumnName="cfas_ok_gge" />
+                <ScalarProperty Name="cfas_ok_ven" ColumnName="cfas_ok_ven" />
+                <ScalarProperty Name="cfas_ok_ope" ColumnName="cfas_ok_ope" />
+                <ScalarProperty Name="cfas_rev_gge" ColumnName="cfas_rev_gge" />
+                <ScalarProperty Name="cfas_rev_ope" ColumnName="cfas_rev_ope" />
+                <ScalarProperty Name="cfas_rev_ven" ColumnName="cfas_rev_ven" />
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="cfas_ccot_id" ColumnName="cfas_ccot_id" />
+                <ScalarProperty Name="cfas_cefa_id" ColumnName="cfas_cefa_id" />
+                <ScalarProperty Name="cfas_fecha_entrega" ColumnName="cfas_fecha_entrega" />
+                <ScalarProperty Name="cfas_descripcion" ColumnName="cfas_descripcion" />
+                <ScalarProperty Name="cfas_nombre" ColumnName="cfas_nombre" />
+                <ScalarProperty Name="cfas_id" ColumnName="cfas_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Tipos_Proyecto">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Tipos_Proyecto">
+              <MappingFragment StoreEntitySet="Pt_Tipos_Proyecto">
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="ctpo_descripcion" ColumnName="ctpo_descripcion" />
+                <ScalarProperty Name="ctpo_id" ColumnName="ctpo_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Meses">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Meses">
+              <MappingFragment StoreEntitySet="Pt_Meses">
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="cmes_descripcion" ColumnName="cmes_descripcion" />
+                <ScalarProperty Name="cmes_id" ColumnName="cmes_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Tipo_Gasto">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Tipo_Gasto">
+              <MappingFragment StoreEntitySet="Pt_Tipo_Gasto">
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="ctga_descripcion" ColumnName="ctga_descripcion" />
+                <ScalarProperty Name="ctga_id" ColumnName="ctga_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Gastos_Costos_Fijos_Mes_Anio">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Gastos_Costos_Fijos_Mes_Anio">
+              <MappingFragment StoreEntitySet="Pt_Gastos_Costos_Fijos_Mes_Anio">
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="cgcf_porcentaje_depreciacion" ColumnName="cgcf_porcentaje_depreciacion" />
+                <ScalarProperty Name="cgcf_depreciable" ColumnName="cgcf_depreciable" />
+                <ScalarProperty Name="cgcf_consumible" ColumnName="cgcf_consumible" />
+                <ScalarProperty Name="cgcf_cantidad" ColumnName="cgcf_cantidad" />
+                <ScalarProperty Name="cgcf_precio_unitario" ColumnName="cgcf_precio_unitario" />
+                <ScalarProperty Name="cgcf_descripcion" ColumnName="cgcf_descripcion" />
+                <ScalarProperty Name="cgcf_ccfma_id" ColumnName="cgcf_ccfma_id" />
+                <ScalarProperty Name="cgcf_id" ColumnName="cgcf_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Cantidad_Planilla_Mes_Anio">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Cantidad_Planilla_Mes_Anio">
+              <MappingFragment StoreEntitySet="Pt_Cantidad_Planilla_Mes_Anio">
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="ccpma_cantidad_planilla" ColumnName="ccpma_cantidad_planilla" />
+                <ScalarProperty Name="ccpma_anio" ColumnName="ccpma_anio" />
+                <ScalarProperty Name="ccpma_mes" ColumnName="ccpma_mes" />
+                <ScalarProperty Name="ccpma_descripcion" ColumnName="ccpma_descripcion" />
+                <ScalarProperty Name="ccpma_id" ColumnName="ccpma_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Tmp_Cotizacion_Fase_Insumos">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Tmp_Cotizacion_Fase_Insumos">
+              <MappingFragment StoreEntitySet="Pt_Tmp_Cotizacion_Fase_Insumos">
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="ctpfi_cfas_id" ColumnName="ctpfi_cfas_id" />
+                <ScalarProperty Name="ctpfi_cantidad" ColumnName="ctpfi_cantidad" />
+                <ScalarProperty Name="ctpfi_cins_id" ColumnName="ctpfi_cins_id" />
+                <ScalarProperty Name="ctpfi_id" ColumnName="ctpfi_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Tmp_Cotizacion_Fase_Insumos_New">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Tmp_Cotizacion_Fase_Insumos_New">
+              <MappingFragment StoreEntitySet="Pt_Tmp_Cotizacion_Fase_Insumos_New">
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="ctpfin_cfas_id" ColumnName="ctpfin_cfas_id" />
+                <ScalarProperty Name="ctpfin_cantidad" ColumnName="ctpfin_cantidad" />
+                <ScalarProperty Name="ctpfin_porcentaje_depreciacion" ColumnName="ctpfin_porcentaje_depreciacion" />
+                <ScalarProperty Name="ctpfin_depreciacion" ColumnName="ctpfin_depreciacion" />
+                <ScalarProperty Name="ctpfin_es_uniforme" ColumnName="ctpfin_es_uniforme" />
+                <ScalarProperty Name="ctpfin_es_arma" ColumnName="ctpfin_es_arma" />
+                <ScalarProperty Name="ctpfin_es_insumo" ColumnName="ctpfin_es_insumo" />
+                <ScalarProperty Name="ctpfin_talla" ColumnName="ctpfin_talla" />
+                <ScalarProperty Name="ctpfin_precio_venta" ColumnName="ctpfin_precio_venta" />
+                <ScalarProperty Name="ctpfin_precio_costo" ColumnName="ctpfin_precio_costo" />
+                <ScalarProperty Name="ctpfin_descripcion" ColumnName="ctpfin_descripcion" />
+                <ScalarProperty Name="ctpfin_id" ColumnName="ctpfin_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Tmp_Propuesta_Fase_Puesto">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Tmp_Propuesta_Fase_Puesto">
+              <MappingFragment StoreEntitySet="Pt_Tmp_Propuesta_Fase_Puesto">
+                <ScalarProperty Name="ctpf_facConIVA" ColumnName="ctpf_facConIVA" />
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="ctpf_personal" ColumnName="ctpf_personal" />
+                <ScalarProperty Name="ctpf_cfas_id" ColumnName="ctpf_cfas_id" />
+                <ScalarProperty Name="ctpf_cpue_id" ColumnName="ctpf_cpue_id" />
+                <ScalarProperty Name="ctpf_id" ColumnName="ctpf_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Tmp_Cotizacion_Fase_Margen_Conf">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Tmp_Cotizacion_Fase_Margen_Conf">
+              <MappingFragment StoreEntitySet="Pt_Tmp_Cotizacion_Fase_Margen_Conf">
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="ctcfm_cfas_id" ColumnName="ctcfm_cfas_id" />
+                <ScalarProperty Name="ctcfm_margen" ColumnName="ctcfm_margen" />
+                <ScalarProperty Name="ctcfm_id" ColumnName="ctcfm_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pt_Costos_Fijos_Mes_Anio">
+            <EntityTypeMapping TypeName="Protal_webModel.Pt_Costos_Fijos_Mes_Anio">
+              <MappingFragment StoreEntitySet="Pt_Costos_Fijos_Mes_Anio">
+                <ScalarProperty Name="ccfma_monto_gasto_operativo" ColumnName="ccfma_monto_gasto_operativo" />
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="ccfma_monto_gasto_administrativo" ColumnName="ccfma_monto_gasto_administrativo" />
+                <ScalarProperty Name="ccfma_anio" ColumnName="ccfma_anio" />
+                <ScalarProperty Name="ccfma_mes" ColumnName="ccfma_mes" />
+                <ScalarProperty Name="ccfma_descripcion" ColumnName="ccfma_descripcion" />
+                <ScalarProperty Name="ccfma_id" ColumnName="ccfma_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

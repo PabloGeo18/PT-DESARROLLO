@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MVC2013.Models.Paises>
+
+@{
+    ViewBag.Title = @Resources.Resources.paises + "_" + @Resources.Resources.lista;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.paises_lista</h2>
+
+<p>
+    @Html.ActionLink(@Resources.Resources.crear_nuevo, "Create")
+</p>
+<table class="zebra-striped">
+    <thead>
+        <th>@Resources.Resources.paises_nombre</th>
+        <th>@Resources.Resources.paises_activo</th>   
+        <th></th>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.nombre)</td>
+            <td>@Html.DisplayFor(modelItem => item.activo)<td>
+            <td>
+                @Html.ActionLink(@Resources.Resources.editar, "Edit", new { id = item.id_pais }) |
+                @Html.ActionLink(@Resources.Resources.detalle, "Details", new { id = item.id_pais }) |
+                @Html.ActionLink(@Resources.Resources.eliminar, "Delete", new { id = item.id_pais })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,4086 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="creacion" xml:space="preserve">
+    <value>creacion</value>
+  </data>
+  <data name="creacion_usuario" xml:space="preserve">
+    <value>Creacion de Usuario</value>
+  </data>
+  <data name="crear" xml:space="preserve">
+    <value>Crear</value>
+  </data>
+  <data name="crear_nuevo" xml:space="preserve">
+    <value>Crear Nuevo(+)</value>
+  </data>
+  <data name="detalle" xml:space="preserve">
+    <value>Detalle</value>
+  </data>
+  <data name="editar" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="eliminar" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="guardar" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="listado_regresar" xml:space="preserve">
+    <value>Regresar al Listado</value>
+  </data>
+  <data name="rol_aplicacion" xml:space="preserve">
+    <value>Aplicacion</value>
+  </data>
+  <data name="rol_nombre" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="test" xml:space="preserve">
+    <value>esto es una prueba default</value>
+  </data>
+  <data name="usuario_accesos_fallidos" xml:space="preserve">
+    <value>Cantidad Accesos Fallidos</value>
+  </data>
+  <data name="usuario_activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="usuario_bloqueado" xml:space="preserve">
+    <value>Bloqueado</value>
+  </data>
+  <data name="usuario_detalle" xml:space="preserve">
+    <value>Detalle de Usuario</value>
+  </data>
+  <data name="usuario_editar" xml:space="preserve">
+    <value>Editar Usuario</value>
+  </data>
+  <data name="usuario_email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="usuario_email_error_formato" xml:space="preserve">
+    <value>El email no tiene el formato correcto</value>
+  </data>
+  <data name="usuario_externo" xml:space="preserve">
+    <value>Usuario Externo</value>
+  </data>
+  <data name="usuario_fecha_bloqueo" xml:space="preserve">
+    <value>Ultima Fecha Bloqueo</value>
+  </data>
+  <data name="usuario_nombre" xml:space="preserve">
+    <value>Nombre Completo</value>
+  </data>
+  <data name="usuario_nombre_error_requerido" xml:space="preserve">
+    <value>El nombre completo es requerido.</value>
+  </data>
+  <data name="usuario_password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="usuario_password_required" xml:space="preserve">
+    <value>La contraseña es requerida</value>
+  </data>
+  <data name="usuario_roles" xml:space="preserve">
+    <value>Roles de Usuario</value>
+  </data>
+  <data name="usuario_telefono_movil" xml:space="preserve">
+    <value>Telefono Movil</value>
+  </data>
+  <data name="usuario_telefono_movil_error_formato" xml:space="preserve">
+    <value>El telefono movil no es valido</value>
+  </data>
+  <data name="usuario_telefono_trabajo" xml:space="preserve">
+    <value>Telefono Trabajo</value>
+  </data>
+  <data name="usuario_telefono_trabajo_error_formato" xml:space="preserve">
+    <value>El telefono de trabajo no es valido</value>
+  </data>
+  <data name="usuario_usuario" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="usuario_usuarios" xml:space="preserve">
+    <value>Usuarios</value>
+  </data>
+  <data name="usuario_usuario_error_requerido" xml:space="preserve">
+    <value>El usuario es requerido</value>
+  </data>
+  <data name="cerrar" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="confirmacion_eliminar" xml:space="preserve">
+    <value>¿Está seguro de eliminar el registro seleccionado?</value>
+  </data>
+  <data name="rol_error_requerido" xml:space="preserve">
+    <value>El rol es requerido</value>
+  </data>
+  <data name="usuario_rol_agregar" xml:space="preserve">
+    <value>Agregar Rol Usuario</value>
+  </data>
+  <data name="accion_nombre" xml:space="preserve">
+    <value>Acción</value>
+  </data>
+  <data name="accion_nombre_error_requerido" xml:space="preserve">
+    <value>La accion es requerida</value>
+  </data>
+  <data name="controlador_nombre" xml:space="preserve">
+    <value>Controlador</value>
+  </data>
+  <data name="lista" xml:space="preserve">
+    <value>Lista</value>
+  </data>
+  <data name="rol_crear" xml:space="preserve">
+    <value>Crear Rol</value>
+  </data>
+  <data name="rol_detalle" xml:space="preserve">
+    <value>Detalle Rol</value>
+  </data>
+  <data name="rol_editar" xml:space="preserve">
+    <value>Editar Rol</value>
+  </data>
+  <data name="rol_lista" xml:space="preserve">
+    <value>Listado de Roles</value>
+  </data>
+  <data name="rol_rol_acciones" xml:space="preserve">
+    <value>Rol Acciones</value>
+  </data>
+  <data name="accion_crear" xml:space="preserve">
+    <value>Crear Acción</value>
+  </data>
+  <data name="accion_detalle" xml:space="preserve">
+    <value>Accion Detalle</value>
+  </data>
+  <data name="accion_editar" xml:space="preserve">
+    <value>Editar Detalle</value>
+  </data>
+  <data name="accion_eliminar" xml:space="preserve">
+    <value>Eliminar Acción</value>
+  </data>
+  <data name="accion_listado" xml:space="preserve">
+    <value>Listado Acciones</value>
+  </data>
+  <data name="administracion" xml:space="preserve">
+    <value>Administracion</value>
+  </data>
+  <data name="administracion_permiso_denegado" xml:space="preserve">
+    <value>Administacion: Permiso Denegado.</value>
+  </data>
+  <data name="aplicacion_borrar" xml:space="preserve">
+    <value>Eliminar Aplicacion</value>
+  </data>
+  <data name="aplicacion_crear" xml:space="preserve">
+    <value>Crear Aplicacion</value>
+  </data>
+  <data name="aplicacion_detalle" xml:space="preserve">
+    <value>Detalle Aplicacion</value>
+  </data>
+  <data name="aplicacion_editar" xml:space="preserve">
+    <value>Editar Aplicacion</value>
+  </data>
+  <data name="aplicacion_lista" xml:space="preserve">
+    <value>Lista Aplicaciones</value>
+  </data>
+  <data name="aplicacion_nombre" xml:space="preserve">
+    <value>Aplicacion</value>
+  </data>
+  <data name="aplicacion_ruta" xml:space="preserve">
+    <value>Ruta</value>
+  </data>
+  <data name="controlador_aplicacion" xml:space="preserve">
+    <value>Aplicacion</value>
+  </data>
+  <data name="controlador_crear" xml:space="preserve">
+    <value>Crear Controlador</value>
+  </data>
+  <data name="controlador_detalle" xml:space="preserve">
+    <value>Detalle Controlador</value>
+  </data>
+  <data name="controlador_editar" xml:space="preserve">
+    <value>Editar Controlador</value>
+  </data>
+  <data name="controlador_eliminar" xml:space="preserve">
+    <value>Eliminar Controlador</value>
+  </data>
+  <data name="controlador_lista" xml:space="preserve">
+    <value>Lista Controladores</value>
+  </data>
+  <data name="usuario" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="usuario_eliminar" xml:space="preserve">
+    <value>Eliminar Usuario</value>
+  </data>
+  <data name="accion_error_requerido" xml:space="preserve">
+    <value>La accion es requerida.</value>
+  </data>
+  <data name="controlador_acciones" xml:space="preserve">
+    <value>Controlador Acciones</value>
+  </data>
+  <data name="controlador_acciones_agregar" xml:space="preserve">
+    <value>Agregar Controlador Accion</value>
+  </data>
+  <data name="clientes" xml:space="preserve">
+    <value>Clientes</value>
+  </data>
+  <data name="clientes_activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="cliente_crear" xml:space="preserve">
+    <value>Crear Cliente</value>
+  </data>
+  <data name="clientes_editar" xml:space="preserve">
+    <value>Editar Cliente</value>
+  </data>
+  <data name="clientes_lista" xml:space="preserve">
+    <value>Lista de Clientes</value>
+  </data>
+  <data name="clientes_nombre" xml:space="preserve">
+    <value>Cliente</value>
+  </data>
+  <data name="clientes_nombre_corto" xml:space="preserve">
+    <value>Nombre Corto Cliente</value>
+  </data>
+  <data name="clientes_tipo" xml:space="preserve">
+    <value>Tipo Cliente</value>
+  </data>
+  <data name="tipo_cliente" xml:space="preserve">
+    <value>Tipo Cliente</value>
+  </data>
+  <data name="tipo_cliente_activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="tipo_cliente_crear" xml:space="preserve">
+    <value>Crear Tipo Cliente</value>
+  </data>
+  <data name="tipo_cliente_detalle" xml:space="preserve">
+    <value>Detalle Tipo Cliente</value>
+  </data>
+  <data name="tipo_cliente_editar" xml:space="preserve">
+    <value>Editar Tipo Cliente</value>
+  </data>
+  <data name="tipo_cliente_eliminar" xml:space="preserve">
+    <value>Eliminar Tipo Cliente</value>
+  </data>
+  <data name="tipo_cliente_lista" xml:space="preserve">
+    <value>Lista Tipo Clientes</value>
+  </data>
+  <data name="tipo_punto" xml:space="preserve">
+    <value>Tipo Punto</value>
+  </data>
+  <data name="tipo_punto_activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="tipo_punto_crear" xml:space="preserve">
+    <value>Crear Tipo Punto</value>
+  </data>
+  <data name="tipo_punto_detalle" xml:space="preserve">
+    <value>Detalle Tipo Punto</value>
+  </data>
+  <data name="tipo_punto_editar" xml:space="preserve">
+    <value>Editar Tipo Punto</value>
+  </data>
+  <data name="tipo_punto_eliminar" xml:space="preserve">
+    <value>Eliminar Tipo Punto</value>
+  </data>
+  <data name="tipo_punto_lista" xml:space="preserve">
+    <value>Lista Tipos Punto</value>
+  </data>
+  <data name="clasificacion_punto" xml:space="preserve">
+    <value>Clasificacion Punto</value>
+  </data>
+  <data name="clasificacion_punto_activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="clasificacion_punto_crear" xml:space="preserve">
+    <value>Crear Clasificacion Punto</value>
+  </data>
+  <data name="clasificacion_punto_detalle" xml:space="preserve">
+    <value>Detalle Clasificacion Punto</value>
+  </data>
+  <data name="clasificacion_punto_editar" xml:space="preserve">
+    <value>Editar Clasificacion Punto</value>
+  </data>
+  <data name="clasificacion_punto_eliminar" xml:space="preserve">
+    <value>Eliminar Clasificacion Punto</value>
+  </data>
+  <data name="clasificacion_punto_lista" xml:space="preserve">
+    <value>Lista Clasificacion Punto</value>
+  </data>
+  <data name="clasificacion_punto_nombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="administracion_menu_aplicaciones" xml:space="preserve">
+    <value>Aplicaciones</value>
+  </data>
+  <data name="administracion_menu_catalogo_administracion" xml:space="preserve">
+    <value>Catalogo Aplicaciones</value>
+  </data>
+  <data name="administracion_menu_catalogo_general" xml:space="preserve">
+    <value>Catalogo General</value>
+  </data>
+  <data name="administracion_menu_clasificacion_punto" xml:space="preserve">
+    <value>Clasificacion Punto</value>
+  </data>
+  <data name="administracion_menu_clientes" xml:space="preserve">
+    <value>Clientes</value>
+  </data>
+  <data name="administracion_menu_controladores" xml:space="preserve">
+    <value>Controladores</value>
+  </data>
+  <data name="administracion_menu_departamentos" xml:space="preserve">
+    <value>Departamentos</value>
+  </data>
+  <data name="administracion_menu_municipios" xml:space="preserve">
+    <value>Municipios</value>
+  </data>
+  <data name="administracion_menu_paises" xml:space="preserve">
+    <value>Paises</value>
+  </data>
+  <data name="administracion_menu_puntos" xml:space="preserve">
+    <value>Puntos</value>
+  </data>
+  <data name="administracion_menu_roles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="administracion_menu_tipo_cliente" xml:space="preserve">
+    <value>Tipo Cliente</value>
+  </data>
+  <data name="administracion_menu_tipo_punto" xml:space="preserve">
+    <value>Tipo Punto</value>
+  </data>
+  <data name="administracion_menu_usuarios" xml:space="preserve">
+    <value>Usuarios</value>
+  </data>
+  <data name="admintracion_menu_inicio" xml:space="preserve">
+    <value>Administracion</value>
+  </data>
+  <data name="aplicacion" xml:space="preserve">
+    <value>Proteccion Total</value>
+  </data>
+  <data name="clientes_pais" xml:space="preserve">
+    <value>Pais</value>
+  </data>
+  <data name="departamentos" xml:space="preserve">
+    <value>Departamentos</value>
+  </data>
+  <data name="departamentos_activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="departamentos_crear" xml:space="preserve">
+    <value>Crear Departamento</value>
+  </data>
+  <data name="departamentos_detalle" xml:space="preserve">
+    <value>Detalle Departamento</value>
+  </data>
+  <data name="departamentos_editar" xml:space="preserve">
+    <value>Editar Departamento</value>
+  </data>
+  <data name="departamentos_eliminar" xml:space="preserve">
+    <value>Eliminar Departamento</value>
+  </data>
+  <data name="departamentos_lista" xml:space="preserve">
+    <value>Lista Departamentos</value>
+  </data>
+  <data name="departamentos_nombre" xml:space="preserve">
+    <value>Departamento</value>
+  </data>
+  <data name="departamento_agregar_municipio" xml:space="preserve">
+    <value>Agregar Municipio a Departamento</value>
+  </data>
+  <data name="departamento_municipios" xml:space="preserve">
+    <value>Departamento Municipios</value>
+  </data>
+  <data name="menu_inicio" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="municipios" xml:space="preserve">
+    <value>Municipios</value>
+  </data>
+  <data name="municipios_activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="municipios_error_requerido" xml:space="preserve">
+    <value>El municipio es requerido.</value>
+  </data>
+  <data name="municipios_nombre" xml:space="preserve">
+    <value>Municipio</value>
+  </data>
+  <data name="municipio_error_requerido" xml:space="preserve">
+    <value>El municipio es requerido.</value>
+  </data>
+  <data name="paises" xml:space="preserve">
+    <value>Paises</value>
+  </data>
+  <data name="paises_activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="paises_crear" xml:space="preserve">
+    <value>Crear Pais</value>
+  </data>
+  <data name="paises_detalle" xml:space="preserve">
+    <value>Detalle Pais</value>
+  </data>
+  <data name="paises_editar" xml:space="preserve">
+    <value>Editar Pais</value>
+  </data>
+  <data name="paises_eliminar" xml:space="preserve">
+    <value>Eliminar Pais</value>
+  </data>
+  <data name="paises_lista" xml:space="preserve">
+    <value>Lista Paises</value>
+  </data>
+  <data name="paises_nombre" xml:space="preserve">
+    <value>Nombre Pais</value>
+  </data>
+  <data name="punto" xml:space="preserve">
+    <value>Punto</value>
+  </data>
+  <data name="punto_activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="punto_avenida" xml:space="preserve">
+    <value>Avenida</value>
+  </data>
+  <data name="punto_calle" xml:space="preserve">
+    <value>Calle</value>
+  </data>
+  <data name="punto_cc_edificio" xml:space="preserve">
+    <value>Centro Comercial o Edificio</value>
+  </data>
+  <data name="punto_clasificacion" xml:space="preserve">
+    <value>Clasificacion Punto</value>
+  </data>
+  <data name="punto_codigo_externo" xml:space="preserve">
+    <value>Codigo Externo</value>
+  </data>
+  <data name="punto_crear" xml:space="preserve">
+    <value>Crear Punto</value>
+  </data>
+  <data name="punto_departamento" xml:space="preserve">
+    <value>Departamento</value>
+  </data>
+  <data name="punto_detalle" xml:space="preserve">
+    <value>Detalle Punto</value>
+  </data>
+  <data name="punto_editar" xml:space="preserve">
+    <value>Editar Punto</value>
+  </data>
+  <data name="punto_eliminar" xml:space="preserve">
+    <value>Eliminar Punto</value>
+  </data>
+  <data name="punto_hora_maxima" xml:space="preserve">
+    <value>Hora Maxima Visita</value>
+  </data>
+  <data name="punto_hora_minima" xml:space="preserve">
+    <value>Hora Minima Visita</value>
+  </data>
+  <data name="punto_kilometro" xml:space="preserve">
+    <value>Kilometro</value>
+  </data>
+  <data name="punto_lista_por_cliente" xml:space="preserve">
+    <value>Lista Puntos Por Cliente</value>
+  </data>
+  <data name="punto_local" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="punto_municipio" xml:space="preserve">
+    <value>Municipio</value>
+  </data>
+  <data name="punto_nivel" xml:space="preserve">
+    <value>Nivel</value>
+  </data>
+  <data name="punto_nombre" xml:space="preserve">
+    <value>Nombre Punto</value>
+  </data>
+  <data name="punto_nombre_corto" xml:space="preserve">
+    <value>Nombre Corto</value>
+  </data>
+  <data name="punto_no_casa" xml:space="preserve">
+    <value>Numero Casa</value>
+  </data>
+  <data name="punto_pais" xml:space="preserve">
+    <value>Pais</value>
+  </data>
+  <data name="punto_tipo" xml:space="preserve">
+    <value>Tipo Punto</value>
+  </data>
+  <data name="punto_zona" xml:space="preserve">
+    <value>Zona</value>
+  </data>
+  <data name="administracion_menu_monedas" xml:space="preserve">
+    <value>Monedas</value>
+  </data>
+  <data name="monedas" xml:space="preserve">
+    <value>Monedas</value>
+  </data>
+  <data name="monedas_activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="monedas_base" xml:space="preserve">
+    <value>Moneda Base</value>
+  </data>
+  <data name="monedas_crear" xml:space="preserve">
+    <value>Crear Moneda</value>
+  </data>
+  <data name="monedas_detalle" xml:space="preserve">
+    <value>Detalle Moneda</value>
+  </data>
+  <data name="monedas_editar" xml:space="preserve">
+    <value>Editar Moneda</value>
+  </data>
+  <data name="monedas_eliminar" xml:space="preserve">
+    <value>Eliminar Moneda</value>
+  </data>
+  <data name="monedas_lista" xml:space="preserve">
+    <value>Lista Monedas</value>
+  </data>
+  <data name="monedas_nombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="monedas_simbolo" xml:space="preserve">
+    <value>Simbolo</value>
+  </data>
+  <data name="tdv" xml:space="preserve">
+    <value>Transporte de Valores</value>
+  </data>
+  <data name="tdv_menu_catalogo" xml:space="preserve">
+    <value>Catalogos</value>
+  </data>
+  <data name="tdv_menu_tipo_contenido" xml:space="preserve">
+    <value>Tipo Contenido</value>
+  </data>
+  <data name="tdv_menu_tipo_paquete" xml:space="preserve">
+    <value>Tipo Paquete</value>
+  </data>
+  <data name="tdv_permiso_denegado" xml:space="preserve">
+    <value>Transporte de Valores: Permiso Denegado.</value>
+  </data>
+  <data name="tipo_contenido" xml:space="preserve">
+    <value>Tipo Contenidos</value>
+  </data>
+  <data name="tipo_contenido_activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="tipo_contenido_crear" xml:space="preserve">
+    <value>Crear Tipo Contenido</value>
+  </data>
+  <data name="tipo_contenido_descripcion" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="tipo_contenido_detalle" xml:space="preserve">
+    <value>Detalle Tipo Contenido</value>
+  </data>
+  <data name="tipo_contenido_editar" xml:space="preserve">
+    <value>Editar Tipo Contenido</value>
+  </data>
+  <data name="tipo_contenido_eliminar" xml:space="preserve">
+    <value>Eliminar Tipo Contenido</value>
+  </data>
+  <data name="tipo_contenido_lista" xml:space="preserve">
+    <value>Lista Tipo Contenidos</value>
+  </data>
+  <data name="tipo_contenido_nombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="tipo_paquete" xml:space="preserve">
+    <value>Tipo Paquete</value>
+  </data>
+  <data name="tipo_paquete_activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="tipo_paquete_crear" xml:space="preserve">
+    <value>Crear Tipo Paquete</value>
+  </data>
+  <data name="tipo_paquete_descripcion" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="tipo_paquete_detalle" xml:space="preserve">
+    <value>Detalle Tipo Paquete</value>
+  </data>
+  <data name="tipo_paquete_editar" xml:space="preserve">
+    <value>Editar Tipo Paquete</value>
+  </data>
+  <data name="tipo_paquete_eliminar" xml:space="preserve">
+    <value>Eliminar Tipo Paquete</value>
+  </data>
+  <data name="tipo_paquete_lista" xml:space="preserve">
+    <value>Lista Tipo Paquetes</value>
+  </data>
+  <data name="tipo_paquete_nombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="activar" xml:space="preserve">
+    <value>Activar</value>
+  </data>
+  <data name="api_key_privada" xml:space="preserve">
+    <value>Llave Privada</value>
+  </data>
+  <data name="api_key_publica" xml:space="preserve">
+    <value>Llave Publica</value>
+  </data>
+  <data name="confirmacion_general" xml:space="preserve">
+    <value>Esta seguro de realizar esta accion?</value>
+  </data>
+  <data name="device" xml:space="preserve">
+    <value>Dispositivo</value>
+  </data>
+  <data name="device_activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="device_api_key" xml:space="preserve">
+    <value>Llaves Por Receptor</value>
+  </data>
+  <data name="device_crear" xml:space="preserve">
+    <value>Crear Dispositivo</value>
+  </data>
+  <data name="device_detalle" xml:space="preserve">
+    <value>Detalle Dispositivo</value>
+  </data>
+  <data name="device_editar" xml:space="preserve">
+    <value>Editar Dispositivo</value>
+  </data>
+  <data name="device_eliminar" xml:space="preserve">
+    <value>Eliminar Dispositivo</value>
+  </data>
+  <data name="device_lista" xml:space="preserve">
+    <value>Lista de Dispositivos</value>
+  </data>
+  <data name="device_serial" xml:space="preserve">
+    <value>Serial</value>
+  </data>
+  <data name="device_ultimo_error" xml:space="preserve">
+    <value>Ultimo Error</value>
+  </data>
+  <data name="inactivar" xml:space="preserve">
+    <value>Inactivar</value>
+  </data>
+  <data name="receptores" xml:space="preserve">
+    <value>Receptores</value>
+  </data>
+  <data name="receptores_crear" xml:space="preserve">
+    <value>Crear Receptor</value>
+  </data>
+  <data name="receptores_detalle" xml:space="preserve">
+    <value>Detalle Receptor</value>
+  </data>
+  <data name="receptores_editar" xml:space="preserve">
+    <value>Editar Receptor</value>
+  </data>
+  <data name="receptores_eliminar" xml:space="preserve">
+    <value>Eliminar Receptor</value>
+  </data>
+  <data name="receptores_lista" xml:space="preserve">
+    <value>Lista De Receptores</value>
+  </data>
+  <data name="anular" xml:space="preserve">
+    <value>Anular</value>
+  </data>
+  <data name="asignaciones" xml:space="preserve">
+    <value>Asignacion</value>
+  </data>
+  <data name="asignaciones_crear" xml:space="preserve">
+    <value>Crear Asignacion</value>
+  </data>
+  <data name="asignaciones_error_entrega" xml:space="preserve">
+    <value>Fecha y Hora de entrega es requerida.</value>
+  </data>
+  <data name="asignaciones_error_reasignacion" xml:space="preserve">
+    <value>La solicitud no se puede reasignar en este estado</value>
+  </data>
+  <data name="asignaciones_error_recepcion" xml:space="preserve">
+    <value>Fecha y Hora de recepcion es requerida.</value>
+  </data>
+  <data name="asignaciones_estado" xml:space="preserve">
+    <value>Estado Asignacion</value>
+  </data>
+  <data name="asignaciones_fh_entrega" xml:space="preserve">
+    <value>Fecha Hora Entrega</value>
+  </data>
+  <data name="asignaciones_fh_recepcion" xml:space="preserve">
+    <value>Fecha Hora Recepcion</value>
+  </data>
+  <data name="asignaciones_receptor" xml:space="preserve">
+    <value>Receptor</value>
+  </data>
+  <data name="asignaciones_recrear" xml:space="preserve">
+    <value>Recrear Asignacion</value>
+  </data>
+  <data name="asignar" xml:space="preserve">
+    <value>Asignar</value>
+  </data>
+  <data name="device_error_requerido" xml:space="preserve">
+    <value>El dispositivo es requerido.</value>
+  </data>
+  <data name="reasignar" xml:space="preserve">
+    <value>Reasignar</value>
+  </data>
+  <data name="recrear" xml:space="preserve">
+    <value>Recrear</value>
+  </data>
+  <data name="regresar" xml:space="preserve">
+    <value>Regresar</value>
+  </data>
+  <data name="search_buscar" xml:space="preserve">
+    <value>Ingrese texto a buscar ...</value>
+  </data>
+  <data name="search_button" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="search_date_from" xml:space="preserve">
+    <value>Ingrese fecha inicio ...</value>
+  </data>
+  <data name="search_date_to" xml:space="preserve">
+    <value>Ingrese fecha fin ...</value>
+  </data>
+  <data name="solicitudes" xml:space="preserve">
+    <value>Solicitudes</value>
+  </data>
+  <data name="solicitudes_anular" xml:space="preserve">
+    <value>Anular Solicitud</value>
+  </data>
+  <data name="solicitudes_asignacion_error" xml:space="preserve">
+    <value>Solicitud ya esta asignada.</value>
+  </data>
+  <data name="solicitudes_cliente" xml:space="preserve">
+    <value>Cliente</value>
+  </data>
+  <data name="solicitudes_crear" xml:space="preserve">
+    <value>Crear Solicitud</value>
+  </data>
+  <data name="solicitudes_destino" xml:space="preserve">
+    <value>Destino</value>
+  </data>
+  <data name="solicitudes_eliminar" xml:space="preserve">
+    <value>Eliminar Solicitud</value>
+  </data>
+  <data name="solicitudes_error_destino" xml:space="preserve">
+    <value>El punto destino es requerido.</value>
+  </data>
+  <data name="solicitudes_error_general" xml:space="preserve">
+    <value>Los siguientes campos son requeridos:&lt;/br&gt;</value>
+  </data>
+  <data name="solicitudes_error_origen" xml:space="preserve">
+    <value>El punto origen es requerido.</value>
+  </data>
+  <data name="solicitudes_estado_solicitud" xml:space="preserve">
+    <value>Estado Solicitud</value>
+  </data>
+  <data name="solicitudes_fecha_asignacion" xml:space="preserve">
+    <value>Fecha Asignacion</value>
+  </data>
+  <data name="solicitudes_fecha_creacion" xml:space="preserve">
+    <value>Fecha Creacion</value>
+  </data>
+  <data name="solicitudes_idsolicitud" xml:space="preserve">
+    <value>Id Solicitud</value>
+  </data>
+  <data name="solicitudes_lista" xml:space="preserve">
+    <value>Lista Solicitudes</value>
+  </data>
+  <data name="solicitudes_modificar" xml:space="preserve">
+    <value>Modificar Solicitud</value>
+  </data>
+  <data name="solicitudes_origen" xml:space="preserve">
+    <value>Origen</value>
+  </data>
+  <data name="solicitudes_solicitud_origen" xml:space="preserve">
+    <value>Solicitud Origen</value>
+  </data>
+  <data name="solicitud_error_comentario" xml:space="preserve">
+    <value>El comentario es requerido.</value>
+  </data>
+  <data name="solicitud_error_estado1" xml:space="preserve">
+    <value>No puede cambiar la solicitud a un estado anterior o al actual.</value>
+  </data>
+  <data name="solicitud_error_estado2" xml:space="preserve">
+    <value>El receptor no puede anular una solicitud una vez Recibida.</value>
+  </data>
+  <data name="solicitud_error_existente" xml:space="preserve">
+    <value>Solicitud no existe.</value>
+  </data>
+  <data name="transacciones" xml:space="preserve">
+    <value>Transacciones</value>
+  </data>
+  <data name="agencia" xml:space="preserve">
+    <value>Agencia</value>
+  </data>
+  <data name="bolsas" xml:space="preserve">
+    <value>Bolsas</value>
+  </data>
+  <data name="cliente" xml:space="preserve">
+    <value>Cliente</value>
+  </data>
+  <data name="codigo" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="comentario" xml:space="preserve">
+    <value>Comentario</value>
+  </data>
+  <data name="encargado" xml:space="preserve">
+    <value>Encargado</value>
+  </data>
+  <data name="entrega" xml:space="preserve">
+    <value>Entrega</value>
+  </data>
+  <data name="escaneado" xml:space="preserve">
+    <value>Escaneado</value>
+  </data>
+  <data name="fecha_hora" xml:space="preserve">
+    <value>Fecha hora</value>
+  </data>
+  <data name="moneda" xml:space="preserve">
+    <value>Moneda</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="no_bolsa" xml:space="preserve">
+    <value>No. bolsa</value>
+  </data>
+  <data name="para_agencias" xml:space="preserve">
+    <value>Para las agencias</value>
+  </data>
+  <data name="recepcion" xml:space="preserve">
+    <value>Recepcion</value>
+  </data>
+  <data name="recepcion_de" xml:space="preserve">
+    <value>Se recibio de</value>
+  </data>
+  <data name="receptor" xml:space="preserve">
+    <value>Receptor</value>
+  </data>
+  <data name="resumen_contenido" xml:space="preserve">
+    <value>Resumen por contenido</value>
+  </data>
+  <data name="si" xml:space="preserve">
+    <value>Si</value>
+  </data>
+  <data name="suma" xml:space="preserve">
+    <value>Suma</value>
+  </data>
+  <data name="tipo" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="total_bolsas" xml:space="preserve">
+    <value>Total bolsas</value>
+  </data>
+  <data name="transaccion" xml:space="preserve">
+    <value>Transaccion</value>
+  </data>
+  <data name="transaccion_detalle" xml:space="preserve">
+    <value>Detalle Transaccion</value>
+  </data>
+  <data name="voucher" xml:space="preserve">
+    <value>No. Voucher</value>
+  </data>
+  <data name="acciones" xml:space="preserve">
+    <value>Acciones</value>
+  </data>
+  <data name="agencia_visitada" xml:space="preserve">
+    <value>Agencia Visitada</value>
+  </data>
+  <data name="cantidad_bolsas" xml:space="preserve">
+    <value>Cantidad Bolsas</value>
+  </data>
+  <data name="entrega_a" xml:space="preserve">
+    <value>Se entrego a</value>
+  </data>
+  <data name="error_inesperado" xml:space="preserve">
+    <value>Error inesperado.</value>
+  </data>
+  <data name="gttoken" xml:space="preserve">
+    <value>GTToken</value>
+  </data>
+  <data name="solicitud_id" xml:space="preserve">
+    <value>Solicitud id</value>
+  </data>
+  <data name="transacciones_lista" xml:space="preserve">
+    <value>Lista Transacciones</value>
+  </data>
+  <data name="usuario_no_autorizado_error" xml:space="preserve">
+    <value>Error usuario no autorizado.</value>
+  </data>
+  <data name="verificada" xml:space="preserve">
+    <value>Verificada?</value>
+  </data>
+  <data name="motivo" xml:space="preserve">
+    <value>Motivo</value>
+  </data>
+  <data name="reasignacion_receptor_error" xml:space="preserve">
+    <value>No se puede reasignar al mismo receptor.</value>
+  </data>
+  <data name="agencia_destino_error_requerido" xml:space="preserve">
+    <value>Agencia destino requerida</value>
+  </data>
+  <data name="agencia_origen_error_requerido" xml:space="preserve">
+    <value>Agencia origen requerida</value>
+  </data>
+  <data name="buscar" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="cantidad_filas" xml:space="preserve">
+    <value>Cantidad Filas</value>
+  </data>
+  <data name="codigo_agencia_destino_error" xml:space="preserve">
+    <value>Id agencia destino no existe.</value>
+  </data>
+  <data name="codigo_agencia_origen_error" xml:space="preserve">
+    <value>Id agencia origen no existe.</value>
+  </data>
+  <data name="codigo_receptor_error" xml:space="preserve">
+    <value>Id receptor no existe.</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="error_importacion" xml:space="preserve">
+    <value>Error importacion</value>
+  </data>
+  <data name="error_lote_procesado" xml:space="preserve">
+    <value>El lote ya ha sido procesado.</value>
+  </data>
+  <data name="error_procesamiento" xml:space="preserve">
+    <value>Error de procesamiento.</value>
+  </data>
+  <data name="error_tokens_no_disponibles" xml:space="preserve">
+    <value>No hay tokens disponibles.</value>
+  </data>
+  <data name="error_tokens_no_utiliza" xml:space="preserve">
+    <value>Cliente no utiliza tokens.</value>
+  </data>
+  <data name="error_token_no_existe" xml:space="preserve">
+    <value>Token no existe o en estado invalido.</value>
+  </data>
+  <data name="error_validacion" xml:space="preserve">
+    <value>Errores validacion</value>
+  </data>
+  <data name="fechahora_entrega" xml:space="preserve">
+    <value>Fecha hora entrega</value>
+  </data>
+  <data name="fechahora_recepcion" xml:space="preserve">
+    <value>Fecha hora recepcion</value>
+  </data>
+  <data name="fecha_creacion" xml:space="preserve">
+    <value>Fecha creacion</value>
+  </data>
+  <data name="filas" xml:space="preserve">
+    <value>Filas</value>
+  </data>
+  <data name="filas_cantidad" xml:space="preserve">
+    <value>Cantidad filas</value>
+  </data>
+  <data name="hora_entrega_error_requerido" xml:space="preserve">
+    <value>Hora entrega requerida</value>
+  </data>
+  <data name="hora_recepcion_error_requerido" xml:space="preserve">
+    <value>Hora recepcion requerida</value>
+  </data>
+  <data name="importacion" xml:space="preserve">
+    <value>Importacion</value>
+  </data>
+  <data name="import_masivo_error" xml:space="preserve">
+    <value>Error de importacion inesperado.</value>
+  </data>
+  <data name="lote" xml:space="preserve">
+    <value>Lote</value>
+  </data>
+  <data name="lote_lista" xml:space="preserve">
+    <value>Lista lotes</value>
+  </data>
+  <data name="menu_gtokens_conf" xml:space="preserve">
+    <value>Cliente Tokens Configuracion</value>
+  </data>
+  <data name="menu_tokens_salida" xml:space="preserve">
+    <value>Tokens Salida HandHeld</value>
+  </data>
+  <data name="nombre_archivo" xml:space="preserve">
+    <value>Nombre archivo</value>
+  </data>
+  <data name="no_fila" xml:space="preserve">
+    <value>Fila #</value>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="procesado" xml:space="preserve">
+    <value>Procesado</value>
+  </data>
+  <data name="procesados" xml:space="preserve">
+    <value>Procesados</value>
+  </data>
+  <data name="procesar" xml:space="preserve">
+    <value>Procesar</value>
+  </data>
+  <data name="proceso" xml:space="preserve">
+    <value>Proceso</value>
+  </data>
+  <data name="punto_destino" xml:space="preserve">
+    <value>Punto destino</value>
+  </data>
+  <data name="punto_origen" xml:space="preserve">
+    <value>Punto origen</value>
+  </data>
+  <data name="receptor_error_requerido" xml:space="preserve">
+    <value>Receptor requerido</value>
+  </data>
+  <data name="resultado" xml:space="preserve">
+    <value>Resultado</value>
+  </data>
+  <data name="subir" xml:space="preserve">
+    <value>Subir</value>
+  </data>
+  <data name="usuario_creacion" xml:space="preserve">
+    <value>Usuario creacion</value>
+  </data>
+  <data name="validacion" xml:space="preserve">
+    <value>Validacion</value>
+  </data>
+  <data name="valido" xml:space="preserve">
+    <value>Valido</value>
+  </data>
+  <data name="activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="autogenerar" xml:space="preserve">
+    <value>Autogenerar</value>
+  </data>
+  <data name="cantidad" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="consumido" xml:space="preserve">
+    <value>Consumido</value>
+  </data>
+  <data name="consumido_fh" xml:space="preserve">
+    <value>Consumido fecha/hora</value>
+  </data>
+  <data name="consumo_receptor" xml:space="preserve">
+    <value>Receptor consumo</value>
+  </data>
+  <data name="creacion_fh" xml:space="preserve">
+    <value>Creación fecha/hora</value>
+  </data>
+  <data name="descripcion" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="dias_servicio" xml:space="preserve">
+    <value>Dias Servicio</value>
+  </data>
+  <data name="domingo" xml:space="preserve">
+    <value>Domingo</value>
+  </data>
+  <data name="emails_notificacion" xml:space="preserve">
+    <value>Emails notificacion</value>
+  </data>
+  <data name="error_agencias_iguales" xml:space="preserve">
+    <value>Las agencia origen y destino deben ser distintas.</value>
+  </data>
+  <data name="error_atp_no_valido" xml:space="preserve">
+    <value>Token no valido.</value>
+  </data>
+  <data name="error_cantidad_mayor_0" xml:space="preserve">
+    <value>La cantidad debe ser mayor a 0.</value>
+  </data>
+  <data name="error_idsolicitud_origen_novalido" xml:space="preserve">
+    <value>Id de solicitud origen no valido.</value>
+  </data>
+  <data name="error_no_token" xml:space="preserve">
+    <value>No especifico un Token.</value>
+  </data>
+  <data name="jueves" xml:space="preserve">
+    <value>Jueves</value>
+  </data>
+  <data name="lunes" xml:space="preserve">
+    <value>Lunes</value>
+  </data>
+  <data name="martes" xml:space="preserve">
+    <value>Martes</value>
+  </data>
+  <data name="menu_tipo_solicitud" xml:space="preserve">
+    <value>Tipo Solicitud</value>
+  </data>
+  <data name="miercoles" xml:space="preserve">
+    <value>Miercoles</value>
+  </data>
+  <data name="nombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="sabado" xml:space="preserve">
+    <value>Sabado</value>
+  </data>
+  <data name="solicitud_origen" xml:space="preserve">
+    <value>Solicitud Origen</value>
+  </data>
+  <data name="stoken" xml:space="preserve">
+    <value>Token Salida</value>
+  </data>
+  <data name="stoken_crear" xml:space="preserve">
+    <value>Crear Token Salida</value>
+  </data>
+  <data name="stoken_lista" xml:space="preserve">
+    <value>Lista token salida</value>
+  </data>
+  <data name="stoken_valor" xml:space="preserve">
+    <value>Valor token</value>
+  </data>
+  <data name="tipo_solicitud" xml:space="preserve">
+    <value>Tipo Solicitud</value>
+  </data>
+  <data name="tipo_solicitud_creacion" xml:space="preserve">
+    <value>Creacion Tipo Solicitud</value>
+  </data>
+  <data name="tipo_solicitud_detalle" xml:space="preserve">
+    <value>Detalle Tipo Solicitud</value>
+  </data>
+  <data name="tipo_solicitud_eliminacion" xml:space="preserve">
+    <value>Eliminacion Tipo Solicitud</value>
+  </data>
+  <data name="tipo_solicitud_lista" xml:space="preserve">
+    <value>Lista Tipo Solicitud</value>
+  </data>
+  <data name="tipo_solicitud_modificacion" xml:space="preserve">
+    <value>Edicion Tipo Solicitud</value>
+  </data>
+  <data name="token_cliente_conf" xml:space="preserve">
+    <value>Token Cliente Configuracion</value>
+  </data>
+  <data name="token_cliente_conf_crear" xml:space="preserve">
+    <value>Crear Configuracion Token Cliente</value>
+  </data>
+  <data name="token_cliente_conf_detalle" xml:space="preserve">
+    <value>Detalle Configuracion Token Cliente</value>
+  </data>
+  <data name="token_cliente_conf_editar" xml:space="preserve">
+    <value>Editar Configuracion Token Cliente</value>
+  </data>
+  <data name="token_cliente_conf_eliminar" xml:space="preserve">
+    <value>Eliminar Configuracion Token Cliente</value>
+  </data>
+  <data name="token_cliente_conf_lista" xml:space="preserve">
+    <value>Lista Configuracion Cliente Token</value>
+  </data>
+  <data name="viernes" xml:space="preserve">
+    <value>Viernes</value>
+  </data>
+  <data name="volumen" xml:space="preserve">
+    <value>Volumen</value>
+  </data>
+  <data name="volumen_asignacion" xml:space="preserve">
+    <value>Volumen asignacion</value>
+  </data>
+  <data name="volumen_minimo_autogeneracion" xml:space="preserve">
+    <value>Volumen minimo autogeneracion</value>
+  </data>
+  <data name="salaconteo_permiso_denegado" xml:space="preserve">
+    <value>Permiso Denegado a Sala de Conteo</value>
+  </data>
+  <data name="sala_conteo" xml:space="preserve">
+    <value>Sala de Conteo</value>
+  </data>
+  <data name="moneda_denominacion" xml:space="preserve">
+    <value>Moneda Denominacion</value>
+  </data>
+  <data name="moneda_tipo" xml:space="preserve">
+    <value>Moneda Tipo</value>
+  </data>
+  <data name="moneda_tipo_crear" xml:space="preserve">
+    <value>Crear Tipo Moneda</value>
+  </data>
+  <data name="moneda_tipo_detalle" xml:space="preserve">
+    <value>Detalle Tipo Moneda</value>
+  </data>
+  <data name="moneda_tipo_editar" xml:space="preserve">
+    <value>Editar Tipo Moneda</value>
+  </data>
+  <data name="moneda_tipo_eliminar" xml:space="preserve">
+    <value>Eliminar Tipo Moneda</value>
+  </data>
+  <data name="moneda_tipo_lista" xml:space="preserve">
+    <value>Lista Moneda Tipo</value>
+  </data>
+  <data name="moneda_denominacion_crear" xml:space="preserve">
+    <value>Crear Moneda Denominacion</value>
+  </data>
+  <data name="moneda_denominacion_detalle" xml:space="preserve">
+    <value>Detalle Moneda Denominacion</value>
+  </data>
+  <data name="moneda_denominacion_duplicado_error" xml:space="preserve">
+    <value>Moneda denominacion ya existe.</value>
+  </data>
+  <data name="moneda_denominacion_editar" xml:space="preserve">
+    <value>Editar Moneda Denominacion</value>
+  </data>
+  <data name="moneda_denominacion_eliminar" xml:space="preserve">
+    <value>Eliminar Moneda Denominacion</value>
+  </data>
+  <data name="moneda_denominacion_lista" xml:space="preserve">
+    <value>Lista Moneda Denominacion</value>
+  </data>
+  <data name="valor" xml:space="preserve">
+    <value>Valor</value>
+  </data>
+  <data name="carga_masiva" xml:space="preserve">
+    <value>Carga Masiva</value>
+  </data>
+  <data name="error_unidad_contable_jt_ne" xml:space="preserve">
+    <value>Unidad contable jornada tipo no existe para usuario del sistema.</value>
+  </data>
+  <data name="error_unidad_contable_ne" xml:space="preserve">
+    <value>Unidad contable no existe para usuario del sistema.</value>
+  </data>
+  <data name="iniciar" xml:space="preserve">
+    <value>Iniciar</value>
+  </data>
+  <data name="jornada" xml:space="preserve">
+    <value>Jornada</value>
+  </data>
+  <data name="jornada_creacion" xml:space="preserve">
+    <value>Creacion de Jornada</value>
+  </data>
+  <data name="jornada_iniciar" xml:space="preserve">
+    <value>Iniciar Jornada</value>
+  </data>
+  <data name="jornada_tipo" xml:space="preserve">
+    <value>Tipo Jornada</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ubicacion" xml:space="preserve">
+    <value>Ubicaciones</value>
+  </data>
+  <data name="catalogos" xml:space="preserve">
+    <value>Catalogos</value>
+  </data>
+  <data name="agregar_detalles" xml:space="preserve">
+    <value>Agregar detalles</value>
+  </data>
+  <data name="error_requerido" xml:space="preserve">
+    <value>El campo es requerido.</value>
+  </data>
+  <data name="recepcion_creacion" xml:space="preserve">
+    <value>Recepcion Creacion</value>
+  </data>
+  <data name="transportadora" xml:space="preserve">
+    <value>Transportadora</value>
+  </data>
+  <data name="voucher_consolidado" xml:space="preserve">
+    <value>Voucher Consolidado</value>
+  </data>
+  <data name="error_usuario_no_jornada" xml:space="preserve">
+    <value>Usuario no tiene jornada asignada.</value>
+  </data>
+  <data name="banco" xml:space="preserve">
+    <value>Banco</value>
+  </data>
+  <data name="bolsa" xml:space="preserve">
+    <value>Bolsa</value>
+  </data>
+  <data name="crear_registro" xml:space="preserve">
+    <value>Crear Registro</value>
+  </data>
+  <data name="estado" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="crear_detalle_voucher" xml:space="preserve">
+    <value>Crear Detalle Voucher</value>
+  </data>
+  <data name="crear_voucher" xml:space="preserve">
+    <value>Crear Voucher</value>
+  </data>
+  <data name="error_banco_no_asignado" xml:space="preserve">
+    <value>Banco no asignado.</value>
+  </data>
+  <data name="error_tipo_cuenta_banco_no_encontrada" xml:space="preserve">
+    <value>Tipo de cuenta en banco no encontrada.</value>
+  </data>
+  <data name="error_unidad_contable_noexiste_banco" xml:space="preserve">
+    <value>Unidad contable no existe para banco.</value>
+  </data>
+  <data name="monto" xml:space="preserve">
+    <value>Monto</value>
+  </data>
+  <data name="paquete_estado" xml:space="preserve">
+    <value>Estado Paquete</value>
+  </data>
+  <data name="recepcion_voucher" xml:space="preserve">
+    <value>Recepcion Voucher</value>
+  </data>
+  <data name="referencia" xml:space="preserve">
+    <value>Referencia</value>
+  </data>
+  <data name="registro" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="voucher_ingresar" xml:space="preserve">
+    <value>Ingresar Voucher</value>
+  </data>
+  <data name="voucher_item" xml:space="preserve">
+    <value>Voucher Item</value>
+  </data>
+  <data name="serie_prefijo" xml:space="preserve">
+    <value>Prefijos de Serie</value>
+  </data>
+  <data name="serie_prefijo_crear" xml:space="preserve">
+    <value>Crear prefijo de serie</value>
+  </data>
+  <data name="serie_prefijo_detalle" xml:space="preserve">
+    <value>Detalle</value>
+  </data>
+  <data name="serie_prefijo_editar" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="serie_prefijo_eliminar" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="serie_prefijo_prefijo_error_existe" xml:space="preserve">
+    <value>El prefijo especificado ya existe para esta transportadora</value>
+  </data>
+  <data name="serie_prefijo_prefijo_error_nulo" xml:space="preserve">
+    <value>El campo prefijo no puede ser nulo</value>
+  </data>
+  <data name="tipo_insumo" xml:space="preserve">
+    <value>Tipo Insumo</value>
+  </data>
+  <data name="tipo_insumo_costo_error_nulo" xml:space="preserve">
+    <value>El campo costo no puede ser 0</value>
+  </data>
+  <data name="tipo_insumo_nombre_error_existe" xml:space="preserve">
+    <value>El nombre especificado ya existe</value>
+  </data>
+  <data name="tipo_insumo_nombre_error_nulo" xml:space="preserve">
+    <value>El campo nombre no puede ser vacío</value>
+  </data>
+  <data name="accion_inactivar" xml:space="preserve">
+    <value>Inactivar</value>
+  </data>
+  <data name="agregar" xml:space="preserve">
+    <value>Agregar</value>
+  </data>
+  <data name="banco_crear" xml:space="preserve">
+    <value>Crear Banco</value>
+  </data>
+  <data name="banco_detalle" xml:space="preserve">
+    <value>Detalle de Banco</value>
+  </data>
+  <data name="banco_editar" xml:space="preserve">
+    <value>Editar Banco</value>
+  </data>
+  <data name="banco_nombre_error_no_nulo" xml:space="preserve">
+    <value>El campo nombre no puede estar vacío</value>
+  </data>
+  <data name="banco_nombre_error_repetido" xml:space="preserve">
+    <value>El nombre especificado ya existe</value>
+  </data>
+  <data name="clientes_seleccionar" xml:space="preserve">
+    <value>Seleccione Cliente</value>
+  </data>
+  <data name="estado_activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="estado_inactivo" xml:space="preserve">
+    <value>Inactivo</value>
+  </data>
+  <data name="opciones" xml:space="preserve">
+    <value>Opciones</value>
+  </data>
+  <data name="banco_eliminar" xml:space="preserve">
+    <value>Eliminar Banco</value>
+  </data>
+  <data name="series_prefijo_seleccionar" xml:space="preserve">
+    <value>Seleccione un prefijo</value>
+  </data>
+  <data name="serie_prefijo_transportadora" xml:space="preserve">
+    <value>Transportadora</value>
+  </data>
+  <data name="insumo_carga" xml:space="preserve">
+    <value>Carga de insumos por serie</value>
+  </data>
+  <data name="insumo_carga_carga_lista" xml:space="preserve">
+    <value>Cargas Pendientes</value>
+  </data>
+  <data name="insumo_carga_error_cuenta_0" xml:space="preserve">
+    <value>La cuenta de las series es igual 0, por lo que no se puede agregar</value>
+  </data>
+  <data name="insumo_carga_error_largo_serie" xml:space="preserve">
+    <value>El tamaño del inicio de la serie y su final debe ser igual</value>
+  </data>
+  <data name="insumo_carga_error_serie_no_concuerda" xml:space="preserve">
+    <value>Las series de inicio y final no concuerdan</value>
+  </data>
+  <data name="insumo_carga_error_serie_no_valida" xml:space="preserve">
+    <value>La serie no corresponde al insumo. Revise e intente de nuevo.</value>
+  </data>
+  <data name="insumo_carga_info_serie" xml:space="preserve">
+    <value>Información de serie</value>
+  </data>
+  <data name="bolsa_tipo" xml:space="preserve">
+    <value>Bolsa Tipo</value>
+  </data>
+  <data name="error_paquete_detalle_duplicado" xml:space="preserve">
+    <value>Ya existe un paquete detalle con el mismo tipo de moneda y tipo de contenido.</value>
+  </data>
+  <data name="error_referencia_requerida" xml:space="preserve">
+    <value>El numero de referencia es requerido</value>
+  </data>
+  <data name="totales" xml:space="preserve">
+    <value>Totales</value>
+  </data>
+  <data name="insumo_carga_borrar" xml:space="preserve">
+    <value>Quitar</value>
+  </data>
+  <data name="insumo_carga_borrar_todo" xml:space="preserve">
+    <value>Limpiar y volver a empezar</value>
+  </data>
+  <data name="insumo_carga_cargar_todo" xml:space="preserve">
+    <value>Confirmar y cargar</value>
+  </data>
+  <data name="insumo_carga_detalle_cantidad" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="insumo_carga_error_vacio" xml:space="preserve">
+    <value>Nada que cargar. Para iniciar una carga, limpie y vuelva a empezar</value>
+  </data>
+  <data name="insumo_carga_serie_final" xml:space="preserve">
+    <value>Serie Final</value>
+  </data>
+  <data name="insumo_carga_serie_inicio" xml:space="preserve">
+    <value>Serie Inicial</value>
+  </data>
+  <data name="insumo_carga_error_colision" xml:space="preserve">
+    <value>No se puede procesar ya que existe conflicto con una o más cargas preparadas. Revise e intente de nuevo</value>
+  </data>
+  <data name="insumo_carga_ver_errores" xml:space="preserve">
+    <value>Ver errores</value>
+  </data>
+  <data name="insumo_detalle_id_bolsa" xml:space="preserve">
+    <value>Serie Bolsa</value>
+  </data>
+  <data name="insumo_detalle_regresar" xml:space="preserve">
+    <value>Regresar a carga de insumos</value>
+  </data>
+  <data name="mensaje" xml:space="preserve">
+    <value>Mensaje</value>
+  </data>
+  <data name="creado_por" xml:space="preserve">
+    <value>Creado por</value>
+  </data>
+  <data name="id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="traslados" xml:space="preserve">
+    <value>Traslados</value>
+  </data>
+  <data name="traslados_bines" xml:space="preserve">
+    <value>Bines</value>
+  </data>
+  <data name="traslados_efectivo_documentos" xml:space="preserve">
+    <value>Efectivo y documentos</value>
+  </data>
+  <data name="traslados_error_no_tiene_cuenta" xml:space="preserve">
+    <value>No tiene unidad contable para realizar esta transacción</value>
+  </data>
+  <data name="traslados_insumos" xml:space="preserve">
+    <value>Insumos</value>
+  </data>
+  <data name="traslados_mis_traslados" xml:space="preserve">
+    <value>Mis Traslados</value>
+  </data>
+  <data name="traslados_paquetes" xml:space="preserve">
+    <value>Paquetes</value>
+  </data>
+  <data name="traslados_que" xml:space="preserve">
+    <value>¿Qué desea trasladar?</value>
+  </data>
+  <data name="traslados_ultimo_comentario" xml:space="preserve">
+    <value>Ultimo Comentario</value>
+  </data>
+  <data name="traslados_usuario_destino" xml:space="preserve">
+    <value>Usuario Destino</value>
+  </data>
+  <data name="traslados_usuario_origen" xml:space="preserve">
+    <value>Usuario Origen</value>
+  </data>
+  <data name="traslados_insumos_error_mismo" xml:space="preserve">
+    <value>El usuario de origen y el destino no puede ser el mismo</value>
+  </data>
+  <data name="traslados_insumos_error_secuencia" xml:space="preserve">
+    <value>No existe secuencia para esta transaccion</value>
+  </data>
+  <data name="traslados_pendientes" xml:space="preserve">
+    <value>Traslados Pendientes</value>
+  </data>
+  <data name="campos_requeridos" xml:space="preserve">
+    <value>Todos los campos son requeridos</value>
+  </data>
+  <data name="de" xml:space="preserve">
+    <value>De</value>
+  </data>
+  <data name="enviar" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="para" xml:space="preserve">
+    <value>Para</value>
+  </data>
+  <data name="traslados_enviar" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="traslados_insumos_agregar_series" xml:space="preserve">
+    <value>Agregar Series de Insumos</value>
+  </data>
+  <data name="traslados_insumos_series_agregadas" xml:space="preserve">
+    <value>Series Agregadas</value>
+  </data>
+  <data name="rechazar" xml:space="preserve">
+    <value>Rechazar</value>
+  </data>
+  <data name="traslados_error_es_requerido" xml:space="preserve">
+    <value>El campo es requerido</value>
+  </data>
+  <data name="seleccionar" xml:space="preserve">
+    <value>Seleccionar</value>
+  </data>
+  <data name="cantidad_errores" xml:space="preserve">
+    <value>Cantidad Errores</value>
+  </data>
+  <data name="solicitudes_boveda" xml:space="preserve">
+    <value>Solicitudes a Boveda</value>
+  </data>
+  <data name="bin" xml:space="preserve">
+    <value>Bin</value>
+  </data>
+  <data name="confirmar_bolsa" xml:space="preserve">
+    <value>Confirmar Bolsa</value>
+  </data>
+  <data name="error_confirmar_bolsa_referencia_diferente" xml:space="preserve">
+    <value>No existe la referencia ingresada.</value>
+  </data>
+  <data name="error_confirmar_bolsa_referencia_requerida" xml:space="preserve">
+    <value>La Referencia es requerida.</value>
+  </data>
+  <data name="listado_procesar" xml:space="preserve">
+    <value>Listado por procesar</value>
+  </data>
+  <data name="serie" xml:space="preserve">
+    <value>Serie</value>
+  </data>
+  <data name="comentario_descuadre" xml:space="preserve">
+    <value>Comentario Descuadre</value>
+  </data>
+  <data name="confirmacion_accion" xml:space="preserve">
+    <value>Esta seguro de realizar esta accion?</value>
+  </data>
+  <data name="cuadrado" xml:space="preserve">
+    <value>Cuadrado</value>
+  </data>
+  <data name="denominacion" xml:space="preserve">
+    <value>Denominación</value>
+  </data>
+  <data name="diferencia" xml:space="preserve">
+    <value>Diferencia</value>
+  </data>
+  <data name="error_comentario_requerido" xml:space="preserve">
+    <value>El comentario es requerido.</value>
+  </data>
+  <data name="finalizar" xml:space="preserve">
+    <value>Finalizar</value>
+  </data>
+  <data name="ingresar_registro" xml:space="preserve">
+    <value>Ingresar Registro</value>
+  </data>
+  <data name="monto_procesado" xml:space="preserve">
+    <value>Monto Procesado</value>
+  </data>
+  <data name="monto_teorico" xml:space="preserve">
+    <value>Monto Teorico</value>
+  </data>
+  <data name="numero_documento" xml:space="preserve">
+    <value>Documento No</value>
+  </data>
+  <data name="paquete" xml:space="preserve">
+    <value>Paquete</value>
+  </data>
+  <data name="paquetes" xml:space="preserve">
+    <value>Paquetes</value>
+  </data>
+  <data name="boletas" xml:space="preserve">
+    <value>Boletas</value>
+  </data>
+  <data name="cheques" xml:space="preserve">
+    <value>Cheques</value>
+  </data>
+  <data name="paquetes_agregados" xml:space="preserve">
+    <value>Paquetes Agregados</value>
+  </data>
+  <data name="paquetes_disponibles" xml:space="preserve">
+    <value>Paquetes Disponibles</value>
+  </data>
+  <data name="recibir" xml:space="preserve">
+    <value>Recibir</value>
+  </data>
+  <data name="solicitudes_a_boveda" xml:space="preserve">
+    <value>Solicitudes a bóveda</value>
+  </data>
+  <data name="solicitudes_boveda_error_cuenta_contable" xml:space="preserve">
+    <value>Ningún banco tiene las cuentas contables necesarias para hacer esta transacción</value>
+  </data>
+  <data name="bines" xml:space="preserve">
+    <value>Bines</value>
+  </data>
+  <data name="bines_error_serie_nulo" xml:space="preserve">
+    <value>El campo de serie no puede ser nulo</value>
+  </data>
+  <data name="agregados" xml:space="preserve">
+    <value>Agregados</value>
+  </data>
+  <data name="bines_error_no_tiene_cuenta" xml:space="preserve">
+    <value>El inventario no tiene las cuentas necesarias para realizar la transacción</value>
+  </data>
+  <data name="disponibles" xml:space="preserve">
+    <value>Disponibles</value>
+  </data>
+  <data name="inventario" xml:space="preserve">
+    <value>Inventario</value>
+  </data>
+  <data name="no_autorizado" xml:space="preserve">
+    <value>No esta autorizado para realizar esta transacción</value>
+  </data>
+  <data name="traslados_error_no_hay_usuarios" xml:space="preserve">
+    <value>No hay usuarios para poder realizar esta transacción</value>
+  </data>
+  <data name="no_ha_seleccionado" xml:space="preserve">
+    <value>No ha seleccionado ningún item</value>
+  </data>
+  <data name="signo_dolar" xml:space="preserve">
+    <value>$</value>
+  </data>
+  <data name="signo_euro" xml:space="preserve">
+    <value>€</value>
+  </data>
+  <data name="signo_quetzal" xml:space="preserve">
+    <value>Q</value>
+  </data>
+  <data name="valores_monetarios" xml:space="preserve">
+    <value>Valores Monetarios</value>
+  </data>
+  <data name="documentos" xml:space="preserve">
+    <value>Documentos</value>
+  </data>
+  <data name="efectivo" xml:space="preserve">
+    <value>Efectivo</value>
+  </data>
+  <data name="asignado" xml:space="preserve">
+    <value>Asignado</value>
+  </data>
+  <data name="cumplido" xml:space="preserve">
+    <value>Cumplido</value>
+  </data>
+  <data name="error_valor_0" xml:space="preserve">
+    <value>El valor de este campo debe ser mayor a 0</value>
+  </data>
+  <data name="escanear_o_escribir_serie_bolsa" xml:space="preserve">
+    <value>Escanee o escriba el número de bolsa</value>
+  </data>
+  <data name="moneda_o_denominacion" xml:space="preserve">
+    <value>Agregar por moneda o denominación</value>
+  </data>
+  <data name="no_cumplido" xml:space="preserve">
+    <value>No Cumplido</value>
+  </data>
+  <data name="remesas_salientes" xml:space="preserve">
+    <value>Remesas Salientes</value>
+  </data>
+  <data name="requerido" xml:space="preserve">
+    <value>Requerido</value>
+  </data>
+  <data name="resumen" xml:space="preserve">
+    <value>Resumen</value>
+  </data>
+  <data name="faltante" xml:space="preserve">
+    <value>Faltante</value>
+  </data>
+  <data name="remesa_enviar" xml:space="preserve">
+    <value>Enviar remesa a bóveda</value>
+  </data>
+  <data name="remesa_error_no_cuadra" xml:space="preserve">
+    <value>El paquete solicitado tiene contenidos no solicitados o que sobrepasan el requerimiento</value>
+  </data>
+  <data name="remesa_error_no_disponible" xml:space="preserve">
+    <value>El paquete solicitado no esta disponible para remesa</value>
+  </data>
+  <data name="sin_denominacion" xml:space="preserve">
+    <value>Sin Denominacion</value>
+  </data>
+  <data name="es_grupo" xml:space="preserve">
+    <value>Es grupo</value>
+  </data>
+  <data name="aceptar" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="despacho" xml:space="preserve">
+    <value>Despacho</value>
+  </data>
+  <data name="pistolee_las_bolsas_solicitadas" xml:space="preserve">
+    <value>Pistolee las bolsas solicitadas</value>
+  </data>
+  <data name="preparar" xml:space="preserve">
+    <value>Preparar</value>
+  </data>
+  <data name="recibe" xml:space="preserve">
+    <value>Recibe</value>
+  </data>
+  <data name="seleccione_filtros" xml:space="preserve">
+    <value>Seleccione filtros</value>
+  </data>
+  <data name="cantidad_documentos" xml:space="preserve">
+    <value>Cantidad Documentos</value>
+  </data>
+  <data name="cantidad_total" xml:space="preserve">
+    <value>Valor total</value>
+  </data>
+  <data name="clasificacion" xml:space="preserve">
+    <value>Clasificación</value>
+  </data>
+  <data name="documento_tipo" xml:space="preserve">
+    <value>Documento Tipo</value>
+  </data>
+  <data name="traslado_documento_error_no_disponible" xml:space="preserve">
+    <value>El usuario no tiene el tipo de documento solicitado</value>
+  </data>
+  <data name="traslado_efectivo_error_no_disponible" xml:space="preserve">
+    <value>El usuario no tiene el tipo de efectivo solicitado</value>
+  </data>
+  <data name="error_procesamiento_bolsa_tipoValidacion_faltante" xml:space="preserve">
+    <value>Tipo de validacion no definido.</value>
+  </data>
+  <data name="error_valor_formato_invalido" xml:space="preserve">
+    <value>Valor no tiene un formato valido.</value>
+  </data>
+  <data name="error_valor_requerido" xml:space="preserve">
+    <value>El valor es requerido.</value>
+  </data>
+  <data name="revisar" xml:space="preserve">
+    <value>Revisar</value>
+  </data>
+  <data name="agrupado" xml:space="preserve">
+    <value>Agrupado</value>
+  </data>
+  <data name="consolidado" xml:space="preserve">
+    <value>Consolidado</value>
+  </data>
+  <data name="bin_error_no_valido" xml:space="preserve">
+    <value>El bin ingresado no es valido.</value>
+  </data>
+  <data name="bin_error_ya_ingresado" xml:space="preserve">
+    <value>El bin ya ha sido ingresado.</value>
+  </data>
+  <data name="cajero" xml:space="preserve">
+    <value>Cajero</value>
+  </data>
+  <data name="marchamo_error_no_valido" xml:space="preserve">
+    <value>El marchamo ingresado no es valido.</value>
+  </data>
+  <data name="montos" xml:space="preserve">
+    <value>Montos</value>
+  </data>
+  <data name="no_boleta" xml:space="preserve">
+    <value>Numero boleta</value>
+  </data>
+  <data name="no_cheque" xml:space="preserve">
+    <value>Numero cheque</value>
+  </data>
+  <data name="procesamiento_exitoso" xml:space="preserve">
+    <value>Procesamiento realizado con exito</value>
+  </data>
+  <data name="configuracion" xml:space="preserve">
+    <value>Configuracion</value>
+  </data>
+  <data name="crear_paquete" xml:space="preserve">
+    <value>Crear Paquete</value>
+  </data>
+  <data name="descripcion_creacion_paquete" xml:space="preserve">
+    <value>Pantalla destinada a la creacion de paquetes.</value>
+  </data>
+  <data name="error_serie_invalido" xml:space="preserve">
+    <value>Numero de serie invalido o no disponible para el usuario.</value>
+  </data>
+  <data name="informacion" xml:space="preserve">
+    <value>Informacion</value>
+  </data>
+  <data name="descripcion_creacion_bin" xml:space="preserve">
+    <value>Pantalla realizada con la finalidad de llenar un bin.</value>
+  </data>
+  <data name="error_monto_nocubre" xml:space="preserve">
+    <value>No se cuenta con el monto ingresado.</value>
+  </data>
+  <data name="llenar_bin" xml:space="preserve">
+    <value>Llenar Bin</value>
+  </data>
+  <data name="confirmacion_confirmacion" xml:space="preserve">
+    <value>Desea confirmar?</value>
+  </data>
+  <data name="confirmacion_rechazo" xml:space="preserve">
+    <value>Desea rechazar?</value>
+  </data>
+  <data name="confirmar" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="error_serie_invalidoBin" xml:space="preserve">
+    <value>Serie de bin no valido o no se encuentra asignado a receptor.</value>
+  </data>
+  <data name="error_serie_invalidoInsumo" xml:space="preserve">
+    <value>Serie de insumo no valido o no se encuentra asignado a receptor.</value>
+  </data>
+  <data name="marchamo" xml:space="preserve">
+    <value>Marchamo</value>
+  </data>
+  <data name="ok_llenado_bin" xml:space="preserve">
+    <value>Llenado de bin :bin realizado con exito.</value>
+  </data>
+  <data name="ok_llenado_bolsa" xml:space="preserve">
+    <value>Llenado de bolsa :bolsa realizado con exito.</value>
+  </data>
+  <data name="paquetes_creados_por_confirmar" xml:space="preserve">
+    <value>Paquetes pendientes por confirmar</value>
+  </data>
+  <data name="paquetes_por_confirmar" xml:space="preserve">
+    <value>Paquetes creados por confirmar</value>
+  </data>
+  <data name="comentario_revision" xml:space="preserve">
+    <value>Comentario Revision</value>
+  </data>
+  <data name="confirmacion_bin_ok" xml:space="preserve">
+    <value>Confirmacion de bin :bin realizada con exito.</value>
+  </data>
+  <data name="confirmacion_bolsa_ok" xml:space="preserve">
+    <value>Confirmacion de bolsa :bolsa realizada con exito.</value>
+  </data>
+  <data name="ok_paquete_envio_revision_bin" xml:space="preserve">
+    <value>Envio de bin  :bin a revision realizado con exito.</value>
+  </data>
+  <data name="ok_paquete_envio_revision_bolsa" xml:space="preserve">
+    <value>Envio de bolsa :bolsa a revision realizado con exito.</value>
+  </data>
+  <data name="confirmacion_datos_Contadora" xml:space="preserve">
+    <value>Desea obtener los datos de la contadora?</value>
+  </data>
+  <data name="obtencion_datos_contadora" xml:space="preserve">
+    <value>Obtener datos de contadora</value>
+  </data>
+  <data name="ok_recepcion" xml:space="preserve">
+    <value>Recepcion realizada con exito</value>
+  </data>
+  <data name="referencia_insumo" xml:space="preserve">
+    <value>Referencia Insumo</value>
+  </data>
+  <data name="remanente" xml:space="preserve">
+    <value>Remanente</value>
+  </data>
+  <data name="remanente_error_no_valido" xml:space="preserve">
+    <value>No de serie de bolsa de remanente no valida.</value>
+  </data>
+  <data name="serie_bolsa" xml:space="preserve">
+    <value>Serie bolsa</value>
+  </data>
+  <data name="error_agencias_diferente_cliente" xml:space="preserve">
+    <value>Las agencias no pertenecen al mismo cliente</value>
+  </data>
+  <data name="agregar_registro" xml:space="preserve">
+    <value>Agregar registro</value>
+  </data>
+  <data name="creacion_grupo" xml:space="preserve">
+    <value>Creación de Grupo</value>
+  </data>
+  <data name="creacion_grupo_paquetes_descripcion" xml:space="preserve">
+    <value>Pantalla destinada a la creacion de grupo de paquetes o bines.</value>
+  </data>
+  <data name="insumo" xml:space="preserve">
+    <value>Insumo</value>
+  </data>
+  <data name="ok_operacion" xml:space="preserve">
+    <value>Operacion realizada con exito.</value>
+  </data>
+  <data name="paquete_tipo" xml:space="preserve">
+    <value>Paquete tipo</value>
+  </data>
+  <data name="serie_insumo" xml:space="preserve">
+    <value>Serie insumo</value>
+  </data>
+  <data name="consulta_inventarios" xml:space="preserve">
+    <value>Consulta Inventarios</value>
+  </data>
+  <data name="error_no_inventario" xml:space="preserve">
+    <value>No existe inventario al cual trasladar</value>
+  </data>
+  <data name="guardar_y_crear" xml:space="preserve">
+    <value>Guardar y crear nuevo</value>
+  </data>
+  <data name="insumos" xml:space="preserve">
+    <value>Insumos</value>
+  </data>
+  <data name="apertura_dom" xml:space="preserve">
+    <value>Hora apertura domingo</value>
+  </data>
+  <data name="apertura_lun_vie" xml:space="preserve">
+    <value>Hora apertura lunes a viernes</value>
+  </data>
+  <data name="apertura_sab" xml:space="preserve">
+    <value>Hora apertura sábado</value>
+  </data>
+  <data name="atm" xml:space="preserve">
+    <value>Atm</value>
+  </data>
+  <data name="atms" xml:space="preserve">
+    <value>Atms</value>
+  </data>
+  <data name="capacidad_bines" xml:space="preserve">
+    <value>Capacidad bines</value>
+  </data>
+  <data name="capacidad_unidades" xml:space="preserve">
+    <value>Capacidad unidades</value>
+  </data>
+  <data name="cierre_dom" xml:space="preserve">
+    <value>Hora cierre domingo</value>
+  </data>
+  <data name="cierre_lun_vie" xml:space="preserve">
+    <value>Hora cierre lunes a viernes</value>
+  </data>
+  <data name="cierre_sab" xml:space="preserve">
+    <value>Hora cierre sábado</value>
+  </data>
+  <data name="consumo" xml:space="preserve">
+    <value>Consumo</value>
+  </data>
+  <data name="fecha_instalacion" xml:space="preserve">
+    <value>Fecha instalación</value>
+  </data>
+  <data name="formato_horas" xml:space="preserve">
+    <value>Formato (hhmmss)</value>
+  </data>
+  <data name="marca" xml:space="preserve">
+    <value>Marca</value>
+  </data>
+  <data name="modelo" xml:space="preserve">
+    <value>Modelo</value>
+  </data>
+  <data name="mostrar_todo" xml:space="preserve">
+    <value>Mostrar todo</value>
+  </data>
+  <data name="ocultar_todo" xml:space="preserve">
+    <value>Ocultar todo</value>
+  </data>
+  <data name="agregar_usuario_jornada" xml:space="preserve">
+    <value>Mi jornada</value>
+  </data>
+  <data name="bancos_en_jornada" xml:space="preserve">
+    <value>Bancos en Jornada</value>
+  </data>
+  <data name="bancos_sin_jornada" xml:space="preserve">
+    <value>Bancos sin Jornada</value>
+  </data>
+  <data name="jornada_no_exite_para_agregar_banco" xml:space="preserve">
+    <value>No existe jornada creada para agregar a bancos.</value>
+  </data>
+  <data name="jornada_no_exite_para_agregar_usuario" xml:space="preserve">
+    <value>No existe jornada creada para agregar a usuario.</value>
+  </data>
+  <data name="usuario_jornada_agregar" xml:space="preserve">
+    <value>Agregar a usuario :usuario a jornada.</value>
+  </data>
+  <data name="corte_parcial" xml:space="preserve">
+    <value>Corte Parcial</value>
+  </data>
+  <data name="error_corte_usuarios" xml:space="preserve">
+    <value>Los siguientes usuarios tiene documentos:</value>
+  </data>
+  <data name="boveda" xml:space="preserve">
+    <value>Boveda</value>
+  </data>
+  <data name="cerrar_jornada" xml:space="preserve">
+    <value>Cerrar Jornada</value>
+  </data>
+  <data name="recolecciones" xml:space="preserve">
+    <value>Recolecciones</value>
+  </data>
+  <data name="remesas" xml:space="preserve">
+    <value>Remesas</value>
+  </data>
+  <data name="editar_regresar" xml:space="preserve">
+    <value>Regresar a editar</value>
+  </data>
+  <data name="error_nada_que_procesar" xml:space="preserve">
+    <value>Nada que procesar</value>
+  </data>
+  <data name="error_serie_no_existe" xml:space="preserve">
+    <value>El paquete pistoleado no es válido</value>
+  </data>
+  <data name="error_ubicacion" xml:space="preserve">
+    <value>La ubicacion no es correcta para la transaccion</value>
+  </data>
+  <data name="fecha_hora_inicio" xml:space="preserve">
+    <value>Fecha / Hora Inicio</value>
+  </data>
+  <data name="sala" xml:space="preserve">
+    <value>sala</value>
+  </data>
+  <data name="sala_atm" xml:space="preserve">
+    <value>Sala ATMs</value>
+  </data>
+  <data name="aprobar" xml:space="preserve">
+    <value>Aprobar</value>
+  </data>
+  <data name="crear_paquete_grupo" xml:space="preserve">
+    <value>Crear Paquete Grupo</value>
+  </data>
+  <data name="revision_descuadre" xml:space="preserve">
+    <value>Revision Descuadre</value>
+  </data>
+  <data name="usuario_agregar_a_jornada" xml:space="preserve">
+    <value>Unete a una jornada</value>
+  </data>
+  <data name="usuario_jornada" xml:space="preserve">
+    <value>Estas en la jornada</value>
+  </data>
+  <data name="reemplazar" xml:space="preserve">
+    <value>Reemplazar</value>
+  </data>
+  <data name="accion_reemplazo" xml:space="preserve">
+    <value>Escanee los insumos</value>
+  </data>
+  <data name="serie_anterior" xml:space="preserve">
+    <value>Serie Anterior</value>
+  </data>
+  <data name="serie_nueva" xml:space="preserve">
+    <value>Serie Nueva</value>
+  </data>
+  <data name="tipo_insumo_anterior" xml:space="preserve">
+    <value>Tipo de Insumo Anterior</value>
+  </data>
+  <data name="tipo_insumo_nuevo" xml:space="preserve">
+    <value>Tipo de Insumo Nuevo</value>
+  </data>
+  <data name="consulta" xml:space="preserve">
+    <value>Consulta</value>
+  </data>
+  <data name="contenido_abstracto" xml:space="preserve">
+    <value>Contenido abstracto</value>
+  </data>
+  <data name="contenido_procesado" xml:space="preserve">
+    <value>Contenido procesado</value>
+  </data>
+  <data name="entregado_por" xml:space="preserve">
+    <value>Entregado por</value>
+  </data>
+  <data name="fecha_entrega" xml:space="preserve">
+    <value>Fecha entrega</value>
+  </data>
+  <data name="fecha_procesamiento" xml:space="preserve">
+    <value>Fecha procesamiento</value>
+  </data>
+  <data name="linea_de_tiempo" xml:space="preserve">
+    <value>Línea de tiempo</value>
+  </data>
+  <data name="procesado_por" xml:space="preserve">
+    <value>Procesado por</value>
+  </data>
+  <data name="boleta_agregar" xml:space="preserve">
+    <value>Agregar Boleta</value>
+  </data>
+  <data name="boleta_cambiar" xml:space="preserve">
+    <value>Cambiar Boleta</value>
+  </data>
+  <data name="concluir_descuadre_procesamiento" xml:space="preserve">
+    <value>Desea concluir el procesamiento con descuadre?</value>
+  </data>
+  <data name="confirmacion_concluir_procesamiento" xml:space="preserve">
+    <value>Desea concluir el procesamiento?</value>
+  </data>
+  <data name="confirmacion_eliminar_detalle_descuadre" xml:space="preserve">
+    <value>Desea eliminar el detalle del descuadre?</value>
+  </data>
+  <data name="descuadres" xml:space="preserve">
+    <value>Descuadres</value>
+  </data>
+  <data name="eliminar_descuadre" xml:space="preserve">
+    <value>Eliminar Descuadre</value>
+  </data>
+  <data name="eliminar_descuadre_confirmacion" xml:space="preserve">
+    <value>Desea eliminar el descuadre?</value>
+  </data>
+  <data name="finalizar_descuadre" xml:space="preserve">
+    <value>Finalizar Descuadre</value>
+  </data>
+  <data name="observacion_supervisor" xml:space="preserve">
+    <value>Observacion Supervisor</value>
+  </data>
+  <data name="resolver" xml:space="preserve">
+    <value>Resolver</value>
+  </data>
+  <data name="verificar" xml:space="preserve">
+    <value>Verificar</value>
+  </data>
+  <data name="abril" xml:space="preserve">
+    <value>Abril</value>
+  </data>
+  <data name="agosto" xml:space="preserve">
+    <value>Agosto</value>
+  </data>
+  <data name="diciembre" xml:space="preserve">
+    <value>Diciembre</value>
+  </data>
+  <data name="enero" xml:space="preserve">
+    <value>Enero</value>
+  </data>
+  <data name="febrero" xml:space="preserve">
+    <value>Febrero</value>
+  </data>
+  <data name="julio" xml:space="preserve">
+    <value>Julio</value>
+  </data>
+  <data name="junio" xml:space="preserve">
+    <value>Junio</value>
+  </data>
+  <data name="marzo" xml:space="preserve">
+    <value>Marzo</value>
+  </data>
+  <data name="mayo" xml:space="preserve">
+    <value>Mayo</value>
+  </data>
+  <data name="noviembre" xml:space="preserve">
+    <value>Noviembre</value>
+  </data>
+  <data name="octubre" xml:space="preserve">
+    <value>Octubre</value>
+  </data>
+  <data name="septiembre" xml:space="preserve">
+    <value>Septiembre</value>
+  </data>
+  <data name="agregar_boleta" xml:space="preserve">
+    <value>Agregar Boleta</value>
+  </data>
+  <data name="cambio_boleta" xml:space="preserve">
+    <value>Cambio de Boleta</value>
+  </data>
+  <data name="new_no_boleta" xml:space="preserve">
+    <value>Boleta Nuevo No.</value>
+  </data>
+  <data name="eliminado" xml:space="preserve">
+    <value>Eliminado</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="fecha_eliminacion" xml:space="preserve">
+    <value>Fecha Eliminacion</value>
+  </data>
+  <data name="fecha_modificacion" xml:space="preserve">
+    <value>Fecha Modificacion</value>
+  </data>
+  <data name="coincidencias" xml:space="preserve">
+    <value>Concidencias</value>
+  </data>
+  <data name="coincidencias_encontradas" xml:space="preserve">
+    <value>Se encontraron :cuenta coincidencias</value>
+  </data>
+  <data name="cantidad_reingresos" xml:space="preserve">
+    <value>Cantidad Reingresos</value>
+  </data>
+  <data name="por" xml:space="preserve">
+    <value>por</value>
+  </data>
+  <data name="pregunta_tiene_valores" xml:space="preserve">
+    <value>¿Tiene valores?</value>
+  </data>
+  <data name="ultimo_en_poseerlo" xml:space="preserve">
+    <value>Ultimo en poseerlo</value>
+  </data>
+  <data name="detalle_jornada_usuario" xml:space="preserve">
+    <value>Detalle Jornada Usuario</value>
+  </data>
+  <data name="limpiar" xml:space="preserve">
+    <value>Limpiar</value>
+  </data>
+  <data name="montos_agrupados" xml:space="preserve">
+    <value>Montos Agrupados</value>
+  </data>
+  <data name="purga" xml:space="preserve">
+    <value>Purga</value>
+  </data>
+  <data name="usar_contadora" xml:space="preserve">
+    <value>Usar contadora</value>
+  </data>
+  <data name="es_banco" xml:space="preserve">
+    <value>Es banco</value>
+  </data>
+  <data name="bolsa_error_ya_ingresado" xml:space="preserve">
+    <value>Bolsa ya ingresada </value>
+  </data>
+  <data name="marchamo_error_ya_ingresado" xml:space="preserve">
+    <value>Marchamo ya ingresado</value>
+  </data>
+  <data name="consultas" xml:space="preserve">
+    <value>Consultas</value>
+  </data>
+  <data name="valor_mayor_cero" xml:space="preserve">
+    <value>El valor debe ser mayor a  0.</value>
+  </data>
+  <data name="detalles" xml:space="preserve">
+    <value>Detalles</value>
+  </data>
+  <data name="log" xml:space="preserve">
+    <value>Log de Estados</value>
+  </data>
+  <data name="advertencia" xml:space="preserve">
+    <value>Advertencia</value>
+  </data>
+  <data name="exito" xml:space="preserve">
+    <value>Éxito</value>
+  </data>
+  <data name="cheques_ajenos" xml:space="preserve">
+    <value>Cheques Ajenos</value>
+  </data>
+  <data name="cheques_propios" xml:space="preserve">
+    <value>Cheques Propios</value>
+  </data>
+  <data name="documento_no" xml:space="preserve">
+    <value>Documento No</value>
+  </data>
+  <data name="giro" xml:space="preserve">
+    <value>Giro</value>
+  </data>
+  <data name="giros" xml:space="preserve">
+    <value>Giros</value>
+  </data>
+  <data name="no_giro" xml:space="preserve">
+    <value>Numero Giro</value>
+  </data>
+  <data name="otros" xml:space="preserve">
+    <value>Otros</value>
+  </data>
+  <data name="administracion_menu_tipo_archivo" xml:space="preserve">
+    <value>Tipo Archivo</value>
+  </data>
+  <data name="administracion_menu_tipo_cuenta" xml:space="preserve">
+    <value>Tipo Cuenta</value>
+  </data>
+  <data name="administracion_menu_tipo_direccion" xml:space="preserve">
+    <value>Tipo Direccion</value>
+  </data>
+  <data name="administracion_menu_tipo_licencia" xml:space="preserve">
+    <value>Tipo Licencia</value>
+  </data>
+  <data name="administracion_menu_tipo_telefono" xml:space="preserve">
+    <value>Tipo Telefono</value>
+  </data>
+  <data name="tipo_archivo" xml:space="preserve">
+    <value>Tipo_Archivo</value>
+  </data>
+  <data name="tipo_archivo_crear" xml:space="preserve">
+    <value>Crear Tipo de Archivo</value>
+  </data>
+  <data name="tipo_archivo_detalle" xml:space="preserve">
+    <value>Detalle de Tipo de Archivo</value>
+  </data>
+  <data name="tipo_archivo_editar" xml:space="preserve">
+    <value>Editar Tipo de Archivo</value>
+  </data>
+  <data name="tipo_archivo_eliminar" xml:space="preserve">
+    <value>Eliminar Tipo de Archivo</value>
+  </data>
+  <data name="tipo_archivo_lista" xml:space="preserve">
+    <value>Lista de Tipos de Archivos</value>
+  </data>
+  <data name="tipo_archivo_nombre" xml:space="preserve">
+    <value>Tipo de Archivo</value>
+  </data>
+  <data name="tipo_cuenta" xml:space="preserve">
+    <value>Tipo_Cuenta</value>
+  </data>
+  <data name="tipo_cuenta_crear" xml:space="preserve">
+    <value>Crear Tipo Cuenta</value>
+  </data>
+  <data name="tipo_cuenta_detalle" xml:space="preserve">
+    <value>Detalle Tipo Cuenta</value>
+  </data>
+  <data name="tipo_cuenta_editar" xml:space="preserve">
+    <value>Editar Tipo Cuenta</value>
+  </data>
+  <data name="tipo_cuenta_eliminar" xml:space="preserve">
+    <value>Eliminar Tipo Cuenta</value>
+  </data>
+  <data name="tipo_cuenta_lista" xml:space="preserve">
+    <value>Lista de Tipos de Cuenta</value>
+  </data>
+  <data name="tipo_cuenta_nombre" xml:space="preserve">
+    <value>Tipo de Cuenta</value>
+  </data>
+  <data name="tipo_direccion" xml:space="preserve">
+    <value>Tipo_Direccion</value>
+  </data>
+  <data name="tipo_direccion_crear" xml:space="preserve">
+    <value>Crear Tipo de Dirección</value>
+  </data>
+  <data name="tipo_direccion_detalle" xml:space="preserve">
+    <value>Detalle de Tipo de Dirección</value>
+  </data>
+  <data name="tipo_direccion_editar" xml:space="preserve">
+    <value>Editar Tipo de Dirección</value>
+  </data>
+  <data name="tipo_direccion_eliminar" xml:space="preserve">
+    <value>Eliminar Tipo de Dirección</value>
+  </data>
+  <data name="tipo_direccion_lista" xml:space="preserve">
+    <value>Lista de Tipos de Dirección</value>
+  </data>
+  <data name="tipo_direccion_nombre" xml:space="preserve">
+    <value>Tipo de Dirección</value>
+  </data>
+  <data name="tipo_licencia" xml:space="preserve">
+    <value>Tipo_Licencia</value>
+  </data>
+  <data name="tipo_licencia_crear" xml:space="preserve">
+    <value>Crear Tipo de Licencia</value>
+  </data>
+  <data name="tipo_licencia_detalle" xml:space="preserve">
+    <value>Detalle de Tipo de Licencia</value>
+  </data>
+  <data name="tipo_licencia_editar" xml:space="preserve">
+    <value>Editar Tipo de Licencia</value>
+  </data>
+  <data name="tipo_licencia_eliminar" xml:space="preserve">
+    <value>Eliminar Tipo de Licencia</value>
+  </data>
+  <data name="tipo_licencia_lista" xml:space="preserve">
+    <value>Lista de Tipo de Licencia</value>
+  </data>
+  <data name="tipo_licencia_nombre" xml:space="preserve">
+    <value>Tipo de Licencia</value>
+  </data>
+  <data name="tipo_telefono" xml:space="preserve">
+    <value>Tipo_Telefono</value>
+  </data>
+  <data name="tipo_telefono_crear" xml:space="preserve">
+    <value>Crear Tipo Teléfono</value>
+  </data>
+  <data name="tipo_telefono_detalle" xml:space="preserve">
+    <value>Detalle Tipo Teléfono</value>
+  </data>
+  <data name="tipo_telefono_editar" xml:space="preserve">
+    <value>Editar Tipo Teléfono</value>
+  </data>
+  <data name="tipo_telefono_eliminar" xml:space="preserve">
+    <value>Eliminar Tipo Teléfono</value>
+  </data>
+  <data name="tipo_telefono_lista" xml:space="preserve">
+    <value>Lista de Tipos de Teléfonos</value>
+  </data>
+  <data name="tipo_telefono_nombre" xml:space="preserve">
+    <value>Tipo Teléfono</value>
+  </data>
+  <data name="banco_lista" xml:space="preserve">
+    <value>Lista de Bancos</value>
+  </data>
+  <data name="banco_nombre" xml:space="preserve">
+    <value>Banco</value>
+  </data>
+  <data name="empresa" xml:space="preserve">
+    <value>Empresa</value>
+  </data>
+  <data name="empresa_crear" xml:space="preserve">
+    <value>Crear Empresa</value>
+  </data>
+  <data name="empresa_detalle" xml:space="preserve">
+    <value>Detalle de Empresa</value>
+  </data>
+  <data name="empresa_editar" xml:space="preserve">
+    <value>Editar Empresa</value>
+  </data>
+  <data name="empresa_eliminar" xml:space="preserve">
+    <value>Eliminar Empresa</value>
+  </data>
+  <data name="empresa_lista" xml:space="preserve">
+    <value>Lista de Empresas</value>
+  </data>
+  <data name="empresa_nombre" xml:space="preserve">
+    <value>Empresa</value>
+  </data>
+  <data name="estado_civil" xml:space="preserve">
+    <value>Estado_Civil</value>
+  </data>
+  <data name="estado_civil_crear" xml:space="preserve">
+    <value>Crear Estado Civil</value>
+  </data>
+  <data name="estado_civil_detalle" xml:space="preserve">
+    <value>Detalle de Estado Civil</value>
+  </data>
+  <data name="estado_civil_editar" xml:space="preserve">
+    <value>Editar Estado Civil</value>
+  </data>
+  <data name="estado_civil_eliminar" xml:space="preserve">
+    <value>Eliminar Estado Civil</value>
+  </data>
+  <data name="estado_civil_lista" xml:space="preserve">
+    <value>Lista de Estados Civiles</value>
+  </data>
+  <data name="estado_civil_nombre" xml:space="preserve">
+    <value>Estado Civil</value>
+  </data>
+  <data name="profesion" xml:space="preserve">
+    <value>Profesion</value>
+  </data>
+  <data name="profesion_crear" xml:space="preserve">
+    <value>Crear Profesión</value>
+  </data>
+  <data name="profesion_detalle" xml:space="preserve">
+    <value>Detalle de Profesión</value>
+  </data>
+  <data name="profesion_editar" xml:space="preserve">
+    <value>Editar Profesión</value>
+  </data>
+  <data name="profesion_eliminar" xml:space="preserve">
+    <value>Eliminar Profesioón</value>
+  </data>
+  <data name="profesion_lista" xml:space="preserve">
+    <value>Lista de Profesiones</value>
+  </data>
+  <data name="profesion_nombre" xml:space="preserve">
+    <value>Profesión</value>
+  </data>
+  <data name="empresa_correo" xml:space="preserve">
+    <value>Correo</value>
+  </data>
+  <data name="empresa_direccion" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="empresa_pais" xml:space="preserve">
+    <value>Pais</value>
+  </data>
+  <data name="empresa_telefono" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="empresa_activo" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="administracion_menu_empresa" xml:space="preserve">
+    <value>Empresa</value>
+  </data>
+  <data name="administracion_menu_estado_civil" xml:space="preserve">
+    <value>Estado Civil</value>
+  </data>
+  <data name="administracion_menu_profesion" xml:space="preserve">
+    <value>Profesión</value>
+  </data>
+  <data name="boton_regresar_id" xml:space="preserve">
+    <value>boton_regresar</value>
+  </data>
+  <data name="boton_editar_id" xml:space="preserve">
+    <value>boton_editar</value>
+  </data>
+  <data name="boton_crear_id" xml:space="preserve">
+    <value>boton_crear</value>
+  </data>
+  <data name="boton_eliminar_id" xml:space="preserve">
+    <value>boton_eliminar</value>
+  </data>
+  <data name="archivo" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
+  <data name="archivo_crear" xml:space="preserve">
+    <value>Crear Archivo</value>
+  </data>
+  <data name="archivo_detalle" xml:space="preserve">
+    <value>Detalle Archivo</value>
+  </data>
+  <data name="archivo_editar" xml:space="preserve">
+    <value>Editar Archivo</value>
+  </data>
+  <data name="archivo_eliminar" xml:space="preserve">
+    <value>Eliminar Archivo</value>
+  </data>
+  <data name="archivo_lista" xml:space="preserve">
+    <value>Archivos</value>
+  </data>
+  <data name="archivo_nombre" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
+  <data name="archivo_tipo_archivo" xml:space="preserve">
+    <value>Tipo Archivo</value>
+  </data>
+  <data name="archivo_ubicacion" xml:space="preserve">
+    <value>Ubicación</value>
+  </data>
+  <data name="administracion_menu_archivo" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
+  <data name="municipios_crear" xml:space="preserve">
+    <value>Crear Municipio</value>
+  </data>
+  <data name="municipios_detalle" xml:space="preserve">
+    <value>Detalle Municipio</value>
+  </data>
+  <data name="municipios_editar" xml:space="preserve">
+    <value>Editar Municipio</value>
+  </data>
+  <data name="municipios_eliminar" xml:space="preserve">
+    <value>Eliminar Municipio</value>
+  </data>
+  <data name="municipios_lista" xml:space="preserve">
+    <value>Municipios</value>
+  </data>
+  <data name="municipios_departamento" xml:space="preserve">
+    <value>Departamento</value>
+  </data>
+  <data name="administracion_menu_acceso" xml:space="preserve">
+    <value>Accesos</value>
+  </data>
+  <data name="administracion_menu_banco" xml:space="preserve">
+    <value>Bancos</value>
+  </data>
+  <data name="administracion_menu_reporte" xml:space="preserve">
+    <value>Reportes</value>
+  </data>
+  <data name="administracion_menu_rol_acciones" xml:space="preserve">
+    <value>Rol Acciones</value>
+  </data>
+  <data name="administracion_menu_acciones" xml:space="preserve">
+    <value>Acciones</value>
+  </data>
+  <data name="reporte" xml:space="preserve">
+    <value>Reporte</value>
+  </data>
+  <data name="reporte_carpeta" xml:space="preserve">
+    <value>Carpeta</value>
+  </data>
+  <data name="reporte_crear" xml:space="preserve">
+    <value>Crear Reporte</value>
+  </data>
+  <data name="reporte_descripcion" xml:space="preserve">
+    <value>Descripcion</value>
+  </data>
+  <data name="reporte_detalle" xml:space="preserve">
+    <value>Detalle Reporte</value>
+  </data>
+  <data name="reporte_editar" xml:space="preserve">
+    <value>Editar Reporte</value>
+  </data>
+  <data name="reporte_eliminar" xml:space="preserve">
+    <value>Eliminar Reporte</value>
+  </data>
+  <data name="reporte_grupo" xml:space="preserve">
+    <value>Grupo</value>
+  </data>
+  <data name="reporte_lista" xml:space="preserve">
+    <value>Lista Reportes</value>
+  </data>
+  <data name="reporte_nombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="reporte_reporte" xml:space="preserve">
+    <value>Reporte</value>
+  </data>
+  <data name="reporte_url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="rol_acciones" xml:space="preserve">
+    <value>Rol_Acciones</value>
+  </data>
+  <data name="rol_acciones_acciones_nombre" xml:space="preserve">
+    <value>Acción</value>
+  </data>
+  <data name="rol_acciones_controlador" xml:space="preserve">
+    <value>Controlador</value>
+  </data>
+  <data name="rol_acciones_crear" xml:space="preserve">
+    <value>Crear Rol Acción</value>
+  </data>
+  <data name="rol_acciones_detalle" xml:space="preserve">
+    <value>Detalle Rol Acción</value>
+  </data>
+  <data name="rol_acciones_editar" xml:space="preserve">
+    <value>Editar Rol Acción</value>
+  </data>
+  <data name="rol_acciones_eliminar" xml:space="preserve">
+    <value>Eliminar Rol Acción</value>
+  </data>
+  <data name="rol_acciones_lista" xml:space="preserve">
+    <value>Lista Roles Acciones</value>
+  </data>
+  <data name="rol_acciones_rol" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="_permiso_denegado" xml:space="preserve">
+    <value>Planilla: Permiso Denegado</value>
+  </data>
+  <data name="recursos_humanos" xml:space="preserve">
+    <value>Recursos_Humanos</value>
+  </data>
+  <data name="empleado" xml:space="preserve">
+    <value>Empleado</value>
+  </data>
+  <data name="empleado_apellidos" xml:space="preserve">
+    <value>Apellidos</value>
+  </data>
+  <data name="empleado_codigo" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="empleado_crear" xml:space="preserve">
+    <value>Crear Empleado</value>
+  </data>
+  <data name="empleado_detalle" xml:space="preserve">
+    <value>Detalle Empleado</value>
+  </data>
+  <data name="empleado_editar" xml:space="preserve">
+    <value>Editar Empleado</value>
+  </data>
+  <data name="empleado_eliminar" xml:space="preserve">
+    <value>Eliminar Empleado</value>
+  </data>
+  <data name="empleado_empresa" xml:space="preserve">
+    <value>Empresa</value>
+  </data>
+  <data name="empleado_estado" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="empleado_identificación" xml:space="preserve">
+    <value>Identificación</value>
+  </data>
+  <data name="empleado_lista" xml:space="preserve">
+    <value>Lista Empleados</value>
+  </data>
+  <data name="empleado_nombres" xml:space="preserve">
+    <value>Nombres</value>
+  </data>
+  <data name="recursos_humanos_planilla_menu_empleado" xml:space="preserve">
+    <value>Empleados</value>
+  </data>
+  <data name="recursos_humanos_menu_recursos_humanos" xml:space="preserve">
+    <value>Recursos Humanos</value>
+  </data>
+  <data name="empleado_afiliacion_igss" xml:space="preserve">
+    <value>Afiliación IGSS</value>
+  </data>
+  <data name="empleado_afiliacion_irtra" xml:space="preserve">
+    <value>Afiliación IRTRA</value>
+  </data>
+  <data name="empleado_apellido_casada" xml:space="preserve">
+    <value>Apellido Casada</value>
+  </data>
+  <data name="empleado_banco" xml:space="preserve">
+    <value>Banco</value>
+  </data>
+  <data name="empleado_cedula" xml:space="preserve">
+    <value>Cédula</value>
+  </data>
+  <data name="empleado_correo" xml:space="preserve">
+    <value>Correo</value>
+  </data>
+  <data name="empleado_dpi" xml:space="preserve">
+    <value>Dpi</value>
+  </data>
+  <data name="empleado_estado_civil" xml:space="preserve">
+    <value>Estado Civil</value>
+  </data>
+  <data name="empleado_estado_empleado" xml:space="preserve">
+    <value>Estado Empleado</value>
+  </data>
+  <data name="empleado_estatura" xml:space="preserve">
+    <value>Estatura (metro)</value>
+  </data>
+  <data name="empleado_estudio" xml:space="preserve">
+    <value>Estudio</value>
+  </data>
+  <data name="empleado_fecha_nacimiento" xml:space="preserve">
+    <value>Fecha Nacimiento</value>
+  </data>
+  <data name="empleado_fecha_vencimiento_licencia" xml:space="preserve">
+    <value>Fecha de vencimiento</value>
+  </data>
+  <data name="empleado_imagen" xml:space="preserve">
+    <value>Imagen</value>
+  </data>
+  <data name="empleado_municipio" xml:space="preserve">
+    <value>Municipio</value>
+  </data>
+  <data name="empleado_municipio_cedula" xml:space="preserve">
+    <value>Municipio Cedula</value>
+  </data>
+  <data name="empleado_municipio_dpi" xml:space="preserve">
+    <value>Municipio DPI</value>
+  </data>
+  <data name="empleado_nacionalidad" xml:space="preserve">
+    <value>Nacionalidad</value>
+  </data>
+  <data name="empleado_nit" xml:space="preserve">
+    <value>Nit</value>
+  </data>
+  <data name="empleado_numero_cuenta" xml:space="preserve">
+    <value>Número Cuenta</value>
+  </data>
+  <data name="empleado_numero_licencia" xml:space="preserve">
+    <value>Número Licencia</value>
+  </data>
+  <data name="empleado_pasaporte" xml:space="preserve">
+    <value>Pasaporte</value>
+  </data>
+  <data name="empleado_peso" xml:space="preserve">
+    <value>Peso (libra)</value>
+  </data>
+  <data name="empleado_primer_apellido" xml:space="preserve">
+    <value>Primer Apellido</value>
+  </data>
+  <data name="empleado_primer_nombre" xml:space="preserve">
+    <value>Primer Nombre</value>
+  </data>
+  <data name="empleado_profesion" xml:space="preserve">
+    <value>Profesión</value>
+  </data>
+  <data name="empleado_sabe_escribir" xml:space="preserve">
+    <value>Sabe Escribir</value>
+  </data>
+  <data name="empleado_sabe_leer" xml:space="preserve">
+    <value>Sabe Leer</value>
+  </data>
+  <data name="empleado_segundo_nombre" xml:space="preserve">
+    <value>Segundo Nombre</value>
+  </data>
+  <data name="empleado_servicio_militar" xml:space="preserve">
+    <value>Servicio Militar</value>
+  </data>
+  <data name="empleado_telefono" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="empleado_tipo_cuenta" xml:space="preserve">
+    <value>Tipo Cuenta</value>
+  </data>
+  <data name="empleado_tipo_licencia" xml:space="preserve">
+    <value>Tipo Licencia</value>
+  </data>
+  <data name="empleado_segundo_apellido" xml:space="preserve">
+    <value>Segundo Apellido</value>
+  </data>
+  <data name="empleado_dpi_direccion" xml:space="preserve">
+    <value>Extendido en</value>
+  </data>
+  <data name="empleado_direcciones_avenida" xml:space="preserve">
+    <value>Avenida</value>
+  </data>
+  <data name="empleado_direcciones_calle" xml:space="preserve">
+    <value>Calle</value>
+  </data>
+  <data name="empleado_direcciones_colonia_cc_edificio" xml:space="preserve">
+    <value>Colonia</value>
+  </data>
+  <data name="empleado_direcciones_comentario" xml:space="preserve">
+    <value>Comentario</value>
+  </data>
+  <data name="empleado_direcciones_local" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="empleado_direcciones_no_casa" xml:space="preserve">
+    <value>No. Casa</value>
+  </data>
+  <data name="empleado_direcciones_zona" xml:space="preserve">
+    <value>Zona</value>
+  </data>
+  <data name="empleado_telefono_comentario" xml:space="preserve">
+    <value>Comentario</value>
+  </data>
+  <data name="empleado_telefono_extension" xml:space="preserve">
+    <value>Extensión</value>
+  </data>
+  <data name="empleado_telefono_telefono" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="empleado_direcciones_kilometro" xml:space="preserve">
+    <value>Kilómetro</value>
+  </data>
+  <data name="empleado_direcciones_departamento" xml:space="preserve">
+    <value>Departamento</value>
+  </data>
+  <data name="empleado_direcciones_municipio" xml:space="preserve">
+    <value>Municipio</value>
+  </data>
+  <data name="empleado_direcciones_pais" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="FilePath" xml:space="preserve">
+    <value>C:\\AdmSeg_PT\\Archivos</value>
+  </data>
+  <data name="administracion_menu_grado_estudio" xml:space="preserve">
+    <value>Grado Estudio</value>
+  </data>
+  <data name="grado_estudio" xml:space="preserve">
+    <value>Grado_Estudio</value>
+  </data>
+  <data name="grado_estudio_crear" xml:space="preserve">
+    <value>Crear Grado Estudio</value>
+  </data>
+  <data name="grado_estudio_detalle" xml:space="preserve">
+    <value>Detalle Grado Estudio</value>
+  </data>
+  <data name="grado_estudio_editar" xml:space="preserve">
+    <value>Editar Grado Estudio</value>
+  </data>
+  <data name="grado_estudio_eliminar" xml:space="preserve">
+    <value>Eliminar Grado Estudio</value>
+  </data>
+  <data name="grado_estudio_lista" xml:space="preserve">
+    <value>Lista de Grados de Estudio</value>
+  </data>
+  <data name="grado_estudio_nombre" xml:space="preserve">
+    <value>Grado de Estudio</value>
+  </data>
+  <data name="estado_empleado" xml:space="preserve">
+    <value>Estado_Empleado</value>
+  </data>
+  <data name="estado_empleado_crear" xml:space="preserve">
+    <value>Crear Estado Empleado</value>
+  </data>
+  <data name="estado_empleado_detalle" xml:space="preserve">
+    <value>Detalle Estado Empleado</value>
+  </data>
+  <data name="estado_empleado_editar" xml:space="preserve">
+    <value>Editar Estado Empleado</value>
+  </data>
+  <data name="estado_empleado_eliminar" xml:space="preserve">
+    <value>Eliminar Estado Empleado</value>
+  </data>
+  <data name="estado_empleado_lista" xml:space="preserve">
+    <value>Lista Estado Empleado</value>
+  </data>
+  <data name="estado_empleado_nombre" xml:space="preserve">
+    <value>Estado Empleado</value>
+  </data>
+  <data name="recursos_humanos_menu_estado_empleado" xml:space="preserve">
+    <value>Estado Empleado</value>
+  </data>
+  <data name="empleado_telefono_lista" xml:space="preserve">
+    <value>Teléfonos</value>
+  </data>
+  <data name="archivo_empleado" xml:space="preserve">
+    <value>Archivo_Empleado</value>
+  </data>
+  <data name="empleado_archivos_subir" xml:space="preserve">
+    <value>Subir archivos</value>
+  </data>
+  <data name="empleado_dirección_nueva" xml:space="preserve">
+    <value>Nueva dirección</value>
+  </data>
+  <data name="empleado_telefono_nuevo" xml:space="preserve">
+    <value>Nuevo teléfono</value>
+  </data>
+  <data name="empleado_dpi_detalle" xml:space="preserve">
+    <value>Documento Personal de Identifcación</value>
+  </data>
+  <data name="empleado_nit_detalle" xml:space="preserve">
+    <value>Nit as</value>
+  </data>
+  <data name="empleado_pasaporte_detalle" xml:space="preserve">
+    <value>Pasaporte</value>
+  </data>
+  <data name="FileTest" xml:space="preserve">
+    <value>~/Archivos/</value>
+  </data>
+  <data name="recursos_humanos_menu_academia" xml:space="preserve">
+    <value>Academia</value>
+  </data>
+  <data name="academia" xml:space="preserve">
+    <value>Academia</value>
+  </data>
+  <data name="academia_codigo" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="academia_crear" xml:space="preserve">
+    <value>Crear Academia</value>
+  </data>
+  <data name="academia_detalle" xml:space="preserve">
+    <value>Detalle de Academia</value>
+  </data>
+  <data name="academia_editar" xml:space="preserve">
+    <value>Editar Academia</value>
+  </data>
+  <data name="academia_eliminar" xml:space="preserve">
+    <value>Eliminar Academia</value>
+  </data>
+  <data name="academia_lista" xml:space="preserve">
+    <value>Lista de Academias</value>
+  </data>
+  <data name="academia_nombre" xml:space="preserve">
+    <value>Academia</value>
+  </data>
+  <data name="academia_ver_curso" xml:space="preserve">
+    <value>Ver Cursos</value>
+  </data>
+  <data name="academia_direccion" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="academia_ver_capacitacion" xml:space="preserve">
+    <value>Ver Capacitaciones</value>
+  </data>
+  <data name="curso" xml:space="preserve">
+    <value>Curso</value>
+  </data>
+  <data name="curso_crear" xml:space="preserve">
+    <value>Crear Curso</value>
+  </data>
+  <data name="curso_detalle" xml:space="preserve">
+    <value>Detalle Curso</value>
+  </data>
+  <data name="curso_editar" xml:space="preserve">
+    <value>Editar Curso</value>
+  </data>
+  <data name="curso_eliminar" xml:space="preserve">
+    <value>Eliminar Curso</value>
+  </data>
+  <data name="curso_lista" xml:space="preserve">
+    <value>Cursos</value>
+  </data>
+  <data name="curso_nombre" xml:space="preserve">
+    <value>Curso</value>
+  </data>
+  <data name="capacitacion" xml:space="preserve">
+    <value>Capactitacion</value>
+  </data>
+  <data name="capacitacion_crear" xml:space="preserve">
+    <value>Crear Capacitación</value>
+  </data>
+  <data name="capacitacion_detalle" xml:space="preserve">
+    <value>Detalle Capacitación</value>
+  </data>
+  <data name="capacitacion_editar" xml:space="preserve">
+    <value>Editar Capacitación</value>
+  </data>
+  <data name="capacitacion_eliminar" xml:space="preserve">
+    <value>Eliminar Capacitación</value>
+  </data>
+  <data name="capacitacion_lista" xml:space="preserve">
+    <value>Capacitaciones</value>
+  </data>
+  <data name="capacitacion_nombre" xml:space="preserve">
+    <value>Capacitación</value>
+  </data>
+  <data name="recursos_humanos_nombre" xml:space="preserve">
+    <value>Recursos Humanos</value>
+  </data>
+  <data name="academia_ingresar" xml:space="preserve">
+    <value>Ingresar academia</value>
+  </data>
+  <data name="capacitacion_nueva_capacitacion" xml:space="preserve">
+    <value>Nueva capacitación</value>
+  </data>
+  <data name="capacitacion_nuevo_curso" xml:space="preserve">
+    <value>Nuevo curso</value>
+  </data>
+  <data name="capacitacion_seleccionar" xml:space="preserve">
+    <value>Seleccionar capacitación:</value>
+  </data>
+  <data name="capacitacion_cursos_asignados" xml:space="preserve">
+    <value>Cursos asignados</value>
+  </data>
+  <data name="capacitacion_cursos_no_asignados" xml:space="preserve">
+    <value>Cursos no asignados</value>
+  </data>
+  <data name="capacitacion_capacitacion_curso" xml:space="preserve">
+    <value>Cursos de capacitación</value>
+  </data>
+  <data name="horario_curso_capacitacion" xml:space="preserve">
+    <value />
+  </data>
+  <data name="fecha_inicio" xml:space="preserve">
+    <value>Fecha Inicio</value>
+  </data>
+  <data name="fecha_fin" xml:space="preserve">
+    <value>Fecha Fin</value>
+  </data>
+  <data name="capacitacion_instructor" xml:space="preserve">
+    <value>Instructor</value>
+  </data>
+  <data name="curso_aprobado" xml:space="preserve">
+    <value>Aprobado</value>
+  </data>
+  <data name="curso_nota" xml:space="preserve">
+    <value>Nota</value>
+  </data>
+  <data name="extra" xml:space="preserve">
+    <value>Extra</value>
+  </data>
+  <data name="no_participantes" xml:space="preserve">
+    <value>Participantes</value>
+  </data>
+  <data name="capacitacion_nuevo_grupo" xml:space="preserve">
+    <value>Capacitar nuevo grupo</value>
+  </data>
+  <data name="capacitacion_terminar" xml:space="preserve">
+    <value>Terminar Capacitación</value>
+  </data>
+  <data name="capacitacion_codigo_grupo" xml:space="preserve">
+    <value>Grupo No.</value>
+  </data>
+  <data name="capacitacion_crear_grupo" xml:space="preserve">
+    <value>Crear Grupo</value>
+  </data>
+  <data name="capacitacion_editar_grupo" xml:space="preserve">
+    <value>Editar Grupo</value>
+  </data>
+  <data name="capacitacion_eliminar_grupo" xml:space="preserve">
+    <value>Eliminar Grupo</value>
+  </data>
+  <data name="capacitacion_impartida" xml:space="preserve">
+    <value>Capacitacion_Impartida</value>
+  </data>
+  <data name="modificar_nota" xml:space="preserve">
+    <value>Modificar Nota</value>
+  </data>
+  <data name="remover" xml:space="preserve">
+    <value>Remover</value>
+  </data>
+  <data name="empleado_contacto" xml:space="preserve">
+    <value>Contacto</value>
+  </data>
+  <data name="empleado_contrato" xml:space="preserve">
+    <value>Contrato</value>
+  </data>
+  <data name="empleado_datos_personales" xml:space="preserve">
+    <value>Datos Personales</value>
+  </data>
+  <data name="empleado_direccion" xml:space="preserve">
+    <value>Direcciones</value>
+  </data>
+  <data name="empleado_informacion_adicional" xml:space="preserve">
+    <value>Información Adicional</value>
+  </data>
+  <data name="instructor_segundo_apellido" xml:space="preserve">
+    <value>Segundo Apellido</value>
+  </data>
+  <data name="instructor" xml:space="preserve">
+    <value>Instructor</value>
+  </data>
+  <data name="instructor_crear" xml:space="preserve">
+    <value>Crear Instructor</value>
+  </data>
+  <data name="instructor_detalle" xml:space="preserve">
+    <value>Detalle Instructor</value>
+  </data>
+  <data name="instructor_editar" xml:space="preserve">
+    <value>Editar Instructor</value>
+  </data>
+  <data name="instructor_eliminar" xml:space="preserve">
+    <value>Eliminar Instructor</value>
+  </data>
+  <data name="instructor_primer_apellido" xml:space="preserve">
+    <value>Primer Apellido</value>
+  </data>
+  <data name="instructor_primer_nombre" xml:space="preserve">
+    <value>Primer Nombre</value>
+  </data>
+  <data name="instructor_segundo_nombre" xml:space="preserve">
+    <value>Segundo Nombre</value>
+  </data>
+  <data name="instructor_lista" xml:space="preserve">
+    <value>Lista Instructores</value>
+  </data>
+  <data name="documento_curso" xml:space="preserve">
+    <value>Documento de curso</value>
+  </data>
+  <data name="descargar" xml:space="preserve">
+    <value>Descargar</value>
+  </data>
+  <data name="direcciones" xml:space="preserve">
+    <value>Direcciones</value>
+  </data>
+  <data name="archivos" xml:space="preserve">
+    <value>Archivos</value>
+  </data>
+  <data name="telefonos" xml:space="preserve">
+    <value>Teléfonos</value>
+  </data>
+  <data name="academicos_otros" xml:space="preserve">
+    <value>Académicos y Otros</value>
+  </data>
+  <data name="correo_electronico" xml:space="preserve">
+    <value>Correo Electrónico</value>
+  </data>
+  <data name="cuenta_bancaria" xml:space="preserve">
+    <value>Cuenta Bancaria</value>
+  </data>
+  <data name="foto_identificacion" xml:space="preserve">
+    <value>Foto de Identificación</value>
+  </data>
+  <data name="informacion_personal" xml:space="preserve">
+    <value>Información Personal</value>
+  </data>
+  <data name="licencia_conducir" xml:space="preserve">
+    <value>Licencia de Conducir</value>
+  </data>
+  <data name="recursos_humanos_menu_planilla" xml:space="preserve">
+    <value>Planilla</value>
+  </data>
+  <data name="planilla" xml:space="preserve">
+    <value>Planilla</value>
+  </data>
+  <data name="planilla_empleado" xml:space="preserve">
+    <value>Empleado</value>
+  </data>
+  <data name="planilla_fecha_apertura" xml:space="preserve">
+    <value>Fecha Apertura</value>
+  </data>
+  <data name="planilla_pendiente" xml:space="preserve">
+    <value>Planillas Pendientes</value>
+  </data>
+  <data name="planilla_usuario_apertura" xml:space="preserve">
+    <value>Usuario Apertura</value>
+  </data>
+  <data name="planilla_crear" xml:space="preserve">
+    <value>Crear Planilla</value>
+  </data>
+  <data name="planilla_bonificacion" xml:space="preserve">
+    <value>Bonificación</value>
+  </data>
+  <data name="planilla_descuento" xml:space="preserve">
+    <value>Descuento</value>
+  </data>
+  <data name="planilla_bono" xml:space="preserve">
+    <value>Bono</value>
+  </data>
+  <data name="planilla_cantidad" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="planilla_fecha" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="planilla_total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="planilla_salario" xml:space="preserve">
+    <value>Salario</value>
+  </data>
+  <data name="planilla_total_bonificacion" xml:space="preserve">
+    <value>Bonificación Total</value>
+  </data>
+  <data name="planilla_total_descuento" xml:space="preserve">
+    <value>Descuento Total</value>
+  </data>
+  <data name="tipo_puesto" xml:space="preserve">
+    <value>Tipo_Puesto</value>
+  </data>
+  <data name="tipo_puesto_estado_fuerza" xml:space="preserve">
+    <value>¿Genera estado de fuerza?</value>
+  </data>
+  <data name="tipo_puesto_nombre" xml:space="preserve">
+    <value>Tipo de Puesto</value>
+  </data>
+  <data name="recursos_humanos_menu_tipo_planilla" xml:space="preserve">
+    <value>Tipo Planilla</value>
+  </data>
+  <data name="recursos_humanos_menu_instructor" xml:space="preserve">
+    <value>Instructores</value>
+  </data>
+  <data name="recursos_humanos_menu_tipo_puesto" xml:space="preserve">
+    <value>Tipo Puesto</value>
+  </data>
+  <data name="tipo_puesto_crear" xml:space="preserve">
+    <value>Crear Tipo de Puesto</value>
+  </data>
+  <data name="tipo_puesto_editar" xml:space="preserve">
+    <value>Editar Tipo de Puesto</value>
+  </data>
+  <data name="tipo_puesto_eliminar" xml:space="preserve">
+    <value>Eliminar Tipo de Puesto</value>
+  </data>
+  <data name="tipo_puesto_lista" xml:space="preserve">
+    <value>Lista de Tipos de Puesto</value>
+  </data>
+  <data name="puesto" xml:space="preserve">
+    <value>Puesto</value>
+  </data>
+  <data name="puesto_crear" xml:space="preserve">
+    <value>Crear Puesto</value>
+  </data>
+  <data name="puesto_editar" xml:space="preserve">
+    <value>Editar Puesto</value>
+  </data>
+  <data name="puesto_eliminar" xml:space="preserve">
+    <value>Eliminar Puesto</value>
+  </data>
+  <data name="puesto_lista" xml:space="preserve">
+    <value>Puestos</value>
+  </data>
+  <data name="puesto_nombre" xml:space="preserve">
+    <value>Puesto</value>
+  </data>
+  <data name="puesto_salario_maximo" xml:space="preserve">
+    <value>Salario Máximo</value>
+  </data>
+  <data name="puesto_salario_minimo" xml:space="preserve">
+    <value>Salario Mínimo</value>
+  </data>
+  <data name="recursos_humanos_menu_puesto" xml:space="preserve">
+    <value>Puesto</value>
+  </data>
+  <data name="bono_decreto" xml:space="preserve">
+    <value>Bono Decreto</value>
+  </data>
+  <data name="bono_extra" xml:space="preserve">
+    <value>Bono Extra</value>
+  </data>
+  <data name="direccion_nacimiento" xml:space="preserve">
+    <value>Dirección de Nacimiento</value>
+  </data>
+  <data name="direccion_residencial" xml:space="preserve">
+    <value>Dirección Residencial</value>
+  </data>
+  <data name="informacion_adicional" xml:space="preserve">
+    <value>Información Adicional</value>
+  </data>
+  <data name="salario_base" xml:space="preserve">
+    <value>Salario Base</value>
+  </data>
+  <data name="telefono_movil" xml:space="preserve">
+    <value>Teléfono Movil</value>
+  </data>
+  <data name="telefono_residencial" xml:space="preserve">
+    <value>Teléfono Residencial</value>
+  </data>
+  <data name="prestaciones" xml:space="preserve">
+    <value>Prestaciones</value>
+  </data>
+  <data name="contrato" xml:space="preserve">
+    <value>Contrato</value>
+  </data>
+  <data name="contrato_estado_empleado" xml:space="preserve">
+    <value>Estado Empleado</value>
+  </data>
+  <data name="planilla_generar" xml:space="preserve">
+    <value>Generar Planilla</value>
+  </data>
+  <data name="generar" xml:space="preserve">
+    <value>Generar</value>
+  </data>
+  <data name="refrescar" xml:space="preserve">
+    <value>Refrescar</value>
+  </data>
+  <data name="planilla_ver_bonificacion" xml:space="preserve">
+    <value>Ver Bonificaciones</value>
+  </data>
+  <data name="planilla_ver_descuento" xml:space="preserve">
+    <value>Ver Descuentos</value>
+  </data>
+  <data name="prestamo_id" xml:space="preserve">
+    <value>Código Prestamo</value>
+  </data>
+  <data name="recursos_humanos_menu_tipo_bono" xml:space="preserve">
+    <value>Tipo Bono</value>
+  </data>
+  <data name="recursos_humanos_menu_tipo_descuento" xml:space="preserve">
+    <value>Tipo Descuento</value>
+  </data>
+  <data name="tipo_bono" xml:space="preserve">
+    <value>Tipo_Bono</value>
+  </data>
+  <data name="tipo_bono_crear" xml:space="preserve">
+    <value>Crear de Tipo de Bono</value>
+  </data>
+  <data name="tipo_bono_editar" xml:space="preserve">
+    <value>Editar Tipo de Bono</value>
+  </data>
+  <data name="tipo_bono_eliminar" xml:space="preserve">
+    <value>Eliminar Tipo de Bono</value>
+  </data>
+  <data name="tipo_bono_lista" xml:space="preserve">
+    <value>Lista de Tipos de Bono</value>
+  </data>
+  <data name="tipo_bono_nombre" xml:space="preserve">
+    <value>Tipo de Bono</value>
+  </data>
+  <data name="tipo_descuento" xml:space="preserve">
+    <value>Tipo_Descuento</value>
+  </data>
+  <data name="tipo_descuento_crear" xml:space="preserve">
+    <value>Crear Tipo de Descuento</value>
+  </data>
+  <data name="tipo_descuento_editar" xml:space="preserve">
+    <value>Editar Tipo de Descuento</value>
+  </data>
+  <data name="tipo_descuento_eliminar" xml:space="preserve">
+    <value>Eliminar Tipo de Descuento</value>
+  </data>
+  <data name="tipo_descuento_lista" xml:space="preserve">
+    <value>Lista de Tipos de Descuento</value>
+  </data>
+  <data name="tipo_descuento_nombre" xml:space="preserve">
+    <value>Tipo de Descuento</value>
+  </data>
+  <data name="cancelar" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="confirmacion" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="bonificacion_agregar" xml:space="preserve">
+    <value>Agregar Bonificación</value>
+  </data>
+  <data name="bonificacion_editar" xml:space="preserve">
+    <value>Editar Bonificación</value>
+  </data>
+  <data name="descuento_agregar" xml:space="preserve">
+    <value>Agregar Descuento</value>
+  </data>
+  <data name="descuento_editar" xml:space="preserve">
+    <value>Editar Descuento</value>
+  </data>
+  <data name="capacitaciones_disponibles" xml:space="preserve">
+    <value>Capacitaciones Disponibles</value>
+  </data>
+  <data name="capacitaciones_impartidas" xml:space="preserve">
+    <value>Capacitaciones Impartidas</value>
+  </data>
+  <data name="catalogo_capacitacion" xml:space="preserve">
+    <value>Catálogo de Capacitaciones</value>
+  </data>
+  <data name="catalogo_curso" xml:space="preserve">
+    <value>Catálogo de Cursos</value>
+  </data>
+  <data name="deshacer" xml:space="preserve">
+    <value>Deshacer</value>
+  </data>
+  <data name="seleccionar_todo" xml:space="preserve">
+    <value>Seleccionar Todo</value>
+  </data>
+  <data name="recursos_humanos_menu_grado_estudio" xml:space="preserve">
+    <value>Grado Estudio</value>
+  </data>
+  <data name="contratacion" xml:space="preserve">
+    <value>Contratacion</value>
+  </data>
+  <data name="contratacion_crear" xml:space="preserve">
+    <value>Crear Contrato</value>
+  </data>
+  <data name="contratacion_detalle" xml:space="preserve">
+    <value>Detalle de Contrato</value>
+  </data>
+  <data name="contratacion_editar" xml:space="preserve">
+    <value>Editar Contrato</value>
+  </data>
+  <data name="contratacion_lista" xml:space="preserve">
+    <value>Lista de Contratos</value>
+  </data>
+  <data name="contratacion_terminar" xml:space="preserve">
+    <value>Terminar Contrato</value>
+  </data>
+  <data name="terminar" xml:space="preserve">
+    <value>Terminar</value>
+  </data>
+  <data name="confirmacion_terminar_contrato" xml:space="preserve">
+    <value>¿Está seguro de terminar el contrato seleccionado?</value>
+  </data>
+  <data name="excel" xml:space="preserve">
+    <value>Excel</value>
+  </data>
+  <data name="pdf" xml:space="preserve">
+    <value>PDF</value>
+  </data>
+  <data name="reporte_planilla_final" xml:space="preserve">
+    <value>Reporte Planilla Final</value>
+  </data>
+  <data name="reporte_pre_planilla" xml:space="preserve">
+    <value>Reporte Pre Planilla</value>
+  </data>
+  <data name="activa" xml:space="preserve">
+    <value>Activa</value>
+  </data>
+  <data name="finalizada" xml:space="preserve">
+    <value>Finalizada</value>
+  </data>
+  <data name="confirmacion_finalizar_planilla" xml:space="preserve">
+    <value>¿Está seguro de finalizar la planilla seleccionada?</value>
+  </data>
+  <data name="fecha_terminar_contrato" xml:space="preserve">
+    <value>Fecha de terminación de contrato</value>
+  </data>
+  <data name="cantidad_pagada" xml:space="preserve">
+    <value>Cantidad Pagada</value>
+  </data>
+  <data name="prestamo_crear" xml:space="preserve">
+    <value>Crear Préstamo</value>
+  </data>
+  <data name="prestamo_detalle" xml:space="preserve">
+    <value>Detalle de Préstamo</value>
+  </data>
+  <data name="prestamo_editar" xml:space="preserve">
+    <value>Editar Préstamo</value>
+  </data>
+  <data name="prestamo_eliminar" xml:space="preserve">
+    <value>Eliminar Préstamo</value>
+  </data>
+  <data name="fecha_final" xml:space="preserve">
+    <value>Fecha Final de Pago</value>
+  </data>
+  <data name="prestamo_lista" xml:space="preserve">
+    <value>Lista de Préstamos</value>
+  </data>
+  <data name="pagos_faltantes" xml:space="preserve">
+    <value>Pagos Faltantes</value>
+  </data>
+  <data name="pagos_hechos" xml:space="preserve">
+    <value>Pagos Hechos</value>
+  </data>
+  <data name="pagos_requeridos" xml:space="preserve">
+    <value>Pagos Requeridos</value>
+  </data>
+  <data name="pago_faltante" xml:space="preserve">
+    <value>Pagos Faltantes</value>
+  </data>
+  <data name="prestamo" xml:space="preserve">
+    <value>Prestamo</value>
+  </data>
+  <data name="prestamo_nombre" xml:space="preserve">
+    <value>Préstamo</value>
+  </data>
+  <data name="recursos_humanos_menu_prestamo" xml:space="preserve">
+    <value>Préstamos</value>
+  </data>
+  <data name="razon_social_nombre" xml:space="preserve">
+    <value>Razón Social</value>
+  </data>
+  <data name="cliente_detalle" xml:space="preserve">
+    <value>Detalle de Cliente</value>
+  </data>
+  <data name="cliente_editar" xml:space="preserve">
+    <value>Editar Cliente</value>
+  </data>
+  <data name="cliente_eliminar" xml:space="preserve">
+    <value>Eliminar Cliente</value>
+  </data>
+  <data name="razon_social_lista" xml:space="preserve">
+    <value>Lista de Razones Sociales</value>
+  </data>
+  <data name="tipo_cliente_nombre" xml:space="preserve">
+    <value>Tipo de Cliente</value>
+  </data>
+  <data name="direccion_facturacion" xml:space="preserve">
+    <value>Dirección de Facturación</value>
+  </data>
+  <data name="direccion_fiscal" xml:space="preserve">
+    <value>Dirección Fiscal</value>
+  </data>
+  <data name="direccion_fisica" xml:space="preserve">
+    <value>Dirección Física</value>
+  </data>
+  <data name="direccion_fisica_municipio" xml:space="preserve">
+    <value>Municipio de Dirección Física</value>
+  </data>
+  <data name="direccion_fiscal_municipio" xml:space="preserve">
+    <value>Municipio de Dirección Fiscal</value>
+  </data>
+  <data name="nit" xml:space="preserve">
+    <value>NIT</value>
+  </data>
+  <data name="nombre_comercial" xml:space="preserve">
+    <value>Nombre Comercial</value>
+  </data>
+  <data name="direccion_facturacion_municipio" xml:space="preserve">
+    <value>Municipio de Dirección de Facturación</value>
+  </data>
+  <data name="contacto" xml:space="preserve">
+    <value>Contacto</value>
+  </data>
+  <data name="contacto_crear" xml:space="preserve">
+    <value>Crear Contacto</value>
+  </data>
+  <data name="contacto_detalle" xml:space="preserve">
+    <value>Detalle de Contacto</value>
+  </data>
+  <data name="contacto_editar" xml:space="preserve">
+    <value>Editar Contacto</value>
+  </data>
+  <data name="contacto_eliminar" xml:space="preserve">
+    <value>Eliminar Contacto</value>
+  </data>
+  <data name="contacto_lista" xml:space="preserve">
+    <value>Lista de Contactos</value>
+  </data>
+  <data name="razon_social_crear" xml:space="preserve">
+    <value>Crear Razón Social</value>
+  </data>
+  <data name="razon_social_detalle" xml:space="preserve">
+    <value>Detalle de Razón Social</value>
+  </data>
+  <data name="razon_social_editar" xml:space="preserve">
+    <value>Editar Razón Social</value>
+  </data>
+  <data name="razon_social_eliminar" xml:space="preserve">
+    <value>Eliminar Razón Social</value>
+  </data>
+  <data name="telefono" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="puesto_contacto" xml:space="preserve">
+    <value>Puesto_Contacto</value>
+  </data>
+  <data name="puesto_contacto_crear" xml:space="preserve">
+    <value>Crear Puesto de Contacto</value>
+  </data>
+  <data name="puesto_contacto_detalle" xml:space="preserve">
+    <value>Detalle de Puesto de Contacto</value>
+  </data>
+  <data name="puesto_contacto_editar" xml:space="preserve">
+    <value>Editar Puesto de Contacto</value>
+  </data>
+  <data name="puesto_contacto_eliminar" xml:space="preserve">
+    <value>Eliminar Puesto de Contacto</value>
+  </data>
+  <data name="puesto_contacto_listA" xml:space="preserve">
+    <value>Lista de Puestos de Contacto</value>
+  </data>
+  <data name="puesto_contacto_nombre" xml:space="preserve">
+    <value>Puesto de Contacto</value>
+  </data>
+  <data name="razon_social" xml:space="preserve">
+    <value>Razon_Social</value>
+  </data>
+  <data name="asociar" xml:space="preserve">
+    <value>Asociar</value>
+  </data>
+  <data name="administracion_menu_contactos" xml:space="preserve">
+    <value>Contactos</value>
+  </data>
+  <data name="administracion_menu_puesto_contacto" xml:space="preserve">
+    <value>Puestos de Contacto</value>
+  </data>
+  <data name="administracion_menu_razones_sociales" xml:space="preserve">
+    <value>Razones Sociales</value>
+  </data>
+  <data name="asignar_contacto_razon_social" xml:space="preserve">
+    <value>Asignar Contacto a esta Razón Social</value>
+  </data>
+  <data name="recursos_humanos_menu_tipo_prestamo" xml:space="preserve">
+    <value>Tipo de Préstamo</value>
+  </data>
+  <data name="tipo_prestamo" xml:space="preserve">
+    <value>Tipo_Prestamo</value>
+  </data>
+  <data name="tipo_prestamo_crear" xml:space="preserve">
+    <value>Crear Tipo de Préstamo</value>
+  </data>
+  <data name="tipo_prestamo_detalle" xml:space="preserve">
+    <value>Detalle de Tipo de Préstamo</value>
+  </data>
+  <data name="tipo_prestamo_editar" xml:space="preserve">
+    <value>Editar Tipo de Préstamo</value>
+  </data>
+  <data name="tipo_prestamo_eliminar" xml:space="preserve">
+    <value>Eliminar Tipo de Préstamo</value>
+  </data>
+  <data name="tipo_prestamo_lista" xml:space="preserve">
+    <value>Lista de Tipos de Préstamos</value>
+  </data>
+  <data name="tipo_prestamo_nombre" xml:space="preserve">
+    <value>Tipo de Préstamo</value>
+  </data>
+  <data name="cuota" xml:space="preserve">
+    <value>Cuota</value>
+  </data>
+  <data name="tipo_plan_pago" xml:space="preserve">
+    <value>Tipo_Plan_Pago</value>
+  </data>
+  <data name="tipo_plan_pago_crear" xml:space="preserve">
+    <value>Crear Tipo de Plan de Pago</value>
+  </data>
+  <data name="tipo_plan_pago_detalle" xml:space="preserve">
+    <value>Detalle de Tipo de Plan de Pago</value>
+  </data>
+  <data name="tipo_plan_pago_editar" xml:space="preserve">
+    <value>Editar Tipo de Plan de Pago</value>
+  </data>
+  <data name="tipo_plan_pago_eliminar" xml:space="preserve">
+    <value>Eliminar Tipo de Plan de Pago</value>
+  </data>
+  <data name="tipo_plan_pago_lista" xml:space="preserve">
+    <value>Lista de Tipos de Plan de Pago</value>
+  </data>
+  <data name="tipo_plan_pago_nombre" xml:space="preserve">
+    <value>Tipo de Plan de Pago</value>
+  </data>
+  <data name="recursos_humanos_menu_tipo_plan_pago" xml:space="preserve">
+    <value>Tipos de Plan de Pago</value>
+  </data>
+  <data name="pagos_totales" xml:space="preserve">
+    <value>Cantidad de pagos</value>
+  </data>
+  <data name="fecha_pago" xml:space="preserve">
+    <value>Fecha de Pago</value>
+  </data>
+  <data name="plan_pago" xml:space="preserve">
+    <value>Plan_Pago</value>
+  </data>
+  <data name="plan_pago_nombre" xml:space="preserve">
+    <value>Plan de Pago</value>
+  </data>
+  <data name="pagada" xml:space="preserve">
+    <value>Pagada</value>
+  </data>
+  <data name="pendiente" xml:space="preserve">
+    <value>Pendiente</value>
+  </data>
+  <data name="creada" xml:space="preserve">
+    <value>Creada</value>
+  </data>
+  <data name="cantidad_agregada" xml:space="preserve">
+    <value>Cantidad agregada</value>
+  </data>
+  <data name="confirmacion_eliminar_cuota" xml:space="preserve">
+    <value>¿Está seguro de eliminar la cuota seleccionada? Se descontará la cantidad al préstamo donde pertenece.</value>
+  </data>
+  <data name="confirmacion_pago_cuota" xml:space="preserve">
+    <value>Se hará el cobro de la cuota en el préstamo. ¿Desea continuar?</value>
+  </data>
+  <data name="aguinaldo_pendiente" xml:space="preserve">
+    <value>Aguinaldo Pendiente</value>
+  </data>
+  <data name="bono_14_pendiente" xml:space="preserve">
+    <value>Bono 14 Pendiente</value>
+  </data>
+  <data name="descuento_total" xml:space="preserve">
+    <value>Descuento Total</value>
+  </data>
+  <data name="fecha_ultimo_pago" xml:space="preserve">
+    <value>Fecha de Último Pago</value>
+  </data>
+  <data name="indeminizacion" xml:space="preserve">
+    <value>Indeminización</value>
+  </data>
+  <data name="liquidacion" xml:space="preserve">
+    <value>Liquidación</value>
+  </data>
+  <data name="liquidacion_calcular" xml:space="preserve">
+    <value>Calcular Liquidación</value>
+  </data>
+  <data name="liquidacion_lista" xml:space="preserve">
+    <value>Lista de Liquidaciones</value>
+  </data>
+  <data name="sueldo_pendiente" xml:space="preserve">
+    <value>Sueldo Pendiente</value>
+  </data>
+  <data name="total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="vacaciones_gozadas" xml:space="preserve">
+    <value>Vacaciones Gozadas</value>
+  </data>
+  <data name="vacaciones_pendientes" xml:space="preserve">
+    <value>Vacaciones Pendientes</value>
+  </data>
+  <data name="recursos_humanos_menu_liquidacion" xml:space="preserve">
+    <value>Liquidaciones</value>
+  </data>
+  <data name="calcular" xml:space="preserve">
+    <value>Calcular</value>
+  </data>
+  <data name="camara" xml:space="preserve">
+    <value>Cámara</value>
+  </data>
+  <data name="imagen" xml:space="preserve">
+    <value>Imagen</value>
+  </data>
+  <data name="tomar_foto" xml:space="preserve">
+    <value>Tomar Foto</value>
+  </data>
+  <data name="liquidacion_editar" xml:space="preserve">
+    <value>Editar Liquidación</value>
+  </data>
+  <data name="finiquito" xml:space="preserve">
+    <value>Finiquito</value>
+  </data>
+  <data name="inventario_menu_arma_estado" xml:space="preserve">
+    <value>Estado de Arma</value>
+  </data>
+  <data name="inventario_menu_arma_tipo" xml:space="preserve">
+    <value>Tipo de Arma</value>
+  </data>
+  <data name="inventario_menu_articulo_tipo" xml:space="preserve">
+    <value>Tipo de Articulo</value>
+  </data>
+  <data name="inventario_menu_bodegas" xml:space="preserve">
+    <value>Bodegas</value>
+  </data>
+  <data name="inventario_menu_calibres" xml:space="preserve">
+    <value>Calibres</value>
+  </data>
+  <data name="inventario_menu_consumible_tipo" xml:space="preserve">
+    <value>Tipo de Consumible</value>
+  </data>
+  <data name="inventario_menu_egreso_tipo" xml:space="preserve">
+    <value>Tipo de Egreso</value>
+  </data>
+  <data name="inventario_menu_ingreso_tipo" xml:space="preserve">
+    <value>Tipo de Ingreso</value>
+  </data>
+  <data name="inventario_menu_marcas" xml:space="preserve">
+    <value>Marcas</value>
+  </data>
+  <data name="inventario_menu_modelos" xml:space="preserve">
+    <value>Modelos</value>
+  </data>
+  <data name="inventario_menu_transaccion_inventario_tipo" xml:space="preserve">
+    <value>Tipo de Transaccion</value>
+  </data>
+  <data name="inventario_menu_uniforme_tipo" xml:space="preserve">
+    <value>Tipo de Uniforme</value>
+  </data>
+  <data name="inventario_menu_armas" xml:space="preserve">
+    <value>Armas</value>
+  </data>
+  <data name="inventario_menu_proveedores" xml:space="preserve">
+    <value>Proveedores</value>
+  </data>
+  <data name="inventario_menu_articulos" xml:space="preserve">
+    <value>Artículos</value>
+  </data>
+  <data name="inventario_menu_consumibles" xml:space="preserve">
+    <value>Consumibles</value>
+  </data>
+  <data name="inventario_menu_municiones" xml:space="preserve">
+    <value>Municiones</value>
+  </data>
+  <data name="inventario_menu_uniformes" xml:space="preserve">
+    <value>Uniformes</value>
+  </data>
+  <data name="inventario_menu_multiple" xml:space="preserve">
+    <value>Multiple</value>
+  </data>
+  <data name="inventario_menu_ingreso_estado" xml:space="preserve">
+    <value>Estado de Ingreso</value>
+  </data>
+  <data name="inventario_menu_ingreso" xml:space="preserve">
+    <value>Ingreso</value>
+  </data>
+  <data name="arma" xml:space="preserve">
+    <value>Arma</value>
+  </data>
+  <data name="articulo" xml:space="preserve">
+    <value>Artículo</value>
+  </data>
+  <data name="bodega" xml:space="preserve">
+    <value>Bodega</value>
+  </data>
+  <data name="consumible" xml:space="preserve">
+    <value>Consumible</value>
+  </data>
+  <data name="factura" xml:space="preserve">
+    <value>Factura</value>
+  </data>
+  <data name="fecha_factura" xml:space="preserve">
+    <value>Fecha de Facturación</value>
+  </data>
+  <data name="ingreso_detalle" xml:space="preserve">
+    <value>Detalle de Ingreso</value>
+  </data>
+  <data name="municion" xml:space="preserve">
+    <value>Munición</value>
+  </data>
+  <data name="uniforme" xml:space="preserve">
+    <value>Uniforme</value>
+  </data>
+  <data name="arma_estado" xml:space="preserve">
+    <value>Estado de Arma</value>
+  </data>
+  <data name="arma_tipo" xml:space="preserve">
+    <value>Tipo de Arma</value>
+  </data>
+  <data name="calibre" xml:space="preserve">
+    <value>Calibre</value>
+  </data>
+  <data name="cantidad_municion" xml:space="preserve">
+    <value>Cantidad de Munición</value>
+  </data>
+  <data name="huella" xml:space="preserve">
+    <value>Huella</value>
+  </data>
+  <data name="largo" xml:space="preserve">
+    <value>Largo</value>
+  </data>
+  <data name="marcage" xml:space="preserve">
+    <value>Marcage</value>
+  </data>
+  <data name="portacion" xml:space="preserve">
+    <value>No. Portación</value>
+  </data>
+  <data name="proveedor" xml:space="preserve">
+    <value>Proveedor</value>
+  </data>
+  <data name="tenencia" xml:space="preserve">
+    <value>No. Tenencia</value>
+  </data>
+  <data name="costo" xml:space="preserve">
+    <value>Costo</value>
+  </data>
+  <data name="costo_venta" xml:space="preserve">
+    <value>Costo de Venta</value>
+  </data>
+  <data name="existencia" xml:space="preserve">
+    <value>Existencia</value>
+  </data>
+  <data name="existencia_add" xml:space="preserve">
+    <value>Existencia a Agregar</value>
+  </data>
+  <data name="consumible_tipo" xml:space="preserve">
+    <value>Tipo de Consumible</value>
+  </data>
+  <data name="talla" xml:space="preserve">
+    <value>Talla</value>
+  </data>
+  <data name="uniforme_tipo" xml:space="preserve">
+    <value>Tipo de Uniforme</value>
+  </data>
+  <data name="finalizar_ingreso" xml:space="preserve">
+    <value>Finalizar Ingreso</value>
+  </data>
+  <data name="inventario_menu_ingreso_autorizar" xml:space="preserve">
+    <value>Autorización de Ingreso</value>
+  </data>
+  <data name="inventario_menu_egreso" xml:space="preserve">
+    <value>Egreso</value>
+  </data>
+  <data name="inventario_menu_egreso_autorizar" xml:space="preserve">
+    <value>Autorización de Egreso</value>
+  </data>
+  <data name="articulo_tipo" xml:space="preserve">
+    <value>Tipo de Artículo</value>
+  </data>
+  <data name="egreso_detalle" xml:space="preserve">
+    <value>Detalle de Egreso</value>
+  </data>
+  <data name="egreso_estado" xml:space="preserve">
+    <value>Estado de Egreso</value>
+  </data>
+  <data name="egreso_tipo" xml:space="preserve">
+    <value>Tipo de Egreso</value>
+  </data>
+  <data name="enviar_arma" xml:space="preserve">
+    <value>Enviar Arma</value>
+  </data>
+  <data name="enviar_articulo" xml:space="preserve">
+    <value>Enviar Artículo</value>
+  </data>
+  <data name="expediente" xml:space="preserve">
+    <value>Expediente</value>
+  </data>
+  <data name="fecha_robo" xml:space="preserve">
+    <value>Fecha de Robo</value>
+  </data>
+  <data name="fecha_vencimiento_arma" xml:space="preserve">
+    <value>Fecha de Vencimiento</value>
+  </data>
+  <data name="finalizar_egreso" xml:space="preserve">
+    <value>Finalizar Egreso</value>
+  </data>
+  <data name="inventario_menu_bodega_consumibles" xml:space="preserve">
+    <value>Consumibles por Bodega</value>
+  </data>
+  <data name="inventario_menu_bodega_municiones" xml:space="preserve">
+    <value>Municiones por Bodega</value>
+  </data>
+  <data name="inventario_menu_bodega_uniformes" xml:space="preserve">
+    <value>Uniformes por Bodega</value>
+  </data>
+  <data name="responsable" xml:space="preserve">
+    <value>Responsable</value>
+  </data>
+  <data name="asignar_empleado" xml:space="preserve">
+    <value>Asignar Empleado</value>
+  </data>
+  <data name="desasignar_empleado" xml:space="preserve">
+    <value>Desasignar Empleado</value>
+  </data>
+  <data name="enviar_consumibles" xml:space="preserve">
+    <value>Enviar Consumibles</value>
+  </data>
+  <data name="enviar_municiones" xml:space="preserve">
+    <value>Enviar Municiones</value>
+  </data>
+  <data name="enviar_uniformes" xml:space="preserve">
+    <value>Enviar Uniformes</value>
+  </data>
+  <data name="bodega_destino" xml:space="preserve">
+    <value>Bodega Destino</value>
+  </data>
+  <data name="bodega_origen" xml:space="preserve">
+    <value>Bodega Origen</value>
+  </data>
+  <data name="finalizar_traslado" xml:space="preserve">
+    <value>Finalizar Traslado</value>
+  </data>
+  <data name="inventario_menu_traslado" xml:space="preserve">
+    <value>Traslado</value>
+  </data>
+  <data name="inventario_menu_traslado_autorizar" xml:space="preserve">
+    <value>Autorización de Traslado</value>
+  </data>
+  <data name="traslado_detalle" xml:space="preserve">
+    <value>Traslado Detalle</value>
+  </data>
+  <data name="traslado_estado" xml:space="preserve">
+    <value>Estado de Traslado</value>
+  </data>
+  <data name="asignar_inventario_tipo" xml:space="preserve">
+    <value>Asignar Tipo de Inventario</value>
+  </data>
+  <data name="fecha_vencimiento" xml:space="preserve">
+    <value>Fecha de Vencimiento</value>
+  </data>
+  <data name="administracion_control_aplicacion" xml:space="preserve">
+    <value>Control de Aplicación</value>
+  </data>
+  <data name="cursos_a_capacitar" xml:space="preserve">
+    <value>Cursos a Capacitar</value>
+  </data>
+  <data name="empleado_seleccionado" xml:space="preserve">
+    <value>Empleado Seleccionado</value>
+  </data>
+  <data name="dias_disponibles" xml:space="preserve">
+    <value>Días disponibles</value>
+  </data>
+  <data name="dias_gozados" xml:space="preserve">
+    <value>Días gozados</value>
+  </data>
+  <data name="periodo" xml:space="preserve">
+    <value>Período</value>
+  </data>
+  <data name="vacaciones" xml:space="preserve">
+    <value>Vacaciones</value>
+  </data>
+  <data name="cantidad_dias" xml:space="preserve">
+    <value>Cantidad de días</value>
+  </data>
+  <data name="tomada" xml:space="preserve">
+    <value>Tomada</value>
+  </data>
+  <data name="tomar_vacaciones" xml:space="preserve">
+    <value>Tomar Vacaciones</value>
+  </data>
+  <data name="vacacion_detalle" xml:space="preserve">
+    <value>Vacacion_Detalle</value>
+  </data>
+  <data name="periodo_detalle" xml:space="preserve">
+    <value>Detalle del Período</value>
+  </data>
+  <data name="tipo_vacaciones" xml:space="preserve">
+    <value>Tipo de vacaciones</value>
+  </data>
+  <data name="resumen_vacaciones" xml:space="preserve">
+    <value>Resumen de Vacaciones</value>
+  </data>
+  <data name="activar_contrato" xml:space="preserve">
+    <value>Activar Contrato</value>
+  </data>
+</root>

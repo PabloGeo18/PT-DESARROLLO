@@ -1,0 +1,89 @@
+﻿@model IEnumerable<MVC2013.Models.Pt_Cotizaciones>
+
+@{
+    ViewBag.Title = "Cotizaciones Eliminadas";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cotizaciones Eliminadas</h2>
+<div class="table-responsive">
+    @if (Model.Where(i => !i.activo && i.eliminado).Count() <= 0)
+    {
+        <table class="table table-striped table-bordered table-responsive">
+            <thead style="background-color:cadetblue"></thead>
+            <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+        </table>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead style="background-color:#969aa2">
+                <tr>
+                    <th class="text-center">Acciones</th>
+                    <th class="text-center">Nombre del Proyecto</th>
+                    <th class="text-center">Descripción General</th>
+                    <th class="text-center">Tipo de Proyecto</th>
+                    <th class="text-center">Contacto</th>
+                    <th class="text-center">Teléfono</th>
+                    <th class="text-center">E-Mail</th>
+                    <th class="text-center">Dirección</th>
+                    <th class="text-center">Fecha de creación</th>
+                    <th class="text-center">Fecha de eliminación</th>
+                    <th class="text-center">Fecha de entrega</th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td class="text-center" width="20%">
+                    <button data-toggle="tooltip" data-placement="top" title="Detalles" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.ccot_id })'">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                    </button>
+                    <button data-toggle="tooltip" data-placement="top" title="Ver Fases" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("Index","Fases_Cotizacion", new { id= item.ccot_id})'">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </button>
+                </td>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.ccot_nombre_proyecto)</td>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.ccot_descripcion_general)</td>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.Pt_Tipos_Proyecto.ctpo_descripcion)</td>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.ccot_contacto)</td>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.ccot_telefono_contacto)</td>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.ccot_correo_contacto)</td>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.ccot_direccion_contacto)</td>
+                <td class="text-center">
+                    @if (item.fecha_creacion != null)
+                    {
+                        @item.fecha_creacion.ToString("dd/MM/yyyy")
+                    }
+                    else
+                    {
+                        <text>-----</text>
+                    }
+                </td>
+                <td class="text-center">
+                    @if (item.fecha_eliminacion.HasValue)
+                    {
+                        @item.fecha_eliminacion.Value.ToString("dd/MM/yyyy")
+                    }
+                    else
+                    {
+                        <text>-----</text>
+                    }
+                </td>
+                <td class="text-center">
+                    @if (item.ccot_fecha_entrega.HasValue)
+                    {
+                        @item.ccot_fecha_entrega.Value.ToString("dd/MM/yyyy")
+                    }
+                    else
+                    {
+                        <text>-----</text>
+                    }
+                </td>
+            </tr>
+            }
+
+        </table>
+    }
+</div>

@@ -1,0 +1,14 @@
+﻿<Properties StartupItem="MVC2013\MVC2013.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="OperaStable" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MVC2013\Areas\SalaConteo\Controllers\MonedaTipoController.cs">
+    <Files>
+      <File FileName="MVC2013\Areas\SalaConteo\Controllers\MonedaTipoController.cs" Line="93" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="C:\vs2015\MVC2013\MVC2013\MVC2013\Areas\SalaConteo\Controllers\MonedaTipoController.cs" line="93" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

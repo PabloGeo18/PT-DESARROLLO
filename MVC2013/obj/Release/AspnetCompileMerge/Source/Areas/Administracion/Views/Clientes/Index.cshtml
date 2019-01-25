@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MVC2013.Models.Clientes>
+
+@{
+    ViewBag.Title = @Resources.Resources.clientes + "_" + @Resources.Resources.lista;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.clientes_lista</h2>
+
+<p>
+    @Html.ActionLink(@Resources.Resources.crear_nuevo, "Create")
+</p>
+<table class="zebra-striped">
+    <thead>
+        <th>@Resources.Resources.clientes_nombre</th>
+        <th>@Resources.Resources.clientes_nombre_corto</th>
+        <th>@Resources.Resources.clientes_pais</th>
+        <th>@Resources.Resources.clientes_tipo</th>
+        <th>@Resources.Resources.clientes_activo</th>
+        <th></th>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.nombre)</td>
+            <td>@Html.DisplayFor(modelItem => item.nombre_corto)</td>
+            <td>@Html.DisplayFor(modelItem => item.Paises.nombre)</td>
+            <td>@Html.DisplayFor(modelItem => item.Tipo_Cliente.nombre)</td>
+            <td>@Html.DisplayFor(modelItem => item.activo)</td>
+
+            <td>
+                @Html.ActionLink(@Resources.Resources.editar, "Edit", new { id = item.id_cliente }) |
+                @Html.ActionLink(@Resources.Resources.detalle, "Details", new { id = item.id_cliente }) |
+                @Html.ActionLink(@Resources.Resources.eliminar, "Delete", new { id = item.id_cliente })
+            </td>
+        </tr>
+    }
+
+</table>

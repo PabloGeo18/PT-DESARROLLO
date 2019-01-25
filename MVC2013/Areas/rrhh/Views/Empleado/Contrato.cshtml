@@ -1,0 +1,108 @@
+﻿@model MVC2013.Areas.rrhh.Models.ContratoSalario
+
+@{
+    ViewBag.Title = Resources.Resources.empleado + "_" + Resources.Resources.contrato;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.empleado_contrato</h2>
+
+<div id="main">
+    @using (Html.BeginForm("EditarContrato", "Empleado", FormMethod.Post, new { transaction = Model }))
+    {
+        @Html.HiddenFor(model => model.contratacion.id_contratacion)
+        if (!ViewData.ModelState.IsValid)
+        {
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="alert alert-danger">
+                    @Html.ValidationSummary(true, "", new { })
+                </div>
+            </div>
+        }
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">@Resources.Resources.puesto</h4>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                        @Html.Label(@Resources.Resources.empresa_nombre, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.contratacion.id_empresa, (IEnumerable<SelectListItem>)ViewBag.id_empresa, htmlAttributes: new { @class = "form-control", @required = "required", @disabled = "disabled" })
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                        @Html.Label(@Resources.Resources.puesto_nombre, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownListFor(model => model.contratacion.id_puesto, (IEnumerable<SelectListItem>)ViewBag.id_puesto, htmlAttributes: new { @class = "form-control", @required = "required", @disabled = "disabled" })
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                        @Html.Label(@Resources.Resources.fecha_inicio, htmlAttributes: new { @class = "control-label" })
+                        <div style="position:relative">
+                            <input type='text' class="form-control" id="fecha_inicio_contrato" name="fecha_inicio_contrato" disabled required value="@ViewBag.fecha_inicio_contrato" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 form-group">
+                        @Html.Label(@Resources.Resources.contrato_estado_empleado, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("id_estado_empleado", null, htmlAttributes: new { @class = "form-control", @required = "required", @disabled = "disabled" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">@Resources.Resources.planilla_salario</h4>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                        @Html.Label(@Resources.Resources.salario_base, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.salario.sueldo_base, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @required = "required" } })
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                        @Html.Label(@Resources.Resources.bono_extra, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.salario.bono_extra, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                        @Html.Label(@Resources.Resources.bono_decreto, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.salario.bono_decreto, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                        <div class=" checkbox">
+                            @Html.EditorFor(model => model.salario.prestaciones, new { htmlAttributes = new { @class = "checkbox", @disabled = "disabled", @required = "required" } })
+                            @Html.Label(@Resources.Resources.prestaciones, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pager">
+            <div class="row form-group">
+                <button class="btn btn-primary btn-sm" type="button" id="editar">
+                    <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                </button>
+                <button class="btn btn-success btn-sm" disabled type="submit" id="guardar">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                </button>
+            </div>
+            <div class="row form-group">
+                <button class="btn-bitbucket btn-sm" type="button" onclick="location.href = '@Url.Action("Index", "Empleado")'">
+                    <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+                </button>
+            </div>
+
+        </div>
+
+    }
+</div>
+<script>
+    $(function () {
+        $("#editar").click(function () {
+            $('#main').find('input, textarea, select, #guardar').prop('disabled', false);
+            $('#main').find('#editar').prop('disabled', true);
+        });
+
+        $('#fecha_inicio_contrato').datetimepicker({
+            viewMode: 'years',
+            format: 'DD/MM/YYYY',
+        });
+    });
+</script>

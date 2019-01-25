@@ -1,0 +1,37 @@
+﻿@model MVC2013.Models.Archivo
+
+@{
+    ViewBag.Title = @Resources.Resources.archivo + "_" + @Resources.Resources.eliminar;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+<h2>@Resources.Resources.tipo_archivo_eliminar</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Resources.Resources.archivo_nombre</dt>
+        <dd>@Html.DisplayFor(model => model.nombre)</dd>
+        <dt>@Resources.Resources.archivo_tipo_archivo</dt>
+        <dd>@Html.DisplayFor(model => model.Tipo_Archivo.nombre)</dd>
+        <dt>@Resources.Resources.archivo_ubicacion</dt>
+        <dd>@Html.DisplayFor(model => model.ubicacion)</dd>
+    </dl>
+    <div class="dl-horizontal">
+        <dt>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = Model.id_archivo })'">
+                    @Resources.Resources.eliminar
+                </button>
+            }
+        </dt>
+        <dd>
+            <button class="btn btn-warning btn-sm" onclick="location.href = '@Url.Action("Index", new { id = @Resources.Resources.boton_regresar_id })'">
+                @Resources.Resources.listado_regresar
+            </button>
+        </dd>
+    </div>
+</div>

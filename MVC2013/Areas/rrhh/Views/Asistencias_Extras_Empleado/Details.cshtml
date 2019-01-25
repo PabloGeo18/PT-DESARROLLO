@@ -1,0 +1,33 @@
+﻿@model MVC2013.Models.Asistencias_Extras_Empleado
+
+@{
+    ViewBag.Title = "Asistencias_Extras_Empleado_Detalle";
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles de la Asistencia</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Empleado</dt>
+        <dd>@(Model.Empleado.primer_nombre.ToUpper() + " " + Model.Empleado.primer_apellido.ToUpper())</dd>
+        <dt>Fecha</dt>
+        <dd>@Model.fecha.ToString("dd/MM/yyyy")</dd>
+        <dt>Días</dt>
+        <dd>@Model.dias</dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt></dt>
+        <dd>
+            <button class="btn btn-sm btn-primary" type="button" onclick="location.href='@Url.Action("Edit", new { id = Model.id_asistencias_extras_empleados })'">
+                <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+            </button>
+        </dd>
+    </dl>
+</div>
+<div class="form-group">
+    <button class="btn-sm btn-bitbucket" type="button" onclick="location.href='@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>

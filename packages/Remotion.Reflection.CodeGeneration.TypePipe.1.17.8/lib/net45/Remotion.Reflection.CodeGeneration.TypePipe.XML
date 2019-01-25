@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Remotion.Reflection.CodeGeneration.TypePipe</name>
+    </assembly>
+    <members>
+        <member name="T:Remotion.Reflection.CodeGeneration.TypePipe.Configuration.AppConfigBasedSettingsProvider">
+            <summary>
+            An <c>App.config</c>-based configuration provider.<br/>
+            <example>
+            Example of an <c>App.config</c> configuration file.
+            <code>
+            &lt;configuration&gt;
+              &lt;configSections&gt;
+                &lt;section name="remotion.reflection.codeGeneration.typePipe" type="Remotion.Reflection.CodeGeneration.TypePipe.Configuration.TypePipeConfigurationSection, Remotion.Reflection.CodeGeneration.TypePipe"/&gt;
+                &lt;!-- ... --&gt;
+              &lt;/configSections&gt;
+              
+              &lt;remotion.reflection.codeGeneration.typePipe xmlns="http://www.re-motion.org/Reflection/CodeGeneration/TypePipe/Configuration"&gt;
+                &lt;forceStrongNaming keyFilePath="keyFile.snk"/&gt;
+                &lt;enableSerializationWithoutAssemblySaving/&gt;
+              &lt;/remotion.reflection.codeGeneration.typePipe&gt;
+              &lt;!-- ... --&gt;
+            &lt;/configuration&gt;
+            </code>
+            </example>
+            </summary>
+        </member>
+        <member name="T:Remotion.Reflection.CodeGeneration.TypePipe.PipelineRegistryInitializer">
+            <summary>
+            Provides helper code for initialization of the <see cref="T:Remotion.TypePipe.PipelineRegistry"/>. This is required in when deserializating TypePipe-generated objects.
+            If deserialization takes place before the IoC configuration has completed, the  <see cref="T:Remotion.TypePipe.PipelineRegistry"/> initialization must be done during
+            manually during application startup.
+            </summary>
+        </member>
+        <member name="M:Remotion.Reflection.CodeGeneration.TypePipe.PipelineRegistryInitializer.InitializeWithServiceLocator">
+            <summary>
+            Initializes the <see cref="T:Remotion.TypePipe.PipelineRegistry"/> with lookup based on the <see cref="T:Remotion.ServiceLocation.SafeServiceLocator"/>. Call this method from within the 
+            static constructor of the TypePipe particpants.
+            </summary>
+        </member>
+        <member name="T:Remotion.Reflection.CodeGeneration.TypePipe.RemotionModuleBuilderFactoryDecorator">
+            <summary>
+            Decorates an instance of <see cref="T:Remotion.TypePipe.CodeGeneration.ReflectionEmit.IModuleBuilderFactory"/> and adds the <see cref="T:Remotion.Reflection.TypeDiscovery.NonApplicationAssemblyAttribute"/> to the
+            <see cref="T:Remotion.TypePipe.CodeGeneration.ReflectionEmit.Abstractions.IAssemblyBuilder"/> whenever a <see cref="T:Remotion.TypePipe.CodeGeneration.ReflectionEmit.Abstractions.IModuleBuilder"/> is created.
+            </summary>
+            <threadsafety static="true" instance="true"/>
+        </member>
+        <member name="T:Remotion.Reflection.CodeGeneration.TypePipe.RemotionPipelineFactory">
+            <summary>
+            Decorates created <see cref="T:Remotion.TypePipe.CodeGeneration.ReflectionEmit.IModuleBuilderFactory"/> instances with <see cref="T:Remotion.Reflection.CodeGeneration.TypePipe.RemotionModuleBuilderFactoryDecorator"/>.
+            </summary>
+            <threadsafety static="true" instance="true"/>
+        </member>
+        <member name="T:Remotion.Reflection.CodeGeneration.TypePipe.RemotionPipelineRegistry">
+            <summary>
+            Creates and registers a <see cref="P:Remotion.TypePipe.IPipelineRegistry.DefaultPipeline"/> containing the specified participants.
+            Uses the <see cref="T:Remotion.Reflection.CodeGeneration.TypePipe.RemotionPipelineFactory"/> which creates pipeline instances that immediately apply the
+            <see cref="T:Remotion.Reflection.TypeDiscovery.NonApplicationAssemblyAttribute"/> to the in-memory assembly in order to retain original re-mix behavior.
+            </summary>
+            <threadsafety static="true" instance="true"/>
+        </member>
+    </members>
+</doc>

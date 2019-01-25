@@ -1,0 +1,67 @@
+﻿@model MVC2013.Models.Token_Salida
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/TransporteValores/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Token_Salida</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.consumido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.consumido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.consumido_fecha_hora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.consumido_fecha_hora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_creacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Receptores.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Receptores.email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_token_salida }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

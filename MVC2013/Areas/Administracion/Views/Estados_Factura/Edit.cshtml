@@ -1,0 +1,47 @@
+﻿@model MVC2013.Models.Estados_Factura
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar Estado de Factura</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_estado_factura)
+        <div class="panel panel-default">
+            <div class="panel-heading bg-yellow">Información del Estado de Factura</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button class="btn btn-success btn-sm" type="submit">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+    </div>
+}
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>

@@ -1,0 +1,167 @@
+﻿@model MVC2013.Models.Puesto
+
+@{
+    ViewBag.Title = Resources.Resources.puesto + "_" + Resources.Resources.crear;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.puesto_crear</h2>
+
+@using (Html.BeginForm("Create", "Puesto", FormMethod.Post))
+{
+    if (!ViewData.ModelState.IsValid)
+    {
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="alert alert-danger">
+                @Html.ValidationSummary(true, "", new { })
+            </div>
+        </div>
+    }
+    <hr />
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.Label(Resources.Resources.empresa_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DropDownList("id_empresa", (IEnumerable<SelectListItem>)ViewBag.empresa, "---", htmlAttributes: new { @class = "form-control", @required = "required", @id = "dropdown_empresa" })
+            <label id="titulo_prestaciones" class="col-md-offset-2"></label>
+            <input type="hidden" name="prestaciones" id="id_prest"  />
+        </div>
+        <div class="form-group">
+            @Html.Label(Resources.Resources.tipo_puesto_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DropDownListFor(model => model.id_tipo_puesto, (IEnumerable<SelectListItem>)ViewBag.tipo_puesto, "---", htmlAttributes: new { @class = "form-control", @required = "required", @id = "dropdown_tipo_puesto" })
+            <label id="titulo_salario" class="col-md-offset-2"></label>
+        </div>
+        <div class="form-group">
+            @Html.Label("Puesto", "Puesto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <input class="form-control" type="text" id="nombre" name="nombre" required autocomplete="off" value="@Model.nombre" />
+        </div>
+        <div class="form-group">
+            @Html.Label("Sueldo Base", htmlAttributes: new { @class = "control-label col-md-2" })
+            <input type="text" id="sueldo_base_input" class="form-control" value="@MVC2013.Src.Comun.Util.FormatUtil.getCurrencyString(Model.sueldo_base)" required name="sueldo_base" />
+        </div>
+        <div class="form-group">
+            @Html.Label("Bono Decreto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <input type="text" id="bono_decreto_input" class="form-control" value="@MVC2013.Src.Comun.Util.FormatUtil.getCurrencyString(Model.bono_decreto)" name="bono_decreto" />
+        </div>
+        <div class="form-group">
+            @Html.Label("Bono Extra", htmlAttributes: new { @class = "control-label col-md-2" })
+            <input type="text" id="bono_extra_input" class="form-control" value="@MVC2013.Src.Comun.Util.FormatUtil.getCurrencyString(Model.bono_extra)" name="bono_extra" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button class="btn btn-sm btn-success" type="submit">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.crear
+            </button>
+        </div>
+    </div>
+}
+<div class="form-group">
+    <button class="btn-sm btn-bitbucket" onclick="location.href='@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+
+<script>
+    $(function () {
+
+        //Obtener los tipos puestos en la empresa seleccionada
+        $('#dropdown_empresa').change(function () {
+            var id = $(this).val();
+            $('#dropdown_tipo_puesto').empty();
+            $('#titulo_prestaciones').text('');
+            if (id != "") {
+                $.ajax({
+                    url: '@Url.Action("GetTiposPuestos", "Contratacion")',
+                    type: 'GET',
+                    data: { 'id_empresa': id },
+                    success: function (response) {
+                        $('#dropdown_tipo_puesto').append(new Option("---", ""));
+                        $.each(response, function (i, puesto) {
+                            $('#dropdown_tipo_puesto').append(new Option(puesto.nombre, puesto.valor));
+                            if (puesto.prestaciones == true) {
+                                $('#titulo_prestaciones').text("Genera Prestaciones.");
+                                $('#id_prest').val(true);
+                            }
+                            else {
+                                $('#titulo_prestaciones').text("No Genera Prestaciones.");
+                                $('#id_prest').val(false);
+                            }
+                        });
+                    },
+                    error: function () {
+                        alert("Error en la conexión con el servidor. No se pudo obtener el salario del puesto.");
+                        $('#dropdown_tipo_puesto').empty();
+                        $('#titulo_prestaciones').text('');
+                    }
+                });
+            }
+            else {
+                $('#dropdown_puesto').empty();
+                $('#titulo_prestaciones').text('');
+            }
+        });
+
+        $("#sueldo_base_input").inputmask('decimal',
+                      {
+                          'alias': 'numeric',
+                          'groupSeparator': ',',
+                          'autoGroup': true,
+                          'digits': 2,
+                          'radixPoint': ".",
+                          'digitsOptional': false,
+                          'allowMinus': false,
+                          'prefix': '',
+                          'placeholder': '0'
+                      }
+                   );
+        $("#bono_decreto_input").inputmask('decimal',
+                      {
+                          'alias': 'numeric',
+                          'groupSeparator': ',',
+                          'autoGroup': true,
+                          'digits': 2,
+                          'radixPoint': ".",
+                          'digitsOptional': false,
+                          'allowMinus': false,
+                          'prefix': '',
+                          'placeholder': '0'
+                      }
+                   );
+        $("#bono_extra_input").inputmask('decimal',
+                      {
+                          'alias': 'numeric',
+                          'groupSeparator': ',',
+                          'autoGroup': true,
+                          'digits': 2,
+                          'radixPoint': ".",
+                          'digitsOptional': false,
+                          'allowMinus': false,
+                          'prefix': '',
+                          'placeholder': '0'
+                      }
+                   );
+
+        //Obtener los rangos de salario del puesto seleccionado
+        $('#dropdown_tipo_puesto').change(function () {
+            var id = $(this).val();
+            if (id != "") {
+                $.ajax({
+                    url: '@Url.Action("GetRangoSalario", "Empleado")',
+                    type: 'GET',
+                    data: { 'id_tipo_puesto': id },
+                    success: function (response) {
+                        $('#titulo_salario').text("[Rango: " + response.rango + "]");
+                    },
+                    error: function () {
+                        alert("Error en la conexión con el servidor. No se pudo obtener el salario del puesto.");
+                        $('#titulo_salario').text("");
+                    }
+                });
+            }
+            else {
+                $('#titulo_salario').text("");
+            }
+        });
+    });
+</script>

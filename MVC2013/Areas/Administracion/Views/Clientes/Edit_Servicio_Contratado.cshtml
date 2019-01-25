@@ -1,0 +1,114 @@
+﻿@model MVC2013.Models.Tipos_Servicios_Contratados
+
+@{
+    ViewBag.Title = Resources.Resources.clientes + "_" + Resources.Resources.editar;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar Cliente</h2>
+
+@using (Html.BeginForm("Edit_Servicio_Contratado", "Clientes", FormMethod.Post, new { @id = "contratoForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <hr />
+        <input type="hidden" name="id_tipo_servicio_contratado" value="@ViewBag.id" />
+        <div class="panel panel-primary">
+            <div class="panel-heading bg-blue">Informacion de Contrato de Agente</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Tipo de Agente</label>
+                            <div class="col-md-12">
+                                @Html.DropDownList("id_tipo_servicio", null, "----", htmlAttributes: new { @class = "form-control", @requierd = "required" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Cantidad a Solicitar</label>
+                            <div class="col-md-12">
+                                
+                               @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Costo por Unidad</label>
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.cost_unitario, new { htmlAttributes = new { @class = "form-control", required = "required", @id = "costo" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Venta por Unidad</label>
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.precio_venta_unitario, new { htmlAttributes = new { @class = "form-control", required = "required", @id = "precio"} })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Fecha de Inicio de Contratacion</label>
+                            <div class="col-md-12">
+                                <div style="position:relative">
+                                    @Html.TextBox("fecha_inicio", Model.fecha_inicio.ToShortDateString(), new { @class = "form-control data-val-ignore", required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Fecha de Fin de Contratacion</label>
+                            <div class="col-md-12">
+                                <div style="position:relative">
+                                   @Html.TextBox("fecha_fin", Model.fecha_fin.ToShortDateString(), new { @class = "form-control data-val-ignore", required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button class="btn btn-success btn-sm" type="submit">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+}
+
+<div class="form-group">
+    <button class="btn-sm btn-bitbucket" onclick="location.href = '@Url.Action("Details_U", new { id_ubicacion  = Model.Servicios_Contratados.id_ubicacion})'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar a Detalles de Ubicacion
+    </button>
+</div>
+<script>
+    $(function () {
+        $('#fecha_fin, #fecha_inicio').datetimepicker(
+                {
+                    viewMode: 'days',
+                    format: 'DD/MM/YYYY',
+                });
+        $('#precio').val($('#precio').val().replace(",", "."));
+        $('#costo').val($('#costo').val().replace(",", "."));
+        $("#contratoForm").data("validator").settings.ignore = ".data-val-ignore, :hidden, :disabled";
+    });
+
+    $('#focus').focus();
+</script>

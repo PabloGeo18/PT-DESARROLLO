@@ -1,0 +1,253 @@
+﻿@model MVC2013.Models.Clientes
+
+@{
+    ViewBag.Title = Resources.Resources.clientes + "_" + Resources.Resources.detalle;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles de Razon Social</h2>
+<div class="panel panel-info">
+    <div class="panel-heading bg-light-blue-active">Informacion Cliente</div>
+    <div class="panel-body">
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    Nombre Cliente
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.nombre)
+                </dd>
+                <dt>
+                    Tipo de Cliente
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Tipo_Cliente.nombre)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Details", new { id = Model.id_cliente})'">
+                <span class="glyphicon glyphicon-backward"></span>&nbsp;Regreas a Detalle del Cliente
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<hr />
+<div class="panel panel-danger">
+    <div class="panel-heading bg-red">Razones Sociales</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Nombre Comercial
+                    </dt>
+                    <dd>
+                        @ViewBag.Nombre_Comercial
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Nit
+                    </dt>
+                    <dd>
+                        @ViewBag.Nit
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Direccion Fisica
+                    </dt>
+                    <dd>
+                        @ViewBag.Direccion_Fisica
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Municipio
+                    </dt>
+                    <dd>
+                        @ViewBag.Municipio_Fisica
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Direccion Facturacion
+                    </dt>
+                    <dd>
+                        @ViewBag.Direccion_Facturacion
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Municipio
+                    </dt>
+                    <dd>
+                        @ViewBag.Municipio_Facturacion
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Direccion Fiscal
+                    </dt>
+                    <dd>
+                        @ViewBag.Direccion_Fiscal
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Municipio
+                    </dt>
+                    <dd>
+                        @ViewBag.Municipio_Fiscal
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <label>Contactos</label>
+                <p>
+                    <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5">
+                        <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create_Contacto", new { id = @ViewBag.id_razon_social })'">
+                            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Contacto Nuevo
+                        </button>
+                        &nbsp;&nbsp;
+                        <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Asignar_Contacto", new { id = @ViewBag.id_razon_social })'">
+                            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Relacionar Contacto Existente
+                        </button>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3"></div>
+                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                        <button class="btn btn-primary btn-sm " onclick="location.href = '@Url.Action("Create_Factura", new { id_Razon_Social = @ViewBag.id_razon_social })'">
+                            <span class="glyphicon glyphicon-list"></span>&nbsp; Factura Ciclica
+                        </button>
+                        @*<button class="btn btn-primary btn-sm " onclick="location.href = '@Url.Action("Create_Factura_Eventual", new { id = @ViewBag.id_razon_social })'">
+                            <span class="glyphicon glyphicon-list"></span>&nbsp; Factura Eventual
+                        </button>*@
+                    </div>
+                </p>
+                <br />
+                <hr />
+                <table class="table-hover">
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            Puesto
+                        </th>
+                        <th>
+                            Acciones
+                        </th>
+                    </tr>
+                    @foreach (var item in @ViewBag.RS_Contacto)
+                    {
+                        <tr>
+                            <td>
+                                @item.id_razon_social_contacto
+                            </td>
+                            <td>
+                                @item.Contactos.nombre
+                            </td>
+                            <td>
+                                @item.Contactos.Contacto_Puesto.descripcion
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete_C", new { id = item.id_razon_social_contacto })'">
+                                    <span class="glyphicon glyphicon-trash"></span>&nbsp;   Eliminar relacion
+                                </button>
+
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create_Ubicacion", new { id_cliente = @ViewBag.id_cliente, id_RS = @ViewBag.id_razon_social })'">
+    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Ubicacion Nueva
+</button>
+<hr />
+<div class="panel panel-warning">
+    <div class="panel-heading bg-yellow-active">Ubicaciones</div>
+    <div class="panel-body">
+        <div>
+            <table class="table-hover">
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Direccion
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
+                </tr>
+                @foreach (var ubicacion in ViewBag.Ubicaciones)
+                {
+                    if (ubicacion.activo == true && ubicacion.eliminado == false)
+                    {
+                        <tr>
+                            <td>
+                                @ubicacion.id_ubicacion
+                            </td>
+                            <td>
+                                @ubicacion.direccion
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit_U", new {id_ubicacion = @ubicacion.id_ubicacion })'">
+                                    <span class="glyphicon glyphicon-edit"></span>&nbsp;Editar
+                                </button>
+                                <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details_U", new {id_ubicacion = ubicacion.id_ubicacion})'">
+                                    <span class="glyphicon glyphicon-search"></span>&nbsp;Detalles
+                                </button>
+
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>
+<p>
+    <div>
+        <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Index")'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar al listado de clientes
+        </button>
+    </div>
+
+</p>

@@ -1,0 +1,445 @@
+﻿@model IEnumerable<MVC2013.Models.Clientes>
+
+@{
+    ViewBag.Title = "Proceso de Facturas";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Facturacion de Contratos</h2>
+
+@using (Html.BeginForm("Procesar_Facturacion", "Procesos_Facturacion_Detalle", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading bg-purple">Seleccionar Informacion de Cliente</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                            <label class="">Clientes</label>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                            <label class="">Razon Social</label>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                            <label class="">Grupo Factura</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                            <div class="">
+                                @Html.DropDownList("id_clientes", null, "--Seleccione un Cliente--", htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                            <select class="form-control" id="id_razon_social" name="id_razon_social" required>
+                                <option>--Seleccione una Razon Social--</option>
+                            </select>
+                            
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                            <select class="form-control" id="id_grupo_factura" name="id_grupo_factura">
+                                <option>--Seleccione un Grupo de Factura--</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                            <button class="btn btn-success btn-sm btn_contratos_obtener form-control " id="btn_contratos_obtener" type="button">
+                                <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Buscar Contratos
+                            </button>
+                            <div id="msgRazon"><span class="label-info">Seleccione una razon social</span> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading bg-red">Detalle de Factura y Contratos</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <label class="">Serie</label>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <label class="">Correlativo Actual</label>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <label class="">Fecha de Factura(s)</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            @Html.DropDownList("id_serie_factura", null, "--Seleccione una Serie--", htmlAttributes: new { @class = "form-control", required = "required"})
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <text id="val_correlativo" style="font-size:xx-large">0</text>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <input type='text' class="form-control" required name="fecha_factura" id="fecha" />
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <table class="table-hover" id="listado_contratos"></table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-9 col-lg-offset-9 col-sm-offset-9 col-xs*offset-9">
+                            <h3 id="saldo_total"><label id="Factura_Total">Total:&nbsp;</label>&nbsp;Q 0.00</h3>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button class="btn btn-success btn-sm" type="submit" id="btn_guardar" name="tipo_factura" value="1">
+                                <span class="glyphicon glyphicon-save"></span>&nbsp;Generar Una Factura
+                            </button>
+                            <button class="btn btn-success btn-sm" type="submit" id="btn_guardar" name="tipo_factura" value="2">
+                                <span class="glyphicon glyphicon-save"></span>&nbsp;Generar Multiples Facturas
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+<script type="text/javascript">
+
+    $(document).on('click', '.btn_cliente_edit', function () {
+        var data = $(this).data("url");
+        console.log(data)
+        window.open(data);
+    });
+
+    $(function () {
+        $('#fecha').datetimepicker(
+                {
+                    viewMode: 'days',
+                    format: 'DD/MM/YYYY',
+                });
+    });
+
+
+    $(function () {
+        $('#msgRazon').hide();
+        $('#btn_contratos_obtener').hide();
+    });
+
+    $("#id_serie_factura").change(function () {
+        var id_serie = $("#id_serie_factura").val();
+        if (id_serie != "") {
+
+            $.ajax({
+                url: '@Url.Action("Obtener_Serie_Correlativo", "Procesos_Facturacion_Detalle")',
+                type: "GET",
+                data: { 'id': id_serie },
+                datatype: JSON,
+                error: function () {
+                    target = $("#val_correlativo");
+                    target.html("0")
+                },
+                success: function (response) {
+                    target = $("#val_correlativo");
+                    target.html(response)
+                }
+            });
+        }
+        else {
+            target = $("#val_correlativo");
+            target.html("0")
+        }
+    });
+
+
+    $("#id_clientes").change(function () {
+        var id_cliente = $("#id_clientes").val();
+        if (id_cliente != "") {
+
+            $.ajax({
+                url: '@Url.Action("Obtener_Razones_Sociales", "Procesos_Facturacion_Detalle")',
+                type: "GET",
+                data: { 'id': id_cliente },
+                datatype: JSON,
+                error: function () {
+                    target = $("#id_razon_social");
+                    target.html("<option value>--Seleccione una Razon Social--</option>")
+                },
+                success: function (response) {
+                    target = $("#id_razon_social");
+                    target.html("<option value>--Seleccione una Razon Social--</option>")
+                    $.each(response, function ($in, item) {
+                        target.append(
+                                "<option value=\"" + item.id_razon_social + "\">" + item.nombre + "</option>"
+                            )
+                    });
+                }
+            });
+        }
+        else {
+            target = $("#id_razon_social");
+            target.html("<option value>--Seleccione una Razon Social--</option>")
+        }
+    });
+
+    $("#id_clientes").change(function () {
+        $("#btn_contratos_obtener").hide();
+        $('#msgRazon').show();
+        var id_cliente = $("#id_clientes").val();
+        $.ajax({
+            url: '@Url.Action("Obtener_Razones_Sociales", "Procesos_Facturacion_Detalle")',
+            type: "GET",
+            data: { 'id': id_cliente },
+            datatype: JSON,
+            error: function () {
+                target = $("#id_razon_social");
+                target.html("<option value>--No Existen Razones Sociales Disponibles--</option>")
+            },
+            success: function (response) {
+                target = $("#id_razon_social");
+                target.html("<option value>--Seleccione una Razon Social--</option>")
+                $.each(response, function ($in, item) {
+                    target.append(
+                            "<option value=\"" + item.id_razon_social + "\" dada-r=\"" + item.id_razon_social + "\">" + item.nombre + "</option>"
+                        )
+                });
+                target_listado = $("#listado_contratos");
+                target_listado.html(
+                    "<tr>" +
+                        "<th></th>" +
+                        "<th>" +
+                            "ID" +
+                        "</th>" +
+                        "<th>" +
+                            "Fecha Proceso" +
+                        "</th>" +
+                        "<th>" +
+                            "Ubicacion" +
+                        "</th>" +
+                        "<th>" +
+                            "Grupo Factura" +
+                        "</th>" +
+                        "<th>" +
+                            "Tipo Facturacion" +
+                        "</th>" +
+                        "<th>" +
+                            "Descripcion" +
+                        "</th>" +
+                        "<th>" +
+                            "Cantidad" +
+                        "</th>" +
+                        "<th>" +
+                            "Precio" +
+                        "</th>" +
+                        "<th>" +
+                            "Total" +
+                        "</th>" +
+                    "</tr>"
+                        );
+                selector_total = "#saldo_total";
+                target_total = $(selector_total);
+                target_total.html(
+                        "<label>Total:</label>&nbsp;Q0.00"
+                    );
+            }
+        });
+
+    });
+
+    $("#id_razon_social").change(function () {
+        $("#btn_contratos_obtener").show();
+        $('#msgRazon').hide();
+        var id_razon_social = $(this).val();
+        $.ajax({
+            url: '@Url.Action("Obtener_Grupos_Factura", "Procesos_Facturacion_Detalle")',
+            type: "GET",
+            data: { 'id': id_razon_social },
+            datatype: JSON,
+            error: function () {
+                target = $("#id_grupo_factura");
+                target.html("<option value>--No Existen Grupos Factura Disponible--</option>")
+            },
+            success: function (response) {
+                target = $("#id_grupo_factura");
+                target.html("<option value>--Seleccione un Grupo de Factura--</option>")
+                $.each(response, function ($in, item) {
+                    target.append(
+                            "<option value=\"" + item.id + "\" dada-gf=\"" + item.id + "\">" + item.nombre + "</option>"
+                        )
+                });
+                target_listado = $("#listado_contratos");
+                target_listado.html(
+                    "<tr>" +
+                        "<th></th>" +
+                        "<th>" +
+                            "ID" +
+                        "</th>" +
+                        "<th>" +
+                            "Fecha Proceso" +
+                        "</th>" +
+                        "<th>" +
+                            "Ubicacion" +
+                        "</th>" +
+                        "<th>" +
+                            "Grupo Factura" +
+                        "</th>" +
+                        "<th>" +
+                            "Tipo Facturacion" +
+                        "</th>" +
+                        "<th>" +
+                            "Descripcion" +
+                        "</th>" +
+                        "<th>" +
+                            "Cantidad" +
+                        "</th>" +
+                        "<th>" +
+                            "Precio" +
+                        "</th>" +
+                        "<th>" +
+                            "Total" +
+                        "</th>" +
+                    "</tr>"
+                        );
+                selector_total = "#saldo_total";
+                target_total = $(selector_total);
+                target_total.html(
+                        "<label>Total:</label>&nbsp;Q0.00"
+                    );
+            }
+        });
+    });
+
+    $(document).on('click', '.btn_contratos_obtener', function () {
+        var id_razon_social = $("#id_razon_social").val();
+        var id_cliente = $("#id_clientes").val();
+        var id_grupo_factura = $("#id_grupo_factura").val();
+        if (id_cliente != "" && id_razon_social != "") {
+            $.ajax({
+                url: '@Url.Action("Obtener_Contratos", "Procesos_Facturacion_Detalle")',
+                type: "GET",
+                data: { 'id_cliente': id_cliente, 'id_rs': id_razon_social, 'id_rzgf': id_grupo_factura },
+                datatype: JSON,
+                error: function () {
+                    target = $("#listado_contratos");
+                    target.html(
+                        "<tr>" +
+                            "<th></th>" +
+                            "<th>" +
+                                "ID" +
+                            "</th>" +
+                            "<th>" +
+                                "Fecha Proceso" +
+                            "</th>" +
+                            "<th>" +
+                                "Ubicacion" +
+                            "</th>" +
+                            "<th>" +
+                                "Grupo Factura" +
+                            "</th>" +
+                            "<th>" +
+                                "Tipo Facturacion" +
+                            "</th>" +
+                            "<th>" +
+                                "Descripcion" +
+                            "</th>" +
+                            "<th>" +
+                                "Cantidad" +
+                            "</th>" +
+                            "<th>" +
+                                "Precio" +
+                            "</th>" +
+                            "<th>" +
+                                "Total" +
+                            "</th>" +
+                        "</tr>"
+                            );
+                },
+                success: function (response) {
+                    target = $("#listado_contratos");
+                    target.html(
+                        "<tr>" +
+                            "<th></th>" +
+                            "<th>" +
+                                "ID" +
+                            "</th>" +
+                            "<th>" +
+                                "Fecha Proceso" +
+                            "</th>" +
+                            "<th>" +
+                                "Ubicacion" +
+                            "</th>" +
+                            "<th>" +
+                                "Grupo Factura" +
+                            "</th>" +
+                            "<th>" +
+                                "Tipo Facturacion" +
+                            "</th>" +
+                            "<th>" +
+                                "Descripcion" +
+                            "</th>" +
+                            "<th>" +
+                                "Cantidad" +
+                            "</th>" +
+                            "<th>" +
+                                "Precio" +
+                            "</th>" +
+                            "<th>" +
+                                "Total" +
+                            "</th>" +
+                        "</tr>"
+                            );
+                    $.each(response.resultados, function ($in, item) {
+                        target.append(
+                                "<tr>" +
+                                    "<td>" +
+                                        "<input type=\"checkbox\" class=\"check_select\"  id=\"check_todos\" name=\"check_todos\" value=\"" + item.id + "\"/>" +
+                                    "</td>" +
+                                    "<td>" +
+                                        item.id +
+                                    "</td>" +
+                                    "<td>" +
+                                        item.fecha +
+                                    "</td>" +
+                                    "<td>" +
+                                        item.ubicacion +
+                                    "</td>" +
+                                    "<td>" +
+                                        item.grupo_factura +
+                                    "</td>" +
+                                    "<td>" +
+                                        item.tipo_facturacion +
+                                    "</td>" +
+                                    "<td>" +
+                                        item.nombre +
+                                    "</td>" +
+                                    "<td>" +
+                                        item.cantidad +
+                                    "</td>" +
+                                    "<td>" +
+                                        item.precio +
+                                    "</td>" +
+                                    "<td>" +
+                                        item.total +
+                                    "</td>" +
+                                "</tr>"
+                            )
+                    });
+                    selector_total = "#saldo_total";
+                    target_total = $(selector_total);
+                    target_total.html(
+                            "<label>Total:</label>&nbsp;" + response.retornar_total
+                        );
+                }
+            });
+        }
+    });
+
+</script>

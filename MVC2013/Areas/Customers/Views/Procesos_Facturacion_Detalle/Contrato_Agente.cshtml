@@ -1,0 +1,251 @@
+﻿@model MVC2013.Models.Contratos_Servicios
+@using System.Globalization
+@{
+    ViewBag.Title = "Crear Empleados y Servicios";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+<h2>Contratar Agentes</h2>
+<h4>@ViewBag.Mes&nbsp;&nbsp;@ViewBag.Anio</h4>
+
+@using (Html.BeginForm("Contrato_Agente", "Procesos_Facturacion_Detalle", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="panel panel-default">
+        <div class="panel-heading bg-maroon-active">Nuevo Memorandum</div>
+        <input type="hidden" name="id_facturacion" value="@ViewBag.id" />
+        <div class="panel-body">
+            <div class="row">
+                <label class="col-md-4 col-lg-4 col-sm-4 col-xs-4">Clientes</label>
+
+                <label class="col-md-4 col-lg-4 col-sm-4 col-xs-4">Razon Social</label>
+
+                <label class="col-md-4 col-lg-4 col-sm-4 col-xs-4">Tipo de Contrato</label>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    @Html.DropDownList("id_cliente", null, "--Seleccione un Cliente--", htmlAttributes: new { @class = "form-control", required = "required" })
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <select class="form-control" id="id_razon_social" name="id_razon_social" required="required">
+                        <option>--Seleccione una Razon Social--</option>
+                    </select>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    @Html.DropDownList("id_cat_tipo_facturacion", null, "--Seleccione un Cliente--", htmlAttributes: new { @class = "form-control", required = "required" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <label class="col-md-4 col-lg-4 col-sm-4 col-xs-4">Memorandum de Ingreso</label>
+
+                <label class="col-md-4 col-lg-4 col-sm-4 col-xs-4">Solicitante</label>
+
+                <label class="col-md-4 col-lg-4 col-sm-4 col-xs-4">Observación</label>
+
+            </div>
+            <div class="row">
+
+                    <div class="form-group">
+                        <div class=" col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <input type="number" min="0" name="memorandum" required class="form-control" />
+                        </div>
+                        <div class=" col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <input type="text" name="solicitante" required class="form-control" />
+                        </div>
+                        <div class=" col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <input type="text" name="observacion" required class="form-control" />
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading bg-purple">Contrato Agente</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                        <label class="col-md-12">Tipo de Agente</label>
+                        <div class="col-md-12">
+                            @Html.DropDownList("id_cat_tipo_agente", null, "----", htmlAttributes: new { @class = "form-control", @requierd = "required" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                        <label class="col-md-12">Cantidad a Solicitar</label>
+                        <div class="col-md-12">
+                            <input type="number" min="0" name="cantidad" required class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                        <label class="col-md-12">Costo</label>
+                        <div class="col-md-12">
+                            <input type="number" step="any" min="0" name="costo" required class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                        <label class="col-md-12">Venta por Unidad</label>
+                        <div class="col-md-12">
+                            <input type="number" step="any" min="0" name="precio_venta_unitario" required class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                        <label class="col-md-12">Fecha de Inicio de Contratacion</label>
+                        <div class="col-md-12">
+                            <div style="position:relative">
+                                <input type='text' class="form-control fecha1" required name="fecha_inicio" id="fecha_inicio" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                        <label class="col-md-12">Fecha de Fin de Contratacion</label>
+                        <div class="col-md-12">
+                            <div style="position:relative">
+                                <input type='text' class="form-control fecha1" name="fecha_fin" id="fecha_fin" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                        <label class="col-md-12">Grupo Factura</label>
+                        <div class="col-md-12">
+                            <select class="form-control" id="id_razon_social_grupo_factura" name="id_razon_social_grupo_factura">
+                                <option>--Seleccione un Grupo de Factura--</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                        <label class="col-md-12">Ubicacion</label>
+                        <div class="col-md-12">
+                            <select class="form-control" id="id_ubicacion" required name="id_ubicacion">
+                                <option>--Seleccione una Ubicacion--</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="col-md-offset-2 col-md-10">
+        <button class="btn btn-success btn-sm" type="submit" id="btn_contratato_servicio_nuevo" name="btn_contratato_servicio_nuevo" value="0">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar Informacion
+        </button>
+    </div>
+    <hr />
+}
+
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Facturacion_Detalle", new { id = @ViewBag.id })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar a Detalles de la Razon Social
+    </button>
+</div>
+
+<script>
+
+    $(function () {
+        $('#fecha_inicio, #fecha_fin').datetimepicker(
+            {
+                viewMode: 'days',
+                format: 'DD/MM/YYYY',
+            });
+    });
+
+    $("#id_cliente").change(function () {
+        var id_cliente = $("#id_cliente").val();
+        $.ajax({
+            url: '@Url.Action("Obtener_Razones_Sociales", "Procesos_Facturacion_Detalle")',
+            type: "GET",
+            data: { 'id': id_cliente },
+            datatype: JSON,
+            error: function () {
+                target = $("#id_razon_social");
+                target.html("<option value>--No Existen Razones Sociales Disponibles--</option>")
+                target_ubicacion = $("#id_ubicacion");
+                target_ubicacion.html("<option value>--No Existen Ubicaciones--</option>")
+                target_grupo_factura = $("#id_razon_social_grupo_factura");
+                target_grupo_factura.html("<option value>--No Existen Grupos de Factura--</option>")
+            },
+            success: function (response) {
+                target = $("#id_razon_social");
+                target.html("<option value>--Seleccione una Razon Social--</option>")
+                $.each(response, function ($in, item) {
+                    target.append(
+                            "<option value=\"" + item.id_razon_social + "\" dada-r=\"" + item.id_razon_social + "\">" + item.nombre + "</option>"
+                        )
+                });
+                target_ubicacion = $("#id_ubicacion");
+                target_ubicacion.html("<option value>--Seleccione una Ubicación--</option>")
+                target_grupo_factura = $("#id_razon_social_grupo_factura");
+                target_grupo_factura.html("<option value>--Seleccione un Grupo de Factura--</option>")
+            }
+        });
+
+    });
+
+    $("#id_razon_social").change(function () {
+        var id_razon_social = $(this).val();
+        $.ajax({
+            url: '@Url.Action("Obtener_Grupos_Factura", "Procesos_Facturacion_Detalle")',
+            type: "GET",
+            data: { 'id': id_razon_social },
+            datatype: JSON,
+            error: function () {
+                target = $("#id_razon_social_grupo_factura");
+                target.html("<option value>--No Existen Grupos Factura Disponible--</option>")
+            },
+            success: function (response) {
+                target = $("#id_razon_social_grupo_factura");
+                target.html("<option value>--Seleccione un Grupo de Factura--</option>")
+                $.each(response, function ($in, item) {
+                    target.append(
+                            "<option value=\"" + item.id + "\" dada-gf=\"" + item.id + "\">" + item.nombre + "</option>"
+                        )
+                });
+            }
+        });
+        $.ajax({
+            url: '@Url.Action("Obtener_Ubicacion", "Procesos_Facturacion_Detalle")',
+            type: "GET",
+            data: { 'id': id_razon_social },
+            datatype: JSON,
+            error: function () {
+                target = $("#id_ubicacion");
+                target.html("<option value>--No Existen Ubicaciones--</option>")
+            },
+            success: function (response) {
+                target = $("#id_ubicacion");
+                target.html("<option value>--Seleccione una Ubicación--</option>")
+                $.each(response, function ($in, item) {
+                    target.append(
+                            "<option value=\"" + item.id + "\" dada-gf=\"" + item.id + "\">" + item.nombre + "</option>"
+                        )
+                });
+            }
+        });
+    });
+</script>

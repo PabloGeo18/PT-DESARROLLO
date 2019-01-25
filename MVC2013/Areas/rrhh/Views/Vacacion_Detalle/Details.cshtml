@@ -1,0 +1,382 @@
+﻿@model MVC2013.Models.Vacacion_Contrato
+@using System.Globalization;
+@{
+    ViewBag.Title = Resources.Resources.vacacion_detalle;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+    DateTimeFormatInfo mfi = new DateTimeFormatInfo();
+}
+
+<!--Modals-->
+<!--Confirmar Eliminación-->
+<div class="modal fade" id="confirm_delete" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-red">
+                @Resources.Resources.confirmacion
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                @Resources.Resources.confirmacion_eliminar
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger" id="btn_ok" data-id="">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Mensaje-->
+<div class="modal fade" id="mostrar_mensaje" data-backdrop="static" role="dialog">
+    <div style="left:auto" class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <label id="titulo">--</label>
+            </div>
+            <div class="modal-body">
+                <label id="mensaje">--</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Crear Detalle-->
+<div class="modal fade" id="modal_crear_detalle" data-backdrop="static" role="dialog">
+    <div style="left:auto" class="modal-dialog modal-lg">
+        <div class="modal-content">
+            @using (Html.BeginForm("Crear", "Vacacion_Detalle", FormMethod.Post))
+            {
+                <div class="modal-header bg-green">
+                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                    <label id="titulo">@Resources.Resources.ingresar_registro</label>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        @Html.HiddenFor(model => model.id_vacacion_contrato)
+                        <div class="col-lg-4 form-group">
+                            @Html.Label(Resources.Resources.fecha_inicio, new { @class = "control-label" })
+                            <div style="position:relative">
+                                <input type='text' name="fecha_inicio" required id="crear_fecha_inicio" class="form-control" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 form-group">
+                            @Html.Label(Resources.Resources.fecha_fin, new { @class = "control-label" })
+                            <div style="position:relative">
+                                <input type='text' name="fecha_fin"  required id="crear_fecha_fin" class="form-control" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 form-group">
+                            @Html.Label(Resources.Resources.cantidad_dias, new { @class = "control-label" })
+                            <div style="position:relative">
+                                <input type="number" min="1" id="crear_cantidad_dias" name="cantidad_dias" required autocomplete="off" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 form-group">
+                            @Html.Label(Resources.Resources.tipo_vacaciones, new { @class = "control-label" })
+                            <select id="crear_tipo_vacacion" required name="tipo_vacacion" class="form-control">
+                                <option value="false" selected>@Resources.Resources.tomada</option>
+                                <option value="true">@Resources.Resources.pagada</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4 form-group" hidden id="form_costo">
+                            <label id="label_costo" class="control-label">@Resources.Resources.costo</label>
+                            <input type="text" id="crear_costo" name="costo" required="" class="form-control"  />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-success" id="btn_crear" type="submit">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.crear
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Modal Editar el Detalle-->
+<div class="modal fade" id="modal_editar_detalle" data-backdrop="static" role="dialog">
+    <div style="left:auto" class="modal-dialog modal-lg">
+        <div class="modal-content">
+            @using (Html.BeginForm("Editar", "Vacacion_Detalle", FormMethod.Post))
+            {
+                <div class="modal-header bg-aqua">
+                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                    <label id="titulo">@Resources.Resources.editar</label>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" name="id_vacacion_detalle" id="edit_id"/>
+                        <div class="col-lg-4 form-group">
+                            @Html.Label(Resources.Resources.fecha_inicio, new { @class = "control-label" })
+                            <div style="position:relative">
+                                <input type='text' name="fecha_inicio" required disabled id="editar_fecha_inicio" class="form-control" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 form-group">
+                            @Html.Label(Resources.Resources.fecha_fin, new { @class = "control-label" })
+                            <div style="position:relative">
+                                <input type='text' name="fecha_fin" required  disabled id="editar_fecha_fin" class="form-control" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 form-group">
+                            @Html.Label(Resources.Resources.cantidad_dias, new { @class = "control-label" })
+                            <div style="position:relative">
+                                <input type="number" min="1" disabled id="editar_cantidad_dias" name="cantidad_dias" required autocomplete="off" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 form-group">
+                            @Html.Label(Resources.Resources.tipo_vacaciones, new { @class = "control-label" })
+                            <select id="editar_tipo_vacacion" required disabled name="tipo_vacacion" class="form-control">
+                                <option value="false">@Resources.Resources.tomada</option>
+                                <option value="true">@Resources.Resources.pagada</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4 form-group" hidden id="form_editar_costo">
+                            <label id="label_costo" class="control-label">@Resources.Resources.costo</label>
+                            <input type="text" id="editar_costo" disabled name="costo" required="" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary" id="btn_editar_desbloquear" type="button">
+                        <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                    </button>
+                    <button class="btn btn-sm btn-success" type="submit" id="btn_guardar" disabled>
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="alert alert-danger">
+            @Html.ValidationSummary(true, "", new { })
+        </div>
+    </div>
+}
+
+<!--Tabla-->
+<h2>@(Model.Contratacion.id_empleado + " - " + Model.Contratacion.Empleado.primer_nombre + " " + Model.Contratacion.Empleado.primer_apellido)</h2>
+<h4> @("Vacaciones   " + mfi.GetMonthName(Model.Contratacion.fecha_inicio.Month).Substring(0, 3) +
+"/" + Model.Periodo.año_inicial.Year + " - " + mfi.GetMonthName(Model.Contratacion.fecha_inicio.Month).Substring(0, 3) + "/"
++ Model.Periodo.año_final.Year)
+</h4>
+
+
+<hr />
+
+<div class="form-group">
+    <button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#modal_crear_detalle">
+        <span class="glyphicon glyphicon-briefcase"></span>&nbsp;@Resources.Resources.tomar_vacaciones
+    </button>
+    <button class="btn btn-sm btn-warning" type="button" onclick="location.href='@Url.Action("GetConstanciaGeneral", "Vacacion_Detalle", new { id = Model.id_vacacion_contrato })'">
+        <span class="glyphicon glyphicon-download"></span>&nbsp;Constancia de Vacaciones
+    </button>
+</div>
+<div class="table-responsive">
+    <table class="table-striped" id="tabla_detalle">
+        <thead>
+            <tr>
+                <th>@Resources.Resources.fecha_inicio</th>
+                <th>@Resources.Resources.fecha_fin</th>
+                <th>@Resources.Resources.cantidad_dias</th>
+                <th>@Resources.Resources.acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var detalle in Model.Vacacion_Detalle.Where(v => v.activo && !v.eliminado))
+            {
+                <tr id="t_@detalle.id_vacacion_detalle">
+                    <td>@detalle.fecha_inicio.ToString("dd/MM/yyyy")</td>
+                    <td>@detalle.fecha_fin.ToString("dd/MM/yyyy")</td>
+                    <td>@detalle.cantidad_dias</td>
+                    <td>
+                        <button type="button" class="btn-sm btn btn-warning" onclick="location.href='@Url.Action("GetConstanciaDetalle", "Vacacion_Detalle", new { id = detalle.id_vacacion_detalle })'">
+                            <span class="glyphicon glyphicon-download"></span>&nbsp;Descargar Constancia
+                        </button>
+                        <button class="btn btn-sm btn-info btn_editar" type="button" data-target="#modal_editar_detalle" data-toggle="modal"
+                                data-id="@detalle.id_vacacion_detalle" data-fecha_inicio="@detalle.fecha_inicio.ToString("dd/MM/yyyy")" data-fecha_fin="@detalle.fecha_fin.ToString("dd/MM/yyyy")"
+                                data-cantidad_dias="@detalle.cantidad_dias" data-tipo_vacacion="@detalle.tipo_vacacion" data-costo="@detalle.costo">
+                            <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                        </button>
+                        <button class="btn btn-sm btn-danger btn_delete" type="button" data-id="@detalle.id_vacacion_detalle" data-target="#confirm_delete" data-toggle="modal">
+                            <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" type="button" onclick="location.href='@Url.Action("Details", "Empleado", new { id = Model.Contratacion.id_empleado, error = "" })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.regresar
+    </button>
+</div>
+
+<script>
+    $(function () {
+
+        //Desbloquear componentes para editar la vacacion
+        $('#btn_editar_desbloquear').click(function () {
+            $('#modal_editar_detalle').find('input, textarea, select, #btn_guardar').prop('disabled', false);
+        });
+
+        //Cuando se cierra el modal para crear telefono
+        $('#modal_crear_detalle').on('hidden.bs.modal', function () {
+            $("#crear_fecha_inicio").val('');
+            $("#crear_fecha_fin").val('');
+            $("#crear_costo").val('');
+            $("#crear_cantidad_dias").val('');
+        });
+
+        //Cuando se cierra el modal para editar telefono
+        $('#modal_editar_detalle').on('hidden.bs.modal', function () {
+            $("#editar_fecha_inicio").prop('disabled', true);
+            $("#editar_fecha_fin").prop('disabled', true);
+            $("#editar_costo").prop('disabled', true);
+            $("#editar_tipo_vacacion").prop('disabled', true);
+            $("#editar_cantidad_dias").prop('disabled', true);
+            $("#btn_guardar").prop('disabled', true);
+        });
+
+        $('.btn_editar').click(function () {
+            var fecha_inicio = $(this).data('fecha_inicio');
+            var fecha_fin = $(this).data('fecha_fin');
+            var cantidad_dias = $(this).data('cantidad_dias');
+            var tipo_vacacion = $(this).data('tipo_vacacion');
+            var costo = $(this).data('costo');
+            var id = $(this).data('id');
+            
+            $('#editar_fecha_inicio').val(fecha_inicio);
+            $('#editar_fecha_fin').val(fecha_fin);
+            $('#editar_cantidad_dias').val(cantidad_dias);
+            if (tipo_vacacion == 'True') {
+                $('#editar_tipo_vacacion').val('true');
+                $('#editar_costo').prop('required', 'required');
+                $('#form_editar_costo').prop('hidden', false);
+            }
+            else {
+                $('#editar_tipo_vacacion').val('false');
+                $('#editar_costo').prop('required', '');
+                $('#form_editar_costo').prop('hidden', true);
+            }
+            $('#editar_costo').val(costo);
+            $('#edit_id').val(id);
+        });
+
+        //Mostrar u ocultar el costo segun el tipo de vacacion elegida
+        $('#crear_tipo_vacacion').change(function () {
+            $('#form_costo').toggle();
+            if($(this).val() == 'true') {
+                $('#crear_costo').prop('required', 'required');
+                alert("si");
+            }
+            else {
+                $('#crear_costo').prop('required', '');
+                alert("no")
+            }
+        });
+
+        //Mostrar u ocultar el costo segun el tipo de vacacion elegida
+        $('#editar_tipo_vacacion').change(function () {
+            $('#form_editar_costo').toggle();
+            if ($(this).val() == 'true') {
+                $('#editar_costo').prop('required', 'required');
+            }
+            else {
+                $('#editar_costo').prop('required', '');
+            }
+        });
+
+        $('#crear_fecha_inicio').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+
+        $('#crear_fecha_fin').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+
+        $('#editar_fecha_inicio').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+
+        $('#editar_fecha_fin').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+
+        //Transferir ID
+        $(document).on('click', '.btn_delete', function () {
+            var id = $(this).data('id');
+            $('#btn_ok').data('id', id);
+        });
+
+        //Eliminar detalle de vacaciones
+        $('#btn_ok').click(function () {
+            $('#confirm_delete').modal('hide');
+            var id = $(this).data('id');
+            
+            $.ajax({
+                url: '@Url.Action("Eliminar", "Vacacion_Detalle")',
+                type: "POST",
+                data: { 'id': id },
+                error: function () {
+                    alert("Error con la conexión con el servidor.");
+                },
+                success: function (response) {
+                    if (response.response == true) {
+                        $('#t_' + id.toString()).remove();
+                    }
+                    else {
+                        $('#mensaje').text(response.msg);
+                        $('#titulo').text("Error");
+                        $('#mostrar_mensaje').modal('show');
+                    }
+                }
+            });
+        });
+
+        $("#crear_costo").inputmask('decimal',
+                      {
+                          'alias': 'numeric',
+                          'groupSeparator': ',',
+                          'autoGroup': true,
+                          'digits': 2,
+                          'radixPoint': ".",
+                          'digitsOptional': false,
+                          'allowMinus': false,
+                          'prefix': '',
+                          'placeholder': '0'
+                      }
+                   );
+        $("#editar_costo").inputmask('decimal',
+                      {
+                          'alias': 'numeric',
+                          'groupSeparator': ',',
+                          'autoGroup': true,
+                          'digits': 2,
+                          'radixPoint': ".",
+                          'digitsOptional': false,
+                          'allowMinus': false,
+                          'prefix': '',
+                          'placeholder': '0'
+                      }
+                   );
+    });
+</script>

@@ -1,0 +1,114 @@
+﻿@model IEnumerable<MVC2013.Models.Reportes>
+
+@{
+    ViewBag.Title = "Consulta de Reportes - Inventario";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+
+    //MVC2013.Models.Reporte_Grupo reporteGrupo = ViewBag.grupos;
+
+    List<MVC2013.Models.Reporte_Grupo> reporteGrupo = (List<MVC2013.Models.Reporte_Grupo>)ViewBag.grupos;
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+
+<!--<div class="row">-->
+    <div class="col-lg-7 col-md-7">
+        <div class="panel-group accordion" id="accordion">
+    
+        @foreach (var grupo in reporteGrupo)
+        {
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" aria-expanded="true" data-parent="#accordion" href="#@grupo.id_reporte_grupo">@grupo.nombre</a>
+                            </h4>
+                        </div>
+                    </div>
+                    <div id="@grupo.id_reporte_grupo" class="panel-collapse collapse in" role="tabpanel">
+                        <div class="panel-body">
+                            <table class="table table-bordered table-striped table-hover">
+                                <tr>
+                                    <th>
+                                        Reporte
+                                    </th>
+                                    <th>
+                                        Descripcion
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    if (item.id_reporte_grupo == grupo.id_reporte_grupo)
+                                    {
+                                        string direccion = "";
+                                        string applicationPath ="";
+                                        if (Request.ApplicationPath != "" && Request.ApplicationPath != "/")
+                                        {
+                                                applicationPath = Request.ApplicationPath;
+                                            }else {
+                                                applicationPath = "";
+                                            }
+                                        direccion = string.Format(
+                                                    "{0}://{1}{2}{3}/Src/Rpt/Report.aspx?f={4}&r={5}",
+                                                    Request.Url.Scheme,
+                                                    Request.Url.Host,
+                                                    Request.Url.IsDefaultPort ? string.Empty : ":" + Request.Url.Port,
+                                                    applicationPath,
+                                                    item.Reporte_Carpeta.carpeta,
+                                                    item.reporte);
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.nombre)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.descripcion)
+                                            </td>
+                                            <td>
+                                                @* <a href="@item.url"
+                                                       type="submit"
+                                                       id="runReport"
+                                                       target="_blank"
+                                                       class="btn btn-primary">
+                                                        Ver Reporte
+                                                    </a>*@
+                                                <a href="@direccion"
+                                                   type="submit"
+                                                   id="runReport"
+                                                   target="_blank"
+                                                   class="btn btn-primary">
+                                                    Ver Reporte
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            
+        }
+            
+</div>
+    </div>
+    <!--</div>-->
+
+@section Scripts {
+    <script>
+    $(function () {
+        @foreach (var grupo in reporteGrupo)
+        {
+            <text>$("#@grupo.id_reporte_grupo").collapse({
+            toggle: false
+            });</text>
+        }
+    });
+    </script>
+}
+

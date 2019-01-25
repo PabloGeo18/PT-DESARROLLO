@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MVC2013.Models.Aplicaciones>
+
+@{
+    ViewBag.Title = @Resources.Resources.aplicacion_nombre + "_" + @Resources.Resources.lista;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+
+
+    <h2>@Resources.Resources.aplicacion_lista</h2>
+
+    <p>
+        @Html.ActionLink(@Resources.Resources.crear_nuevo, "Create")
+    </p>
+    <table class="zebra-striped">
+        <thead>
+        <th>
+            @Resources.Resources.aplicacion_nombre
+        </th>
+        <th>
+            @Resources.Resources.aplicacion_ruta
+        </th>
+        <th></th>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ruta)
+                </td>
+                <td>
+                    @Html.ActionLink(@Resources.Resources.editar, "Edit", new { id = item.id_aplicacion }) |
+                    @Html.ActionLink(@Resources.Resources.detalle, "Details", new { id = item.id_aplicacion }) |
+                    @Html.ActionLink(@Resources.Resources.eliminar, "Delete", new { id = item.id_aplicacion })
+                </td>
+            </tr>
+        }
+
+    </table>
+

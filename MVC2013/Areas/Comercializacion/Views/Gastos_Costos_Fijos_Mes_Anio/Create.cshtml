@@ -1,0 +1,241 @@
+﻿@model MVC2013.Models.Pt_Gastos_Costos_Fijos_Mes_Anio
+@using System.Globalization
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+    CultureInfo gt = new CultureInfo("es-GT");
+    List<MVC2013.Models.Pt_Gastos_Costos_Fijos_Mes_Anio> consumibles = ViewBag.cons;
+    List<MVC2013.Models.Pt_Gastos_Costos_Fijos_Mes_Anio> depreciables = ViewBag.depr;
+}
+<style>
+    /* The switch - the box around the slider */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            display: none;
+        }
+
+    /* The slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+</style>
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index", new { id = ViewBag.id})'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar
+    </button>
+</div>
+<h2>Ingresar Gastos</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <input hidden id="cgcf_ccfma_id" value="@ViewBag.id" />
+    <div class="form-group">
+        <label class="control-label col-md-2">¿Consumible?</label>
+        <div class="col-md-10">
+            <label class="switch">
+                <input type="checkbox" id="cgcf_consumible">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">¿Depreciable?</label>
+        <div class="col-md-10">
+            <label class="switch">
+                <input type="checkbox" id="cgcf_depreciable">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2 no-padding">Descripción</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.cgcf_descripcion, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+            @Html.ValidationMessageFor(model => model.cgcf_descripcion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Precio Unitario</label>
+        <div class="col-md-10" style="padding-right:0px">
+            @Html.EditorFor(model => model.cgcf_precio_unitario, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+            @Html.ValidationMessageFor(model => model.cgcf_precio_unitario, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Cantidad</label>
+        <div class="col-md-10" style="padding-right:0px">
+            @Html.EditorFor(model => model.cgcf_cantidad, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+            @Html.ValidationMessageFor(model => model.cgcf_cantidad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group" id="porcentaje">
+        <label class="control-label col-md-2">% Depre.</label>
+        <div class="col-md-10" style="padding-right:0px">
+            @Html.EditorFor(model => model.cgcf_porcentaje_depreciacion, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+            @Html.ValidationMessageFor(model => model.cgcf_porcentaje_depreciacion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="button" class="btn-success btn btn-sm" id="guardarGasto">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;Crear
+            </button>
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        $("#cgcf_consumible").change(function () {
+            if ($(this).prop("checked") == true) {
+                $('#cgcf_depreciable').attr('checked', false);
+                $("#porcentaje").hide();
+            }
+            if ($(this).prop("checked") == false) {
+                $('#cgcf_depreciable').attr('checked', true);
+                $("#porcentaje").show();
+                calcTotal();
+            }
+        });
+        $("#cgcf_depreciable").change(function () {
+            if ($(this).prop("checked") == true) {
+                $('#cgcf_consumible').attr('checked', false);
+                $("#porcentaje").show();
+            }
+            if ($(this).prop("checked") == false) {
+                $('#cgcf_consumible').attr('checked', true);
+                $("#porcentaje").hide();
+                calcTotal();
+            }
+        });
+        $("#guardarGasto").click(function () {
+            if ($('#cgcf_consumible').is(":checked")) {
+                cgcf_consumible = true;
+            } else {
+                cgcf_consumible = false;
+            }
+            if ($('#cgcf_depreciable').is(":checked")) {
+                cgcf_depreciable = true;
+            } else {
+                cgcf_depreciable = false;
+            }
+            cgcf_cantidad = $("#cgcf_cantidad").val();
+            cgcf_descripcion = $("#cgcf_descripcion").val();
+            cgcf_precio_unitario = $("#cgcf_precio_unitario").val();
+            cgcf_ccfma_id = $("#cgcf_ccfma_id").val();
+            cgcf_porcentaje_depreciacion = $("#cgcf_porcentaje_depreciacion").val();
+            if (cgcf_consumible == true) {
+                $.ajax({
+                    url: '@Url.Action("CreateGastos")',
+                    data: { cgcf_descripcion, cgcf_precio_unitario, cgcf_consumible, cgcf_depreciable, cgcf_ccfma_id, cgcf_cantidad },
+                    type: "POST",
+                    success: function (data, status) {
+                        window.location.reload();
+                    },
+                    error: function () {
+                    }
+                });
+            }
+            if (cgcf_depreciable == true) {
+                $.ajax({
+                    url: '@Url.Action("CreateGastos")',
+                    data: { cgcf_descripcion, cgcf_precio_unitario, cgcf_consumible, cgcf_depreciable, cgcf_ccfma_id, cgcf_porcentaje_depreciacion, cgcf_cantidad },
+                    type: "POST",
+                    success: function (data, status) {
+                        window.location.reload();
+                    },
+                    error: function () {
+                    }
+                });
+            }
+        });
+        $('#cgcf_precio_unitario').keypress(function (event) {
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) &&
+                ((event.which < 48 || event.which > 57) &&
+                    (event.which != 0 && event.which != 8))) {
+                event.preventDefault();
+            }
+
+            var text = $(this).val();
+
+            if ((text.indexOf('.') != -1) &&
+                (text.substring(text.indexOf('.')).length > 2) &&
+                (event.which != 0 && event.which != 8) &&
+                ($(this)[0].selectionStart >= text.length - 2)) {
+                event.preventDefault();
+            }
+        });
+        $('#cgcf_porcentaje_depreciacion').keypress(function (event) {
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) &&
+                ((event.which < 48 || event.which > 57) &&
+                    (event.which != 0 && event.which != 8))) {
+                event.preventDefault();
+            }
+
+            var text = $(this).val();
+
+            if ((text.indexOf('.') != -1) &&
+                (text.substring(text.indexOf('.')).length > 5) &&
+                (event.which != 0 && event.which != 8) &&
+                ($(this)[0].selectionStart >= text.length - 5)) {
+                event.preventDefault();
+            }
+        });
+    </script>
+}

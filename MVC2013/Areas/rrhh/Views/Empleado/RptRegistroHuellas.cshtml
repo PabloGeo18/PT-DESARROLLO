@@ -1,0 +1,143 @@
+﻿@model MVC2013.Models.rpt_Contrato_Result
+
+@{
+    Layout = null;
+    MVC2013.Models.AppEntities db = new MVC2013.Models.AppEntities();
+    MVC2013.Models.Empleado empleado = db.Empleado.Find(Model.id_empleado);
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Contratos.css")">*@
+    <title>Registro de Huellas</title>
+    <style type="text/css">
+        body {
+            font-size: 16pt;
+        }
+
+        .datos_representante {
+            text-decoration: underline;
+            font-size: 14pt;
+        }
+
+        .datos_empleado {
+            text-decoration: underline;
+            font-size: 14pt;
+        }
+
+
+        .datos_contrato {
+            font-size: 16pt;
+            text-decoration: underline;
+        }
+
+        .cursiva {
+            font-style: italic;
+        }
+
+        .negrita {
+            font-weight: bold;
+        }
+
+        .subrayado {
+            text-decoration: underline;
+        }
+
+        .datos_referencia {
+            font-size: 10pt;
+        }
+
+        .justificado {
+            text-align: justify;
+        }
+
+        .derecha {
+            text-align: right;
+        }
+
+        .izquierda {
+            text-align: left;
+        }
+
+        .centrado {
+            text-align: center;
+        }
+
+        .page {
+            margin-top: 100px;
+            margin-left: 100px;
+            margin-right: 100px;
+            margin-bottom: 100px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="page">
+        <div class="derecha">Código No. @Model.id_empleado </div>
+        <br />
+        <br />
+        <div class="centrado subrayado">REGISTRO DE HUELLAS DIGITALES</div>
+        <br />
+        <div class="justificado">
+            <b>Nombre: </b>@Model.empleado_nombre <b>Código: </b> @Model.id_empleado <br />
+            <b>No. De Indentificación: </b>@Model.dpi <b>Extendida en:</b> @Model.dpi_municipio
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="centrado">MANO IZQUIERDA</div>
+        <br />
+        <table class="table-striped" width="800" border="1">
+            <tr>
+                <th width="20%">MEÑIQUE</th>
+                <th width="20%">ANULAR</th>
+                <th width="20%">MEDIO</th>
+                <th width="20%">INDICE</th>
+                <th width="20%">PULGAR</th>
+            </tr>
+            <tr>
+                <td height="300px"></td>
+                <td height="300px"></td>
+                <td height="300px"></td>
+                <td height="300px"></td>
+                <td height="300px"></td>
+            </tr>
+        </table>
+        <br />
+        <br />
+        <br />
+        <div class="centrado">MANO DERECHA</div>
+        <br />
+        <table class="table-striped" width="800" border="1">
+            <tr>
+                <th width="20%">PULGAR</th>
+                <th width="20%">INDICE</th>
+                <th width="20%">MEDIO</th>
+                <th width="20%">ANULAR</th>
+                <th width="20%">MEÑIQUE</th>
+            </tr>
+            <tr>
+                <td height="300px"></td>
+                <td height="300px"></td>
+                <td height="300px"></td>
+                <td height="300px"></td>
+                <td height="300px"></td>
+            </tr>
+        </table>
+        <br />
+        <br />
+        NOMBRE: _________________________________________ <br />
+        <br />
+        NO. DE INDENTIFICACIÓN: _________________________________________
+        <br /><br />
+        <div class="derecha">
+            FIRMA: ________________________________________
+        </div>
+    </div>
+</body>
+</html>

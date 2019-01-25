@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = @Resources.Resources.aplicacion_nombre + "_" + @Resources.Resources.lista;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="table-responsive">
+    <table class="table-striped">
+        <tbody>
+            @foreach(var controlador in ViewBag.controllers)
+            {
+                <tr>
+                    <td>@controlador</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

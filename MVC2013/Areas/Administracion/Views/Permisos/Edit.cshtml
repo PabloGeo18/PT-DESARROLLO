@@ -1,0 +1,132 @@
+﻿@{
+    MVC2013.Models.Aplicaciones aplicacion = ViewBag.aplicacion;
+    ViewBag.Title = "Editar permisos - " + aplicacion.nombre;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <button class="btn-xs btn-bitbucket" onclick="location.href='@Url.Action("Index")'">
+            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;@Resources.Resources.regresar
+        </button>
+        <h2>@ViewBag.Title</h2>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Opciones</h4>
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm())
+                    {
+
+                        <div class="form-group">
+                            @Html.Label("id_rol", Resources.Resources.administracion_menu_roles, new { @class = "control-label" })
+                            @Html.DropDownList("id_rol", (IEnumerable<SelectListItem>)ViewBag.roles, new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" style="display: block">Aplicacion</label>
+                            <button type="button" class="btn btn-sm btn-success" onclick="if(confirm('Deseas agregar todos los permisos de la aplicacion @aplicacion.nombre a este rol?')){location.href='@Url.Action("AddAllByApp", new { idAplicacion = aplicacion.id_aplicacion })&id_rol='+($('#id_rol').val()?$('#id_rol').val():0)}">
+                                <span class="glyphicon glyphicon-ok"></span>&nbsp;Agregar todos a rol
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="if(confirm('Deseas quitar todos los permisos de la aplicacion @aplicacion.nombre a este rol?')){location.href='@Url.Action("RemoveAllByApp", new { idAplicacion = aplicacion.id_aplicacion })&id_rol='+($('#id_rol').val()?$('#id_rol').val():0)}">
+                                <span class="glyphicon glyphicon-remove"></span>&nbsp;Quitar todos a rol
+                            </button>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("id_controlador", Resources.Resources.administracion_menu_controladores, new { @class = "control-label" })
+                            @Html.DropDownList("id_controlador", (IEnumerable<SelectListItem>)ViewBag.controladores, new { @class = "form-control" })
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Permisos</h4>
+                </div>
+                <div class="panel-body">
+                    <button class="btn btn-sm btn-success" onclick="location.href='@Url.Action("AddAllByController")?idControlador='+($('#id_controlador').val()?$('#id_controlador').val():0)+'&id_rol='+($('#id_rol').val()?$('#id_rol').val():0)">
+                        <span class="glyphicon glyphicon-ok"></span>&nbsp;Agregar accesos a rol
+                    </button>
+                    <button class="btn btn-sm btn-danger" onclick="location.href='@Url.Action("RemoveAllByController")?idControlador='+($('#id_controlador').val()?$('#id_controlador').val():0)+'&id_rol='+($('#id_rol').val()?$('#id_rol').val():0)">
+                        <span class="glyphicon glyphicon-remove"></span>&nbsp;Quitar accesos a rol
+                    </button>
+                    <ul id="listado" class="list-group"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+
+            $("#id_controlador, #id_rol").change(function () {
+                controlador = $("#id_controlador").val();
+                rol = $("#id_rol").val();
+                if (controlador && rol) {
+                    list = "";
+                    $.ajax({
+                        type: "GET",
+                        url: "@Url.Action("GetAcciones")?idControlador=" + controlador + "&idRol=" + rol,
+                        error: function () {
+                            alert("Error al solicitar datos")
+                        },
+                        beforeSend: function () {
+                            $("#listado").html("");
+                        },
+                        success: function (response) {
+                            list = "";
+                            $.each(response, function ($in, accion) {
+                                item = "";
+                                clase = accion.tiene_acceso == 1 ? 'list-group-item-success' : 'list-group-item-danger';
+                                icono = accion.tiene_acceso == 1 ? 'glyphicon-ok' : 'glyphicon-remove';
+                                item += "<li style='cursor: pointer' data-id='" + accion.id + "' class='switchable list-group-item " + clase + "'>";
+                                item += accion.label + "<span class='pull-right glyphicon " + icono + "'><span>";
+                                item += "</li>";
+
+                                list += item;
+                            });
+                            $("#listado").html(list);
+                            $(".switchable").click(function () {
+                                controlador = $("#id_controlador").val();
+                                rol = $("#id_rol").val();
+                                accion = $(this).data("id");
+                                listItem = $(this);
+                                if (controlador && rol && accion) {
+
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: '@Url.Action("SwitchAccess")?idControlador=' + controlador + '&idRol=' + rol + '&idAccion=' + accion,
+                                        error: function () {
+                                            alert("Error al cambiar");
+                                        },
+                                        success: function (response) {
+                                            if (response.resultado == 1) {
+                                                if (listItem.hasClass("list-group-item-success")) {
+                                                    listItem.removeClass("list-group-item-success").addClass("list-group-item-danger");
+                                                    listItem.find('span.glyphicon').removeClass("glyphicon-ok").addClass("glyphicon-remove");
+                                                } else if (listItem.hasClass("list-group-item-danger")) {
+                                                    listItem.removeClass("list-group-item-danger").addClass("list-group-item-success");
+                                                    listItem.find('span.glyphicon').removeClass("glyphicon-remove").addClass("glyphicon-ok");
+                                                }
+                                            }
+                                            else {
+                                                alert("Imposible cambiar permiso");
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+            $("#id_controlador").change();
+        });
+    </script>
+}

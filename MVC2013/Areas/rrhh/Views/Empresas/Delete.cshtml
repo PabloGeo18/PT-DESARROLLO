@@ -1,0 +1,72 @@
+﻿@model MVC2013.Models.Empresa
+
+@{
+    ViewBag.Title = @Resources.Resources.empresa + "_" + @Resources.Resources.eliminar;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.empresa_eliminar</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-lg-6 col-sm-12 col-xs-12 col-md-6">
+            <dl class="dl-horizontal">
+                <dt>@Resources.Resources.empresa_nombre</dt>
+                <dd>@Html.DisplayFor(model => model.nombre)</dd>
+                <dt>Dirección</dt>
+                <dd>@Model.direccion</dd>
+                <dt>Municipio</dt>
+                <dd>@Model.Municipios.nombre</dd>
+                <dt>Teléfono</dt>
+                <dd>@Model.telefono</dd>
+                <dt>Contacto</dt>
+                <dd>@Model.contacto</dd>
+                <dt>Nit</dt>
+                <dd>@Model.nit</dd>
+                <dt>Encabezado de Boleta</dt>
+                <dd>@Model.encabezado_boleta</dd>
+                <dt>Centro de Trabajo</dt>
+                <dd>@Model.centro_trabajo</dd>
+            </dl>
+        </div>
+        <div class="col-lg-6 col-sm-12 col-xs-12 col-md-6">
+            <dl class="dl-horizontal">
+                <dt>Nombre Comercial</dt>
+                <dd>@Model.nombre_comercial</dd>
+                <dt>Zona</dt>
+                <dd>@Model.zona</dd>
+                <dt>País</dt>
+                <dd>@Model.Paises.nombre</dd>
+                <dt>Fax</dt>
+                <dd>@Model.fax</dd>
+                <dt>Correo</dt>
+                <dd>@Model.correo</dd>
+                <dt>Número Patronal</dt>
+                <dd>@Model.numero_patronal</dd>
+                <dt>Genera prestaciones</dt>
+                <dd>@(Model.prestaciones ? "Si" : "No")</dd>
+            </dl>
+        </div>
+    </div>
+
+    <dl class="dl-horizontal">
+        <dd>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="id" value="@Model.id_empresa" />
+                <button class="btn btn-danger btn-sm" type="submit">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            }
+        </dd>
+    </dl>
+
+</div>
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>

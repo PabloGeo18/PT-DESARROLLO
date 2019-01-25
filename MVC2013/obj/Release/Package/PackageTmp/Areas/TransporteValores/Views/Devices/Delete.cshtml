@@ -1,0 +1,40 @@
+﻿@model MVC2013.Models.Device
+
+@{
+    ViewBag.Title = ViewBag.Title = @Resources.Resources.device + "_" + @Resources.Resources.eliminar;
+    Layout = "~/Areas/TransporteValores/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewBag.Title = @Resources.Resources.device_eliminar</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>@Resources.Resources.device_serial</dt>
+        <dd>@Html.DisplayFor(model => model.numero_serial)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.device_ultimo_error</dt>
+        <dd>@Html.DisplayFor(model => model.ultimo_error)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.device_activo</dt>
+        <dd>@Html.DisplayFor(model => model.activo)</dd>
+    
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value=@Resources.Resources.eliminar class="btn btn-default" /> |
+            @Html.ActionLink(@Resources.Resources.listado_regresar, "Index")
+        </div>
+    }
+</div>

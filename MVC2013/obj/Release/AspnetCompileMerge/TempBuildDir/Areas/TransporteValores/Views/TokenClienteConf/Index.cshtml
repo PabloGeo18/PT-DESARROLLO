@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MVC2013.Models.Token_Cliente_Conf>
+
+@{
+    ViewBag.Title = @Resources.Resources.token_cliente_conf + "_" + Resources.Resources.lista;
+    Layout = "~/Areas/TransporteValores/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.token_cliente_conf_lista</h2>
+
+<p>
+    @Html.ActionLink(@Resources.Resources.crear_nuevo, "Create")
+</p>
+<table class="zebra-striped">
+    <thead>
+        <th>@Resources.Resources.cliente</th>
+        <th>@Resources.Resources.activo</th>
+        <th>@Resources.Resources.autogenerar</th>
+        <th>@Resources.Resources.emails_notificacion</th>
+        <th>@Resources.Resources.acciones</th>
+    </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.Clientes.nombre)</td>
+        <td>@Html.DisplayFor(modelItem => item.activo)</td>
+        <td>@Html.DisplayFor(modelItem => item.autogenerar)</td>
+        <td>@Html.DisplayFor(modelItem => item.emails_notificacion)</td>
+        <td>
+            @Html.ActionLink(@Resources.Resources.editar, "Edit", new { id=item.id_token_cliente_conf }) |
+            @Html.ActionLink(@Resources.Resources.detalle, "Details", new { id=item.id_token_cliente_conf }) |
+            @Html.ActionLink(@Resources.Resources.eliminar, "Delete", new { id=item.id_token_cliente_conf })
+        </td>
+    </tr>
+}
+
+</table>

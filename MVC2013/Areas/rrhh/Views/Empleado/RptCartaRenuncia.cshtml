@@ -1,0 +1,127 @@
+﻿@model MVC2013.Models.rpt_Contrato_Result
+
+@{
+    Layout = null;
+    MVC2013.Models.AppEntities db = new MVC2013.Models.AppEntities();
+    MVC2013.Models.Empleado empleado = db.Empleado.Find(Model.id_empleado);
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Contratos.css")">*@
+    <title>Carta de Renuncia</title>
+    <style type="text/css">
+        body {
+            font-size: 14pt;
+        }
+
+        .datos_representante {
+            text-decoration: underline;
+            font-size: 14pt;
+        }
+
+        .datos_empleado {
+            text-decoration: underline;
+            font-size: 14pt;
+        }
+
+
+        .datos_contrato {
+            font-size: 16pt;
+            text-decoration: underline;
+        }
+
+        .cursiva {
+            font-style: italic;
+        }
+
+        .negrita {
+            font-weight: bold;
+        }
+
+        .subrayado {
+            text-decoration: underline;
+        }
+
+        .datos_referencia {
+            font-size: 10pt;
+        }
+
+        .justificado {
+            text-align: justify;
+        }
+
+        .derecha {
+            text-align: right;
+        }
+
+        .izquierda {
+            text-align: left;
+        }
+
+        .centrado {
+            text-align: center;
+        }
+
+        .page {
+            margin-top: 100px;
+            margin-left: 100px;
+            margin-right: 100px;
+            margin-bottom: 100px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="page">
+        <div class="derecha">Código No. @Model.id_empleado </div>
+        <br />
+        <br />
+        <br />
+        <div class="derecha">
+            Guatemala,  ________ de ___________ del _____________
+        </div>
+        <div class="izquierda">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />Señores:
+            <br />PROTECCION TOTAL S.A.,
+            <br />Presentes.
+        </div>
+        <br />
+        <div class="justificado">
+            <br />
+            <br />
+            <br />
+            <br />
+            Por este medio deseo en forma VOLUNTARIA, presentar a ustedes mi RENUNCIA IRREVOCABLE, al puesto que venia desempeñando en la empresa PROTECCION TOTAL S.A., renuncia que será efectiva a partir del día _______________________________.
+            <br />Esta renuncia la presento por convenir a mis intereses personales, y aprovecho la oportunidad para agradecer a la empresa el tiempo que labore en ella.
+            <br />
+            <br />
+            <br />
+            <br />
+            Agradeciendo la atención,
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            F)______________________________________________
+            <br />@Model.empleado_nombre
+
+
+        </div>
+    </div>
+
+</body>
+</html>

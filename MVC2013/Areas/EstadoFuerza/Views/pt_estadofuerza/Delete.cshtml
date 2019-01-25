@@ -1,0 +1,82 @@
+﻿@model MVC2013.Models.pt_estadofuerza
+
+@{
+    ViewBag.Title = "Eliminacion de Registro";
+    Layout = "~/Areas/EstadoFuerza/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>¿Realmente desea Eliminar este Estado de fuerza?</h3>
+<div>
+    <h4>Estado de Fuerza</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Nombre Empleado
+        </dt>
+
+        <dd>
+            @ViewBag.NombreEmpleado
+        </dd>
+
+        <dt>
+            Estado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pt_situacion.nombre)
+        </dd>
+
+        <dt>
+            Ubicacion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pt_ubicacion.DIRECCION)
+        </dd>
+
+        <dt>
+            Tipo Servicio
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pt_tipo_ubicacion.DESCRIPCION)
+        </dd>
+
+        <dt>
+            Observaciones
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observaciones)
+        </dd>
+
+        <dt>
+            Fecha Modificacion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modificado_el)
+        </dd>
+
+        <dt>
+            Usuario Creacion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario_creacion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Regresar al listado", "Index", null, new { @class = "btn btn-primary " })
+        </div>
+    }
+</div>

@@ -1,0 +1,27 @@
+﻿@model MVC2013.Models.Pt_Tipo_Pagos
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+}
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+<h2>Detalles Tipo de Pago</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Descripción</dt>
+        <dd>@Html.DisplayFor(model => model.ctpa_descripcion)</dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dd>
+            <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = Model.ctpa_id })'">
+                <span class="glyphicon glyphicon-edit"></span>&nbsp;Editar
+            </button>
+        </dd>
+    </dl>
+</div>

@@ -1,0 +1,159 @@
+﻿@model MVC2013.Models.Estado_Fuerza
+@{
+    ViewBag.Title = "Estado_Fuerza - Proteccion Total";
+    Layout = "~/Areas/EstadoFuerza/Views/Shared/_Layout.cshtml";
+
+    int estados = ViewBag.estados;
+    int contratos = ViewBag.contratos;
+    int porcentaje = (estados * 100) / contratos;
+    
+}
+
+
+@if (Model != null) //Si existe un Estado de Fuerza activo
+{
+    <!--Confirmar la finalización del estado de Fuerza-->
+    <div class="modal fade" id="confirmar_estado_fuerza" data-backdrop="static" role="dialog">
+        <div style="left: auto;" class="modal-dialog modal-sm ">
+            <div class="modal-content">
+                @using (Html.BeginForm("FinalizarEstadoFuerza", "AdministracionEstadoFuerza", FormMethod.Post))
+                {
+                    <div class="modal-header bg-primary">
+                        @Resources.Resources.confirmacion
+                        <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                    </div>
+                    <div class="modal-body">
+                        @Html.HiddenFor(model => model.id_estado_fuerza)
+                        Está por finalizar el Estado de Fuerza ¿Desea continuar?
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-sm btn-primary" type="submit">
+                            <span class="glyphicon glyphicon-folder-close"></span>&nbsp;@Resources.Resources.finalizar
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <h2>Estado de Fuerza</h2>
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>Fecha</dt>
+        <dd>@Model.fecha.ToString("dd/MM/yyyy")</dd>
+        <dt>Fecha de Creación</dt>
+        <dd>@Model.fecha_creacion.ToString("dd/MM/yyyy")</dd>
+        <dt>Usuario Creador</dt>
+        <dd>@Model.Usuarios1.nombre_completo_usuario</dd>
+        <dt>Contratos Activos</dt>
+        <dd>@contratos</dd>
+        <dt>Registros Estado Fuerza</dt>
+        <dd>@estados</dd>
+        <dt>Completado</dt>
+        <dd>@porcentaje %</dd>
+    </dl>
+    <dl class="dl-horizontal">
+        @using (Html.BeginForm("Leer_Archivo", "AdministracionEstadoFuerza", FormMethod.Post, new { enctype = "multipart/form-data", id = "enviar_archivo_form" }))
+        {
+            <dt></dt>
+            <dd>
+                <input type="file" id="carga_estado" required name="file" accept="xls,.xlsx"/>
+                <input type="hidden" name="id" value="@Model.id_estado_fuerza"/>
+            </dd>
+            <dt>&nbsp;</dt>
+            <dd></dd>
+            <dt></dt>
+            <dd>
+                <button class="btn btn-sm btn-warning" id="archivo_submit" type="submit" data-loading-text="Cargando...">
+                    <span class="glyphicon glyphicon-upload"></span>&nbsp;Subir archivo
+                </button>
+            </dd>
+        }
+        <dt>&nbsp;</dt>
+        <dd>&nbsp;</dd>
+        <dt>&nbsp;</dt>
+        <dd>
+            <button class="btn btn-sm btn-info" type="button" onclick="location.href='@Url.Action("Index", "Estado_Fuerza_Detalle")'">
+                <span class="glyphicon glyphicon-list-alt"></span>&nbsp;Consulta de Estado de Fuerza
+            </button>
+        </dd>
+        <dt>&nbsp;</dt>
+        <dd>&nbsp;</dd>
+        <dt>&nbsp;</dt>
+        <dd>
+            <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#confirmar_estado_fuerza">
+                <span class="glyphicon glyphicon-book"></span>&nbsp;Finalizar Estado de Fuerza
+            </button>
+        </dd>
+    </dl>
+}
+else //No existe un Estado de Fuerza activo
+{
+    <h2>Crear Estado de Fuerza</h2>
+    <hr />
+    using (Html.BeginForm("CrearEstadoFuerza", "AdministracionEstadoFuerza", FormMethod.Post))
+    {
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.Label("Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div style="position:relative">
+                        <input type='text' required class="form-control" id="fecha_input" name="fecha" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
+                    </div>
+                    @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-sm btn-success" type="submit">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.crear
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<script>
+    $(function () {
+
+        $('#enviar_archivo_form').submit(function (event) {
+            $('#archivo_submit').button('loading');
+        });
+
+
+        $('#fecha_input').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+
+        //Subir archivo de excel
+        $('#archivo').on('change', function () {
+            var file = $(this).prop("files")[0];
+            var data = new FormData();
+            var id_encabezado = $(this).data('id_estado_fuerza');
+            data.append('file', file);
+            data.append('id', id_encabezado);
+            $.ajax({
+                url: '@Url.Action("Leer_Archivo", "AdministracionEstadoFuerza")',
+                type: "POST",
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                error: function () {
+                    alert("Error con la conexión con el servidor.");
+                },
+                success: function (response) {
+                    alert("Si");
+                }
+            });
+            $archivo = $('#archivo');
+            $archivo.replaceWith($archivo.clone(true));
+        });
+
+    });
+</script>
+
+

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MVC2013.Models.Solicitudes_Lote>
+
+@{
+    ViewBag.Title = @Resources.Resources.lote + "_" + @Resources.Resources.lista;
+    Layout = "~/Areas/TransporteValores/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.lote_lista</h2>
+
+
+<table class="zebra-detail">
+    <tr>
+        <th>@Resources.Resources.lote #</th>
+        <th>@Resources.Resources.nombre_archivo</th>
+        <th>@Resources.Resources.fecha_creacion</th>
+        <th>@Resources.Resources.filas_cantidad</th>
+        <th>@Resources.Resources.usuario_creacion</th>
+        <th>@Resources.Resources.procesado</th>
+        <th>@Resources.Resources.acciones</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.id_solicitud_lote)</td>
+        <td>@Html.DisplayFor(modelItem => item.nombre_archivo)</td>
+        <td>@Html.DisplayFor(modelItem => item.fecha_creacion)</td>
+        <td>@Html.DisplayFor(modelItem => item.filas)</td>       
+        <td>@Html.DisplayFor(modelItem => item.Usuarios.nombre_completo_usuario)</td>
+        <td>@Html.DisplayFor(modelItem => item.procesado)</td>
+        <td>@Html.ActionLink(@Resources.Resources.detalle, "Details", new { id=item.id_solicitud_lote })</td>
+    </tr>
+}
+
+</table>

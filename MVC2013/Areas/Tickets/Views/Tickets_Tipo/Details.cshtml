@@ -1,0 +1,32 @@
+﻿@model MVC2013.Models.Tickets_Tipo
+@using System.Globalization
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Tickets/Views/Shared/_Layout.cshtml";
+    CultureInfo gt = new CultureInfo("es-GT");
+}
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+<h2>Detalle de Tipo de Ticket</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Nombre</dt>
+        <dd>@Html.DisplayFor(model => model.nombre)</dd>
+        <dt>Valor</dt>
+        <dd>@Model.valor.ToString("c", gt)</dd>
+    </dl>
+</div>
+<p>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button class="btn btn-sm btn-bitbucket" onclick="location.href = '@Url.Action("Edit", new { id = Model.id_ticket_tipo })'">
+                <span class="glyphicon glyphicon-edit"></span> @Resources.Resources.editar
+            </button>
+        </div>
+    </div>
+</p>

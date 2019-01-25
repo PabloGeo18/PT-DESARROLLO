@@ -1,0 +1,390 @@
+﻿@model MVC2013.Areas.rrhh.Models.Capacitacion_Impartir
+
+@{
+    ViewBag.Title = @Resources.Resources.capacitacion_impartida + "_" + Resources.Resources.crear;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.capacitacion_crear_grupo</h2>
+
+<!--Agregar Curso-->
+<div class="modal fade" id="seleccionar_cursos" data-backdrop="static" role="dialog">
+    <div style="left: auto" class="modal-dialog modal-sm">
+        <div class="modal-content">
+            @using (Html.BeginForm())
+            {
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    @Resources.Resources.curso_nombre
+                </div>
+                <div class="modal-body">
+                    <div class="row form-group">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <select id="id_cursos" name="id_cursos" class="form-control" multiple size="5">
+                                @foreach (var curso in Model.cursos)
+                                {
+                                    <option value="@curso.id_curso">@curso.nombre </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <button type='button' class="btn-xs btn-primary" id='selectall'>@Resources.Resources.seleccionar_todo</button>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <button type='button' class="btn-xs btn-warning" id='deselectall'>@Resources.Resources.deshacer</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="agregar_curso" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.agregar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="row">
+        <div class="col-lg-4 form-group">
+            @Html.HiddenFor(model => model.id_academia)
+            @Html.Label(@Resources.Resources.fecha_inicio, htmlAttributes: new { @class = "control-label" })
+            <div style="position:relative">
+                <input type='text' name="fecha_inicio" id="id_fi" class="form-control" autocomplete="off" />
+            </div>
+        </div>
+        <div class="col-lg-4 form-group">
+            @Html.Label(@Resources.Resources.fecha_fin, htmlAttributes: new { @class = "control-label" })
+            <div style="position:relative">
+                <input type='text' name="fecha_fin" id="id_ff" class="form-control" autocomplete="off" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 form-group">
+            @Html.Label(@Resources.Resources.capacitacion_seleccionar, htmlAttributes: new { @class = "control-label" })
+            @Html.DropDownList("id_capacitacion", null, "-", htmlAttributes: new { @class = "form-control", @id = "capacitacion_opcion" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        @Resources.Resources.cursos_a_capacitar
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#seleccionar_cursos">
+                            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.agregar
+                        </button>
+                    </div>
+                    <div class="table-responsive" style="overflow-y:auto; max-height:300px">
+                        <table class="table-striped" id="lista_cursos"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        @Resources.Resources.empleado_lista
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>@Resources.Resources.empleado_codigo</label>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="input-group">
+                                    <input id="id_empleado" type="number" class="form-control" />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-secondary" id="seleccionar_empleado" data-loading-text="Buscando..." type="button">
+                                            <span class="glyphicon glyphicon-search"></span>&nbsp; @Resources.Resources.buscar
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <label style="color:red" id="error_busqueda"></label>
+                    </div>
+                    <div class="table-responsive" style="overflow-y:auto; max-height:500px">
+                        <table class="table-striped" id="tabla_empleados">
+                            <thead>
+                                <tr>
+                                    <th>@Resources.Resources.empleado_codigo</th>
+                                    <th>@Resources.Resources.empleado_nombres</th>
+                                    <th>@Resources.Resources.acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pager">
+    <button class="btn btn-success btn-sm" id="guardar_grupo">
+        <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+    </button>
+</div>
+
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index", "Capacitacion" , new { id = ViewBag.id_academia })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.regresar
+    </button>
+</div>
+
+
+<script>
+    $(function () {
+
+        //Eliminar empleado de la tabla
+        $(document).on('click', '.btn_remover_empleado', function () { // <-- changes
+            $(this).closest('tr').remove();
+        });
+
+        //Buscar y seleccionar empleado
+        $('#seleccionar_empleado').click(function(){
+            var btn = $(this);
+            $('#error_busqueda').text('');
+            var exist = false;
+            var id = $('#id_empleado').val();
+            if(id!="")
+            {
+                btn.button('loading');
+                $.ajax({
+                    url: '@Url.Action("ExisteEmpleado", "Capacitacion_Impartida")',
+                    type: 'post',
+                    data: { 'id_empleado': id },
+                    success: function (response) {
+                        if(response.error == false) //Se encontro el empleado
+                        {
+                            $('#tabla_empleados').find('tr').each(function (rowIndex, r) {
+                                if (id == $(this).find('td').first().text()) {
+                                    exist = true;
+                                }
+                            });
+                            //Si no existe dentro de la tabla, se agrega el curso
+                            if (!exist) {
+                                selector = "#tabla_empleados";
+                                target = $(selector);
+                                target.append("<tr><td>" + id + "</td><td>" + response.nombre + "</td><td><button class=\"btn btn-danger btn-sm btn_remover_empleado\" type=\"button\"><span class=\"glyphicon glyphicon-remove\"></span>&nbsp;@Resources.Resources.remover</button></td></tr>");
+                            }
+                            else{
+                                $('#error_busqueda').text('Empleado ya está seleccionado.');
+                            }
+                        }
+                        else {
+                            $('#error_busqueda').text('Empleado no encontrado.');
+                        }
+                        btn.button('reset');
+                        $('#id_empleado').val('');
+                    },
+                    error: function () {
+                        alert("Error en la conexión con el servidor. Proceso no completado.");
+                        btn.button('reset');
+                        $('#id_empleado').val('');
+                    }
+                });
+            }
+        });
+
+        //Guardar la nueva capacitación
+        $('#guardar_grupo').click(function () {
+            var fecha_inicio = $('#id_fi').val();
+            var fecha_fin = $('#id_ff').val();
+            var id_cursos = [];
+            var id_instructores = [];
+            $(lista_cursos).find('tr').each(function (rowIndex, r) {
+                id_cursos.push($(this).find('td').first().text());
+                id_instructores.push($(this).find('select').val());
+            });
+            var id_empleados = [];
+            var id_academia = @Model.id_academia;
+            $('#tabla_empleados').find('tr').each(function () {
+                var row = $(this);
+                /*if (row.find('input[type="checkbox"]').is(':checked'))
+                {
+                    id_empleados.push($(this).find('td').first().text());
+                }*/
+                id_empleados.push(row.find('td').first().text());
+            });
+            var error = "";
+            for (var i = 1; i < id_instructores.length; i++) {
+                if(id_instructores[i] == 0)
+                {
+                    error += "Asigne un instructor para cada curso. ";
+                    break;
+                }
+            }
+            if(id_empleados.length == 0)
+            {
+                error += "No se asignaron empleados a capacitar. ";
+            }
+            if(id_cursos.length == 1)
+            {
+                error += "No se asignaron cursos. ";
+            }
+            if(fecha_inicio == "")
+            {
+                error += "Ingresar fecha de inicio de capacitación. ";
+            }
+            if(fecha_fin == "")
+            {
+                error += "Ingresar fecha de fin de capacitación. ";
+            }
+            if(error == "")
+            {
+                $.ajax({
+                    url: '@Url.Action("GuardarGrupo", "Capacitacion_impartida")',
+                    type: 'post',
+                    data: { 'fecha_inicio': fecha_inicio, 'fecha_fin': fecha_fin, 'id_cursos': id_cursos, 'id_empleados': id_empleados, 'id_academia': @ViewBag.id_academia, 'id_instructores': id_instructores },
+                    success: function () {
+                        var url = '@Url.Action("Index", "Capacitacion", new { id = "id" })';
+                        window.location.href = url.replace('id', @ViewBag.id_academia);
+
+                    },
+                    error: function () { alert("Error almacenando el grupo. Datos no guardados."); }
+                });
+            }
+            else
+            {
+                alert(error);
+            }
+        });
+
+        //Aumentar o disminuir contador de empleados
+        $('.seleccionar').click(function () {
+            if ($(this).prop('checked')) {
+                var cont = $("#contador").text();
+                var num = +cont + 1;
+                $("#contador").text(num);
+            }
+            else {
+                var cont = $("#contador").text();
+                var num = +cont - 1;
+                $("#contador").text(num);
+            }
+        });
+
+        //Eliminar curso de la tabla
+        $(document).on('click', '.btn_remover_curso', function () { // <-- changes
+            $(this).closest('tr').remove();
+        });
+
+        //Agregar cursos a la tabla
+        $('#agregar_curso').click(function () {
+            $("#id_cursos option:selected").each(function () {
+                var codigo = this.value;
+                var exist = false;
+                var nombre = $(this).text();
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("GetInstructores")',
+                    error: function () {
+                        alert("Error al solicitar instructores.");
+                    },
+                    success: function (response) {
+                        $(lista_cursos).find('tr').each(function (rowIndex, r) {
+                            if (codigo == $(this).find('td').first().text()) {
+                                exist = true;
+                            }
+                        });
+                        //Si no existe dentro de la tabla, se agrega el curso
+                        if (!exist) {
+                            selector = "#lista_cursos";
+                            target = $(selector);
+                            target.append("<tr><td>" + codigo + "</td><td>" + nombre + "</td><td>" + response + "</td><td><button class=\"btn btn-danger btn-sm btn_remover_curso\" type=\"button\"><span class=\"glyphicon glyphicon-remove\"></span>&nbsp;@Resources.Resources.remover</button></td></tr>")
+                        }
+                    }
+                })
+            });
+            $('#seleccionar_cursos').modal('toggle');
+            $('select#id_cursos option').prop("selected", false);
+        });
+
+        //Seleccionar todos los cursos
+        $('#selectall').click(function () {
+            $('select#id_cursos option').prop("selected", true);
+        });
+
+        //De-seleccionar los cursos
+        $('#deselectall').click(function () {
+            $('select#id_cursos option').prop("selected", false);
+        });
+
+        //Mostrar cursos según categoria
+        $("#capacitacion_opcion").change(function () {
+            idCapacitacion = $(this).val();
+            if (idCapacitacion) {
+
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("GetCursos")?id_capacitacion=' + idCapacitacion,
+                    error: function () {
+                        alert("Error al solicitar capacitaciones.");
+                    },
+                    success: function (response) {
+                        selector = "#lista_cursos";
+                        target = $(selector);
+                        target.html("");
+                        options = "<thead><th>Código</th><th>Curso</th><th>Instructor</th><th>Acciones</th></thead>"
+                        $.each(response.curso, function ($in, item) {
+                            options += "<tr><td>" + item.id_curso + "</td><td>" + item.nombre + "</td><td>" + response.select_instructor + "</td><td></button><button class=\"btn btn-danger btn-sm btn_remover_curso\" type=\"button\"><span class=\"glyphicon glyphicon-remove\"></span>&nbsp;@Resources.Resources.remover</button></td></tr>"
+                        });
+                        target.html(options);
+                    }
+                })
+            }
+            else {
+                selector = "#lista_cursos";
+                target = $(selector);
+                target.html("<thead><th>Código</th><th>Curso</th><th>Instructor</th><th>Acciones</th></thead>");
+            }
+        }).change();
+
+        $('#id_ff').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+        $('#id_fi').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+
+        //Filtro de la tabla de empleados
+        $('#lista_empleados').filterByMultiColumn([
+            {
+                filterClass: 'c_id_empleado',
+                field: 'id_codigo_empleado'
+            },
+            {
+                filterClass: 'c_primer_apellido',
+                field: 'primer_apellido'
+            },
+            {
+                filterClass: 'c_segundo_apellido',
+                field: 'segundo_apellido'
+            },
+            {
+                filterClass: 'c_primer_nombre',
+                field: 'primer_nombre'
+            },
+            {
+                filterClass: 'c_segundo_nombre',
+                field: 'segundo_nombre'
+            }
+        ]);
+    });
+
+</script>

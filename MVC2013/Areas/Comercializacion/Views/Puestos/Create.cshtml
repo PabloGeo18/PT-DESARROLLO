@@ -1,0 +1,469 @@
+﻿@model MVC2013.Models.Pt_Puestos
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+}
+<style>
+    /* The switch - the box around the slider */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            display: none;
+        }
+
+    /* The slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+</style>
+<h2>Puesto</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*Descripción Puesto*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.cpue_descripcion, "Descripción", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cpue_descripcion, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.cpue_descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn-success btn btn-sm">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;Agregar Pagos e Insumos
+                </button>
+            </div>
+        </div>
+    </div>
+}
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar
+    </button>
+</div>
+@*<hr style="height:3px; border-style:solid;background-color:#222d32">
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Agregar pagos al puesto</h2>
+            @using (Html.BeginForm("Pagos_Puesto", "Create", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="salario form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Descripción</label>
+                        <div class="col-md-10">
+                            <input class="form-control" id="cppue_descripcion" name="cppue_descripcion" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Tipo de Pago</label>
+                        <div class="col-md-10">
+                            @Html.DropDownList("ctpa_id", (IEnumerable<SelectListItem>)ViewBag.tipoPago, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Monto</label>
+                        <div class="col-md-10">
+                            <input class="form-control" id="cppu_monto" name="cpsa_salario_base" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Es salario base</label>
+                        <div class="ol-md-10">
+                            <label class="switch">
+                                <input checked type="checkbox" class="form-control" id="cppu_salario_base">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group" id="cppu_porcentaje_calculo">
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Monto Total</label>
+                        <div class="col-md-10">
+                            <input class="form-control" id="cppu_monto_total" name="cppu_monto_total" onkeyup="calcTotal()" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-lg-6">
+            <div class="row">
+                <h2>Agregar Armas</h2>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Descripción</label>
+                            <div class="col-md-10">
+                                @Html.DropDownList("carm_id", (IEnumerable<SelectListItem>)ViewBag.armas, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group"><div class="col-md-10" id="arma"></div></div>
+                    </div>
+                }
+            </div>
+            <div class="row">
+                <h2>Agregar Artículos</h2>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <hr />
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Descripción</label>
+                            <div class="col-md-10">
+                                @Html.DropDownList("cins_id", (IEnumerable<SelectListItem>)ViewBag.insumos, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group"><div class="col-md-10" id="insumos"></div></div>
+                    </div>
+                }
+            </div>
+            <div class="row">
+                <h2>Agregar Uniformes</h2>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Descripción</label>
+                            <div class="col-md-10">
+                                @Html.DropDownList("cuni_id", (IEnumerable<SelectListItem>)ViewBag.uniformes, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group"><div class="col-md-10" id="uniformes"></div></div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn-success btn btn-lg" id="save">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;Crear
+        </button>
+        <button class="btn-bitbucket btn btn-lg" onclick="location.href = '@Url.Action("Index")'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar
+        </button>
+    </div>*@
+    @section Scripts {
+        <script type="text/javascript">
+        var armId = [];
+        var armDes = [];
+        var insId = [];
+        var insDes = [];
+        var uniId = [];
+        var uniDes = [];
+        var Id = new Array();
+        function puesto() {
+            var descripcionPuesto = document.getElementById('cpue_descripcion').value;
+            document.getElementById('cppue_descripcion').value = "Salario " + descripcionPuesto;
+        }
+        function calcTotal() {
+            var salarioBase = document.getElementById('cpsa_salario_base').value;
+            var bono14 = document.getElementById('cpsa_bono14').value;
+            var aguinaldo = document.getElementById('cpsa_aguinaldo').value;
+            var indemnizacion = document.getElementById('cpsa_indemnizacion').value;
+            var vacaciones = document.getElementById('cpsa_vacaciones').value;
+            var igssPatronal = document.getElementById('cpsa_igss_patronal').value;
+            var sum = parseFloat(salarioBase) + parseFloat(bono14) + parseFloat(aguinaldo) + parseFloat(indemnizacion) + parseFloat(vacaciones) + parseFloat(igssPatronal);
+            document.getElementById('cpsa_bono14').value = (Math.round((salarioBase * 0.0833) * 100) / 100).toFixed(2);
+            document.getElementById('cpsa_aguinaldo').value = (Math.round((salarioBase * 0.0833) * 100) / 100).toFixed(2);
+            document.getElementById('cpsa_indemnizacion').value = (Math.round((salarioBase * 0.0833) * 100) / 100).toFixed(2);
+            document.getElementById('cpsa_vacaciones').value = (Math.round((salarioBase * 0.0417) * 100) / 100).toFixed(2);
+            document.getElementById('cpsa_igss_patronal').value = (Math.round((salarioBase * 0.1267) * 100) / 100).toFixed(2);
+            document.getElementById('cpsa_total').value = (Math.round(sum * 100) / 100).toFixed(2);
+        }
+        function calcPasivoLab() {
+            var total = document.getElementById('cpsa_total').value;
+            var boniDecreto = document.getElementById('cpsa_boni_decreto').value;
+            var sum = + parseFloat(total) + parseFloat(boniDecreto);
+            document.getElementById('cpsa_pasivo_laboral').value = (Math.round(sum * 100) / 100).toFixed(2);
+        }
+        var borrarArmas = function (i) {
+            armDes.splice(i);
+            if (armDes.length > 0) {
+                verTablaArmas();
+            } else {
+                document.getElementById('arma').innerHTML = "";
+            }
+        }
+        var borrarInsumos = function (i) {
+            insDes.splice(i);
+            if (insDes.length > 0) {
+                verTablaInsumos();
+            } else {
+                document.getElementById('insumos').innerHTML = "";
+            }
+        }
+        var borrarUniformes = function (i) {
+            uniDes.splice(i);
+            if (uniDes.length > 0) {
+                verTablaUniformes();
+            } else {
+                document.getElementById('uniformes').innerHTML = "";
+            }
+        }
+        var verTablaArmas = function () {
+            var thead = $("#thead").val();
+            var arm = $("#arm").val();
+            if (armDes.length > 0) {
+                var tabla = "";
+                for (i = armDes.length-1; i < armDes.length; i++) {
+                    tabla += "<tr><td class='text-center'><p>" + armDes[i].Des + "</p></td>" +
+                        "<td class='text-center'><input class='text-center' id='cpin_cantidad' value='1'/></td><td class='text-center'>" +
+                        "<button onclick='agregarInsumos(" + armId[i].id + ")' class='btn btn-sm btn-success' type='button'><span class='glyphicon glyphicon-plus'></span></button>" +
+                        "<button type='button' onclick='borrarArmas(" + i + ")' class='btn btn-sm btn-danger'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
+                }
+                if (thead != undefined) {
+                    if (arm == 1) {
+                        document.getElementById('armaTemp').innerHTML = "";
+                        thead = "<tr><th class='text-center'>Insumo</th><th class='text-center'>Cantidad</th><th class='text-center'>Acciones</th></tr>";
+                        document.getElementById('thead').innerHTML = thead;
+                        document.getElementById('armaTemp').innerHTML = $('#armaTemp').html() + tabla;
+                    } else {
+                        thead = "<tr><th class='text-center'>Insumo</th><th class='text-center'>Cantidad</th><th class='text-center'>Acciones</th></tr>";
+                        document.getElementById('thead').innerHTML = thead;
+                        document.getElementById('armaTemp').innerHTML = $('#armaTemp').html() + tabla;
+                    }
+                } else if (thead == undefined) {
+                    document.getElementById('arma').innerHTML = $('#arma').html() + tabla;
+                }
+            }
+        }
+        var verTablaInsumos = function () {
+            var theadI = $("#theadI").val();
+            var ins = $("#in").val();
+            if (insDes.length > 0) {
+                var tabla = "";
+                for (i = insDes.length-1; i < insDes.length; i++) {
+                    tabla += "<tr><td class='text-center'><p>" + insDes[i].Des + "</p></td>" +
+                        "<td class='text-center'><input class='text-center' id='cpin_cantidad' value='1'/></td><td class='text-center'>" +
+                        "<button onclick='agregarInsumos(" + insId[i].id + ")' class='btn btn-sm btn-success' type='button'><span class='glyphicon glyphicon-plus'></span></button>" +
+                        "<button type='button' onclick='borrarArmas(" + i + ")' class='btn btn-sm btn-danger'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
+                }
+                if (theadI != undefined) {
+                    if (ins == 1) {
+                        document.getElementById('insumosTemp').innerHTML = "";
+                        theadI = "<tr><th class='text-center'>Insumo</th><th class='text-center'>Cantidad</th><th class='text-center'>Acciones</th></tr>";
+                        document.getElementById('theadI').innerHTML = theadI;
+                        document.getElementById('insumosTemp').innerHTML = $('#insumosTemp').html() + tabla;
+                    } else {
+                        theadI = "<tr><th class='text-center'>Insumo</th><th class='text-center'>Cantidad</th><th class='text-center'>Acciones</th></tr>";
+                        document.getElementById('theadI').innerHTML = theadI;
+                        document.getElementById('insumosTemp').innerHTML = $('#insumosTemp').html() + tabla;
+                    }
+                } else if (theadI == undefined) {
+                    document.getElementById('insumos').innerHTML = $('#insumos').html() + tabla;
+                }
+            }
+        }
+        var verTablaUniformes = function () {
+            var theadU = $("#theadU").val();
+            var na = $("#uni").val();
+            if (uniDes.length > 0) {
+                var tabla = "";
+                for (i = uniDes.length-1; i < uniDes.length; i++) {
+                    tabla += "<tr><td class='text-center'><p>" + uniDes[i].Des + "</p></td>" +
+                        "<td class='text-center'><input class='text-center' id='cpin_cantidad' value='1'/></td><td class='text-center'>" +
+                        "<button onclick='agregarInsumos(" + uniId[i].id + ")' class='btn btn-sm btn-success' type='button'><span class='glyphicon glyphicon-plus'></span></button>" +
+                        "<button type='button' onclick='borrarArmas(" + i + ")' class='btn btn-sm btn-danger'><span class='glyphicon glyphicon-remove'></span></button></td></tr>";
+                }
+                if (theadU != undefined) {
+                    if (na == 3) {
+                        document.getElementById('uniformesTemp').innerHTML = "";
+                        theadU = "<tr><th class='text-center'>Insumo</th><th class='text-center'>Cantidad</th><th class='text-center'>Acciones</th></tr>";
+                        document.getElementById('theadU').innerHTML = theadU;
+                        document.getElementById('uniformesTemp').innerHTML = $('#uniformesTemp').html() + tabla;
+                    } else {
+                        theadU = "<tr><th class='text-center'>Insumo</th><th class='text-center'>Cantidad</th><th class='text-center'>Acciones</th></tr>";
+                        document.getElementById('theadU').innerHTML = theadU;
+                        document.getElementById('uniformesTemp').innerHTML = $('#uniformesTemp').html() + tabla;
+                    }
+                } else if (theadU == undefined) {
+                    document.getElementById('uniformes').innerHTML = $('#uniformes').html() + tabla;
+                }
+            }
+        }
+            $("#cppu_salario_base").change(function () {
+            if ($(this).prop("checked") == false) {
+                var html = "<label class='control-label col-md-2'>Porcentaje de cálculo</label><div class='col-md-10'><input class='form-control' id='cppu_porcentaje_calculo' name='cppu_porcentaje_calculo' onkeyup='calcTotal()'/></div >";
+                document.getElementById('cppu_porcentaje_calculo').innerHTML = html;
+            } else {
+                document.getElementById('cppu_porcentaje_calculo').innerHTML = "";
+            }
+        });
+        $(document).ready(function () {
+            $("#carm_id").change(function () {
+                var id = $('option:selected', $(this)).val();
+                var Des = $('option:selected', $(this)).text();
+                armId.push({ id });
+                armDes.push({ Des });
+                verTablaArmas();
+                Id = armId;
+            });
+            $("#cins_id").change(function () {
+                var Id = $('option:selected', $(this)).val();
+                var Des = $('option:selected', $(this)).text();
+                insId.push({ Id });
+                insDes.push({ Des });
+                verTablaInsumos();
+            });
+            $("#cuni_id").change(function () {
+                var Id = $('option:selected', $(this)).val();
+                var Des = $('option:selected', $(this)).text();
+                uniId.push({ Id });
+                uniDes.push({ Des });
+                verTablaUniformes();
+            });
+        });
+
+        $(document).ready(function () {
+            $("#save").click(function () {
+                cpar_carm_id = $("#carm_id").val();
+                cpin_cins_id = $("#cins_id").val();
+                cpun_cins_id = $("#cuni_id").val();
+                cpue_descripcion = $("#cpue_descripcion").val();
+                cpsa_descripcion = $("#cpsa_descripcion").val();
+                cpsa_salario_base = $("#cpsa_salario_base").val();
+                cpsa_bono14 = $("#cpsa_bono14").val();
+                cpsa_aguinaldo = $("#cpsa_aguinaldo").val();
+                cpsa_indemnizacion = $("#cpsa_indemnizacion").val();
+                cpsa_vacaciones = $("#cpsa_vacaciones").val();
+                cpsa_igss_patronal = $("#cpsa_igss_patronal").val();
+                cpsa_total = $("#cpsa_total").val();
+                cpsa_boni_decreto = $("#cpsa_boni_decreto").val();
+                cpsa_pasivo_laboral = $("#cpsa_pasivo_laboral").val();
+                $.ajax({
+                    url: '@Url.Action("CrearPuestos")',
+                    data: {
+                        cpue_descripcion, cpsa_descripcion, cpsa_salario_base, cpsa_bono14,
+                        cpsa_aguinaldo, cpsa_indemnizacion, cpsa_vacaciones, cpsa_igss_patronal,
+                        cpsa_total, cpsa_boni_decreto, cpsa_pasivo_laboral, cpar_carm_id, cpin_cins_id, cpun_cins_id
+                    },
+                    type: "POST",
+                    success: function (data, status) {
+                        window.location.reload();
+                    },
+                    error: function () {
+                    }
+                });
+                $.ajax({
+                    url: '@Url.Action("CrearPuestoSalario")',
+                    data: { cpsa_descripcion, cpsa_salario_base, cpsa_bono14, cpsa_aguinaldo, cpsa_indemnizacion, cpsa_vacaciones, cpsa_igss_patronal, cpsa_total, cpsa_boni_decreto, cpsa_pasivo_laboral },
+                    type: "POST",
+                    success: function (data, status) {
+                        window.location.reload();
+                    },
+                    error: function () {
+                    }
+                });
+                $.ajax({
+                    url: '@Url.Action("CrearPuestoArmas")',
+                    dataType: "json",
+                    contextType: "application/json",
+                    data: { cpar_carm_id },
+                    type: "POST",
+                    success: function (data, status) {
+                        window.location.reload();
+                    },
+                    error: function () {
+                    }
+                });
+                $.ajax({
+                    url: '@Url.Action("CrearPuestoInsumos")',
+                    data: { cpin_cins_id },
+                    type: "POST",
+                    success: function (data, status) {
+                        window.location.reload();
+                    },
+                    error: function () {
+                    }
+                });
+                $.ajax({
+                    url: '@Url.Action("CrearPuestoUniformes")',
+                    data: { cpun_cuni_id },
+                    type: "POST",
+                    success: function (data, status) {
+                        window.location.reload();
+                    },
+                    error: function () {
+                    }
+                });
+            });
+        });
+        </script>
+    }

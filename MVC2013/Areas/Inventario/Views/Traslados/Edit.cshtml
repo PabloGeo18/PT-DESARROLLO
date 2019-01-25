@@ -1,0 +1,192 @@
+﻿@model MVC2013.Models.Traslados
+
+@using System.Globalization;
+@{
+    ViewBag.Title = "Editar - Retornos";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+    List<MVC2013.Models.Traslado_Detalle> traslado_detalle = ViewBag.test;
+}
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+
+<h2><u>Editar Retorno</u></h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_traslado)
+        <div>
+            <dl class="dl-horizontal">
+                <dt>Tipo de Traslado</dt>
+                <dd>@Html.DisplayFor(model => model.Traslado_Tipo.descripcion)</dd>
+                @if (Model.id_cliente_origen != null && Model.id_bodega_origen == null)
+                {
+                    <dt>Origen (Cliente)</dt>
+                    <dd>@Html.DisplayFor(model => model.Clientes.nombre)</dd>
+                    <dt>Destino (Armeria)</dt>
+                    <dd>@Html.DisplayFor(model => model.Bodegas.descripcion)</dd>
+                }
+                @if (Model.id_bodega_origen != null && Model.id_cliente_origen == null)
+                {
+                    <dt>Origen (Armeria)</dt>
+                    <dd>@Html.DisplayFor(model => model.Bodegas1.descripcion)</dd>
+                    <dt>Destino (Bodega Central)</dt>
+                    <dd>@Html.DisplayFor(model => model.Bodegas.descripcion)</dd>
+                }
+                <dt>Estado</dt>
+                <dd>@Html.DisplayFor(model => model.Traslado_Estado.descripcion)</dd>
+            </dl>
+        </div>
+    </div>
+}
+
+<hr style="height:3px; border-style:solid;background-color:#222d32">
+<!--Egreso Detalle-->
+<h2>Detalle del Retorno</h2>
+
+<p>
+@if (Model.id_cliente_origen != null && Model.id_bodega_origen == null)
+{
+    <button class="btn btn-xs btn-info" type="button" onclick="location.href='@Url.Action("move_arma", "Traslados", new { id = Model.id_traslado, cliente = Model.Clientes.id_cliente })'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.arma
+    </button>
+}
+else
+{
+    <button class="btn btn-xs btn-info" type="button" onclick="location.href='@Url.Action("move_arma", "Traslados", new { id = Model.id_traslado })'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.arma
+    </button>
+}
+    @*<button class="btn btn-xs btn-success" type="button" onclick="location.href='@Url.Action("move_articulo", "Traslados", new { id = Model.id_traslado })'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.articulo
+        </button>*@
+    @if (Model.id_cliente_origen != null && Model.id_bodega_origen == null)
+    {
+        <button class="btn btn-xs btn-info" type="button" onclick="location.href='@Url.Action("move_municiones", "Traslados", new { id_traslado = Model.id_traslado, id_cliente = Model.Clientes.id_cliente })'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.municion
+        </button>
+    }
+    else
+    {
+        <button class="btn btn-xs btn-info" type="button" onclick="location.href='@Url.Action("move_municiones", "Traslados", new { id_traslado = Model.id_traslado })'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.municion
+        </button>
+    }
+    
+    @*<button class="btn btn-xs btn-success" type="button" onclick="location.href='@Url.Action("move_uniformes", "Traslados", new { id_traslado = Model.id_traslado })'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.uniforme
+        </button>
+        <button class="btn btn-xs btn-success" type="button" onclick="location.href='@Url.Action("move_consumibles", "Traslados", new { id_traslado = Model.id_traslado })'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.consumible
+        </button>*@
+</p>
+
+
+<div class="table-responsive">
+    @if (traslado_detalle.Count() <= 0)
+    {
+        <table class="table table-striped table-bordered table-responsive">
+            <thead style="background-color:cadetblue"></thead>
+            <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+        </table>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead style="background-color:#969aa2">
+                <tr>
+                    <th class="text-center">@Resources.Resources.acciones</th>
+                    <th class="text-center">@Resources.Resources.tipo</th>
+                    <th class="text-center">@Resources.Resources.valor</th>
+                    <th class="text-center">@Resources.Resources.cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Traslado_Detalle in Model.Traslado_Detalle)
+                {
+                    if (Traslado_Detalle.activo && !Traslado_Detalle.eliminado)
+                    {
+                        <tr>
+                            <td class="text-center" width="15%">
+                                <button data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("del_detalle", new { id_traslado = Model.id_traslado, id_detalle = Traslado_Detalle.id_traslado_detalle })'">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                            @if (Traslado_Detalle.id_arma != null)
+                            {
+                                <td class="text-center">
+                                    @Resources.Resources.arma
+                                    <br>Tipo - @Traslado_Detalle.Armas.Arma_Tipo.descripcion
+                                    <br>Marca - @Traslado_Detalle.Armas.Marcas.descripcion
+                                    <br>Calibre - @Traslado_Detalle.Armas.Calibres.descripcion
+                                </td>
+                            }
+                            @if (Traslado_Detalle.id_articulo != null)
+                            {
+                                <td class="text-center">
+                                    @Resources.Resources.articulo
+                                    <br>Tipo - @Traslado_Detalle.Articulos.Articulo_Tipo.descripcion
+                                </td>
+                            }
+                            @if (Traslado_Detalle.id_consumible != null)
+                            {
+                                <td class="text-center">
+                                    @Resources.Resources.consumible
+                                    <br>@Traslado_Detalle.Consumibles.descripcion
+                                    <br>Tipo - @Traslado_Detalle.Consumibles.Consumible_Tipo.descripcion
+
+                                </td>
+                            }
+                            @if (Traslado_Detalle.id_uniforme != null)
+                            {
+                                <td class="text-center">
+                                    @Resources.Resources.uniforme
+                                    <br>@Traslado_Detalle.Uniformes.descripcion
+                                    <br>Tipo - @Traslado_Detalle.Uniformes.Uniforme_Tipo.descripcion
+                                    <br>Talla - @Traslado_Detalle.Uniformes.talla
+                                </td>
+                            }
+                            @if (Traslado_Detalle.id_municion != null)
+                            {
+                                <td class="text-center">
+                                    @Resources.Resources.municion
+                                    <br>@Traslado_Detalle.Municiones.descripcion
+                                    <br>Calibre - @Traslado_Detalle.Municiones.Calibres.descripcion
+                                </td>
+                            }
+                            <td class="text-center">@Convert.ToDecimal(Traslado_Detalle.valor).ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => Traslado_Detalle.cantidad)</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+</div>
+@*<div>
+    <button class="btn btn-success btn-sm" onclick="location.href='@Url.Action("end_detalle", new { id_traslado = Model.id_traslado })'">
+        <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.finalizar_traslado
+    </button>
+</div>*@
+@if (Model.Traslado_Detalle.Where(x => x.activo && !x.eliminado && x.id_traslado == Model.id_traslado).Count() <= 0)
+{
+    <div>
+        <button disabled class="btn btn-success btn-sm" onclick="location.href='@Url.Action("end_detalle", new { id_traslado = Model.id_traslado })'">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.finalizar_ingreso
+        </button>
+    </div>
+}
+else
+{
+    <div>
+        <button class="btn btn-success btn-sm" onclick="location.href='@Url.Action("end_detalle", new { id_traslado = Model.id_traslado })'">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.finalizar_ingreso
+        </button>
+    </div>
+}

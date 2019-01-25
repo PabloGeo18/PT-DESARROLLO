@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MVC2013.Models.Controladores>
+
+@{
+    ViewBag.Title = @Resources.Resources.controlador_nombre + "_" + @Resources.Resources.lista;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.controlador_lista</h2>
+
+<button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Create")'">
+    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+</button>
+
+<div class="table-responsive" style="max-height:400px; overflow-y:auto">
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Resources.Resources.controlador_nombre
+                </th>
+                <th>
+                    @Resources.Resources.controlador_aplicacion
+                </th>
+                <th>@Resources.Resources.acciones</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Aplicaciones.nombre)
+                    </td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.id_controlador })'">
+                            <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                        </button>
+                        <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.id_controlador })'">
+                            <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = item.id_controlador })'">
+                            <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

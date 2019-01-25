@@ -1,0 +1,115 @@
+﻿@model IEnumerable<MVC2013.Models.Tipo_Bono>
+
+@{
+    ViewBag.Title = Resources.Resources.lista + "_" + Resources.Resources.tipo_bono;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<!--Confirmar Eliminación-->
+<div class="modal fade" id="confirm_delete" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-red">
+                @Resources.Resources.confirmacion
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                @Resources.Resources.confirmacion_eliminar
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger" id="btn_ok" data-id="">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Mensaje-->
+<div class="modal fade" id="mostrar_mensaje" data-backdrop="static" role="dialog">
+    <div style="left: auto" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <label id="titulo">Prueba</label>
+            </div>
+            <div class="modal-body">
+                <label id="mensaje">Prueba</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<h2>@Resources.Resources.tipo_bono_lista</h2>
+
+<div>
+    <div class="form-group">
+        <button class="btn btn-success btn-sm" type="button" onclick="location.href='@Url.Action("Create")'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+        </button>
+    </div>
+    <div class="table-responsive">
+        <table class="table-striped" id="tabla_tipo_bono">
+            <thead>
+                <tr>
+                    <th>@Resources.Resources.codigo</th>
+                    <th>@Resources.Resources.tipo_bono_nombre</th>
+                    <th>@Resources.Resources.acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tipo_bono in Model)
+                {
+                    <tr id="t_@tipo_bono.id_tipo_bono">
+                        <td>@tipo_bono.id_tipo_bono</td>
+                        <td>@tipo_bono.nombre</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Edit", new { id = tipo_bono.id_tipo_bono })'">
+                                <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                            </button>
+                            <button class="btn btn-sm btn-danger btn_delete" data-toggle="modal" data-target="#confirm_delete" data-id="@tipo_bono.id_tipo_bono">
+                                <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+
+    $(function () {
+        //Transferir ID
+        $(document).on('click', '.btn_delete', function () {
+            $('#btn_ok').data('id', $(this).data('id'));
+        });
+
+        //Eliminar registro
+        $('#btn_ok').click(function () {
+            $('#confirm_delete').modal('toggle');
+            var id = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("Eliminar", "Tipo_Bono")',
+                type: "POST",
+                data: { 'id': id },
+                error: function () {
+                    alert("Error con la conexión con el servidor.");
+                },
+                success: function (response) {
+                    if (response.response == true) {
+                        $('#t_' + id.toString()).remove();
+                    }
+                    else {
+                        $('#mensaje').text(response.msg);
+                        $('#titulo').text("Error");
+                        $('#mostrar_mensaje').modal('show');
+                    }
+                }
+            });
+        });
+    });
+
+</script>

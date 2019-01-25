@@ -1,0 +1,186 @@
+﻿@model MVC2013.Models.Departamentos
+
+@{
+    ViewBag.Title = "Editar Departamento";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar Departamento</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="panel panel-default">
+        <div class="panel-heading bg-purple">Información del Departamento</div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id_departamento, new { @id = "id_departamento_hidden" })
+
+                <div class="form-group">
+                    @Html.Label(@Resources.Resources.departamentos_nombre, "Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" maxlength="100" name="nombre" value=@Model.nombre />
+                        @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label(@Resources.Resources.paises_nombre, "País", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("id_pais", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.id_pais, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button class="btn btn-success btn-sm" type="submit">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+}
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+
+
+<hr style="height:3px; border-style:solid;background-color:#222d32">
+
+<!-- MANTENIMIENTO DE municipios -->
+
+<h2>Mantenimiento de Municipios</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Listado de Municipios</div>
+    <div class="panel-body">
+        <p>
+            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModalMun" href="#">
+                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+            </button>
+
+            @*<a href="#" class="" data-toggle="modal" data-target="#myModalMun">
+                @Resources.Resources.crear_nuevo
+            </a>*@
+        </p>
+        <hr />
+
+        <table class="zebra-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>@Resources.Resources.municipios_nombre</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            @foreach (var municipio in Model.Municipios.Where(x => x.activo && !x.eliminado))
+            {
+                <tr>
+                    <td>@municipio.id_municipio</td>
+                    <td>@Html.DisplayFor(modelItem => municipio.nombre)</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm btn_eliminar_muni_dept" data-url="@Url.Action("RemoveDepMunicipio", new { idMunicipio = municipio.id_municipio, idDepartamento = Model.id_departamento })">
+                            <span class="glyphicon glyphicon-trash"></span>&nbsp;   @Resources.Resources.eliminar
+                        </button>
+
+                        @*@Html.ActionLink(@Resources.Resources.eliminar, "RemoveDepMunicipio", new { idMunicipio = municipio.id_municipio, idDepartamento = Model.id_departamento }, new { onclick = "return confirm('" + @Resources.Resources.confirmacion_eliminar + "');" })*@
+                    </td>
+                </tr>
+
+            }
+        </table>
+    </div>
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModalMun" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Ajax.BeginForm("CreateDepMunicipio", new AjaxOptions() { }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">@Resources.Resources.departamento_agregar_municipio</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">                     
+                        <div class="form-group">
+                            @Html.Label(@Resources.Resources.municipios_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBox("municipio", "", new { @id = "municipio_field", @class = "form-control text-box single-line" })
+                                <span class="text-danger field-validation-error" id="municipio-validacion" hidden="hidden">
+                                    <span>@Resources.Resources.municipios_error_requerido</span>
+                                </span>
+                            </div>
+                        </div>      
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_modal_close">@Resources.Resources.cerrar</button>
+                    <button type="button" class="btn btn-default" id="save_municipio_button">@Resources.Resources.guardar</button>
+                </div>
+            }
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+@section Scripts{
+<script type="text/javascript">
+
+    $(document).on('click', '.btn_eliminar_muni_dept', function () {
+        var r = confirm("¿Está seguro de eliminar el registro seleccionado?");
+        if (r == true) {
+            var data = $(this).data("url");
+            window.location.href = data;
+        }
+
+    });
+
+    $(document).ready(function () {
+        $("#save_municipio_button").click(function () {
+            municipio = $("#municipio_field").val().toUpperCase();
+            idDepartamento = $("#id_departamento_hidden").val();
+
+            if (municipio == null || municipio === "") {
+                $("#municipio-validacion").show();
+            }
+            else {
+                $("#municipio-validacion").hide();
+                    $.ajax({
+                        url: '@Url.Action("CreateDepMunicipio")' + "?idDepartamento=" + idDepartamento + "&municipio=" + municipio,
+                        type: "POST",
+                        success: function (data, status) {
+                            $("#btn-btn_modal_close").click();
+                            window.location.reload();
+                        },
+                        error: function () {
+                            if (municipio == null || municipio === "")
+                                $("#municipio-validacion").show();
+                            else
+                                $("#municipio-validacion").hide();
+                        }
+                    });
+                }
+        });
+
+    });
+
+</script>
+
+}

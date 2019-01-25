@@ -1,0 +1,37 @@
+﻿@model MVC2013.Models.Curso
+
+@{
+    ViewBag.Title = @Resources.Resources.curso + "_" + Resources.Resources.eliminar;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.curso_eliminar</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Resources.Resources.curso_nombre</dt>
+        <dd>@Html.DisplayFor(model => model.nombre)</dd>
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dd>
+            @using (Html.BeginForm("DeleteConfirmed", "Curso", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.id_curso)
+                <input type="hidden" value="@ViewBag.id_academia" name="id_academia" id="id_academia"/>
+                <button class="btn btn-danger btn-sm" type="submit">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            }
+        </dd>
+
+    </dl>
+</div>
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index", new { id_academia = ViewBag.id_academia })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>

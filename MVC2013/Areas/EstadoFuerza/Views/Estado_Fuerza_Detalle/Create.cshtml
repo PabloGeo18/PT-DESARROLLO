@@ -1,0 +1,141 @@
+﻿@model MVC2013.Models.Estado_Fuerza_Detalle
+
+@{
+    ViewBag.Title = "Estado_Fuerza_Detalle_Crear";
+    Layout = "~/Areas/EstadoFuerza/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Registrar Servicio de Empleado</h2>
+
+@using (Html.BeginForm("Create", "Estado_Fuerza_Detalle", FormMethod.Post, new { @id = "form_esf" }))
+{
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <input type="hidden" name="id_estado_fueza" value="@ViewBag.id_estado_fuerza" />
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_empleado, "Código de Empleado", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="number" class="form-control" id="codigo_empleado" required name="id_empleado" />
+                <label class="control-label" style="color:red" id="laber_error" hidden>Empleado no encontrado</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Nombre del Empleado</label>
+            <div class="col-md-10">
+                <input type="text" id="nombre_empleado" class="form-control" disabled />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_cat_tipo_agente, "Tipo de Agente", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_cat_tipo_agente", null, "---", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required" })
+                @Html.ValidationMessageFor(model => model.id_cat_tipo_agente, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_ubicacion, "Ubicación", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_ubicacion", null, "---", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required" })
+                @Html.ValidationMessageFor(model => model.id_ubicacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_situacion, "Situación", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_situacion", null, "---", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required" })
+                @Html.ValidationMessageFor(model => model.id_situacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div style="position:relative">
+                    <input type='text' class="form-control" id="fecha_ef" name="fecha" required value="@ViewBag.fecha" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.observacion, "Observación", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.observacion, 8, 42, htmlAttributes: new { @class = "form-control", @maxlength = "250" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-sm btn-success" type="submit" id="btn_submit">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.crear
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="form-group">
+    <button class="btn-sm btn-bitbucket" type="button" onclick="location.href='@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+
+
+<script>
+    $(function () {
+
+        $(document).ready(function () {
+            $(".dropdown_select").select2();
+        });
+
+        $('#fecha_ef').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+
+        $('#form_esf').submit(function (event) {
+            $('#codigo_empleado').focusout();
+            if($('#codigo_empleado').val() == "")
+            {
+                event.preventDefault();
+            }
+            else
+            {
+                return (true);
+            }
+        });
+        
+
+        $('#codigo_empleado').focusout(function () {
+            var id = $(this).val();
+            if (id != '') {
+                $.ajax({
+                    url: '@Url.Action("ExisteEmpleado", "Estado_Fuerza_Detalle")',
+                    type: 'GET',
+                    data: { 'id_empleado': id },
+                    success: function (response) {
+                        if (response.error == false) //Se encontro el empleado
+                        {
+                            $('#laber_error').attr('hidden', 'hidden');
+                            $('#nombre_empleado').val(response.nombre);
+                        }
+                        else {
+                            $('#laber_error').attr('hidden', null);
+                            $('#nombre_empleado').val('');
+                            $('#codigo_empleado').val(null);
+                        }
+                    },
+                    error: function () {
+                        alert("Error en la conexión con el servidor en la busqueda del empleado.");
+                    }
+                });
+            }
+        });
+
+    });
+</script>

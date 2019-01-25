@@ -1,0 +1,160 @@
+﻿@model MVC2013.Models.Procesos_Facturacion_Detalle
+@using System.Globalization
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Detalle de Proceso de Factura</h2>
+<h3>¿Está seguro de eliminar el registro?</h3>
+<div>
+    <hr />
+    <div class="panel panel-danger">
+        <div class="panel-heading bg-red">Informacion del Detalle</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <label class="col-md-12">Cliente</label>
+                    <div class="col-md-12">
+                        @Model.Clientes.nombre
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        <label class="col-md-12">Razon Social</label>
+                        <div class="col-md-12">
+                            @Model.Razones_Sociales.razon_social
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        <label class="col-md-12">Ubicación</label>
+                        <div class="col-md-12">
+                            @if (Model.id_ubicacion.HasValue)
+                            {
+                                @Model.Ubicaciones.nombre
+                            }
+                            else
+                            {
+                                <text>----</text>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <label class="col-md-12">Descripción</label>
+                    <div class="col-md-12">
+                        @Model.descripcion
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        <label class="col-md-12">Cantidad</label>
+                        <div class="col-md-12">
+                            @Model.cantidad
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        <label class="col-md-12">Costo</label>
+                        <div class="col-md-12">
+                            @Model.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        <label class="col-md-12">Precio</label>
+                        <div class="col-md-12">
+                            @Model.precio_venta_unitario.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        <label class="col-md-12">Fecha de Inicio</label>
+                        <div class="col-md-12">
+                            <div style="position:relative">
+                                @Model.fecha_inicio.ToString("dd/MM/yyyy")
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        <label class="col-md-12">Fecha de Fin</label>
+                        <div class="col-md-12">
+                            <div style="position:relative">
+                                @if (Model.fecha_fin.HasValue)
+                                {
+                                    @Model.fecha_fin.Value.ToString("dd/MM/yyyy")
+                                }
+                                else
+                                {
+                                    <text>----</text>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        <label class="col-md-12">Grupo Factura</label>
+                        <div class="col-md-12">
+                            @if (Model.id_razon_social_grupo_factura.HasValue)
+                            {
+                                @Model.Razon_Social_Grupos_Factura.correlativo<text>. </text>@Model.Razon_Social_Grupos_Factura.nombre
+                            }
+                            else
+                            {
+                                <text>----</text>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        <label class="col-md-12">Tipo Facturacion</label>
+                        <div class="col-md-12">
+                            @Model.Cat_Tipos_Facturacion.nombre
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+
+    <dl class="dl-horizontal">
+        <dd>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = Model.id_proceso_facturacion_detalle })'">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            }
+        </dd>
+    </dl>
+
+</div>
+<p>
+    <div>
+        <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Facturacion_Detalle", new { id = Model.id_proceso_facturacion })'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+        </button>
+    </div>
+</p>

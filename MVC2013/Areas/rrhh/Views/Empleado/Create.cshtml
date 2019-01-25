@@ -1,0 +1,663 @@
+﻿@model MVC2013.Models.Empleado
+@using MVC2013.Src.Comun.Util;
+@{
+    ViewBag.Title = @Resources.Resources.empleado + "_" + @Resources.Resources.crear;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.empleado_crear</h2>
+
+@using (Html.BeginForm("Create", "Empleado", FormMethod.Post, new { id = "crear_empleado", enctype = "multipart/form-data" }))
+{
+    if (!ViewData.ModelState.IsValid)
+    {
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="alert alert-danger">
+                @Html.ValidationSummary(true, "", new { })
+            </div>
+        </div>
+    }
+    <input hidden id="tipo_foto" name="tipo_foto" value="0" />
+    <ul class="nav nav-tabs" id="nav_menu">
+        <li class="active"><a data-toggle="tab" href="#datos_personales">@Resources.Resources.empleado_datos_personales</a></li>
+        <li><a data-toggle="tab" href="#imagen_empleado">@Resources.Resources.empleado_imagen</a></li>
+        <li><a data-toggle="tab" href="#informacion_adicional">@Resources.Resources.empleado_informacion_adicional</a></li>
+        <li><a data-toggle="tab" href="#contacto">@Resources.Resources.empleado_contacto</a></li>
+        <li><a data-toggle="tab" href="#direccion">@Resources.Resources.empleado_direccion</a></li>
+        <li><a data-toggle="tab" href="#experiencia_laboral">Experiencia Laboral</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="datos_personales">
+            <div class="row">
+                <!--Campos-->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading bg-blue">
+                            <h4 class="panel-title">@Resources.Resources.informacion_personal</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+                                    @Html.Label(Resources.Resources.empleado_dpi, new { htmlAttributes = new { @class = "control-label" } })
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.dpi, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.dpi, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 form-group">
+                                    @Html.Label(Resources.Resources.empleado_dpi_direccion, new { htmlAttributes = new { @class = "control-label" } })
+                                    <div class="form-group">
+                                        @Html.DropDownListFor(model => model.id_municipio_dpi, (IEnumerable<SelectListItem>)ViewBag.municipio, "---", htmlAttributes: new { @class = " form-control dropdown_select", @required = "required", @style = "width: 100%" })
+                                        @Html.ValidationMessageFor(model => model.id_municipio_dpi, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+                                    @Html.Label(Resources.Resources.empleado_estado_civil, htmlAttributes: new { @class = "control-label" })
+                                    <div class="form-group">
+                                        @Html.DropDownListFor(model => model.id_estado_civil, (IEnumerable<SelectListItem>)ViewBag.estado_civil, "---", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required", @style = "width: 100%" })
+                                        @Html.ValidationMessageFor(model => model.id_municipio_dpi, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12  form-group">
+                                    @Html.Label(@Resources.Resources.empleado_primer_nombre, new { htmlAttributes = new { @class = "col-md-2" } })
+                                    @Html.EditorFor(model => model.primer_nombre, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.primer_nombre, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12  form-group">
+                                    @Html.Label(@Resources.Resources.empleado_segundo_nombre, new { htmlAttributes = new { @class = "col-md-2" } })
+                                    @Html.EditorFor(model => model.segundo_nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.segundo_nombre, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12  form-group">
+                                    @Html.Label(@Resources.Resources.empleado_primer_apellido, new { htmlAttributes = new { @class = "col-md-2" } })
+                                    @Html.EditorFor(model => model.primer_apellido, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.primer_apellido, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12  form-group">
+                                    @Html.Label(@Resources.Resources.empleado_segundo_apellido, new { htmlAttributes = new { @class = "col-md-2" } })
+                                    @Html.EditorFor(model => model.segundo_apellido, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.segundo_apellido, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12  form-group">
+                                    @Html.Label(@Resources.Resources.empleado_apellido_casada, new { htmlAttributes = new { @class = "col-md-2" } })
+                                    @Html.EditorFor(model => model.apellido_casada, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.apellido_casada, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 ">
+                                    @Html.Label(@Resources.Resources.empleado_fecha_nacimiento, htmlAttributes: new { @class = "control-label" })
+                                    <div style="position:relative">
+                                        <input type='text' required class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="@ViewBag.fecha_nacimiento" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12  form-group">
+                                    @Html.Label(@Resources.Resources.empleado_nit, new { htmlAttributes = new { @class = "col-md-2" } })
+                                    @Html.EditorFor(model => model.nit, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.nit, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 ">
+                                    @Html.Label(@Resources.Resources.empleado_nacionalidad, htmlAttributes: new { @class = "control-label " })
+                                    <div class="form-group">
+                                        @Html.DropDownListFor(model => model.id_pais_nacionalidad, (IEnumerable<SelectListItem>)ViewBag.pais, "---", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required", @style = "width: 100%" })
+                                        @Html.ValidationMessageFor(model => model.id_pais_nacionalidad, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 ">
+                                    @Html.Label(@Resources.Resources.empleado_pasaporte, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.pasaporte, "", new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.pasaporte, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!--Academicos y otros-->
+                <div class="col-lg-12 col-md-12 col col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading  bg-aqua">
+                            <h4 class="panel-title">@Resources.Resources.academicos_otros</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ">
+                                        @Html.CheckBoxFor(model => model.sabe_leer)
+                                        @Html.Label(@Resources.Resources.empleado_sabe_leer, htmlAttributes: new { @class = "control-label", @for = "sabe_leer" })
+                                        @Html.ValidationMessageFor(model => model.sabe_leer, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        @Html.CheckBoxFor(model => model.sabe_escribir)
+                                        @Html.Label(@Resources.Resources.empleado_sabe_escribir, htmlAttributes: new { @class = "control-label ", @for = "sabe_escribir" })
+                                        @Html.ValidationMessageFor(model => model.sabe_escribir, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        @Html.CheckBoxFor(model => model.servicio_militar)
+                                        @Html.Label(@Resources.Resources.empleado_servicio_militar, htmlAttributes: new { @class = "control-label ", @for = "servicio_militar" })
+                                        @Html.ValidationMessageFor(model => model.servicio_militar, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    @Html.Label("Género", new { htmlAttributes = new { @class = "control-label" } })
+                                    <div class="form-group">
+                                        @Html.DropDownListFor(model => model.id_genero, (IEnumerable<SelectListItem>)ViewBag.genero, "---", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required", @style = "width: 100%" })
+                                        @Html.ValidationMessageFor(model => model.id_genero, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                                    @Html.Label("Estatura (cm)", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.estatura, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "number" } })
+                                    @Html.ValidationMessageFor(model => model.estatura, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                                    @Html.Label(Resources.Resources.empleado_peso, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.peso, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.peso, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    @Html.Label(@Resources.Resources.empleado_estudio, htmlAttributes: new { @class = "control-label" })
+                                    <div class="form-group">
+                                        @Html.DropDownListFor(model => model.id_grado_estudio, (IEnumerable<SelectListItem>)ViewBag.grado_estudio, "---", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required", @style = "width: 100%" })
+                                        @Html.ValidationMessageFor(model => model.id_grado_estudio, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    @Html.Label(@Resources.Resources.empleado_profesion, htmlAttributes: new { @class = "control-label" })
+                                    <div class="form-group">
+                                        @Html.DropDownListFor(model => model.id_profesion, (IEnumerable<SelectListItem>)ViewBag.profesion, "---", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required", @style = "width: 100%" })
+                                        @Html.ValidationMessageFor(model => model.id_profesion, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                                    @Html.Label(@Resources.Resources.empleado_afiliacion_igss, new { htmlAttributes = new { @class = "col-md-2" } })
+                                    @Html.EditorFor(model => model.afiliacion_igss, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.afiliacion_igss, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                                    @Html.Label(@Resources.Resources.empleado_afiliacion_irtra, new { htmlAttributes = new { @class = "col-md-2" } })
+                                    @Html.EditorFor(model => model.afiliacion_irtra, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.afiliacion_irtra, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 form-group">
+                                    @Html.Label("Credencial de Agente de Seguridad", new { htmlAttributes = new { @class = "col-md-2" } })
+                                    @Html.EditorFor(model => model.digeesp, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.digeesp, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="imagen_empleado">
+            <div class="row">
+                <div class=" form-group col-lg-6 col-md-12 col-xs-12 col-sm-12">
+                    <dl class="dl-horizontal">
+                        <dd>&nbsp;</dd>
+                        <dd>&nbsp;</dd>
+                        <dd>&nbsp;</dd>
+                        <dd>
+                            <h4>@Resources.Resources.imagen</h4>
+                        </dd>
+                        <dd><img id="imagen_previa" class="img-rounded" style="width:320px; height:240px;" /></dd>
+                        <dd>&nbsp;</dd>
+                        <dd><input type="file" onchange="onFileSelected(event)" id="imagen_cedula" name="imagen_cedula" class="btn-primary" accept="image/*" /></dd>
+                    </dl>
+                </div>
+                <div class="form-group col-lg-6 col-md-12 col-xs-12 col-sm-12">
+                    <iframe id="frame_webcam" frameborder="0" src="@Url.Action("WebCam")" style="width:400px; height:410px;"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="informacion_adicional">
+            <div class="panel panel-default">
+                <div class="panel-heading bg-orange">
+                    <h4 class="panel-title">@Resources.Resources.cuenta_bancaria</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-6">
+                            @Html.Label(Resources.Resources.empleado_banco, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.id_banco_cuenta, (IEnumerable<SelectListItem>)ViewBag.banco_cuenta, "---", htmlAttributes: new { @class = "form-control dropdown_select", id = "banco_input", @style = "width: 100%" })
+                            @Html.ValidationMessageFor(model => model.id_banco_cuenta, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-6">
+                            @Html.Label(Resources.Resources.empleado_tipo_cuenta, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.id_tipo_cuenta, (IEnumerable<SelectListItem>)ViewBag.tipo_cuenta, "---", htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%" })
+                            @Html.ValidationMessageFor(model => model.id_tipo_cuenta, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-6">
+                            @Html.Label(Resources.Resources.empleado_numero_cuenta, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.numero_cuenta, "", new { htmlAttributes = new { @class = "form-control", @id = "numero_cuenta_input" } })
+                            @Html.ValidationMessageFor(model => model.numero_cuenta, "", new { @class = "text-danger", @id = "validation_numero_cuenta" })
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-6">
+                            @Html.Label("Tipo de Pago", htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.id_tipo_pago, (IEnumerable<SelectListItem>)ViewBag.tipo_pago, "---", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required", @style = "width: 100%" })
+                            @Html.ValidationMessageFor(model => model.id_tipo_pago, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
+                            @Html.Label("Observación", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.comentario, "", new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.numero_cuenta, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading bg-green">
+                    <h4 class="panel-title">@Resources.Resources.licencia_conducir</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-3  col-md-3 col-xs-12 col-sm-6">
+                            @Html.Label(@Resources.Resources.empleado_tipo_licencia, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.DropDownListFor(model => model.id_tipo_licencia, (IEnumerable<SelectListItem>)ViewBag.tipo_licencia, "---", htmlAttributes: new { @class = "form-control dropdown_select", @style = "width: 100%" })
+                            @Html.ValidationMessageFor(model => model.id_tipo_licencia, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3  col-md-3 col-xs-12 col-sm-6">
+                            @Html.Label(@Resources.Resources.empleado_numero_licencia, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.numero_licencia, "", new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.numero_licencia, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-3  col-md-3 col-xs-12 col-sm-6">
+                            @Html.Label(@Resources.Resources.empleado_fecha_vencimiento_licencia, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div style="position:relative">
+                                <input type='text' class="form-control" id="fecha_vencimiento_licencia" name="fecha_vencimiento_licencia" value="@ViewBag.fecha_vencimiento_licencia" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="contacto">
+            <div class="panel panel-default">
+                <div class="panel-heading bg-purple">
+                    <h4 class="panel-title">@Resources.Resources.correo_electronico</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="col-lg-4 col-md-12 row">
+                        @Html.EditorFor(model => model.correo, "", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading bg-red">
+                    <h4 class="panel-title ">Teléfonos</h4>
+                </div>
+                <div class="panel-body" id="body_telefono">
+                    <div class="form-group">
+                        <button class="btn btn-sm btn-success" type="button" id="añadir_telefono">
+                            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir
+                        </button>
+                    </div>
+                    <div class="form_telefono" id="tel_">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-xs-12 col-sm-6">
+                                <label class="control-label">Tipo de Teléfono</label>
+                                <div class="form-group">
+                                    @Html.DropDownList("tipo_telefono_", (IEnumerable<SelectListItem>)ViewBag.tipo_telefono, "-", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required", @style = "width: 100%" })
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-xs-12 col-sm-6 form-group">
+                                <label class="control-label">Teléfono</label>
+                                <input type="number" min="0" name="telefono_" required class="form-control" />
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-xs-12 col-sm-6 form-group">
+                                <label class="control-label">Extensión</label>
+                                <input type="number" min="0" name="extension_" class="form-control" />
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-xs-12 col-sm-6 form-group">
+                                <label class="control-label">Comentario</label>
+                                <input type="text" name="comentario_" maxlength="150" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-lg-offset-9 form-group">
+                                <button class="btn btn-sm btn-danger btn_remover_telefono" type="button">
+                                    <span class="glyphicon glyphicon-remove"></span>&nbsp;Remover
+                                </button>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="direccion">
+            <div class="panel panel-default">
+                <div class="panel-heading bg-yellow">
+                    <h4 class="panel-title">Direcciones</h4>
+                </div>
+                <div class="panel-body" id="body_direccion">
+                    <div class="form-group">
+                        <button class="btn btn-sm btn-success" type="button" id="añadir_direccion">
+                            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir
+                        </button>
+                    </div>
+                    <div class="form_direccion" id="dir_">
+                        <div class="row">
+                            <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12 form-group">
+                                <label>Dirección</label>
+                                <input type="text" class="form-control" id="direccion_" name="direccion_" style="max-width:100%" maxlength="150" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
+                                <label class="control-label">Tipo de Dirección</label>
+                                <div class="form-group">
+                                    @Html.DropDownList("tipo_direccion_", (IEnumerable<SelectListItem>)ViewBag.tipo_direccion, "-", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required", @style = "width: 100%" })
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
+                                <label class="control-label">Municipio</label>
+                                <div class="form-group">
+                                    @Html.DropDownList("municipio_", (IEnumerable<SelectListItem>)ViewBag.municipios, "-", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required", @style = "width: 100%" })
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-xs-12 col-sm-6 form-group" style="margin-top:20px; position:center">
+                                <button class="btn btn-sm btn-danger btn_remover_direccion" type="button">
+                                    <span class="glyphicon glyphicon-remove"></span>&nbsp;Remover
+                                </button>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="experiencia_laboral">
+            <div class="panel panel-default">
+                <div class="panel-heading bg-yellow">
+                    <h4 class="panel-title">Experiencia Laboral</h4>
+                </div>
+                <div class="panel-body" id="body_experiencia_laboral">
+                    <div class="form-group">
+                        <button class="btn btn-sm btn-success" type="button" id="añadir_experiencia_laboral">
+                            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir
+                        </button>
+                    </div>
+                    <div class="form_experiencia_laboral" id="el_">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                                <label>Empresa</label>
+                                <input type="text" class="form-control" required id="el_empresa_" name="el_empresa_" style="max-width:100%" maxlength="100" />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                                <label>Puesto</label>
+                                <input type="text" class="form-control" required id="el_puesto_" name="el_puesto_" style="max-width:100%" maxlength="100" />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                                <label>Jefe</label>
+                                <input type="text" class="form-control" id="el_jefe_" name="el_jefe_" style="max-width:100%" maxlength="100" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4 form-group">
+                                <label>Telefono</label>
+                                <input type="number" class="form-control" required id="el_telefono_" name="el_telefono_" style="max-width:100%" />
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-xs-12 col-sm-8 form-group">
+                                <label>Dirección</label>
+                                <input type="text" class="form-control" required id="el_direccion_" name="el_direccion_" style="max-width:100%" maxlength="100" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4 form-group">
+                                <label>Fecha Inicio</label>
+                                <div style="position:relative">
+                                    <input type='text' required class="form-control" id="el_fecha_inicio_" name="el_fecha_inicio_" />
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4 form-group">
+                                <label>Fecha Fin</label>
+                                <div style="position:relative">
+                                    <input type='text' required class="form-control" id="el_fecha_fin_" name="el_fecha_fin_" />
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-xs-12 col-sm-4 col-md-4 form-group">
+                                <label>Comentario</label>
+                                <input type="text" class="form-control" id="el_comentario_" name="el_comentario_" style="max-width:100%" maxlength="500" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 col-xs-12 col-sm-6 form-group" style="margin-top:20px; position:center">
+                                <button class="btn btn-sm btn-danger btn_remover_experiencia_laboral" type="button">
+                                    <span class="glyphicon glyphicon-remove"></span>&nbsp;Remover
+                                </button>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pager">
+        <button class="btn btn-success btn-md" type="submit" id="btn_crear_empleado" data-loading-text="Creando...">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.crear
+        </button>
+    </div>
+}
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" type="button" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+
+@section Scripts
+{
+
+    <script>
+        //Mostrar en pantalla la imagen seleccionada
+        function onFileSelected(event) {
+            var selectedFile = event.target.files[0];
+            var reader = new FileReader();
+            var imgtag = document.getElementById("imagen_previa"); //Donde se coloca la imagen
+            imgtag.title = selectedFile.name;
+            reader.onload = function (event) {
+                imgtag.src = event.target.result;
+            };
+            reader.readAsDataURL(selectedFile);
+            $('#tipo_foto').val(1); //1 significa que la imagen de perfil es ingresada desde el input file
+        }
+
+        $(function () {
+
+            //Experiencia Laboral
+            //Inicializar el primer form para ingresar experiencias laborales
+            var modelo_experiencia = $('#el_').clone();
+            modificar_id_el(0);
+
+            //Remover form para ingresar teléfono
+            $(document).on('click', '.btn_remover_experiencia_laboral', function () {
+                $(this).closest('.form_experiencia_laboral').remove();
+            });
+
+            //Crea el form en la vista para ingresar nuevo teléfono
+            function nuevo_experiencia_laboral(id) {
+                selector = "#body_experiencia_laboral";
+                target = $(selector);
+                target.append(modelo_experiencia.clone());
+                modificar_id_el(id);
+            }
+
+            var id_el = 1;
+            //Añadir formularios para teléfonos
+            $('#añadir_experiencia_laboral').click(function () {
+                nuevo_experiencia_laboral(id_el);
+                id_el++;
+            });
+
+            //Modifica los nombres de los inputs del nuevo form para íngresar teléfono
+            function modificar_id_el(id) {
+                $(document).find('#el_').attr('id', 'el_' + id.toString());
+                var form_tel = $('#el_' + id.toString());
+                form_tel.find('input[name=el_empresa_]').attr('name', 'el_empresa_' + id.toString());
+                form_tel.find('input[name=el_telefono_]').attr('name', 'el_telefono_' + id.toString());
+                form_tel.find('input[name=el_jefe_]').attr('name', 'el_jefe_' + id.toString());
+                form_tel.find('input[name=el_puesto_]').attr('name', 'el_puesto_' + id.toString());
+                form_tel.find('input[name=el_comentario_]').attr('name', 'el_comentario_' + id.toString());
+                form_tel.find('input[name=el_fecha_inicio_]').attr('name', 'el_fecha_inicio_' + id.toString());
+                form_tel.find('input[name=el_fecha_fin_]').attr('name', 'el_fecha_fin_' + id.toString());
+                form_tel.find('input[name=el_direccion_]').attr('name', 'el_direccion_' + id.toString());
+            }
+
+            //Telefono
+
+            $(document).ready(function () {
+                $(".dropdown_select").select2();
+                $('.form-control').css('max-width', '100%');
+            });
+            //Inicializar el primer form para ingresar telefonos
+            var modelo_telefono = $('#tel_').clone();
+            modificar_id_tel(0);
+
+            //Remover form para ingresar teléfono
+            $(document).on('click', '.btn_remover_telefono', function () {
+                $(this).closest('.form_telefono').remove();
+            });
+
+            //Crea el form en la vista para ingresar nuevo teléfono
+            function nuevo_telefono(id) {
+                selector = "#body_telefono";
+                target = $(selector);
+                target.append(modelo_telefono.clone());
+                modificar_id_tel(id);
+            }
+
+            var id_tel = 1;
+            //Añadir formularios para teléfonos
+            $('#añadir_telefono').click(function () {
+                nuevo_telefono(id_tel);
+                id_tel++;
+            });
+
+            //Modifica los nombres de los inputs del nuevo form para íngresar teléfono
+            function modificar_id_tel(id) {
+                $(document).find('#tel_').attr('id', 'tel_' + id.toString());
+                var form_tel = $('#tel_' + id.toString());
+
+                form_tel.find('input[name=telefono_]').attr('name', 'telefono_' + id.toString());
+                form_tel.find('input[name=extension_]').attr('name', 'extension_' + id.toString());
+                form_tel.find('input[name=comentario_]').attr('name', 'comentario_' + id.toString());
+                //form_tel.find('select[id=tipo_telefono_]').select2();
+                form_tel.find('select[name=tipo_telefono_]').attr('name', 'tipo_telefono_' + id.toString());
+                form_tel.find('select[id=tipo_telefono_]').attr('id', 'tipo_telefono_' + id.toString());
+            }
+
+            //Direcciones
+            var modelo_direccion = $('#dir_').clone();
+            modificar_id_dir(0);
+
+            //Crea el form en la vista para ingresar nueva direccion
+            function nueva_direccion(id) {
+                selector = "#body_direccion";
+                target = $(selector);
+                target.append(modelo_direccion.clone());
+                modificar_id_dir(id);
+            }
+
+            var id_dir = 1;
+            //Añadir formularios para direcciones
+            $('#añadir_direccion').click(function () {
+                nueva_direccion(id_dir);
+                id_dir++;
+            });
+
+            //Remover form para ingresar direccion
+            $(document).on('click', '.btn_remover_direccion', function () {
+                $(this).closest('.form_direccion').remove();
+            });
+
+            //Modifica los nombres de los inputs del nuevo form para íngresar direccion
+            function modificar_id_dir(id) {
+                $(document).find('#dir_').attr('id', 'dir_' + id.toString());
+                var form_dir = $('#dir_' + id.toString());
+                form_dir.find('input[name=direccion_]').attr('name', 'direccion_' + id.toString());
+                form_dir.find('select[name=tipo_direccion_]').attr('name', 'tipo_direccion_' + id.toString());
+                form_dir.find('select[id=tipo_direccion_]').select2();
+                form_dir.find('select[id=tipo_direccion_]').attr('id', 'tipo_direccion_' + id.toString());
+                form_dir.find('select[name=municipio_]').attr('name', 'municipio_' + id.toString());
+                form_dir.find('select[id=municipio_]').select2();
+                form_dir.find('select[id=municipio_]').attr('id', 'municipio_' + id.toString());
+            }
+
+            var last_correct_value = "@(Model != null ? Model.numero_cuenta : "")";
+            $("#numero_cuenta_input").on('focusout', function (e) {
+                val = $(this).val();
+                if (val != "") {
+                    if ((/^(\d{3})-(\d{7})-\d$/).test(val)) {
+                        last_correct_value = val;
+                        $('#validation_numero_cuenta').text("");
+
+                    } else {
+                        $(this).val(last_correct_value);
+                        $('#validation_numero_cuenta').text("Ingrese cuenta solo en formato ###-#######-#");
+                        //alert("Ingrese cuenta solo en formato ###-#######-#");
+                    }
+                }
+                else {
+                    $('#validation_numero_cuenta').text("");
+                    last_correct_value = "";
+                }
+            });
+
+            $('#fecha_nacimiento, #el_fecha_inicio_, #el_fecha_fin_, #fecha_vencimiento_licencia').datetimepicker({
+                viewMode: 'days',
+                format: 'DD/MM/YYYY',
+            });
+
+
+            //Validar que todos los elementos required tengan un valor
+            $("#crear_empleado").submit(function (event) {
+                var incomplete = false;
+                $(':input[required=required]').each(function () {
+                    if ($(this).val() == "" || $(this).val() == null) {
+                        var tab = $(this).closest('.tab-pane');
+                        id = tab.attr("id");
+                        $('#nav_menu a[href="#' + id + '"]').trigger('click');
+                        incomplete = true;
+                        event.preventDefault();
+                        return (false);
+                    }
+                });
+                if (!incomplete) {
+                    $('#btn_crear_empleado').button('loading');
+                    return;
+                }
+            });
+            $("#frame_webcam").load(function () {
+                document.getElementById('frame_webcam').contentWindow.webcam.onSave = function () {
+                    var x = new Date().getTime();
+                    $('#imagen_previa').attr('src', '@Url.Action("OtenerImagenCamara")?' + x);
+                    $('#tipo_foto').val(2); //2 significa que la imagen de perfil es ingresada desde la camara web
+                }
+
+                $('#frame_webcam').contents().find('#tomar_foto').on('click', function () {
+                    document.getElementById('frame_webcam').contentWindow.webcam.capture();
+                });
+            });
+        });
+
+    </script>
+}

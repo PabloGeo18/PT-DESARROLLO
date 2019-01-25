@@ -1,0 +1,43 @@
+﻿@model IEnumerable<MVC2013.Models.Tickets_Tipo_Movimiento>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Tickets/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Tipo de Ticket Movimiento</h2>
+
+<p>
+    <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+
+</p>
+<table class="table-hover">
+    <thead style="background-color:#969aa2">
+        <tr>
+            <th class="text-center">Acciones</th>
+            <th class="text-center">Descripción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center" width="20%">
+                    <button data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.id_ticket_tipo_movimiento })'">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button data-toggle="tooltip" data-placement="top" title="Detalles" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.id_ticket_tipo_movimiento })'">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                    </button>
+                    <button data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = item.id_ticket_tipo_movimiento })'">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </td>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.nombre)</td>
+            </tr>
+        }
+    </tbody>
+
+</table>

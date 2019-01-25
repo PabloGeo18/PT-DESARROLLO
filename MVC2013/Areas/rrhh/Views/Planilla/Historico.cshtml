@@ -1,0 +1,78 @@
+﻿@model IEnumerable<MVC2013.Models.Encabezado_Planilla>
+@using System.Globalization;
+@{
+    ViewBag.Title = Resources.Resources.planilla + "_" + Resources.Resources.lista;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+    DateTimeFormatInfo mfi = new DateTimeFormatInfo();
+}
+
+<h2>Histórico de Planillas</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="alert alert-danger">
+            @Html.ValidationSummary(true, "", new { })
+        </div>
+    </div>
+}
+
+<div class="table-responsive">
+    <table class="table-striped" id="lista_planilla">
+        <thead>
+            <tr>
+                <th>@Resources.Resources.tipo @Resources.Resources.planilla</th>
+                <th>@Resources.Resources.empresa_nombre</th>
+                <th>Fecha Final</th>
+                <th>@Resources.Resources.estado</th>
+                <th>@Resources.Resources.acciones</th>
+            </tr>
+        </thead>
+        <tr>
+            <td><input type="text" class="form-control" id="tipo_planilla" autocomplete="off" /></td>
+            <td><input type="text" class="form-control" id="empresa" autocomplete="off" /></td>
+            <td><input type="text" class="form-control" id="fecha_apertura" autocomplete="off" /></td>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var encabezado in Model)
+        {
+            <tr>
+                <td class="c_tipo_planilla">@(encabezado.Tipo_Planilla.nombre + " - " + encabezado.fecha_apertura.ToString("MMMM", CultureInfo.GetCultureInfo("es-GT")).ToUpper())</td>
+                <td class="c_empresa">@encabezado.Empresa.nombre</td>
+                <td class="c_fecha_apertura">@encabezado.fecha_apertura.ToString("dd/MM/yyyy")</td>
+                <td>Finalizada</td>
+                <td>
+                    <button class="btn btn-info btn-sm" onclick="location.href='@Url.Action("Ver_Planilla", new { id = encabezado.id_encabezado_planilla })'">
+                        <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                    </button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+<script>
+    $(function () {
+
+        //Filtro de la tabla de empleados
+        $('#lista_planilla').filterByMultiColumn([
+            {
+                filterClass: 'c_tipo_planilla',
+                field: 'tipo_planilla'
+            },
+            {
+                filterClass: 'c_empresa',
+                field: 'empresa'
+            },
+            {
+                filterClass: 'c_fecha_apertura',
+                field: 'fecha_apertura'
+            }
+        ]);
+
+    });
+
+
+</script>

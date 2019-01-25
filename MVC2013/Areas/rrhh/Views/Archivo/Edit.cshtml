@@ -1,0 +1,57 @@
+﻿@model MVC2013.Models.Archivo
+
+@{
+    ViewBag.Title = @Resources.Resources.tipo_archivo + "_" + @Resources.Resources.editar;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.tipo_archivo_editar</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_archivo)
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.archivo_tipo_archivo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_tipo_archivo", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_tipo_archivo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.archivo_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" class="form-control" maxlength="50" name="nombre" value=@Model.nombre />
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.archivo_ubicacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ubicacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ubicacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = @Resources.Resources.boton_editar_id })'">
+                    @Resources.Resources.guardar
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <button class="btn btn-warning btn-sm" onclick="location.href = '@Url.Action("Index", new { id = @Resources.Resources.boton_regresar_id })'">
+        @Resources.Resources.listado_regresar
+    </button>
+</div>

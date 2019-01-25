@@ -1,0 +1,40 @@
+﻿@model MVC2013.Models.Rol_Acciones
+
+@{
+    ViewBag.Title = @Resources.Resources.rol_acciones + "_" + @Resources.Resources.editar;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.rol_acciones_editar</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_rol)
+
+        @Html.HiddenFor(model => model.id_controlador)
+
+        @Html.HiddenFor(model => model.id_accion)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = @Resources.Resources.boton_editar_id })'">
+                    @Resources.Resources.guardar
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <button class="btn btn-warning btn-sm" onclick="location.href = '@Url.Action("Index", new { id = @Resources.Resources.boton_regresar_id })'">
+        @Resources.Resources.listado_regresar
+    </button>
+</div>
+
+@section Scripts {}

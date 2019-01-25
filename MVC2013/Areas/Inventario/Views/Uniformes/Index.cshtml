@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MVC2013.Models.Uniformes>
+@using System.Globalization;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Uniformes</h2>
+
+<table class="table-hover">
+    <tr>
+        <th>
+            @Resources.Resources.descripcion
+        </th>
+        <th>
+            @Resources.Resources.talla
+        </th>
+        <th>
+            @Resources.Resources.costo
+        </th>
+        <th>
+            @Resources.Resources.costo_venta
+        </th>
+        <th>
+            @Resources.Resources.existencia
+        </th>
+        <th>
+            @Resources.Resources.uniforme_tipo
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.talla)
+            </td>
+            <td>
+                @item.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+            </td>
+            <td>
+                @item.costo_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.existencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uniforme_Tipo.descripcion)
+            </td>
+        </tr>
+    }
+
+</table>

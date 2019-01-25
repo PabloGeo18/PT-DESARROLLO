@@ -1,0 +1,25 @@
+﻿@model MVC2013.Models.Departamentos
+
+@{
+    ViewBag.Title = @Resources.Resources.paises + "_" + @Resources.Resources.detalle;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.departamentos_detalle</h2>
+
+<div>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>@Resources.Resources.departamentos_nombre</dt>
+        <dd>@Html.DisplayFor(model => model.nombre)</dd>
+
+        <dt>&nbsp;</dt><dd></dd>
+
+        <dt>@Resources.Resources.departamentos_activo</dt>
+        <dd>@Html.DisplayFor(model => model.activo)</dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink(@Resources.Resources.editar, "Edit", new { id = Model.id_departamento }) |
+    @Html.ActionLink(@Resources.Resources.listado_regresar, "Index")
+</p>

@@ -1,0 +1,38 @@
+﻿@model MVC2013.Src.Comun.To.Arbol
+@{
+    string vista = null;
+    if (MVC2013.Src.Comun.To.Arbol.Vistas.ContainsKey(Model.GetType))
+    {
+        vista = MVC2013.Src.Comun.To.Arbol.Vistas[Model.GetType];
+    }
+    int uniqueId = MVC2013.Src.Comun.To.Arbol.GetUniqueId();
+}
+
+<div class="tree well" id="arbol_@uniqueId">
+    <ul>
+        @foreach (MVC2013.Src.Comun.To.ArbolTo item in Model.Children) 
+        {
+            @Html.Partial(vista, item);
+        }
+    </ul>
+</div>
+
+<script>
+    $(function () {
+        tree = $("#arbol_@uniqueId");
+        tree.find('li:has(ul)').addClass('parent_li');
+        tree.find('li.parent_li > span').bind('click', function (e) {
+            if ($(e.target).is(":button")) {
+                return;
+            }
+            var children = $(this).parent('li.parent_li').find(' > ul > li');
+            if (children.is(":visible")) {
+                children.hide('fast');
+            } else {
+                children.show('fast');
+            }
+            e.stopPropagation();
+        });
+        tree.find('li.parent_li').find(' > ul > li').hide();
+    })
+</script>

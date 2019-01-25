@@ -1,0 +1,77 @@
+﻿@model MVC2013.Models.Pt_Costos_Fijos_Mes_Anio
+
+@{
+    ViewBag.Title = "Crear - Costos Fijos";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+    List<MVC2013.Models.Pt_Costos_Fijos_Mes_Anio> costoFijoList = ViewBag.costosFijos;
+}
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+<h2>Crear Gastos</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <hr />
+    @*<div class="form-group">
+            <label class="control-label col-md-2">Tipo de Gasto</label>
+            <div class="col-md-10">
+                @Html.DropDownList("ccfma_tipo_gasto", (IEnumerable<SelectListItem>)ViewBag.tipoG, new { @class = "form-control" })
+            </div>
+        </div>*@
+    <div class="form-group">
+        <label class="control-label col-md-2">Mes</label>
+        <div class="col-md-10">
+            @Html.DropDownList("ccfma_mes", (IEnumerable<SelectListItem>)ViewBag.meses, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Año</label>
+        <div class="col-md-10">
+            <select class="form-control" id="ccfma_anio" name="ccfma_anio">
+                @foreach (var a in ViewBag.anios)
+                {
+                    if (a == 2018)
+                    {
+                        <option selected value="@a">@a</option>
+                    }
+                    else
+                    {
+                        <option value="@a">@a</option>}
+                }
+            </select>
+        </div>
+    </div>
+    @*<div class="form-group">
+            <label class="control-label col-md-2">Descripción</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ccfma_descripcion, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.ccfma_descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    <div class="form-group">
+        <label class="control-label col-md-2">Monto Gastos Administrativos</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ccfma_monto_gasto_administrativo, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @type = "number" } })
+            @Html.ValidationMessageFor(model => model.ccfma_monto_gasto_administrativo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Monto Costo Operativo Indirecto</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ccfma_monto_gasto_operativo, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @type = "number" } })
+            @Html.ValidationMessageFor(model => model.ccfma_monto_gasto_operativo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn-success btn btn-sm">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;Crear
+            </button>
+        </div>
+    </div>
+</div>
+}

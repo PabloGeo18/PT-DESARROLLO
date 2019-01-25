@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MVC2013.Models.Armas>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Armas</h2>
+@{ int id_egreso = @ViewBag.id_egreso; }
+<div class="form-group">
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Edit", new { id = id_egreso })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar
+    </button>
+</div>
+<div class="table-responsive">
+    @if (Model.Where(i => i.activo && !i.eliminado).Count() <= 0)
+    {
+    <table class="table table-striped table-bordered table-responsive">
+        <thead style="background-color:cadetblue"></thead>
+        <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+    </table>
+    }
+    else
+    {
+    <table class="table-striped">
+        <thead style="background-color:#969aa2">
+            <tr>
+                <th class="text-center">Acciones</th>
+                <th class="text-center">Tipo de Arma</th>
+                <th class="text-center">Estado de Arma</th>
+                <th class="text-center">Marca</th>
+                <th class="text-center">Calibre</th>
+                <th class="text-center">Cantidad de Munición</th>
+                <th class="text-center">Ubicaciones</th>
+                <th class="text-center">Registro</th>
+                <th class="text-center">Largo</th>
+                <th class="text-center">Modelo</th>
+                <th class="text-center">Proveedor</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Where(x=>x.activo && !x.eliminado && ((x.id_cliente==null && x.id_bodega==null)||(x.id_cliente==null && x.id_bodega!=null)) ))
+            {
+                <tr>
+                    <td class="text-center">
+                        <button data-toggle="tooltip" data-placement="top" title="Enviar Arma" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("enviar_arma", new { id_arma = item.id_arma, id_egreso = id_egreso })'">
+                            <span class="glyphicon glyphicon-send"></span>
+                        </button>
+                    </td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Tipo.descripcion)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Estado.descripcion)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Marcas.descripcion)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Calibres.descripcion)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.cantidad_municion)</td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Clientes.nombre)
+                        @Html.DisplayFor(modelItem => item.Bodegas.descripcion)
+                    </td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.registro)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.largo)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Modelos.descripcion)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Proveedores.descripcion)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    }
+</div>

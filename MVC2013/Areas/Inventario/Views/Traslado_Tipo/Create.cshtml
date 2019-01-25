@@ -1,0 +1,35 @@
+﻿@model MVC2013.Models.Traslado_Tipo
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <button class="btn btn-sm btn-bitbucket" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+<h2>Crear Tipo de Traslado</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.descripcion, "Descripción", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control", @autocomplete="off" } })
+                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-success btn-sm" type="submit">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.crear
+                </button>
+            </div>
+        </div>
+    </div>
+}

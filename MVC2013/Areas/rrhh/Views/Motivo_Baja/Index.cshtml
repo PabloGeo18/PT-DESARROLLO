@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MVC2013.Models.Motivo_Baja>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Motivos de Baja</h2>
+
+<div class="form-group">
+    <button type="button" class="btn btn-sm btn-success" onclick="location.href='@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</div>
+<table class="table-striped">
+    <tr>
+        <th>Descripción</th>
+        <th>Acciones</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+
+            <td>
+                <button type="button" class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Edit", new { id = item.id_motivo_baja })'">
+                    <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                </button>
+                <button type="button" class="btn btn-sm btn-info" onclick="location.href='@Url.Action("Details", new { id = item.id_motivo_baja })'">
+                    <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                </button>
+                <button type="button" class="btn btn-sm btn-danger" onclick="location.href='@Url.Action("Delete", new { id = item.id_motivo_baja })'">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            </td>
+        </tr>
+    }
+
+</table>

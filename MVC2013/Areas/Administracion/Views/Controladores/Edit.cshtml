@@ -1,0 +1,156 @@
+﻿@model MVC2013.Models.Controladores
+
+@{
+    ViewBag.Title = @Resources.Resources.controlador_nombre + "_" + @Resources.Resources.editar;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.controlador_editar</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_controlador, new { @id = "id_controlador_hidden" })
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.controlador_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" class="form-control" maxlength="256" name="nombre" />
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.controlador_aplicacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_aplicacion", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_aplicacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-success btn-sm" type="submit">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+
+
+<hr style="height:3px; border-style:solid;background-color:#222d32">
+
+<!-- MANTENIMIENTO DE CONTROLADOR-ACCION -->
+<h2>@Resources.Resources.controlador_acciones</h2>
+
+<div>
+    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModalCA">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear_nuevo
+    </button>
+</div>
+<table class="zebra-striped">
+    <thead>
+        <tr>
+            <th>
+                @Resources.Resources.controlador_nombre
+            </th>
+            <th>
+                @Resources.Resources.accion_nombre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var accion in Model.Acciones)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => accion.nombre)
+            </td>
+            <td>
+                @Html.ActionLink(@Resources.Resources.eliminar, "RemoveControllerAccion", new { idAccion = accion.id_accion, idControlador = Model.id_controlador }, new { onclick = "return confirm('" + @Resources.Resources.confirmacion_eliminar + "');" })
+            </td>
+        </tr>
+    }
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="myModalCA" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Ajax.BeginForm(new AjaxOptions() { }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">@Resources.Resources.controlador_acciones_agregar</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            @Html.Label(@Resources.Resources.accion_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">                           
+                                @Html.TextBox("action", "", new { @id = "accion_field", @class = "form-control text-box single-line" })
+                                <span class="text-danger field-validation-error" id="accion-validacion" hidden="hidden">
+                                    <span>@Resources.Resources.accion_error_requerido</span>
+                                </span>
+                            </div>
+                        </div>         
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_modal_close">@Resources.Resources.cerrar</button>
+                    <button type="button" class="btn btn-default" id="save_action_button">@Resources.Resources.guardar</button>
+                </div>
+            }
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+
+        $("#save_action_button").click(function () {
+            action = $("#accion_field").val();
+            idControlador = $("#id_controlador_hidden").val();
+                if (action == null || action === "") {
+                    $("#accion-validacion").show();
+                }
+                else {
+                    $("#accion-validacion").hide();
+                    $.ajax({
+                        url: '@Url.Action("CreateControllerAccion")' + "?idControlador=" + idControlador + "&accion=" + action,
+                        type: "POST",
+                        success: function (data, status) {
+                            $("#btn-btn_modal_close").click();
+                            window.location.reload();
+                        },
+                        error: function () {
+                            if (action == null || action === "")
+                                $("#accion-validacion").show();
+                            else
+                                $("#accion-validacion").hide();
+                        }
+                    });
+                }
+            });
+
+        });
+    </script>
+
+}

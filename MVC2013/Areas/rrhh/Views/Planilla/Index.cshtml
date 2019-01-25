@@ -1,0 +1,631 @@
+﻿@model IEnumerable<MVC2013.Models.rpt_Resumen_Planillas_Activas_Result>
+@using System.Globalization;
+
+@{
+    ViewBag.Title = Resources.Resources.planilla + "_" + Resources.Resources.lista;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+    DateTimeFormatInfo mfi = new DateTimeFormatInfo();
+}
+
+<h2>@Resources.Resources.planilla</h2>
+
+<!--Modal Generar Planilla-->
+<div class="modal fade " id="generar_planilla" data-backdrop="static">
+    <div style="left: auto" class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("Generar_Planilla", "Planilla", FormMethod.Post))
+            {
+                <div class="modal-header bg-green">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    @Resources.Resources.planilla_generar
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                            @Html.Label(@Resources.Resources.empresa_nombre, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("id_empresa", null, "---", htmlAttributes: new { @class = "form-control", @required = "required", @id = "dropdown_empresa" })
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                            @Html.Label(Resources.Resources.tipo + " " + Resources.Resources.planilla, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("id_tipo_planilla", null, "---", htmlAttributes: new { @class = "form-control", @required = "required", @id = "dropdown_planilla" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                            @Html.Label("Fecha Inicial - Estado de Fuerza", htmlAttributes: new { @class = "control-label" })
+                            <div style="position:relative">
+                                <input type='text' name="fechaInicioEstadoFuerza" id="fief" class="form-control" readonly required autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                            @Html.Label("Fecha Final - Estado de Fuerza", htmlAttributes: new { @class = "control-label" })
+                            <div style="position:relative">
+                                <input type='text' name="fechaFinEstadoFuerza" id="ffef" class="form-control" required autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                            @Html.Label("Fecha Inicio", htmlAttributes: new { @class = "control-label" })
+                            <div style="position:relative">
+                                <input type='text' id="fi" class="form-control" readonly />
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                            @Html.Label("Fecha Fin", htmlAttributes: new { @class = "control-label" })
+                            <div style="position:relative">
+                                <input type='text' id="ff" class="form-control" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.generar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Modal Mensaje-->
+<div class="modal fade" id="mostrar_mensaje" data-backdrop="static" role="dialog">
+    <div style="left: auto" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <label id="titulo">Titulo</label>
+            </div>
+            <div class="modal-body">
+                <label id="mensaje">Prueba</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Confirmar la finalización de planilla-->
+<div class="modal fade" id="confirm_planilla" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                @Resources.Resources.confirmacion
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                @Resources.Resources.confirmacion_finalizar_planilla
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-primary" id="btn_ok" type="button" data-id="">
+                    <span class="glyphicon glyphicon-folder-close"></span>&nbsp;@Resources.Resources.finalizar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Confirmar la eliminacion de planilla-->
+<div class="modal fade" id="delete_planilla" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            @using (Html.BeginForm("EliminarPlanilla", "Planilla", FormMethod.Post))
+            {
+                <div class="modal-header bg-red">
+                    @Resources.Resources.confirmacion
+                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="id_eliminar_planilla" required />
+                    Está por eliminar la planilla seleccionada. ¿Desea continuar?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-danger" type="submit">
+                        <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.finalizar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Modal Eliminar Bonificaciones-->
+<div class="modal fade" id="delete_bonificaciones" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            @using (Html.BeginForm("EliminarBonificacionesCargadas", "Planilla", FormMethod.Post))
+            {
+                <div class="modal-header bg-red">
+                    Eliminar Bonificaciones Cargadas
+                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="id_planilla_b" required />
+                    <select name="id_tipo_bono" class="form-control" style="display:inline-block;" required>
+                        <option value="">--Seleccionar campo--</option>
+                        <option value="1">Horas Extras</option>
+                        <option value="4">Boleta Extras</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-danger" type="submit">
+                        <span class="glyphicon glyphicon-trash"></span>&nbsp;Eliminar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Modal Eliminar Descuentos-->
+<div class="modal fade" id="delete_descuentos" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            @using (Html.BeginForm("EliminarDescuentosCargados", "Planilla", FormMethod.Post))
+            {
+                <div class="modal-header bg-red">
+                    Eliminar Descuentos Cargados
+                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="id_planilla_d" required />
+                    <select name="id_tipo_descuento" class="form-control" style="display:inline-block;" required>
+                        <option value="">--Seleccionar campo--</option>
+                        <option value="2">ISR</option>
+                        <option value="3">Préstamo Interno</option>
+                        <option value="4">Alimentación</option>
+                        <option value="5">Faltas</option>
+                        <option value="6">Carnet</option>
+                        <option value="7">Cuadra</option>
+                        <option value="8">Antecedentes</option>
+                        <option value="9">Varios</option>
+                        <option value="10">Judicial</option>
+                        <option value="11">Préstamo Bancario</option>
+                        <option value="12">Préstamo Emergente</option>
+                        <option value="13">Anticipos</option>
+                        <option value="14">Uniformes</option>
+                        <option value="15">Teléfono</option>
+                        <option value="16">Multas de Tránsito</option>
+                        <option value="17">Daños a Vehículos</option>
+                        <option value="18">Gastos Médicos</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-danger" type="submit">
+                        <span class="glyphicon glyphicon-trash"></span>&nbsp;Eliminar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<!--Modal Subir Archivo-->
+<div class="modal fade" id="subir_archivo" data-backdrop="static" role="dialog">
+    <div style="left: auto" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-yellow-active">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <label id="titulo">Subir archivo</label>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <div class="btn-group-vertical">
+                    <span class="btn btn-file btn-default">
+                        <span class="glyphicon glyphicon-upload"></span>&nbsp;Bonificaciones
+                        <input type="file" id="archivo_b" data-id="" accept="xls,.xlsx">
+                    </span>
+                    <span class="btn btn-file btn-default">
+                        <span class="glyphicon glyphicon-upload"></span>&nbsp;Descuentos
+                        <input type="file" id="archivo_d" data-id="" accept="xls,.xlsx">
+                    </span>
+
+                    <!--<span class="btn btn-file btn-default">
+                        <span class="glyphicon glyphicon-upload"></span>&nbsp;Dias trabajados
+                        <input type="file" id="archivo_dias_trabajados" data-id="" accept="xls,.xlsx">
+                    </span>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Resultados de Bonificaciones-->
+<div class="modal fade" id="results_bonificaciones" data-backdrop="static" role="dialog">
+    <div style="left: auto" class="modal-dialog modal-lg ">
+        @using (Html.BeginForm("GuardarBonificaciones", "Planilla", FormMethod.Post, new { @id = "form_bonificaciones" }))
+        {
+
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <label>Carga de Bonificaciones</label>
+                </div>
+                <div class="modal-body">
+                    <label id="l_resutaldo_bonificacion_estado">Cargando...</label>
+                    <div class="table-responsive" style="overflow-y:auto; max-height:300px">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width:15%">Código Empleado</th>
+                                    <th style="width:20%">Bonificación</th>
+                                    <th style="width:15%">Total</th>
+                                    <th style="width:10%">Unidades</th>
+                                    <th style="width:20%">Fecha</th>
+                                    <th style="width:20%">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla_resultado_bonificacion"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-success" data-loading-text="Guardando..." id="btn_guardar_b" type="submit">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar
+                    </button>
+                </div>
+            </div>
+
+        }
+
+        <input type="hidden" value="" name="tipo_bono" />
+    </div>
+</div>
+
+<!--Modal Resultados de Descuentos-->
+<div class="modal fade" id="results_descuentos" data-backdrop="static" role="dialog">
+    <div style="left: auto" class="modal-dialog modal-lg ">
+        @using (Html.BeginForm("GuardarDescuentos", "Planilla", FormMethod.Post, new { @id = "form_descuentos" }))
+        {
+
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <label>Carga de Descuentos</label>
+                </div>
+                <div class="modal-body">
+                    <label id="l_resutaldo_descuento_estado">Cargando...</label>
+                    <div class="table-responsive" style="overflow-y:auto; max-height:300px">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width:15%">Código Empleado</th>
+                                    <th style="width:20%">Descuento</th>
+                                    <th style="width:15%">Total</th>
+                                    <th style="width:10%">Cantidad</th>
+                                    <th style="width:20%">Fecha</th>
+                                    <th style="width:20%">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla_resultado_descuento"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-success" data-loading-text="Guardando..." id="btn_guardar_d" type="submit">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar
+                    </button>
+                </div>
+            </div>
+
+        }
+
+        <input type="hidden" value="" name="tipo_bono" />
+    </div>
+</div>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="alert alert-danger">
+            @Html.ValidationSummary(true, "", new { })
+        </div>
+    </div>
+}
+
+<div class="form-group">
+    <button class="btn btn-success btn-sm" data-target="#generar_planilla" data-toggle="modal">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.generar
+    </button>
+</div>
+
+<div class="table-responsive">
+    <table class="table-condensed table-striped" id="lista_planilla">
+        <thead>
+            <tr>
+                <th width="20%">Empresa</th>
+                <th width="15%">Planilla</th>
+                <th width="10%">Total de Ingresos</th>
+                <th width="10%">Total de Egresos</th>
+                <th width="10%">Salario Neto</th>
+                <th width="35%">Acciones</th>
+            </tr>
+        </thead>
+        <tr></tr>
+        @foreach (var encabezado in Model)
+        {
+            <tr>
+                <td>@encabezado.empresa</td>
+                <td>@encabezado.tipo_planilla</td>
+                <td>@encabezado.total_ingresos.Value.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("es-GT"))</td>
+                <td>@encabezado.total_egresos.Value.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("es-GT"))</td>
+                <td>@encabezado.salario_neto.Value.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("es-GT"))</td>
+                <td>
+                    <button class="btn btn-info btn-sm" onclick="location.href='@Url.Action("Ver_Planilla", new { id = encabezado.id_encabezado_planilla })'">
+                        <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("Modificacion", new { id = encabezado.id_encabezado_planilla })'">
+                        <span class="glyphicon glyphicon-edit"></span>&nbsp;Modificar
+                    </button>
+                    <div class="dropdown" style="display: inline-block">
+                        <button class="btn btn-sm btn-warning dropdown-toggle" type="button" data-toggle="dropdown">
+                            Acciones
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="btn_subir_archivo" href="#" data-id_planilla="@encabezado.id_encabezado_planilla"><span class="glyphicon glyphicon-upload"></span>&nbsp;Subir archivo</a></li>
+                            <li>
+                                <a class="btn_eliminar_bonificaciones" href="#" data-id_planilla="@encabezado.id_encabezado_planilla" data-target="#delete_bonificaciones" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span>&nbsp;Eliminar Bonificaciones</a>
+                            </li>
+                            <li>
+                                <a class="btn_eliminar_descuentos" href="#" data-id_planilla="@encabezado.id_encabezado_planilla" data-target="#delete_descuentos" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span>&nbsp;Eliminar Descuentos</a>
+                            </li>
+                            <li><a class="btn_finalizar" href="#" data-id="@encabezado.id_encabezado_planilla" data-target="#confirm_planilla" data-toggle="modal"><span class="glyphicon glyphicon-book"></span>&nbsp;@Resources.Resources.finalizar</a></li>
+                            <li><a class="btn_eliminar_planilla" href="#" data-toggle="modal" data-target="#delete_planilla" data-id="@encabezado.id_encabezado_planilla"><span class="glyphicon glyphicon-trash"></span>&nbsp;Eliminar</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+<script>
+    $(function () {
+
+
+        $('.btn_eliminar_descuentos').click(function () {
+            var id = $(this).data('id_planilla');
+            $('#id_planilla_d').val(id);
+        });
+
+        $('.btn_eliminar_bonificaciones').click(function () {
+            var id = $(this).data('id_planilla');
+            $('#id_planilla_b').val(id);
+        });
+
+        $('#dropdown_empresa').change(function () {
+            var id = $(this).val();
+            $('#fief').text('');
+            $.ajax({
+                url: '@Url.Action("GetFechaInicio_EstadoFuerza", "Planilla")',
+                type: "GET",
+                data: { 'id_empresa': id },
+                error: function () {
+                    alert("Error con la conexión con el servidor.");
+                },
+                success: function (response) {
+                    $('#fief').val(response.fecha);
+                }
+            });
+        });
+
+        $('#dropdown_planilla').change(function () {
+            var id = $(this).val();
+            $('#fi').text('');
+            $('#ff').text('');
+            $.ajax({
+                url: '@Url.Action("GetFecha_TipoPlanilla", "Planilla")',
+                type: "GET",
+                data: { 'id_tipo_planilla': id },
+                error: function () {
+                    alert("Error con la conexión con el servidor.");
+                },
+                success: function (response) {
+                    $('#fi').val(response.fechaI);
+                    $('#ff').val(response.fechaF);
+                }
+            });
+        });
+
+
+        $('.btn_eliminar_planilla').click(function () {
+            var id = $(this).data('id');
+            $('#id_eliminar_planilla').val(id);
+        });
+
+        $("#delete_planilla").on("hidden.bs.modal", function () {
+            $('#id_eliminar_planilla').val('');
+        });
+
+        $('.btn_subir_archivo').click(function () {
+            var id = $(this).data('id_planilla');
+            $('#subir_archivo').modal('toggle');
+            $('#archivo_b').data('id', id);
+            $('#archivo_d').data('id', id);
+            $('#archivo_tipo_pago').data('id', id);
+            $('#archivo_dias_trabajados').data('id', id);
+        });
+
+        $('#ffef').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+
+        //Confirmar la finalización de la planilla
+        $(document).on('click', '.btn_finalizar', function () {
+            $('#btn_ok').data('id', $(this).data('id'));
+        });
+
+        $('#btn_ok').click(function () {
+            $('#confirm_planilla').modal('toggle');
+            var id = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("Finalizar_planilla", "Planilla")',
+                type: "POST",
+                data: { 'id': id },
+                error: function () {
+                    alert("Error con la conexión con el servidor.");
+                },
+                success: function (response) {
+                    if (response.response == true) {
+                        location.reload();
+                    }
+                    else {
+                        $('#mensaje').text(response.msg);
+                        $('#titulo').text("Error");
+                        $('#mostrar_mensaje').modal('show');
+                    }
+                }
+            });
+        });
+
+        //Subir archivo Bonificaciones
+        $(document).on('change', '#archivo_b', function () {
+            $('#subir_archivo').modal('toggle');
+            var file = $(this).prop("files")[0];
+            var data = new FormData();
+            var id_encabezado = $(this).data('id');
+            var input = $("<input>").attr("type", "hidden").attr("name", 'id').val(id_encabezado);
+            $('#form_bonificaciones').append($(input));
+            data.append('file', file);
+            data.append('id', id_encabezado);
+            $('#results_bonificaciones').modal('show');
+            $('#l_resutaldo_bonificacion_estado').text('Cargando...');
+            $('#btn_guardar_b').prop('disabled', true);
+            selector = "#tabla_resultado_bonificacion";
+            target = $(selector);
+            target.html("");
+            $.ajax({
+                url: '@Url.Action("Subir_Bonificaciones", "Planilla")',
+                type: "POST",
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                error: function () {
+                    $('#titulo').text("Operación incompleta");
+                    $('#mensaje').text("Datos no guardados. " + response.error);
+                    $('#mostrar_mensaje').modal('show');
+                },
+                success: function (response) {
+                    var options = "";
+                    if (!response.error) {
+                        $.each(response.resultados, function ($in, item) {
+                            if (item.estado) {
+                                options += "<tr>"
+                                + "<td style=\"text-align:center\"><input type=\"number\" step=\"1\" class=\"form-control\" name=\"id_empleado\" readonly value=\"" + item.id_empleado + "\"/></td>"
+                                + "<td style=\"text-align:center\"><input type=\"text\" class=\"form-control\" readonly value=\"" + item.bono + "\"/><input type=\"hidden\" value=\"" + item.id_bono + "\" name=\"tipo_bono\"/></td>"
+                                + "<td style=\"text-align:center\"><input type=\"number\" step=\"0.01\" class=\"form-control\" name=\"total\" readonly value=\"" + item.total + "\"/></td>"
+                                + "<td style=\"text-align:center\"><input type=\"number\" step=\"1\" class=\"form-control\" name=\"unidades\" readonly value=\"" + item.unidades + "\"/></td>"
+                                + "<td style=\"text-align:center\"><input type=\"text\" class=\"form-control\" name=\"fecha\" readonly value=\"" + item.fecha + "\"/></td>"
+                                + "<td style=\"text-align:center\"><span class=\"glyphicon glyphicon-check\" style=\"color:green; font-size:20px\"></span></td>"
+                                    + "</tr>";
+                            }
+                            else {
+                                options += "<tr>"
+                                + "<td style=\"text-align:center\"><input type=\"text\" class=\"form-control\" readonly value=\"" + item.id_empleado + "\"/></td>"
+                                + "<td style=\"text-align:center\"><input type=\"text\" class=\"form-control\" readonly value=\"" + item.bono + "\"/></td>"
+                                + "<td style=\"text-align:center\"><input type=\"text\" class=\"form-control\" readonly value=\"" + item.total + "\"/></td>"
+                                + "<td style=\"text-align:center\"><input type=\"text\" class=\"form-control\" readonly value=\"" + item.unidades + "\"/></td>"
+                                + "<td style=\"text-align:center\"><input type=\"text\" class=\"form-control\" readonly value=\"" + item.fecha + "\"/></td>"
+                                + "<td style=\"text-align:center\"><span class=\"glyphicon glyphicon-alert\" style=\"color:red; font-size:20px\"></span><br>" + item.error + "</td>"
+                                + "</tr>";
+                            }
+                        });
+                        target.html(options);
+                        $('#l_resutaldo_bonificacion_estado').text(response.mensaje);
+                        $('#l_resutaldo_bonificacion_estado').css("color", "black");
+                        $('#btn_guardar_b').prop('disabled', false);
+                    }
+                    else {
+                        $('#l_resutaldo_bonificacion_estado').text('Ocurrio un error inesperado. Vuelva a cargar el archivo.');
+                        $('#l_resutaldo_bonificacion_estado').css("color", "red");
+                    }
+                }
+            });
+            $archivo = $(this);
+            $archivo.replaceWith($archivo.val("").clone(true, true)); //resetear boton
+        });
+
+        $('#form_bonificaciones').submit(function (event) {
+            $('#btn_guardar_b').button('loading');
+            return;
+        });
+
+        $('#form_descuentos').submit(function (event) {
+            $('#btn_guardar_d').button('loading');
+            return;
+        });
+
+        //Subir archivo Descuentos
+        $(document).on('change', '#archivo_d', function () {
+            $('#subir_archivo').modal('toggle');
+            var file = $(this).prop("files")[0];
+            var data = new FormData();
+            var id_encabezado = $(this).data('id');
+            var input = $("<input>").attr("type", "hidden").attr("name", 'id').val(id_encabezado);
+            $('#form_descuentos').append($(input));
+            data.append('file', file);
+            data.append('id', id_encabezado);
+            $('#results_descuentos').modal('show');
+            $('#btn_guardar_d').prop('disabled', true);
+            $('#l_resutaldo_descuento_estado').text('Cargando...');
+            selector = "#tabla_resultado_descuento";
+            target = $(selector);
+            target.html("");
+            $.ajax({
+                url: '@Url.Action("Subir_Descuentos", "Planilla")',
+                type: "POST",
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                error: function () {
+                    $('#titulo').text("Operación incompleta");
+                    $('#mensaje').text("Datos no guardados. " + response.error);
+                    $('#mostrar_mensaje').modal('show');
+                },
+                success: function (response) {
+                    var options = "";
+                    if (!response.error) {
+                        $.each(response.resultados, function ($in, item) {
+                            if (item.estado) {
+                                options += "<tr>"
+                                + "<td style=\"text-align:center\"><input type=\"number\" step=\"1\" class=\"form-control\" name=\"id_empleado\" readonly value=\"" + item.id_empleado + "\"/></td>"
+                                + "<td style=\"text-align:center\"><input type=\"text\" class=\"form-control\" readonly value=\"" + item.descuento + "\"/><input type=\"hidden\" value=\"" + item.id_descuento + "\" name=\"tipo_descuento\"/></td>"
+                                + "<td style=\"text-align:center\"><input type=\"number\" step=\"0.01\" class=\"form-control\" name=\"total\" readonly value=\"" + item.total + "\"/></td>"
+                                + "<td style=\"text-align:center\"><input type=\"number\" step=\"1\" class=\"form-control\" name=\"unidades\" readonly value=\"" + item.unidades + "\"/></td>"
+                                + "<td style=\"text-align:center\"><input type=\"text\" class=\"form-control\" name=\"fecha\" readonly value=\"" + item.fecha + "\"/></td>"
+                                + "<td style=\"text-align:center\"><span class=\"glyphicon glyphicon-check\" style=\"color:green; font-size:20px\"></span></td>"
+                                    + "</tr>";
+                            }
+                            else {
+                                options += "<tr>"
+                                + "<td style=\"text-align:center\"><input type=\"text\" class=\"form-control\" readonly value=\"" + item.id_empleado + "\"/></td>"
+                                + "<td style=\"text-align:center\"><input type=\"text\" class=\"form-control\" readonly value=\"" + item.descuento + "\"/></td>"
+                                + "<td style=\"text-align:center\"><input type=\"text\" class=\"form-control\" readonly value=\"" + item.total + "\"/></td>"
+                                + "<td style=\"text-align:center\"><input type=\"text\" class=\"form-control\" readonly value=\"" + item.unidades + "\"/></td>"
+                                + "<td style=\"text-align:center\"><input type=\"text\" class=\"form-control\" readonly value=\"" + item.fecha + "\"/></td>"
+                                + "<td style=\"text-align:center\"><span class=\"glyphicon glyphicon-alert\" style=\"color:red; font-size:20px\"></span><br>" + item.error + "</td>"
+                                + "</tr>";
+                            }
+                        });
+                        target.html(options);
+                        $('#l_resutaldo_descuento_estado').text(response.mensaje);
+                        $('#l_resutaldo_descuento_estado').css("color", "black");
+                        $('#btn_guardar_d').prop('disabled', false);
+                    }
+                    else {
+                        $('#l_resutaldo_descuento_estado').text('Ocurrio un error inesperado. Vuelva a cargar el archivo.');
+                        $('#l_resutaldo_descuento_estado').css("color", "red");
+                    }
+                }
+            });
+            $archivo = $(this);
+            $archivo.replaceWith($archivo.val("").clone(true, true)); //resetear boton
+        });
+    });
+
+
+</script>

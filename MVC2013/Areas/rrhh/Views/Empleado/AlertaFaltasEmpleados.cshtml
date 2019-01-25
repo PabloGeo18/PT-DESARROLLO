@@ -1,0 +1,74 @@
+﻿@model IEnumerable<MVC2013.Models.Alerta_Faltas_Empleado_Result>
+@using System.Globalization;
+@{
+    ViewBag.Title = "Alerta_Ausencias_Empleados";
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ausencias de Empleados</h2>
+<h3>@(DateTime.Now.ToString("MMMMM", CultureInfo.GetCultureInfo("es-GT")).ToUpper() + " " + DateTime.Now.Year) </h3>
+<hr />
+<div class="row">
+    <div class="col-lg-12 form-group">
+        <table class="table-striped" id="lista_empleados">
+            <thead>
+                <tr>
+                    <th>@Resources.Resources.empleado_codigo</th>
+                    <th>@Resources.Resources.empleado_dpi</th>
+                    <th>Empleado</th>
+                    <th>Cantidad de Ausencias</th>
+                    <th>@Resources.Resources.acciones</th>
+                </tr>
+                <tr>
+                    <td><input type="number" id="id_empleado" class="form-control" autocomplete="off" /></td>
+                    <td><input type="number" id="dpi" class="form-control" autocomplete="off" /></td>
+                    <td><input type="text" id="nombre_empleado" class="form-control" autocomplete="off" /></td>
+                    <td><input type="number" id="faltas" class="form-control" autocomplete="off" /></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var empleado in Model)
+                {
+                    <tr>
+                        <td class="c_id_empleado">@empleado.id_empleado</td>
+                        <td class="c_dpi">@empleado.dpi</td>
+                        <td class="c_nombre_empleado">@empleado.empleado</td>
+                        <td class="c_faltas">@empleado.faltas</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-info" onclick="window.open('@Url.Action("Details", "Empleado", new { id = empleado.id_empleado })', '_blank')">
+                                <span class="glyphicon glyphicon-list-alt"></span>&nbsp;Ver empleado
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        
+        //Filtro de la tabla de empleados
+        $('#lista_empleados').filterByMultiColumn([
+            {
+                filterClass: 'c_nombre_empleado',
+                field: 'nombre_empleado'
+            },
+            {
+                filterClass: 'c_id_empleado',
+                field: 'id_empleado'
+            },
+            {
+                filterClass: 'c_faltas',
+                field: 'faltas'
+            },
+            {
+                filterClass: 'c_dpi',
+                field: 'dpi'
+            }
+        ]);
+    });
+
+</script>

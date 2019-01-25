@@ -1,0 +1,200 @@
+﻿@model MVC2013.Models.Receptores
+
+@{
+    ViewBag.Title = @Resources.Resources.receptores + "_" + @Resources.Resources.editar;
+    Layout = "~/Areas/TransporteValores/Views/Shared/_Layout.cshtml";
+    MVC2013.Models.AppEntities db = new MVC2013.Models.AppEntities(MVC2013.Src.Comun.Util.Constantes.getDataSource());
+}
+
+<h2>@Resources.Resources.receptores_editar</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_receptor, new { @id = "id_receptor_hidden" })
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.usuario_usuario, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.usuario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.usuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.usuario_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nombre_completo_usuario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nombre_completo_usuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.usuario_email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.usuario_telefono_trabajo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.telefono_trabajo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.telefono_trabajo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.usuario_telefono_movil, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.telefono_movil, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.telefono_movil, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.usuario_activo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.activo)
+                    @Html.ValidationMessageFor(model => model.activo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+ 
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value=@Resources.Resources.guardar class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink(@Resources.Resources.listado_regresar, "Index")
+</div>
+
+
+<hr style="height:3px; border-style:solid;background-color:#222d32">
+
+<!-- MANTENIMIENTO DE API KEYS -->
+
+<h2>@Resources.Resources.device_api_key</h2>
+
+<p> 
+    @{
+        var apiKeyList = Model.Api_Key.Where(akl => akl.eliminado == false);
+        if (apiKeyList.Count() == 0)
+        {
+            //@Html.ActionLink(@Resources.Resources.crear_nuevo, "AddApiKey", new { idReceptor = Model.id_receptor }, new { })
+            <a href="#" class="" data-toggle="modal" data-target="#myModal">
+                @Resources.Resources.crear_nuevo
+            </a>
+        }
+    }
+</p>
+
+<table class="zebra-striped">
+    <thead>
+        <th>@Resources.Resources.device</th>
+        <th>@Resources.Resources.api_key_publica</th>
+        <th>@Resources.Resources.api_key_privada</th>
+        <th>@Resources.Resources.device_activo</th>
+        <th></th>
+    </thead>
+    @foreach (var apiKey in apiKeyList)
+    {
+        MVC2013.Models.Device_Api_Key dak = apiKey.Device_Api_Key.Where(x => x.eliminado == false).DefaultIfEmpty(null).Single();
+        string serial = (dak != null && dak.Device != null) ? dak.Device.numero_serial : " ";
+             
+        <tr>
+            <td>@serial</td>
+            <td>@Html.DisplayFor(modelItem => apiKey.llave_publica)</td>
+            <td>@Html.DisplayFor(modelItem => apiKey.llave_privada)</td>
+            <td>@Html.DisplayFor(modelItem => apiKey.activo)</td>
+            <td>
+                @Html.ActionLink(@Resources.Resources.eliminar, "RemoveApiKey", new { idApiKey = apiKey.id_api_key, idReceptor = Model.id_receptor }, new { onclick = "return confirm('" + @Resources.Resources.confirmacion_eliminar + "');" }) |
+                @Html.ActionLink((apiKey.activo == true ? @Resources.Resources.inactivar : @Resources.Resources.activar), "ChangeStateApiKey", new { idApiKey = apiKey.id_api_key, idReceptor = Model.id_receptor, estado = (apiKey.activo == true ? 0 : 1) }, new { onclick = "return confirm('" + @Resources.Resources.confirmacion_general + "');" })
+            </td>
+        </tr>
+     }
+    
+</table>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Ajax.BeginForm("AddApiKey", new AjaxOptions() { }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">@Resources.Resources.device_api_key</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            @Html.Label(@Resources.Resources.rol_aplicacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("id_device", null, new { @id = "primera-lista", @class = "form-control" })
+                                <span class="text-danger field-validation-error" id="primera-lista-validacion" hidden="hidden">
+                                    <span>@Resources.Resources.device_error_requerido</span>
+                                </span>
+                            </div>
+                        </div>                  
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_modal_close">@Resources.Resources.cerrar</button>
+                    <button type="button" class="btn btn-default" id="save_dak_button">@Resources.Resources.guardar</button>
+                </div>
+            }
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+@section Scripts {
+<script type="text/javascript">
+    $("#save_dak_button").click(function () {
+        idSelectedDevice   = $("#primera-lista").val();
+        idSelectedReceptor = $("#id_receptor_hidden").val();
+        if (idSelectedDevice == null || idSelectedDevice === "") {
+            $("#primera-lista-validacion").show();
+        }
+        else {
+            $("#primera-lista-validacion").hide();
+            $.ajax({
+                url: '@Url.Action("AddApiKey")' + "?idReceptor=" + idSelectedReceptor + "&idDevice=" + idSelectedDevice,
+                type: "POST",
+                success: function (data, status) {
+                    $("#btn-btn_modal_close").click();
+                    window.location.reload();
+                },
+                error: function () {
+                    if (idSelectedDevice == null || idSelectedDevice === "")
+                        $("#primera-lista-validacion").show();
+                    else
+                        $("#primera-lista-validacion").hide();
+                }
+            });
+        }
+
+
+    });
+
+</script>    
+    
+    
+}

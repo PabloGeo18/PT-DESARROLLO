@@ -1,0 +1,149 @@
+﻿@model MVC2013.Models.Contratacion
+
+@{
+    ViewBag.Title = Resources.Resources.contratacion + "_" + Resources.Resources.crear;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="alert alert-danger">
+            @Html.ValidationSummary(true, "", new { })
+        </div>
+    </div>
+}
+
+<div id="create_main">
+
+    <h3>Crear contrato para @ViewBag.nombre_empleado</h3>
+
+    <hr />
+
+    @using (Html.BeginForm("Create", "Contratacion", FormMethod.Post, new { @id = "form_crear_contrato" }))
+    {
+        <div class="row">
+            <input type="hidden" name="id_empleado" required value="@Model.id_empleado" />
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">@Resources.Resources.puesto</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 form-group">
+                                @Html.Label(Resources.Resources.empresa_nombre, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.id_empresa, (IEnumerable<SelectListItem>)ViewBag.empresa, "---", htmlAttributes: new { @class = "form-control", @required = "required", @id = "dropdown_empresa" })
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 form-group">
+                                @Html.Label("Tipo de Puesto", htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownList("tipo_puesto", Enumerable.Empty<SelectListItem>(), "---", htmlAttributes: new { @class = "form-control", @required = "required", @id = "dropdown_tipo_puesto" })
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 form-group">
+                                @Html.Label(Resources.Resources.puesto_nombre, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.id_puesto, Enumerable.Empty<SelectListItem>(), "---", htmlAttributes: new { @class = "form-control", @required = "required", @id = "dropdown_puesto" })
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 form-group">
+                                @Html.Label(Resources.Resources.fecha_inicio, htmlAttributes: new { @class = "control-label" })
+                                <div style="position:relative">
+                                    <input type='text' class="form-control" id="fecha_inicio_contrato" name="fecha_inicio" required value="@ViewBag.fecha_inicio_contrato" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 form-group">
+                                @Html.Label("Referido por", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.referido_por, "", new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pager">
+            <button class="btn btn-success btn-sm" type="submit" id="guardar">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.crear
+            </button>
+        </div>
+    }
+    <div class="row">
+        <div class="form-group col-lg-12">
+            <button class="btn-bitbucket btn-sm" type="button" onclick="location.href = '@Url.Action("Details", "Empleado", new { id = Model.id_empleado, error = "" })'">
+                <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(function () {
+
+        //Obtener los tipos puestos en la empresa seleccionada
+        $('#dropdown_empresa').change(function () {
+            var id = $(this).val();
+            $('#dropdown_tipo_puesto').empty();
+            if (id != "") {
+                $.ajax({
+                    url: '@Url.Action("GetTiposPuestos", "Contratacion")',
+                    type: 'GET',
+                    data: { 'id_empresa': id },
+                    success: function (response) {
+                        $('#dropdown_tipo_puesto').append(new Option("---", ""));
+                        $.each(response, function (i, puesto) {
+                            $('#dropdown_tipo_puesto').append(new Option(puesto.nombre, puesto.valor));
+                        });
+                    },
+                    error: function () {
+                        alert("Error en la conexión con el servidor. No se pudo obtener el salario del puesto.");
+                        $('#dropdown_tipo_puesto').empty();
+                    }
+                });
+            }
+            else {
+                $('#dropdown_puesto').empty();
+            }
+        });
+
+        //Obtener los puestos del Tipo de Puesto seleccionado
+        $('#dropdown_tipo_puesto').change(function () {
+            var id = $(this).val();
+            $('#dropdown_puesto').empty();
+            if (id != "") {
+                $.ajax({
+                    url: '@Url.Action("GetPuestos", "Contratacion")',
+                    type: 'GET',
+                    data: { 'id_tipo_puesto': id },
+                    success: function (response) {
+                        $('#dropdown_puesto').append(new Option("---", ""));
+                        $.each(response, function (i, puesto) {
+                            $('#dropdown_puesto').append(new Option(puesto.nombre, puesto.valor));
+                        });
+                    },
+                    error: function () {
+                        alert("Error en la conexión con el servidor. No se pudo obtener el salario del puesto.");
+                        $('#dropdown_puesto').empty();
+                    }
+                });
+            }
+            else {
+                $('#dropdown_puesto').empty();
+            }
+        });
+
+        $('#form_crear_contrato').submit(function () {
+            $('#btn_crear_contrato').button('loading');
+        });
+
+
+        $('#fecha_inicio_contrato').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+
+
+
+
+    });
+</script>

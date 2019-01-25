@@ -1,0 +1,63 @@
+﻿@model List<MVC2013.Areas.EstadoFuerza.Models.ResultadoCargaEF>
+
+@{
+    ViewBag.Title = "ResultadoCargaMasiva";
+    Layout = "~/Areas/EstadoFuerza/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Análisis del archivo</h2>
+
+@using (Html.BeginForm("GuardarResultadoCargaMasiva", "AdministracionEstadoFuerza", FormMethod.Post, new { id = "resultados_form" }))
+{
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-xs-4 colsm-4 form-group">
+            <button class="btn-sm btn-bitbucket" type="button" onclick="location.href='@Url.Action("CargarArchivo")'">
+                <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar
+            </button>
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-4 col-sm-4 form-group">
+            <button class="btn btn-sm btn-warning" id="btn_validar" type="button" data-loading-text="Validando...">
+                <span class="glyphicon glyphicon-refresh"></span>&nbsp;Volver a validar
+            </button>
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-4 col-sm-4 form-group">
+            <button class="btn btn-sm btn-success" id="btn_guardar" type="button" data-loading-text="Guardando...">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-lg-12 col-xs-12 col-sm-12 col-md-12">
+            <table>
+                <tr>
+                    <th style="width:12%">Codigo Empleado</th>
+                    <th style="width:12%">Codigo Ubicacion</th>
+                    <th style="width:12%">Codigo Situacion</th>
+                    <th style="width:12%">Tipo de Agente</th>
+                    <th style="width:20%">Observaciones</th>
+                    <th style="width:32%">Informe</th>
+                </tr>
+            </table>
+            @Html.EditorForModel()
+        </div>
+    </div>
+}
+
+<script>
+    $(function () {
+
+        $('#btn_validar').click(function () {
+            $('#resultados_form').append('<input type="hidden" name="operacion" value="2"/>');
+            $('#resultados_form').submit();
+            $('#btn_validar').button('loading');
+        });
+
+        $('#btn_guardar').click(function () {
+            $('#resultados_form').append('<input type="hidden" name="operacion" value="1"/>');
+            $('#resultados_form').submit();
+            $('#btn_guardar').button('loading');
+        });
+    })
+
+</script>

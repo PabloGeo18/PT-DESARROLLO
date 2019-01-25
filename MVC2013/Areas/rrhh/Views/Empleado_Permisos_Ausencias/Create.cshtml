@@ -1,0 +1,185 @@
+﻿@model MVC2013.Models.Empleado_Permisos_Ausencias
+
+@{
+    ViewBag.Title = "Empleado_Permiso_Ausencias_Crear";
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Registrar Ausencia de Empleado</h2>
+
+<ul class="nav nav-tabs" id="nav_menu">
+    <li class="active"><a data-toggle="tab" href="#seleccion_empleado">Seleccionar Empleado</a></li>
+    <li><a data-toggle="tab" href="#info_ausencia">Datos sobre la Ausencia</a></li>
+</ul>
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="seleccion_empleado">
+        <div class="row">
+            <div class="col-lg-12 form-group">
+                <table class="table-striped" id="lista_empleados_head">
+                    <thead>
+                        <tr>
+                            <th>@Resources.Resources.empleado_codigo</th>
+                            <th>@Resources.Resources.empleado_primer_apellido</th>
+                            <th>@Resources.Resources.empleado_segundo_apellido</th>
+                            <th>@Resources.Resources.empleado_primer_nombre</th>
+                            <th>@Resources.Resources.empleado_segundo_nombre</th>
+                            <th>@Resources.Resources.empleado_dpi</th>
+                            <th>@Resources.Resources.acciones</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td><input type="number" id="id_empleado_search" class="form-control" autocomplete="off" style="text-transform:uppercase" /></td>
+                        <td><input type="text" id="primer_apellido" class="form-control" autocomplete="off" style="text-transform:uppercase" /></td>
+                        <td><input type="text" id="segundo_apellido" autocomplete="off" class="form-control" style="text-transform:uppercase" /></td>
+                        <td><input type="text" id="primer_nombre" class="form-control" autocomplete="off" style="text-transform:uppercase" /></td>
+                        <td><input type="text" id="segundo_nombre" autocomplete="off" class="form-control" style="text-transform:uppercase" /></td>
+                        <td><input type="text" id="dpi" class="form-control" autocomplete="off" /></td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" id="b_search" data-loading-text="Cargando...">
+                                <span class="glyphicon glyphicon-search"></span>&nbsp;@Resources.Resources.buscar
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+                <div class="table-responsive" style="overflow-y:auto; max-height:500px">
+                    <table class="table-striped" id="lista_empleados"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="info_ausencia">
+        @using (Html.BeginForm())
+        {
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("Empleado seleccionado", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <label id="empleado_buscado"></label>
+                        @Html.HiddenFor(model => model.id_empleado, new { id = "id_empleado", required = "required" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Tipo de Permiso", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.id_tipo_permiso_ausencia, (IEnumerable<SelectListItem>)ViewBag.tipo_permiso_ausencia, "---", htmlAttributes: new { @class = "form-control", @required = "required" })
+                        @Html.ValidationMessageFor(model => model.id_tipo_permiso_ausencia, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="text" id="fecha" name="fecha" class="form-control" required value="@ViewBag.fecha" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Días", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.dias, new { htmlAttributes = new { @class = "form-control", @required = "required", @min = "1" } })
+                        @Html.ValidationMessageFor(model => model.dias, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" class="btn btn-sm btn-success">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.crear
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+
+<script>
+    $(function () {
+
+        //Boton de detalles de empleado
+        $(document).on('click', '.btn_select_empleado', function () {
+            var id = $(this).data('id_empleado');
+            var nombre = $(this).data('nombre');
+            $('#id_empleado').val(id);
+            $('#empleado_buscado').text(nombre);
+            $('#nav_menu a[href="#info_ausencia"]').trigger('click');
+        });
+
+        //Presionar teclado en la interfaz
+        $(document).keypress(function (e) {
+            if (e.which == 13) { //Enter
+                $('#b_search').click();
+            }
+        });
+
+        $('#fecha').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+
+        //Busqueda de empleados
+        $('#b_search').click(function () {
+            var btn = $(this);
+            btn.button('loading');
+            var nombre = $('#primer_nombre').val();
+            var dpi = $('#dpi').val();
+            var apellido = $('#primer_apellido').val();
+            var id = $('#id_empleado_search').val();
+            var segundo_nombre = $('#segundo_nombre').val();
+            var segundo_apellido = $('#segundo_apellido').val();
+            $.ajax({
+                url: '@Url.Action("Search", "Empleado")',
+                type: "GET",
+                data: { 'primer_nombre': nombre, 'dpi': dpi, 'primer_apellido': apellido, 'id_empleado': id, 'segundo_nombre': segundo_nombre, 'segundo_apellido': segundo_apellido },
+                error: function () {
+                    btn.button('reset');
+                    alert("Error en la obtención de datos del servidor.");
+                },
+                success: function (response) {
+                    btn.button('reset');
+                    selector = "#lista_empleados";
+                    target = $(selector);
+                    target.html("<thead><tr>" +
+                        "<th>@Resources.Resources.empleado_codigo</th>" +
+                        "<th>@Resources.Resources.empleado_primer_apellido</th>" +
+                        "<th>@Resources.Resources.empleado_segundo_apellido</th>" +
+                        "<th>@Resources.Resources.empleado_primer_nombre</th>" +
+                        "<th>@Resources.Resources.empleado_segundo_nombre</th>" +
+                        "<th>@Resources.Resources.empleado_dpi</th>" +
+                        "<th>@Resources.Resources.acciones</th></tr></thead>");
+                    $.each(response, function ($in, item) {
+                        target.append("<tr><td>" + item.id_empleado + "</td><td>" + item.primer_apellido + "</td><td>" + item.segundo_apellido + "</td><td>" + item.primer_nombre + "</td><td>" + item.segundo_nombre + "</td><td>" + item.dpi + "</td><td>" +
+                            "<button class=\"btn btn-success btn-sm btn_select_empleado \" data-nombre=\"" + item.primer_nombre + " " + item.segundo_nombre + " " + item.primer_apellido + " " + item.segundo_apellido + "\"  data-id_empleado=\"" + item.id_empleado + "\"><span class=\"glyphicon glyphicon-ok\"></span>&nbsp;@Resources.Resources.seleccionar</button>"
+                            + "</td><tr>");
+                    });
+                }
+            });
+        });
+        $('#tabla_empleado').filterByMultiColumn([
+            {
+                filterClass: 'c_primer_nombre',
+                field: 'primer_nombre'
+            },
+            {
+                filterClass: 'c_primer_apellido',
+                field: 'primer_apellido'
+            },
+            {
+                filterClass: 'c_segundo_nombre',
+                field: 'segundo_nombre'
+            },
+            {
+                filterClass: 'c_segundo_apellido',
+                field: 'segundo_apellido'
+            }
+        ]);
+    });
+</script>

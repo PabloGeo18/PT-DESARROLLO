@@ -1,0 +1,40 @@
+﻿@model MVC2013.Models.Tipo_Telefono
+
+@{
+    ViewBag.Title = @Resources.Resources.tipo_telefono + "_" + @Resources.Resources.editar;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.tipo_telefono_editar</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_tipo_telefono, new { @id = "id_tipo_telefono_hidden" })
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.tipo_archivo_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" class="form-control" maxlength="50" name="nombre" value=@Model.nombre required/>
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("Edit")'">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>

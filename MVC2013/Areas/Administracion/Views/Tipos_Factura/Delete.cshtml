@@ -1,0 +1,57 @@
+﻿@model MVC2013.Models.Tipos_Factura
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Tipo de Factura</h2>
+
+<h3>¿Está seguro de eliminar el registro?</h3>
+<div>
+    <div class="panel panel-tipo">
+        <div class="panel-heading bg-red">Eliminacion de Tipo de Factura</div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.serie)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.serie)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.nombre)
+                </dd>
+            </dl>
+            <dl class="dl-horizontal">
+                <dd>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = Model.id_tipo_factura })'">
+                            <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                        </button>
+                    }
+                </dd>
+            </dl>
+
+        </div>
+    </div>
+
+    <hr />
+    
+</div>
+<p>
+    <div>
+        <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Index")'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+        </button>
+    </div>
+
+</p>

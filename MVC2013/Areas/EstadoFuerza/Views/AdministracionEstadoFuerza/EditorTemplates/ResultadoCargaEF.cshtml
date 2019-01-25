@@ -1,0 +1,51 @@
+﻿@model MVC2013.Areas.EstadoFuerza.Models.ResultadoCargaEF
+<div class="table-responsive">
+    <table class="table-striped">
+        @if (Model.correcto)
+        {
+            <tr>
+                <td style="width:12%; text-align:center; align-items:center">
+                    @Html.EditorFor(model => model.id_empleado, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </td>
+                <td style="width:12%; text-align:center; align-items:center">
+                    @Html.EditorFor(model => model.id_ubicacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </td>
+                <td style="width:12%; text-align:center; align-items:center">
+                    @Html.EditorFor(model => model.id_situacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </td>
+                <td style="width:12%; text-align:center; align-items:center">
+                    @Html.EditorFor(model => model.id_cat_tipo_agente, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </td>
+                <td align="center" style="width:20%; text-align:center; align-items:center">
+                    @Html.EditorFor(model => model.observacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                </td>
+                <td align="center" style="width:32%; text-align:center">
+                    <span class="glyphicon glyphicon-check" style="color:green; font-size:20px"></span>
+                </td>
+                @Html.HiddenFor(model=>model.correcto)
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td style="width:12%; text-align:center; align-items:center">@Html.EditorFor(model => model.id_empleado, new { htmlAttributes = new { @class = "form-control" } })</td>
+                <td style="width:12%; text-align:center; align-items:center">@Html.EditorFor(model => model.id_ubicacion, new { htmlAttributes = new { @class = "form-control" } })</td>
+                <td style="width:12%; text-align:center; align-items:center">@Html.EditorFor(model => model.id_situacion, new { htmlAttributes = new { @class = "form-control" } })</td>
+                <td style="width:12%; text-align:center; align-items:center">@Html.EditorFor(model => model.id_cat_tipo_agente, new { htmlAttributes = new { @class = "form-control" } })</td>
+                <td style="width:20%; text-align:center; align-items:center">@Html.EditorFor(model => model.observacion, new { htmlAttributes = new { @class = "form-control" } })</td>
+                <td align="center" style="width:32%; text-align:center">
+                    <b>
+                        <span class="glyphicon glyphicon-alert" style="color:red; font-size:20px"></span><br />
+                        @foreach (var item in Model.error.Split('\n'))
+                        {
+                            @item <text><br /></text>
+                        }
+
+                    </b>
+                </td>
+                @Html.HiddenFor(model => model.correcto)
+            </tr>
+        }
+    </table>
+
+</div>

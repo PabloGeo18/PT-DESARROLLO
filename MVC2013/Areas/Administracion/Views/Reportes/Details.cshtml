@@ -1,0 +1,51 @@
+﻿@model MVC2013.Models.Reportes
+
+@{
+    ViewBag.Title = @Resources.Resources.reporte + "_" + @Resources.Resources.detalle; ;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.municipios_detalle</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Resources.Resources.reporte_nombre</dt>
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+        <dt>@Resources.Resources.reporte_descripcion</dt>
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+        <dt>@Resources.Resources.reporte_reporte</dt>
+        <dd>
+            @Html.DisplayFor(model => model.reporte)
+        </dd>
+        <dt>@Resources.Resources.reporte_url</dt>
+        <dd>
+            @Html.DisplayFor(model => model.url)
+        </dd>
+        <dt>@Resources.Resources.reporte_carpeta</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Reporte_Carpeta.nombre)
+        </dd>
+        <dt>@Resources.Resources.reporte_grupo</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Reporte_Grupo.nombre)
+        </dd>
+
+    </dl>
+    <dl class="dl-horizontal">
+        <dd>
+            <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = Model.id_reporte })'">
+                <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+            </button>
+        </dd>
+    </dl>
+</div>
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>

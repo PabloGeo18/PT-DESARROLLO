@@ -1,0 +1,45 @@
+﻿@model MVC2013.Models.Estado_Fuerza
+@{
+    Layout = "~/Areas/EstadoFuerza/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Estado de Fuerza</h2>
+<hr />
+
+<dl class="dl-horizontal">
+    <dt>Fecha</dt>
+    <dd>@Model.fecha.ToString("dd/MM/yyyy")</dd>
+    <dt>Fecha de Creación</dt>
+    <dd>@Model.fecha_creacion</dd>
+    <dt>Usuario Creador</dt>
+    <dd>@Model.Usuarios1.nombre_completo_usuario</dd>
+</dl>
+<dl class="dl-horizontal">
+    @using (Html.BeginForm("Leer_Archivo", "AdministracionEstadoFuerza", FormMethod.Post, new { enctype = "multipart/form-data", id = "enviar_archivo_form" }))
+    {
+        <dt></dt>
+        <dd>
+            <input type="file" id="carga_estado" required name="file" accept="xls,.xlsx" />
+            <input type="hidden" name="id" value="@Model.id_estado_fuerza" />
+        </dd>
+        <dt>&nbsp;</dt>
+        <dd></dd>
+        <dt></dt>
+        <dd>
+            <button class="btn btn-sm btn-warning" id="archivo_submit" type="submit" data-loading-text="Cargando...">
+                <span class="glyphicon glyphicon-upload"></span>&nbsp;Subir archivo
+            </button>
+        </dd>
+    }
+    <dt>&nbsp;</dt>
+    <dd>&nbsp;</dd>
+    <dt>&nbsp;</dt>
+</dl>
+
+<script>
+    $(function () {
+        $('#enviar_archivo_form').submit(function (event) {
+            $('#archivo_submit').button('loading');
+        });
+    });
+</script>

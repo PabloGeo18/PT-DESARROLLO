@@ -1,0 +1,160 @@
+﻿@model MVC2013.Models.Departamentos
+
+@{
+    ViewBag.Title = @Resources.Resources.paises + "_" + @Resources.Resources.editar;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.departamentos_editar</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_departamento, new { @id = "id_departamento_hidden" })
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.paises_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_pais", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_pais, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.departamentos_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.departamentos_activo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.activo)
+                    @Html.ValidationMessageFor(model => model.activo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>    
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value=@Resources.Resources.guardar class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink(@Resources.Resources.listado_regresar, "Index")
+</div>
+
+
+<hr style="height:3px; border-style:solid;background-color:#222d32">
+
+<!-- MANTENIMIENTO DE municipios -->
+
+<h2>@Resources.Resources.departamento_municipios</h2>
+
+<p>
+    <a href="#" class="" data-toggle="modal" data-target="#myModalMun">
+        @Resources.Resources.crear_nuevo
+    </a>
+</p>
+
+<table class="zebra-striped">
+    <thead>
+    <th>@Resources.Resources.municipios_nombre</th>
+    <th>@Resources.Resources.municipios_activo</th>
+    <th></th>
+    </thead>
+    @foreach (var municipio in Model.Municipios)
+    {
+        if (municipio.eliminado == false) { 
+            <tr>
+                <td>@Html.DisplayFor(modelItem => municipio.nombre)</td>
+                <td>@Html.DisplayFor(modelItem => municipio.activo)</td>
+                <td>
+                    @Html.ActionLink(@Resources.Resources.eliminar, "RemoveDepMunicipio", new { idMunicipio = municipio.id_municipio, idDepartamento = Model.id_departamento }, new { onclick = "return confirm('" + @Resources.Resources.confirmacion_eliminar + "');" })
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModalMun" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Ajax.BeginForm("CreateDepMunicipio", new AjaxOptions() { }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">@Resources.Resources.departamento_agregar_municipio</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">                     
+                        <div class="form-group">
+                            @Html.Label(@Resources.Resources.municipios_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBox("municipio", "", new { @id = "municipio_field", @class = "form-control text-box single-line" })
+                                <span class="text-danger field-validation-error" id="municipio-validacion" hidden="hidden">
+                                    <span>@Resources.Resources.municipios_error_requerido</span>
+                                </span>
+                            </div>
+                        </div>      
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_modal_close">@Resources.Resources.cerrar</button>
+                    <button type="button" class="btn btn-default" id="save_municipio_button">@Resources.Resources.guardar</button>
+                </div>
+            }
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+@section Scripts{
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#save_municipio_button").click(function () {
+            municipio = $("#municipio_field").val();
+            idDepartamento = $("#id_departamento_hidden").val();
+
+            if (municipio == null || municipio === "") {
+                $("#municipio-validacion").show();
+            }
+            else {
+                $("#municipio-validacion").hide();
+                    $.ajax({
+                        url: '@Url.Action("CreateDepMunicipio")' + "?idDepartamento=" + idDepartamento + "&municipio=" + municipio,
+                        type: "POST",
+                        success: function (data, status) {
+                            $("#btn-btn_modal_close").click();
+                            window.location.reload();
+                        },
+                        error: function () {
+                            if (municipio == null || municipio === "")
+                                $("#municipio-validacion").show();
+                            else
+                                $("#municipio-validacion").hide();
+                        }
+                    });
+            }
+        });
+
+    });
+
+</script>
+
+}

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MVC2013.Models.Asistencias_Extras_Empleado>
+
+@{
+    ViewBag.Title = "Asistencias_Extras_Empleado_Index";
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Asistencias Extras de Empleados</h2>
+
+<div class="form-group">
+    <button class="btn btn-success btn-sm" type="button" onclick="location.href='@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</div>
+<div class="table-responsive">
+    <table class="table-striped">
+        <thead>
+            <tr>
+                <th>Código Empleado</th>
+                <th>Empleado</th>
+                <th>Días</th>
+                <th>Fecha</th>
+                <th>@Resources.Resources.acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Empleado.id_empleado</td>
+                    <td>@(item.Empleado.primer_nombre + " " +
+                    (!String.IsNullOrEmpty(item.Empleado.segundo_nombre) ? item.Empleado.segundo_nombre + " " : "") +
+                    item.Empleado.primer_apellido + " " +
+                    (!String.IsNullOrEmpty(item.Empleado.segundo_apellido) ? item.Empleado.segundo_apellido : ""))</td>
+                    <td>@item.dias</td>
+                    <td>@item.fecha.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Edit", new { id = item.id_asistencias_extras_empleados })'">
+                            <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                        </button>
+                        <button class="btn btn-sm btn-info" onclick="location.href='@Url.Action("Details", new { id = item.id_asistencias_extras_empleados })'">
+                            <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                        </button>
+                        <button class="btn btn-sm btn-danger" onclick="location.href='@Url.Action("Delete", new { id = item.id_asistencias_extras_empleados })'">
+                            <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

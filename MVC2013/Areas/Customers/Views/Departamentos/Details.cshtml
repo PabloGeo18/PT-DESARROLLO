@@ -1,0 +1,91 @@
+﻿@model MVC2013.Models.Departamentos
+
+@{
+    ViewBag.Title = "Detalle de Departamento";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalle de Departamento</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading bg-yellow">Información de Departamento</div>
+    <div class="panel-body">
+        <div>
+            <dl class="dl-horizontal">
+                <dt>@Resources.Resources.departamentos_nombre</dt>
+                <dd>@Html.DisplayFor(model => model.nombre)</dd>
+
+                <dt>&nbsp;</dt>
+                <dd></dd>
+
+                <dt>País</dt>
+                <dd>@Html.DisplayFor(model => model.Paises.nombre)</dd>
+                <dt></dt>
+                <dd>
+                    <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = Model.id_departamento })'">
+                        <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                    </button>
+                </dd>
+            </dl>
+            
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Municipios en el Departamento</div>
+    <div class="panel-body">
+        @*<button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create", "Municipios", new { id = Model.id_departamento })'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+        </button>
+
+        <hr />*@
+        <table class="zebra-striped">
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Nombre
+                </th>
+                @*<th>
+                    Acciones
+                </th>*@
+            </tr>
+            @foreach (var item in Model.Municipios.Where(x => x.activo && !x.eliminado))
+            {
+                <tr>
+                    <td>
+                        @item.id_municipio
+                    </td>
+                    <td>
+                        @item.nombre
+                    </td>
+                    @*<th>
+                        <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", "Municipios", new { id = item.id_municipio })'">
+                            <span class="glyphicon glyphicon-edit"></span>&nbsp;    @Resources.Resources.editar
+                        </button>
+                        <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", "Municipios", new { id = item.id_municipio })'">
+                            <span class="glyphicon glyphicon-search"></span>&nbsp;     @Resources.Resources.detalle
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", "Municipios", new { id = item.id_municipio })'">
+                            <span class="glyphicon glyphicon-trash"></span>&nbsp;   @Resources.Resources.eliminar
+                        </button>
+
+                    </th>*@
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+
+
+
+
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+

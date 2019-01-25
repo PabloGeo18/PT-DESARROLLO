@@ -1,0 +1,95 @@
+﻿@model MVC2013.Models.Clientes
+
+@{
+    ViewBag.Title = Resources.Resources.clientes + "_" + Resources.Resources.editar;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar Cliente</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_cliente)
+        <hr />
+        <div class="panel panel-primary">
+            <div class="panel-heading bg-blue">Informacion Cliente</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.nombre, Resources.Resources.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", required = "required" , id = "focus"} })
+                        @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.id_tipo_cliente, Resources.Resources.tipo_cliente_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("id_tipo_cliente", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.id_tipo_cliente, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button class="btn btn-success btn-sm" type="submit">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+
+    </div>
+}
+
+<div class="form-group">
+    <button class="btn-sm btn-bitbucket" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+
+<hr />
+<div class="panel panel-danger">
+    <div class="panel-heading bg-red">Razones Sociales</div>
+    <div class="panel-body">
+        <div>
+            <table class="table-hover">
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Razon Social
+                    </th>
+                    <th>
+                        Nombre Comercial
+                    </th>
+                </tr>
+                @foreach (var item in Model.Razones_Sociales)
+                {
+                    <tr>
+                        <td>
+                            @item.id_razon_social
+                        </td>
+                        <td>
+                            @item.razon_social
+                        </td>
+                        <td>
+                            @item.nombre_comercial
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    $('#focus').focus();
+</script>

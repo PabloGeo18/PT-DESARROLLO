@@ -1,0 +1,52 @@
+﻿@model IEnumerable<FileInfo>
+
+
+@{
+    ViewBag.Title = "ConsultaArchivos";
+    Layout = "~/Areas/EstadoFuerza/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ConsultaArchivos</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Archivos Cargados al Sistema</div>
+    <div class="panel-body">
+
+        <table class ="table table-striped">
+            <thead>
+                <tr>
+                    <th>Fecha Estado Fuerza</th>
+                    <th>Fecha Carga Archivo</th>
+                    <th>Usuario</th>
+                    <th>Nombre Archivo</th>
+                    <th>Opciones</th>
+                </tr>
+                </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    if (item.Name != "Thumbs.db" && item.Name.Length > 35) { 
+                    <tr>
+                        <td>
+                            @item.Name.Substring(1, 10)
+                        </td>
+                        <td>
+                            @item.Name.Substring(14, 19).Replace(";", ":")
+                        </td>
+                        <td>
+                            @item.Name.Substring(35, item.Name.Substring(35).IndexOf("_")) 
+                        </td>
+                        <td>
+                            @item.Name.Substring(35 + item.Name.Substring(35).IndexOf("_") + 1)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Descargar", "Download", new { filePath = item.FullName }, new { @class = "btn btn-sm btn-primary" })
+                        </td>
+                    </tr>
+                    }
+                }
+            </tbody>
+    </table>
+
+</div>
+</div>

@@ -1,0 +1,190 @@
+﻿@model MVC2013.Models.Liquidaciones
+@{
+    ViewBag.Title = Resources.Resources.liquidacion + "_" + Resources.Resources.calcular;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+<h2>@Resources.Resources.liquidacion_calcular</h2>
+<hr />
+<div class="row">
+    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+        @using (Html.BeginForm("PrintFiniquito", "Empleado", FormMethod.Post))
+        {
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <dl class="dl-horizontal">
+                    <dt>@Html.Label(@Resources.Resources.empleado, htmlAttributes: new { @class = "control-label" })</dt>
+                    <dd>
+                        @ViewBag.empleado
+                    <input type="hidden" name="id_contratacion" value="@ViewBag.id_contratacion" />
+                </dd>
+                <dt>&nbsp;</dt>
+                <dd></dd>
+                <dt>Indemnización</dt>
+                <dd><input type="number" step="0.01" class="form-control" name="indemnizacion"></dd>
+                <dt>&nbsp;</dt>
+                <dd></dd>
+                <dt>Aguinaldo</dt>
+                <dd><input type="number" step="0.01" class="form-control" name="aguinaldo"></dd>
+                <dt>&nbsp;</dt>
+                <dd></dd>
+                <dt>Bono 14</dt>
+                <dd><input type="number" step="0.01" class="form-control" name="bono_14"></dd>
+                <dt>&nbsp;</dt>
+                <dd></dd>
+                <dt>Vacaciones</dt>
+                <dd><input type="number" step="0.01" class="form-control" name="vacaciones"></dd>
+                <dt>&nbsp;</dt>
+                <dd></dd>
+                <dt>Sueldos Pendientes</dt>
+                <dd><input type="number" step="0.01" class="form-control" name="sueldos_pendientes"></dd>
+                <dt>&nbsp;</dt>
+                <dd></dd>
+                <dt>Deducciones</dt>
+                <dd><input type="number" step="0.01" class="form-control" name="deducciones"></dd>
+                <dt>&nbsp;</dt>
+                <dd></dd>
+                <dt>&nbsp;</dt>
+                <dd>
+                    <button class="btn btn-sm btn-warning" type="submit">
+                        <span class="glyphicon glyphicon-download"></span>&nbsp;Descargar Finiquito
+                    </button>
+                </dd>
+                @*<dt>@Html.Label(Resources.Resources.vacaciones_gozadas, htmlAttributes: new { @class = "control-label" })</dt>
+                    <dd>
+                        @Html.EditorFor(model => model.vacaciones_pendientes, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.vacaciones_pendientes, "", new { @class = "text-danger" })
+                    </dd>
+                                    <dt>&nbsp;</dt>
+                                    <dd></dd>
+                                    <dt>@Html.Label(@Resources.Resources.fecha_ultimo_pago, htmlAttributes: new { @class = "control-label" })</dt>
+                                    <dd>
+                                        <div style="position:relative">
+                                            <input type='text' class="form-control" id="fecha_ultimo_pago" name="fecha_ultimo_pago" required value="@ViewBag.fecha_ultimo_pago" />
+                                        </div>
+                                    </dd>*@
+            </dl>
+            <dl class="dl-horizontal">
+                @*<dd>
+                        <button class="btn btn-warning btn-sm" type="button" id="btn_calculo" data-loading-text="Calculando...">
+                            <span class="glyphicon glyphicon-search"></span>&nbsp;@Resources.Resources.calcular
+                        </button>
+                    </dd>*@
+            </dl>
+        </div>
+            @*
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <table class="table table-condensed table-striped " id=" detalletable">
+                        <tr>
+                            <td><b>@Resources.Resources.fecha_inicio</b></td>
+                            <td id="fecha_inicio">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td><b>@Resources.Resources.fecha_ultimo_pago</b></td>
+                            <td id="fecha_pago">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td><b>@Resources.Resources.vacaciones_pendientes</b></td>
+                            <td id="vacaciones">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td><b>@Resources.Resources.indeminizacion</b></td>
+                            <td id="indeminizacion">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td><b>@Resources.Resources.sueldo_pendiente</b></td>
+                            <td id="sueldo">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td><b>@Resources.Resources.aguinaldo_pendiente</b></td>
+                            <td id="aguinaldo">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td><b>@Resources.Resources.bono_14_pendiente</b></td>
+                            <td id="bono14">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td><b>@Resources.Resources.descuento_total</b></td>
+                            <td id="descuentos" style="color:red">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td><b>@Resources.Resources.total</b></td>
+                            <td id="total">&nbsp;</td>
+                        </tr>
+                    </table>
+                    <div class="form-group">
+                        @if (ViewBag.estado_empleado == 13)
+                        {
+                            <button class="btn btn-sm btn-success" style="display: none" type="submit" id="submitBtn">
+                                <span class="glyphicon glyphicon-save-file"></span>&nbsp;@Resources.Resources.guardar
+                            </button>
+                        }
+                    </div>
+                </div>*@
+        }
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <button class="btn-sm btn-bitbucket" onclick="location.href = '@Url.Action("Details", "Empleado", new { id = ViewBag.id_empleado })'">
+                    <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.regresar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+
+        $('#fecha_ultimo_pago').datetimepicker(
+                                   {
+                                       viewMode: 'years',
+                                       format: 'DD/MM/YYYY',
+                                   });
+
+        var id_empleado = parseInt(@ViewBag.id_empleado);
+        $("#btn_calculo").click(function () {
+
+            var fecha_ultimo_pago = $("#fecha_ultimo_pago").val();
+            var vacaciones_pendientes = $("#vacaciones_pendientes").val();
+            console.log('vamos bien');
+            if (id_empleado && fecha_ultimo_pago) {
+                console.log(' ajax vamos bien');
+                console.log(vacaciones_pendientes);
+                $.ajax({
+                    url: '@Url.Action("Calculo_Liquidación")?id_empleado=' + id_empleado + "&fecha=" + fecha_ultimo_pago + "&id_contratacion="
+                    + @ViewBag.id_contratacion,
+                    type: "GET",
+                    beforeSend: function () {
+                        $(this).button('loading');
+                        $("#submitBtn").hide();
+                        $("#detalleTable td").html('');
+                    },
+                    error: function () {
+                        alert("Error al solicitar cálculo de liquidación.");
+                    },
+                    success: function (response) {
+                        if (response.resultado == 1) {
+                            $("#fecha_inicio").html(response.fecha_inicio);
+                            $("#fecha_pago").html(response.fecha_ultimo_pago);
+                            $("#vacaciones").html(response.vacaciones);
+                            $("#indeminizacion").html(response.indeminizacion_total);
+                            $("#sueldo").html(response.sueldo_pendiente);
+                            $("#aguinaldo").html(response.aguinaldo);
+                            $("#bono14").html(response.bono_14);
+                            $("#descuentos").html(response.descuentos);
+                            $("#total").html(response.total);
+
+                            $("#submitBtn").show();
+                        } else {
+                            alert('Error en la solicitud.');
+                        }
+                    },
+                    complete: function () {
+                        $(this).button('reset');
+                    }
+                });
+            }
+        });
+    </script>
+}   

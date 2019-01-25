@@ -1,0 +1,38 @@
+﻿@model MVC2013.Models.Asistencias_Extras_Empleado
+
+@{
+    ViewBag.Title = "Asistencias_Extras_Empleado_Eliminar";
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Asistencia</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Empleado</dt>
+        <dd>@(Model.Empleado.primer_nombre.ToUpper() + " " + Model.Empleado.primer_apellido.ToUpper())</dd>
+        <dt>Fecha</dt>
+        <dd>@Model.fecha.ToString("dd/MM/yyyy")</dd>
+        <dt>Días</dt>
+        <dd>@Model.dias</dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt></dt>
+        <dd>
+            @using (Html.BeginForm("Eliminar", "Asistencias_Extras_Empleado", FormMethod.Post))
+            {
+                @Html.HiddenFor(model => model.id_asistencias_extras_empleados)
+                <button class="btn btn-sm btn-danger" type="submit">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            }
+        </dd>
+    </dl>
+</div>
+<div class="form-group">
+    <button class="btn-sm btn-bitbucket" type="button" onclick="location.href='@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>

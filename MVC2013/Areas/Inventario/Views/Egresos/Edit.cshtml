@@ -1,0 +1,202 @@
+﻿@model MVC2013.Models.Egresos
+@using System.Globalization
+@{
+    ViewBag.Title = "Editar - Egresos";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+    CultureInfo gt = new CultureInfo("es-GT");
+}
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+
+<h2>Editar Egreso</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_egreso)
+        <div>
+            <dl class="dl-horizontal">
+                <dt>Bodega ¿Quién Entrega?</dt>
+                <dd>@Html.DisplayFor(model => model.Bodegas.descripcion)</dd>
+                @if (ViewBag.rol == 8)
+                {
+                    <dt>Bodega ¿Quién Recibe?</dt>
+                    <dd>@Html.DisplayFor(model => model.Bodegas1.descripcion)</dd>
+                }
+                @if (ViewBag.rol != 8)
+                {
+                    <dt>Cliente ¿Quién Recibe?</dt>
+                    <dd>@Html.DisplayFor(model => model.Clientes.nombre)</dd>
+                }
+                <dt>Estado del Egreso</dt>
+                <dd>@Html.DisplayFor(model => model.Egreso_Estado.descripcion)</dd>
+                <dt>Tipo de Egreso</dt>
+                <dd>@Html.DisplayFor(model => model.Egreso_Tipo.descripcion)</dd>
+            </dl>
+        </div>
+    </div>
+}
+<hr style="height:3px; border-style:solid;background-color:#222d32">
+<!--Egreso Detalle-->
+<h2>@Resources.Resources.egreso_detalle</h2>
+
+
+<p>
+    <button class="btn btn-xs btn-info" type="button" onclick="location.href='@Url.Action("sub_arma", "Egresos", new { id = Model.id_egreso })'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.arma
+    </button>
+    @*<button class="btn btn-xs btn-success" type="button" onclick="location.href='@Url.Action("sub_articulo", "Egresos", new { id = Model.id_egreso })'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.articulo
+        </button>*@
+    <button class="btn btn-xs btn-info" type="button" onclick="location.href='@Url.Action("sub_municiones", "Egresos", new { id_egreso = Model.id_egreso})'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.municion
+    </button>
+    @*<button class="btn btn-xs btn-success" type="button" onclick="location.href='@Url.Action("sub_uniformes", "Egresos", new { id_egreso = Model.id_egreso })'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.uniforme
+        </button>
+        <button class="btn btn-xs btn-success" type="button" onclick="location.href='@Url.Action("sub_consumibles", "Egresos", new { id_egreso = Model.id_egreso })'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.consumible
+        </button>*@
+</p>
+
+<div class="table-responsive">
+    @if (Model.Egreso_Detalle.Where(i => i.activo && !i.eliminado).Count() <= 0)
+    {
+        <table class="table table-striped table-bordered table-responsive">
+            <thead style="background-color:cadetblue"></thead>
+            <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+        </table>
+    }
+    else
+    {
+        <table class="table-striped">
+            <thead style="background-color:#969aa2">
+                <tr>
+                    <th class="text-center">Acciones</th>
+                    <th class="text-center">Tipo</th>
+                    <th class="text-center">Valor</th>
+                    <th class="text-center">Cantidad</th>
+                    <th class="text-center">Total</th>
+                    @if (ViewBag.rol != 8)
+                    {
+                        <th class="text-center">Empleado</th>
+                    }
+                </tr>
+            </thead>
+            @foreach (var Egreso_Detalle in Model.Egreso_Detalle)
+            {
+                if (Egreso_Detalle.activo && !Egreso_Detalle.eliminado)
+                {
+                    <tr>
+                        <td width="15%" class="text-center">
+                            @if (ViewBag.rol != 8)
+                            {
+                                if (Egreso_Detalle.id_empleado == null)
+                                {
+                                    <button data-toggle="tooltip" data-placement="top" title="Asignar Empleado" class="btn btn-info btn-sm" onclick="location.href='@Url.Action("asignar_empleado", new { id_egreso = Model.id_egreso, id_detalle = Egreso_Detalle.id_egreso_detalle })'">
+                                        <span class="glyphicon glyphicon-pushpin"></span><span class="glyphicon glyphicon-user"></span>
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button data-toggle="tooltip" data-placement="top" title="Desasignar Empleado" class="btn btn-warning btn-sm" onclick="location.href='@Url.Action("desasignar_empleado", new { id_egreso = Model.id_egreso, id_detalle = Egreso_Detalle.id_egreso_detalle })'">
+                                        <span class="glyphicon glyphicon-remove-sign"></span><span class="glyphicon glyphicon-user"></span>
+                                    </button>
+                                }
+                            }
+                            <button data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("del_detalle", new { id_egreso = Model.id_egreso, id_detalle = Egreso_Detalle.id_egreso_detalle })'">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+
+                        </td>
+                        @if (Egreso_Detalle.id_arma != null)
+                        {
+                            <td class="text-center">
+                                @Resources.Resources.arma
+                                <br>Tipo - @Egreso_Detalle.Armas.Arma_Tipo.descripcion
+                                <br>Marca - @Egreso_Detalle.Armas.Marcas.descripcion
+                                <br>Calibre - @Egreso_Detalle.Armas.Calibres.descripcion
+                            </td>
+                        }
+                        @if (Egreso_Detalle.id_articulo != null)
+                        {
+                            <td class="text-center">
+                                @Resources.Resources.articulo
+                                <br>Tipo - @Egreso_Detalle.Articulos.Articulo_Tipo.descripcion
+                            </td>
+                        }
+                        @if (Egreso_Detalle.id_consumible != null)
+                        {
+                            <td class="text-center">
+                                @Resources.Resources.consumible
+                                <br>@Egreso_Detalle.Consumibles.descripcion
+                                <br>Tipo - @Egreso_Detalle.Consumibles.Consumible_Tipo.descripcion
+
+                            </td>
+                        }
+                        @if (Egreso_Detalle.id_uniforme != null)
+                        {
+                            <td class="text-center">
+                                @Resources.Resources.uniforme
+                                <br>@Egreso_Detalle.Uniformes.descripcion
+                                <br>Tipo - @Egreso_Detalle.Uniformes.Uniforme_Tipo.descripcion
+                                <br>Talla - @Egreso_Detalle.Uniformes.talla
+                            </td>
+                        }
+                        @if (Egreso_Detalle.id_municion != null)
+                        {
+                            <td class="text-center">
+                                @Resources.Resources.municion
+                                <br>@Egreso_Detalle.Municiones.descripcion
+                                <br>Calibre - @Egreso_Detalle.Municiones.Calibres.descripcion
+                            </td>
+                        }
+                        <td class="text-center">@Egreso_Detalle.valor.Value.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => Egreso_Detalle.cantidad)</td>
+                        <td class="text-center">@(((Egreso_Detalle.valor.Value) * (Egreso_Detalle.cantidad.Value)).ToString("C", CultureInfo.GetCultureInfo("es-GT")))</td>
+                        @if (ViewBag.rol != 8)
+                        {
+                            if (Egreso_Detalle.id_empleado != null)
+                            {
+                                <td class="text-center">
+                                    @Html.DisplayFor(modelItem => Egreso_Detalle.Empleado.primer_nombre)
+                                    &nbsp;
+                                    @Html.DisplayFor(modelItem => Egreso_Detalle.Empleado.segundo_nombre)
+                                    &nbsp;
+                                    @Html.DisplayFor(modelItem => Egreso_Detalle.Empleado.primer_apellido)
+                                    &nbsp;
+                                    @Html.DisplayFor(modelItem => Egreso_Detalle.Empleado.segundo_apellido)
+                                    <br>Codigo - @Html.DisplayFor(modelItem => Egreso_Detalle.Empleado.id_empleado)
+                                </td>
+                            }
+                            else
+                            {
+                                <td class="text-center">No asignado</td>
+                            }
+                        }
+                    </tr>
+                }
+            }
+        </table>
+    }
+</div>
+@if (Model.Egreso_Detalle.Where(x => x.activo && !x.eliminado && x.id_egreso == Model.id_egreso && x.id_empleado!=null).Count() <= 0)
+{
+    <div>
+        <button disabled class="btn btn-success btn-sm" onclick="location.href='@Url.Action("end_detalle", new { id_egreso = Model.id_egreso })'">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.finalizar_ingreso
+        </button>
+    </div>
+}
+else
+{
+    <div>
+        <button class="btn btn-success btn-sm" onclick="location.href='@Url.Action("end_detalle", new { id_egreso = Model.id_egreso })'">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.finalizar_ingreso
+        </button>
+    </div>
+}

@@ -1,0 +1,26 @@
+﻿@model MVC2013.Models.Clasificacion_Punto
+
+@{
+    ViewBag.Title = @Resources.Resources.clasificacion_punto + "_" + @Resources.Resources.detalle;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.clasificacion_punto_detalle</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Resources.Resources.clasificacion_punto_nombre</dt>
+        <dd>@Html.DisplayFor(model => model.nombre)</dd>
+
+        <dt>&nbsp;</dt><dd></dd>
+
+        <dt>@Resources.Resources.clasificacion_punto_activo</dt>
+        <dd>@Html.DisplayFor(model => model.activo)</dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink(@Resources.Resources.editar, "Edit", new { id = Model.id_clasificacion_punto }) |
+    @Html.ActionLink(@Resources.Resources.listado_regresar, "Index")
+</p>

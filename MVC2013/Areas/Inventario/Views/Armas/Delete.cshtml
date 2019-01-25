@@ -1,0 +1,249 @@
+﻿@model MVC2013.Models.Armas
+
+@{
+    ViewBag.Title = "Eliminar - Armas";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Armas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidad_municion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidad_municion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.registro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.registro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tenencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.portacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.portacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.marcage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.marcage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.huella)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.huella)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.largo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.largo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_vencimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_vencimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_robo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_robo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.expediente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expediente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.responsable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.responsable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eliminado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eliminado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_creacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_modificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_eliminacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_eliminacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clientes.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios1.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios1.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios2.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios2.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Arma_Estado.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Arma_Estado.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Arma_Tipo.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Arma_Tipo.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bodegas.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bodegas.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Calibres.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Calibres.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marcas.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marcas.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelos.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelos.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proveedores.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proveedores.descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

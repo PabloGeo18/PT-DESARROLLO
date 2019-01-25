@@ -1,0 +1,113 @@
+﻿@model MVC2013.Models.Contratos_Agentes
+
+@{
+    ViewBag.Title = "Eliminar Agente Contratado";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Agente Contratado</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+    <input class="hidden" name="id" value="@ViewBag.id" />
+    <hr />
+    <div class="panel panel-danger">
+        <div class="panel-heading bg-red">Informacion de Agente</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Tipo de Agente
+                        </dt>
+                        <dd>
+                            @Model.Tipos_Agente.nombre
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Cantidad
+                        </dt>
+                        <dd>
+                            @Model.cantidad
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Costo por Unidad
+                        </dt>
+                        <dd>
+                            @Model.cost_unitario.ToString("0.00")
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Precio Unitario
+                        </dt>
+                        <dd>
+                            @Model.precio_venta_unitario.ToString("0.00")
+                        </dd>
+                    </dl>
+
+
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Fecha de Inicio
+                        </dt>
+                        <dd>
+                            @Model.fecha_inicio.ToString("dd/MM/yyyy")
+                        </dd>
+
+                    </dl>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Fecha de Fin
+                        </dt>
+                        <dd>
+                            @Model.fecha_fin.ToString("dd/MM/yyyy")
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-sm btn-danger" type="submit">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            </div>
+        </div>
+
+
+    }
+</div>
+<br />
+<p>
+    <div class="form-group">
+        <button class="btn-sm btn-bitbucket" onclick="location.href = '@Url.Action("Details_U", new { id_ubicacion  = Model.Servicios_Contratados.id_ubicacion})'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar a Detalles de Ubicacion
+        </button>
+    </div>
+
+</p>

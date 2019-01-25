@@ -1,0 +1,122 @@
+﻿@model MVC2013.Models.rpt_Contrato_Result
+
+@{
+    Layout = null;
+    MVC2013.Models.AppEntities db = new MVC2013.Models.AppEntities();
+    MVC2013.Models.Empleado empleado = db.Empleado.Find(Model.id_empleado);
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Contratos.css")">*@
+    <title>Pagare</title>
+    <style type="text/css">
+        body {
+            font-size: 16pt;
+        }
+
+        .datos_representante {
+            text-decoration: underline;
+            font-size: 14pt;
+        }
+
+        .datos_empleado {
+            text-decoration: underline;
+            font-size: 14pt;
+        }
+
+
+        .datos_contrato {
+            font-size: 16pt;
+            text-decoration: underline;
+        }
+
+        .cursiva {
+            font-style: italic;
+        }
+
+        .negrita {
+            font-weight: bold;
+        }
+
+        .subrayado {
+            text-decoration: underline;
+        }
+
+        .datos_referencia {
+            font-size: 10pt;
+        }
+
+        .justificado {
+            text-align: justify;
+        }
+
+        .derecha {
+            text-align: right;
+        }
+
+        .centrado {
+            text-align: center;
+        }
+
+        .page {
+            margin-top: 100px;
+            margin-left: 100px;
+            margin-right: 100px;
+            margin-bottom: 100px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="page">
+
+
+        <div class="derecha">Código No. @Model.id_empleado </div>
+        <br />
+        <br />
+        <br />
+        <div class="centrado subrayado negrita">
+            PAGARE
+        </div>
+        <div class="centrado negrita">
+            <br />“LIBRE DE PROTESTO”
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            LA CANTIDAD DE:          DOS MIL QUETZALES EXACTOS  (Q. 2,000.00)
+        </div>
+        <br />
+        <div class="justificado">
+
+            La que prometo a pagar incondicionalmente, en un único pago, a PROTECCION TOTAL S.A., o a su orden de endoso, en su sede ubicada en la avenida Hincapié 29-75 ZONA 13, GUATEMALA, GUATEMALA, el ________   de ______________ de _______________ sin necesidad de cobro o requerimiento. En el caso de incumplimiento del pago a su presentación; en este mismo caso, el signatario señala como lugar para recibir citaciones y notificaciones, derivadas de la acción cambiaria, su residencia, renuncia al fuero de su domicilio, y se somete a los tribunales del departamento de Guatemala.
+            <br />Lugar y fecha de la creación del titulo, Guatemala, Guatemala  _________  de ___________de _________________
+            <br />
+            <br />
+            <br />
+            <br />
+            F)______________________________________________
+            <br />@Model.empleado_nombre con numero de identificación @Model.dpi extendida en @Model.dpi_municipio
+            <br />
+            <br />
+            <br />
+            <br />En el municipio de Guatemala del Departamento de Guatemala, el _______________ de____________  de___________, como notario doy fe: que la firma que antecede en AUTENTICA, por haber sido signada ante mi presencia, por @Model.empleado_nombre con numero de identificación   No. (@Model.dpi) , extendida en @Model.dpi_municipio, calza un pagaré; y quien firma juntamente con el notario, la presente acta de legalización.
+            <br />
+            <br />
+            <br />
+            <br />
+            f)_________________________________________________Ante mí:
+
+        </div>
+
+    </div>
+</body>
+</html>

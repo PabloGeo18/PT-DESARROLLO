@@ -1,0 +1,224 @@
+﻿@model IEnumerable<MVC2013.Models.Clientes>
+
+@{
+    ViewBag.Title = Resources.Resources.clientes + "_" + Resources.Resources.lista;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.clientes_lista</h2>
+
+<button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create_Cliente")'">
+    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Cliente Nuevo
+</button>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Clientes</div>
+            <div class="panel-body" id="clientesTable" style="overflow-y: scroll; height:400px;">
+                <table class="formatHTML5 table-hover">
+                    <tr>
+                        <th>
+                            id
+                        </th>
+                        <th>
+                            Nombre del Cliente
+                        </th>
+                        <th style="width:30%">
+                            Acciones
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="f" data-cliente="@item.id_cliente">
+                            <td>
+                                @item.id_cliente.ToString()
+                            </td>
+                            <td data-nombre="@item.nombre">
+                                @item.nombre
+                            </td>
+                            <td>
+                                <button class="btn btn-info btn-sm btn_cliente_details" style="display:inline-block;" data-url="@Url.Action("Details", new { id = item.id_cliente })">
+                                    <span class=" glyphicon glyphicon-search">
+                                    </span>
+                                </button>
+                                <button class="btn btn-primary btn-sm btn_cliente_edit" style="display:inline-block;" data-url="@Url.Action("Edit", new { id = item.id_cliente})">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-danger">
+            <div class="panel-heading bg-red">Razones Sociales</div>
+            <div class="panel-body" style="overflow-y: scroll; height:400px;">
+                <table class="formatHTML5 table-hover" id="lista_razones"></table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-warning">
+            <div class="panel-heading bg-yellow-active">Ubicaciones</div>
+            <div class="panel-body" style="overflow-y: scroll; height:400px;">
+                <table class="formatHTML5 table-hover" id="lista_ubicaciones"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).on('click', '.btn_cliente_edit', function () {
+        var data = $(this).data("url");
+        console.log(data)
+        window.open(data);
+    });
+
+    $(document).on('click', '.btn_cliente_details', function () {
+        var data = $(this).data("url");
+        console.log(data)
+        window.open(data);
+    });
+
+    $(".f").click(function () {
+        $('.selected1').removeClass('selected1');
+        $(this).addClass("selected1");
+        var cliente = $(this).data("cliente");
+        $.ajax({
+            url: '@Url.Action("Mostrar_RS","Clientes")',
+            type: "GET",
+            data: { 'id': cliente },
+            datatype: JSON,
+            error: function () {
+                btn.button('reset');
+                alert('error en la obtencion de los datos al servidor');
+            },
+            success: function (response) {
+                selector = "#lista_razones";
+                target = $(selector);
+                target.html(
+                   "<tr>" +
+                        "<th>" +
+                            "id" +
+                        "</th>" +
+                        "<th>" +
+                            "Razon Social" +
+                        "</th>" +
+                        "<th style=\"width:30%\">" +
+                            "Acciones" +
+                        "</th>" +
+                    "</tr>");
+                $.each(response, function ($in, item) {
+                    target.append(
+                        "<tr class=\"rz\" data-id= \"" + item.id_razon_social + "\">" +
+                            "<td>" +
+                                item.id_razon_social +
+                            "</td> " +
+                            "<td>" +
+                                item.razon_social +
+                            "</td>" +
+                            "<td>" +
+                                "<button class=\"btn btn-info btn-sm btn_details_RS\" data-id_r= \"" + item.id_razon_social + "\">" +
+                                "<span class=\"glyphicon glyphicon-search\"></span>&nbsp;</button>&nbsp" +
+                                "<button class=\"btn btn-primary btn-sm btn_editar_RS \"data-id_r=" + item.id_razon_social + ">" +
+                                "<span class=\"glyphicon glyphicon-edit\"></span>&nbsp;</button>" +
+                            "</td>" +
+                        "</tr>");
+                });
+                selector2 = "#lista_ubicaciones";
+                target = $(selector2);
+                target.html("");
+            }
+        });
+    });
+
+    $(document).on('click', '.btn_details_RS', function () {
+        var id_Razon_Social = $(this).data("id_r");
+        var url = "@Url.Action("Details_RS")?id_Razon_Social=" + id_Razon_Social;
+        window.open(url);
+    });
+    $(document).on('click', '.btn_editar_RS', function () {
+        var id_Razon_Social = $(this).data("id_r");
+        var url = "@Url.Action("Edit_RS")?id_Razon_Social=" + id_Razon_Social;
+        console.log(url);
+        window.open(url);
+    });
+
+    $(document).on('click', '.rz', function () {
+        $('.selected2').removeClass('selected2');
+        $(this).addClass("selected2");
+        var id_RS = $(this).data("id");
+        $.ajax({
+            url: '@Url.Action("Mostrar_U","Clientes")',
+            type: "GET",
+            data: { 'id_RS': id_RS },
+            datatype: JSON,
+            error: function () {
+                btn.button('reset');
+                alert('error en la obtencion de los datos al servidor');
+            },
+            success: function (response) {
+                selector = "#lista_ubicaciones";
+                target = $(selector);
+                var prueba = document.createElement("tr");
+                target.html(
+                   "<tr>" +
+                        "<th>" +
+                            "id" +
+                        "</th>" +
+                        "<th>" +
+                            "Ubicaciones" +
+                        "</th>" +
+                        "<th style=\"width:30%\">" +
+                            "Acciones" +
+                        "</th>" +
+                    "</tr>");
+                $.each(response, function ($in, item) {
+                    target.append(
+                        "<tr class=\"ubi\" data-id_ubi= \"" + item.id_ubicacion + "\">" +
+                            "<td>" +
+                                item.id_ubicacion +
+                            "</td> " +
+                            "<td>" +
+                                item.direccion +
+                            "</td>" +
+                            "<td>" +
+                                "<button class=\"btn btn-info btn-sm btn_details_Ubi \"data-id_ubi=\"" + item.id_ubicacion + "\" data-id= \"" + id_RS + "\">" +
+                                "<span class=\"glyphicon glyphicon-search\"></span>&nbsp&nbsp;</button>&nbsp" +
+                                "<button class=\"btn btn-primary btn-sm btn_editar_Ubi \"data-id_ubi=\"" + item.id_ubicacion + "\">" +
+                                "<span class=\"glyphicon glyphicon-edit\"></span>&nbsp;</button>" +
+                            "</td>" +
+                        "</tr>");
+                });
+            }
+        });
+    });
+
+    $(document).on('click', '.btn_details_Ubi', function () {
+
+        var id_Razon_Social = $(this).data("id");
+        var id_ubicacion = $(this).data("id_ubi");
+        var url = "@Url.Action("Details_U")?id_ubicacion=" + id_ubicacion;
+        window.open(url);
+    });
+    $(document).on('click', '.btn_editar_Ubi', function () {
+        var id_ubicacion = $(this).data("id_ubi");
+        var url = "@Url.Action("Edit_U")?id_ubicacion=" + id_ubicacion;
+
+        window.open(url);
+    });
+
+    $(document).on('click', '.ubi', function () {
+        $('.selected3').removeClass('selected3');
+        $(this).addClass("selected3");
+        var id_ubi = $(this).data("id_ubi");
+    });
+
+
+
+</script>

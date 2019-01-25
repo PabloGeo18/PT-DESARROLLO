@@ -1,0 +1,245 @@
+﻿@model MVC2013.Models.Facturas
+@using System.Globalization
+@{
+    ViewBag.Title = Resources.Resources.clientes + "_" + Resources.Resources.detalle;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles de Factura</h2>
+<h4><label>Cliente:</label>&nbsp;@ViewBag.Clientes.nombre</h4>
+<h4><label>Razon Social:</label>&nbsp;@ViewBag.Razon_Social.razon_social</h4>
+@using (Html.BeginForm("Create_Factura", "Clientes", FormMethod.Post, new { @id = "facturaform" }))
+{
+    @Html.AntiForgeryToken()
+    <input class="hidden" name="total_factura" value="@ViewBag.Total" />
+    <input class="hidden" name="id_razon_social" value="@ViewBag.id_razon_social" />
+    <div class="panel panel-default">
+        <div class="panel-heading bg-gray">Informacion de Factura</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Series_Facturas.serie, "Serie", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.DropDownList("id_serie_factura", null, "--Seleccione Serie--", htmlAttributes: new { @class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.Series_Facturas.serie, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.numero_factura, "Numero Factura", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            <input id="numero_factura" name="numero_factura" class="form-control" required value="@ViewBag.numero_factura" />
+                            @*@Html.ValidationMessageFor(model => model.Tipos_Factura.nombre, "", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        <label class="col-md-3">Fecha</label>
+                        <div class="col-md-9">
+                            <div style="position:relative">
+                                <input type='text' class="form-control" data-razon="@ViewBag.Razon_Social.id_razon_social" required name="fecha_factura" id="fecha" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <label class="col-md-3">Descripcion</label>
+                    <div class="col-md-offset-2 col-md-9">
+                        <textarea placeholder="Ingresar descripcion..." rows="5" cols="50" required id="descripcion" name="descripcion"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <label class="col-md-3">Direccion Factura</label>&nbsp;@ViewBag.direccion
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                    <label>Nit</label>&nbsp;@ViewBag.Nit
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <table class="table-hover" id="tabla_factura"></table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9 col-lg-9 col-sm-9 col-xs-9"></div>
+                <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                    <h3 id="saldo_total"><label id="Factura_Total">Total:&nbsp;</label>&nbsp;Q 0.00</h3>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-success btn-sm" type="submit">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;Generar Factura
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+<p>
+    <div>
+        <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Details_RS", new {id_Razon_Social = @ViewBag.Razon_Social.id_razon_social })'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar al Detalle de Razon Social
+        </button>
+    </div>
+
+</p>
+
+<div class="panel panel-default">
+    <div class="panel-heading bg-black">Listado de Facturas</div>
+    <div class="panel-body">
+        <table class="table-hover">
+            <tr>
+                <th>
+                    Serie
+                </th>
+                <th>
+                    Numero de Factura
+                </th>
+                <th>
+                    Fecha
+                </th>
+                <th>
+                    Estado de Factura
+                </th>
+                <th>
+                    Total
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
+            @foreach (var item in ViewBag.facturas)
+            {
+                <tr>
+                    <td>
+                        @item.serie
+                    </td>
+                    <td>
+                        @item.numero_factura
+                    </td>
+                    <td>
+                        @item.fecha_factura.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @item.Cat_Estados_Factura.nombre
+                    </td>
+                    <td>
+                        @item.total.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                    </td>
+                    <td>
+                        <button class="btn btn-info btn-sm" type="button" onclick="location.href = '@Url.Action("Details_Factura", new { id_factura = item.id_factura })'">
+                            <span class="glyphicon glyphicon-search"></span>&nbsp; Detalles de Factura
+                        </button>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#fecha').datetimepicker(
+                {
+                    viewMode: 'days',
+                    format: 'DD/MM/YYYY',
+                });
+        $("#fecha").on("dp.change", function () {
+            var id_razon = $(this).data("razon")
+            var fecha = $(this).val();
+
+            var formatter = new Intl.NumberFormat('en-GT', {
+                minimumFractionDigits: 2,
+            });
+            var total = 0;
+            $.ajax({
+                url: '@Url.Action("Obtener_Factura", "Clientes")',
+                type: "GET",
+                data: { 'fecha': fecha, 'Razon_Social': id_razon },
+                datatype: JSON,
+                error: function () {
+                    btn.button('reset');
+                    alert('error en la obtencion de los datos al servidor');
+                },
+                success: function (response) {
+                    selector = "#tabla_factura";
+                    target = $(selector);
+                    target.html(
+                        "<tr>" +
+                            "<th>" +
+                                "Servicio" +
+                            "</th>" +
+                            "<th>" +
+                                "Cantidad" +
+                            "</th>" +
+                            "<th>" +
+                                "Precio Unitario" +
+                            "</th>" +
+                            "<th>" +
+                                "Importe" +
+                            "</th>" +
+                    "</tr>");
+                    $.each(response.resultados, function ($in, item) {
+                        target.append(
+                            "<tr>" +
+                                "<td>" +
+                                    item.nombre +
+                                "</td> " +
+                                "<td>" +
+                                    item.cantidad +
+                                "</td>" +
+                                "<td>" +
+                                    "Q " + formatter.format(item.precio_venta_unitario) +
+                                "</td>" +
+                                "<td>" +
+                                    "Q " + formatter.format((item.cantidad * item.precio_venta_unitario)) +
+                                "</td>"+
+                            "</tr>");
+                    });
+                    selector_total = "#saldo_total";
+                    target_total = $(selector_total);
+                    target_total.html(
+                            "<label>Total:</label>&nbsp;Q" + formatter.format(response.total) +
+                            "<div class=\"hidden\" id=\"total_factura\" Value = \"" + response.total + "\"" + "</div>"
+                        );   
+                }
+            });
+        });
+        $("#id_serie_factura").change(function () {
+            //
+            var id_serie = $("#id_serie_factura").val();
+            if (id_serie != "") {
+
+                $.ajax({
+                    url: '@Url.Action("Obtener_Correlativo", "Clientes")',
+                    type: "GET",
+                    data: { 'id_serie_factura': id_serie },
+                    datatype: JSON,
+                    error: function () {
+                        target = $("#numero_factura");
+                        target.val("");
+                    },
+                    success: function (response) {
+                        target = $("#numero_factura");
+                        target.val(response);
+                    }
+                });
+            }
+            else {
+                target = $("#numero_factura");
+                target.val("");
+            }
+        });
+    });
+
+    $('#descripcion').focus();
+</script>

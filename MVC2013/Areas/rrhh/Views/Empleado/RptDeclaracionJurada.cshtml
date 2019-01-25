@@ -1,0 +1,111 @@
+﻿@model MVC2013.Models.rpt_Contrato_Result
+
+@{
+    Layout = null;
+    MVC2013.Models.AppEntities db = new MVC2013.Models.AppEntities();
+
+    MVC2013.Models.Empleado empleado = db.Empleado.Find(Model.id_empleado);
+    string genero = empleado.Genero == null ? "" : empleado.Genero.nombre;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Contratos.css")">*@
+    <title>Declaracion Jurada</title>
+    <style type="text/css">
+        body {
+            font-size: 16pt;
+        }
+
+        .datos_representante {
+            text-decoration: underline;
+            font-size: 14pt;
+        }
+
+        .datos_empleado {
+            text-decoration: underline;
+            font-size: 14pt;
+        }
+
+
+        .datos_contrato {
+            font-size: 16pt;
+            text-decoration: underline;
+        }
+
+        .cursiva {
+            font-style: italic;
+        }
+
+        .negrita {
+            font-weight: bold;
+        }
+
+        .subrayado {
+            text-decoration: underline;
+        }
+
+        .datos_referencia {
+            font-size: 10pt;
+        }
+
+        .justificado {
+            text-align: justify;
+        }
+
+        .derecha {
+            text-align: right;
+        }
+
+        .centrado {
+            text-align: center;
+        }
+
+        .page {
+            margin-top: 100px;
+            margin-left: 100px;
+            margin-right: 100px;
+            margin-bottom: 100px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="page">
+        <div class="derecha">Código No. @Model.id_empleado </div>
+        <br />
+        <br />
+        <br />
+        <div class="centrado subrayado">DECLARACIÓN JURADA</div>
+        <br />
+        <div class="justificado">
+            En el municipio de Guatemala en el Departamento de Guatemala el @Model.fecha_inicio.Day.ToString() de @Model.fecha_inicio.ToString("MMMM") de @Model.fecha_inicio.Year.ToString() yo @Model.empleado_nombre de @Model.edad años de edad, sexo @genero, @empleado.Estado_Civil.nombre, nacionalidad @Model.nacionalidadt, con número de identificación @Model.dpi, extendida en @Model.dpi_municipio,  con residencia en @Model.direcciont, @Model.municipiot, @Model.departamentot lugar que señalo para recibir citaciones y notificaciones.
+            Aseguro  ser  de  los  datos  de identificación personal antes consignados, hallarme  en  el  libre ejercicio de mis derechos civiles y voluntariamente venga a presentar la DECLARACION JURADA, así:
+            bajo Juramento Declaro que he sido enterado ampliamente por la empresa @Model.empresa:  sobre  el  compromiso que adquiero por medio del presente documento de  encontrarme en período de prueba, debiendo observar con responsabilidad y lealtad en la prestación de mis servicios a dicha empresa, en virtud de que el trabajo a desempeñar así lo exige, por lo que a partir de la presente  fecha  me  sujeto a las leyes laborales, civiles y penales vigentes en la República de Guatemala, dejando constancia de que fui enterado ampliamente por la  empresa del contenido de los Decretos números  17-73, 39-89, 1441  del Congreso de República (Código penal, Ley  de  Armas  y Municiones  y Código  de Trabajo respectivamente), Decreto de Ley 106 (Código Civil), por lo que me comprometo a  no mentir, a no participar directa o indirecta  en  la  comisión  de  actos  ilícitos de cualquier naturaleza (robos, hurtos, asaltos, revelaciones  de información, revelación de riesgos  de  clientes  ni  de la empresa, y en cualquier otro acto que   haga  perder  total  o  parcialmente,  o  ponga  en  riesgo  las operaciones y/o activos de @Model.empresa (y/o sus clientes y/o terceras personas), y en caso no  cumpliere  con  ello  desde  ya  me  someto  a las autoridades competentes. Si en el ejercicio de mi trabajo o  fuera  de  el, llegara a realizar actos que se constituyen un delito, me obligo a resarcir o pagar daños y perjuicios a @Model.empresa (y/o sus clientes y/o terceros).
+            En cuanto a mis obligaciones y prohibiciones reguladas en el contrato de trabajo en los artículos números 63, 64, 77 de la ley de la materia, estoy ampliamente enterado de las mismas obligándome a su cumplimiento total. En razón de lo anterior, estoy consiente que en caso no cumpla con mis obligaciones y/o con las leyes antes mencionadas, la empresa @Model.empresa , debe proceder ante las autoridades competentes a deducir la responsabilidad del caso en el orden civil, laboral y penal. Por lo que estando bien enterado de ello firmo este documento, en el mismo lugar y fecha indicada al principio.
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            (f)________________________________________
+            <br />En  el  municipio  de  Guatemala  del  Departamento  de  Guatemala.  Yo  el infrascrito  Notario, doy fe de que la firma que antecede es AUTENTICA, por @Model.empleado_nombre con Número de Identificación No. @Model.dpi, extendido en @Model.dpi_municipio.
+            <br />El asignado vuelve a firma.
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            (f)________________________________________
+
+
+        </div>
+    </div>
+
+</body>
+</html>

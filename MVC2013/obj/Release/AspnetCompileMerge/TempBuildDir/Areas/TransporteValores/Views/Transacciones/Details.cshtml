@@ -1,0 +1,237 @@
+﻿@model MVC2013.Models.Transacciones
+
+@{
+    ViewBag.Title = Resources.Resources.transaccion + "_" + Resources.Resources.detalle;
+    Layout = "~/Areas/TransporteValores/Views/Shared/_LayoutDetail.cshtml";
+    MVC2013.Src.Tdv.EntityExtension.TransaccionesExtension transaccion = ViewBag.transaccion;
+    List<MVC2013.Src.Tdv.To.TipoConsolidadoTO> listaConsolidados = ViewBag.lista_consolidado;
+    List<MVC2013.Models.Monedas> monedas = ViewBag.lista_monedas;
+    int monedasCount = monedas.Count();
+    int colspan1 = monedasCount + 7;
+    int colspan2 = monedasCount + 4;
+}
+
+<h2>@Resources.Resources.transaccion_detalle: @transaccion.getTransaccion().id_transaccion</h2>
+
+<div>
+    <hr />
+
+    <table style="zebra-striped">
+        <tr>
+            <!-- DETALLE-->
+            <td>
+                <strong>@Resources.Resources.voucher</strong>: @transaccion.getTransaccion().referencia
+                <br />
+
+                <strong>@if(transaccion.esRecibir()) {@Resources.Resources.recepcion_de} else {@Resources.Resources.entrega_a}</strong>:
+                <br />
+                <strong>@Resources.Resources.cliente</strong>: @transaccion.getTransaccion().Punto.Clientes.nombre
+                <br />
+                <strong>@Resources.Resources.agencia</strong>: @transaccion.getTransaccion().Punto.nombre
+                <br />
+                <strong>@Resources.Resources.codigo</strong>:
+                <em>  <text>i</text>@transaccion.getTransaccion().Punto.id_punto<text>e</text>@transaccion.getTransaccion().Punto.id_punto_externo </em>
+            </td>
+
+            <!-- RESUMEN CONTENIDO -->
+            <td>
+                <div class="section resumen_por_contenido">
+                    <strong>@Resources.Resources.resumen_contenido</strong>:
+                    <table class="zebra-detail">
+                        <thead>
+                            <tr>
+                                <th>@Resources.Resources.moneda</th>
+                                <th>@Resources.Resources.tipo</th>
+                                <th>@Resources.Resources.suma</th>
+                                <th>@Resources.Resources.bolsas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (MVC2013.Src.Tdv.To.TipoConsolidadoTO to in listaConsolidados)
+                            {
+                                <tr>
+                                    <td>
+                                        @if (to.moneda != null)
+                                        {@to.moneda.nombre}
+                                    </td>
+                                    <td>@to.tipoContenido.nombre</td>
+                                    <td class="monto">
+                                        @if (to.moneda != null)
+                                        {@to.moneda.simbolo} &nbsp; @MVC2013.Src.Comun.Util.FormatUtil.getCurrencyString(@to.monto)
+                                    </td>
+                                    <td class="bolsas">@to.cantidad</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="section total_bolsas">
+                    <strong>@Resources.Resources.total_bolsas</strong>:&nbsp; @transaccion.getAllPaqueteDetalles().Count()
+                </div>
+
+            </td>
+
+            <!-- FIRMAS -->
+            <td>
+                <div class="section firmas">
+                    <table style="border-style:none">
+                        <tr style="border-style:none">
+                            <td style="border-style:hidden"><img alt="firma_encargado" src="data:image/png;base64,@transaccion.getTransaccion().firma_encargado" width="150px" height="150px" /></td>
+                            <td style="border-style:none"><img alt="firma_encargado" src="data:image/png;base64,@transaccion.getTransaccion().firma_receptor" width="150px" height="150px" /></td>
+                        </tr>
+                        <tr style="border-style:none">
+                            <td style="border-style:none" class="nombre encargado">@transaccion.getTransaccion().nombre_encargado</td>
+                            <td style="border-style:none" class="nombre receptor">@transaccion.getFirstSolicitud().Asignaciones.FirstOrDefault().Receptores.nombre_completo_usuario</td>
+                        </tr>
+                        <tr style="border-style:none">
+                            <td style="border-style:none"><strong>@Resources.Resources.encargado</strong></td>
+                            <td style="border-style:none"><strong>@Resources.Resources.receptor</strong></td>
+                        </tr>
+                    </table>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+
+
+
+    <div class="section agencias">
+        <strong>@Resources.Resources.para_agencias</strong>:
+        <ol style="list-style-type:decimal">
+            @foreach (MVC2013.Src.Tdv.To.AgenciaDetallePaquetes det in transaccion.getDetallePaquetesByAgencia())
+            {
+                <li>
+                    <em><text>i</text>@det.punto.id_punto<text>e</text>@det.punto.id_punto_externo</em>
+                    <text>&nbsp;&nbsp;</text>
+                    <span>@det.punto.nombre</span>
+
+                    <ul class="tipos" style="list-style:none">
+                        <li>
+                            <table class="zebra-detail">
+                                <thead>
+                                    <tr class="top-row">
+                                        <th colspan=@colspan1>
+                                            @if (transaccion.esRecibir())
+                                            {<text>@Resources.Resources.recepcion</text>}
+                                            else
+                                            {<text>@Resources.Resources.entrega</text>}
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th title="Solicitud Id">@Resources.Resources.solicitud_id</th>
+                                        <th>@Resources.Resources.no_bolsa</th>
+                                        <th>@Resources.Resources.tipo</th>
+                                        @foreach (MVC2013.Models.Monedas mm in monedas)
+                                        {
+                                            <th class="top-row-edge">@Resources.Resources.moneda @mm.simbolo</th>
+                                        }
+                                        <th title="Escaneado">@Resources.Resources.escaneado</th>
+                                        <th>@Resources.Resources.fecha_hora</th>
+                                        <th>@Resources.Resources.comentario</th>
+                                    </tr>
+                                </thead>
+                                @{var counter = 0;}
+                                <tbody>
+                                    @foreach (MVC2013.Models.Paquete_Detalle paqueteDetalle in @det.detallePaquetes)
+                                    {
+                                        counter++;
+                                        <tr>
+                                            <td>@counter</td>
+                                            <td>@paqueteDetalle.Paquetes.id_solicitud</td>
+                                            <td>@paqueteDetalle.serie_detalle</td>
+                                            <td>@paqueteDetalle.Tipo_Contenido.nombre</td>
+                                            @foreach (MVC2013.Models.Monedas mm in ViewBag.lista_monedas)
+                                            {
+                                                <td class="monto">
+                                                    @mm.simbolo &nbsp;
+                                                    @MVC2013.Src.Comun.Util.FormatUtil.getCurrencyString(@paqueteDetalle.Paquete_Contenido.Where(x => x.id_moneda == mm.id_moneda).Sum(d => d.monto))
+                                                </td>
+                                            }
+                                            @if (transaccion.esRecibir())
+                                            {
+                                                <td>
+                                                    @if (paqueteDetalle.recepcion_escaneado)
+                                                    {<text>@Resources.Resources.si</text>}
+                                                    else
+                                                    {<text>@Resources.Resources.no</text>}
+                                                </td>
+                                                <td>@paqueteDetalle.recepcion_escaneado_fecha_hora</td>
+                                                <td>@paqueteDetalle.recepcion_comentario</td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+                                                    @if (paqueteDetalle.entrega_escaneado.GetValueOrDefault(false))
+                                                    {<text>@Resources.Resources.si</text>}
+                                                    else
+                                                    {<text>@Resources.Resources.no</text>}
+                                                </td>
+                                                <td>@paqueteDetalle.entrega_escaneado_fecha_hora</td>
+                                                <td>@paqueteDetalle.entrega_comentario</td>
+                                            }
+                                        </tr>
+                                    }
+                                    <tr class="type-summary">
+                                        <td colspan="3"></td>
+                                        <td>@Resources.Resources.suma:</td>
+                                        @foreach (MVC2013.Models.Monedas mm in ViewBag.lista_monedas)
+                                        {
+                                            <td class="monto">
+                                                @mm.simbolo &nbsp;
+                                                @MVC2013.Src.Comun.Util.FormatUtil.getCurrencyString(@det.detallePaquetes.Sum(x => x.Paquete_Contenido.Where(y => y.id_moneda == mm.id_moneda).Sum(z => z.monto)))
+                                            </td>
+                                        }
+
+                                        <td colspan="3"></td>
+                                    </tr>
+                                    <tr class="type-summary">
+                                        <td colspan="3"></td>
+                                        <td>@Resources.Resources.bolsas:</td>
+                                        <td class="bolsas">@det.detallePaquetes.Count()</td>
+                                        <td colspan=@colspan2></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </li>
+
+                    </ul>
+                </li>
+            }
+        </ol>
+
+    </div>
+
+    <hr />
+
+    <!-- ANULACIONES -->
+    @if (transaccion.getAllSolicitudesLogAnuladas().Count() > 0) { 
+    <div class="section anulaciones">
+        <strong>Anulaciones</strong>:
+        <table class="zebra-detail">
+            <thead>
+                <tr>
+                    <th>@Resources.Resources.solicitud_id</th>
+                    <th>@Resources.Resources.agencia</th>
+                    <th>@Resources.Resources.codigo</th>
+                    <th>@Resources.Resources.motivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var anulacion in transaccion.getAllSolicitudesLogAnuladas()) { 
+                <tr>
+                    <td>@anulacion.id_solicitud</td>
+                    <td><em>@anulacion.Puntos.nombre</td>
+                    <td><em><text>i</text>@anulacion.Puntos.id_punto<text>e</text>@anulacion.Puntos.id_punto_externo</em></td>
+                    <td>@anulacion.comentario</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    }
+
+    <p></p>

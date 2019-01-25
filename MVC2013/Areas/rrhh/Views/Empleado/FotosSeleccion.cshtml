@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Seleccion de Fotos de Empleados";
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel panel-default">
+    <div class="panel-heading bg-blue">
+        <h4 class="panel-title">Seleccion de Fotos de Empleados</h4>
+    </div>
+    <div class="panel-body">
+        <p>Ingrese los empleados uno por cada linea, puede tambien copiarlos de Excel.</p>
+
+        @using (Html.BeginForm("FotosSeleccion", "Empleado", FormMethod.Post))
+        {
+            <textarea name="empleados" id="empleados" rows="10" cols="30"></textarea>
+            <br />
+            <input type="submit" class="btn btn-success" value="Procesar" />
+
+        }
+
+
+    </div>
+</div>

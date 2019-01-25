@@ -1,0 +1,86 @@
+﻿@model MVC2013.Models.Contratacion
+
+@{
+    ViewBag.Title = Resources.Resources.contratacion + "_" + Resources.Resources.editar;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h3>@("Editar Contrato - " + Model.Empleado.id_empleado + " " + ViewBag.nombre_empleado)</h3>
+
+@using (Html.BeginForm("Editar", "Contratacion", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.id_contratacion)
+    if (!ViewData.ModelState.IsValid)
+    {
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="alert alert-danger">
+                @Html.ValidationSummary(true, "", new { })
+            </div>
+        </div>
+    }
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">@Resources.Resources.puesto</h4>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 form-group">
+                    @Html.Label(Resources.Resources.empresa_nombre, htmlAttributes: new { @class = "control-label" })
+                    <label class="form-control ">@Model.Puesto.Tipo_Puesto.Empresa.nombre</label>
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 form-group">
+                    @Html.Label("Tipo de Puesto", htmlAttributes: new { @class = "control-label" })
+                    <label class="form-control">@Model.Puesto.Tipo_Puesto.nombre    </label>
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 form-group">
+                    @Html.Label(Resources.Resources.puesto_nombre, htmlAttributes: new { @class = "control-label" })
+                    <label class="form-control">@Model.Puesto.nombre</label>
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 form-group">
+                    @Html.Label(Resources.Resources.fecha_inicio, htmlAttributes: new { @class = "control-label" })
+                    <div class='input-group date' id='fecha_inicio' name="fecha_inicio_contrato">
+                        <input type='text' class="form-control" id="fecha_inicio_contrato" name="fecha_inicio" required value="@ViewBag.fecha_inicio_contrato" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 form-group">
+                    @Html.Label("Referido por", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.referido_por, "", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 form-group">
+                    @Html.Label(Resources.Resources.contrato_estado_empleado, htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(model => model.id_estado_empleado, (IEnumerable<SelectListItem>)ViewBag.estado_empleado, htmlAttributes: new { @class = "form-control", @required = "required" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pager">
+        <div class="form-group">
+            <button class="btn btn-success btn-sm" type="submit" id="guardar">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+            </button>
+        </div>
+    </div>
+
+
+}
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" type="button" onclick="location.href = '@Url.Action("Details", "Empleado", new { id = Model.id_empleado, error = "" })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.regresar
+    </button>
+</div>
+
+<script>
+    $(function () {
+        
+
+        $('#fecha_inicio_contrato').datetimepicker(
+                               {
+                                   viewMode: 'days',
+                                   format: 'DD/MM/YYYY',
+                               });
+
+    });
+</script>

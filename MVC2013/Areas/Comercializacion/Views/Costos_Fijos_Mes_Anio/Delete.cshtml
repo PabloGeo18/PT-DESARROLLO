@@ -1,0 +1,55 @@
+﻿@model MVC2013.Models.Pt_Costos_Fijos_Mes_Anio
+@using System.Globalization
+@{
+    ViewBag.Title = "Eliminar - Costos Fijos";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+    CultureInfo gt = new CultureInfo("es-GT");
+}
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar
+    </button>
+</div>
+<h2>Eliminar Costo Fijo por mes</h2>
+<h3>¿Está seguro que desea eliminar este elemento?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>Descripción</dt>
+        <dd>@Html.DisplayFor(model => model.ccfma_descripcion)</dd>*@
+        <dt>Mes</dt>
+        <dd>@Html.DisplayFor(model => model.Pt_Meses.cmes_descripcion)</dd>
+        <dt>Año</dt>
+        <dd>@Html.DisplayFor(model => model.ccfma_anio)</dd>
+        <dt>Monto Gastos Administrativos</dt>
+        @if (Model.ccfma_monto_gasto_administrativo.HasValue)
+        {
+            <dd>@Html.DisplayFor(model => model.ccfma_monto_gasto_administrativo)</dd>
+        }
+        else
+        {
+            <dd><p>-----</p></dd>
+        }
+        <dt>Monto Gastos Operativos</dt>
+        @if (Model.ccfma_monto_gasto_operativo.HasValue)
+        {
+            <dd>@Html.DisplayFor(model => model.ccfma_monto_gasto_operativo)</dd>
+        }
+        else
+        {
+            <dd><p>-----</p></dd>
+        }
+    </dl>
+    <dl class="dl-horizontal">
+        <dd>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = Model.ccfma_id })'">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            }
+        </dd>
+    </dl>
+</div>

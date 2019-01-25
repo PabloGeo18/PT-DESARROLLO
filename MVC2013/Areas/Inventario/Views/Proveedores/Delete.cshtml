@@ -1,0 +1,42 @@
+﻿@model MVC2013.Models.Proveedores
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Proveedor</h2>
+
+<h3>¿Está seguro de eliminar el registro?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Resources.Resources.descripcion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <dl class="dl-horizontal">
+            <dd>
+                <button class="btn btn-sm btn-danger" type="submit">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            </dd>
+        </dl>
+    }
+    <div>
+        <button class="btn-sm btn-bitbucket" onclick="location.href = '@Url.Action("Index")'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+        </button>
+    </div>
+
+</div>

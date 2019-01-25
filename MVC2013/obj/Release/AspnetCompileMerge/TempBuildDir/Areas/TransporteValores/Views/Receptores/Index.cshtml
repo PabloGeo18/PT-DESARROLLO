@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MVC2013.Models.Receptores>
+
+@{
+    ViewBag.Title = @Resources.Resources.receptores + "_" + @Resources.Resources.lista;
+    Layout = "~/Areas/TransporteValores/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.receptores_lista</h2>
+
+<p>
+    @Html.ActionLink(@Resources.Resources.crear_nuevo, "Create")
+</p>
+<table class="zebra-striped">
+    <thead>
+        <th>@Resources.Resources.usuario_usuario</th>
+        <th>@Resources.Resources.usuario_nombre</th>
+        <th>@Resources.Resources.usuario_email</th>
+        <th>@Resources.Resources.usuario_activo</th>
+        <th></th>
+    </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.usuario)</td>
+        <td>@Html.DisplayFor(modelItem => item.nombre_completo_usuario)</td>
+        <td>@Html.DisplayFor(modelItem => item.email)</td>      
+        <td>@Html.DisplayFor(modelItem => item.activo)</td>    
+        <td>
+            @Html.ActionLink(@Resources.Resources.editar, "Edit", new { id=item.id_receptor }) |
+            @Html.ActionLink(@Resources.Resources.detalle, "Details", new { id=item.id_receptor }) |
+            @Html.ActionLink(@Resources.Resources.eliminar, "Delete", new { id=item.id_receptor })
+        </td>
+    </tr>
+}
+
+</table>

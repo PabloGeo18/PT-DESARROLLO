@@ -1,0 +1,168 @@
+﻿@model MVC2013.Models.Procesos_Facturacion_Detalle
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+    var fecha_inicio = Model.fecha_inicio.ToString("dd/MM/yyyy");
+    var fecha_fin = "";
+    if (Model.fecha_fin.HasValue)
+    {
+        fecha_fin = Model.fecha_fin.Value.ToString("dd/MM/yyyy");
+    }
+}
+
+<h2>Editar Detalle del Proceso de Facturacion</h2>
+<h5><label>Cliente:&nbsp;</label>@Model.Clientes.nombre</h5>
+<h5><label>Razon Social:&nbsp;</label>@Model.Razones_Sociales.razon_social</h5>
+@if (Model.id_ubicacion.HasValue)
+{
+    <h5><label>Ubicación:&nbsp;</label>@Model.Ubicaciones.direccion</h5>
+}
+else
+{
+    <h5><label>Ubicación:&nbsp;</label>----</h5>
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_proceso_facturacion_detalle)
+
+        <div class="panel panel-default">
+            <div class="panel-heading bg-purple">Informacion del Detalle</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <label class="col-md-12">Descripción</label>
+                        <div class="col-md-12">
+                            @Model.descripcion
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Cantidad</label>
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Costo</label>
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.costo, new { htmlAttributes = new { @class = "form-control", required = "required", @id = "costo" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Precio</label>
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.precio_venta_unitario, new { htmlAttributes = new { @class = "form-control", required = "required", @id = "precio" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Fecha de Inicio</label>
+                            <div class="col-md-12">
+                                <div style="position:relative">
+                                    <input type='text' class="form-control" value=@fecha_inicio required name="fecha_inicio" id="fecha_inicio" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Fecha de Fin</label>
+                            <div class="col-md-12">
+                                <div style="position:relative">
+                                    <input type='text' class="form-control" value=@fecha_fin name="fecha_fin" id="fecha_fin" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Grupo Factura</label>
+                            <div class="col-md-12">
+                                @Html.DropDownList("id_razon_social_grupo_factura", null, "--Seleccionar Grupo de Factura--", htmlAttributes: new { @class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Tipo Facturacion</label>
+                            <div class="col-md-12">
+                                @Html.DropDownList("id_cat_tipo_facturacion", null, "--Seleccionar Tipo de Facturación--", htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-success btn-sm" type="submit" name="id">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar Registro
+                </button>
+                @if (Model.id_contrato_agente.HasValue)
+                {
+                    <button class="btn btn-sm btn-primary btn_editar_contrato" data-url="@Url.Action("Edit_Agente", "Contratos_Agentes", new { id = Model.id_contrato_agente })">
+                        <span class=" glyphicon glyphicon-new-window">
+                        </span>&nbsp;Editar Contrato
+                    </button>
+                }
+                @if (Model.id_contrato_otro_servicio.HasValue)
+                {
+                    <button class="btn btn-sm btn-primary btn_editar_contrato" data-url="@Url.Action("Edit_Servicio", "Contratos_Otros_Servicios", new { id = Model.id_contrato_otro_servicio })">
+                        <span class="glyphicon glyphicon-new-window">
+                        </span>&nbsp;Editar Contrato
+                    </button>
+                }
+                <button class="btn btn-sm btn-danger"type="button" onclick="location.href = '@Url.Action("Delete", new { id = @Model.id_proceso_facturacion_detalle })'">
+                    <span class="glyphicon glyphicon-trash">
+                    </span>&nbsp;Eliminar Registro
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <button class="btn btn-sm btn-primary" type="button" onclick="location.href = '@Url.Action("Facturacion_Detalle", new { id = @Model.id_proceso_facturacion })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+        
+    
+</div>
+
+
+<script>
+    $(function () {
+        $('#fecha_fin, #fecha_inicio').datetimepicker(
+                {
+                    viewMode: 'days',
+                    format: 'DD/MM/YYYY',
+                });
+        $('#precio').val($('#precio').val().replace(",", "."));
+        $('#costo').val($('#costo').val().replace(",", "."));
+    });
+
+    $(document).on('click', '.btn_editar_contrato', function () {
+        var data = $(this).data("url");
+        window.open(data);
+    });
+
+    $('#focus').focus();
+</script>

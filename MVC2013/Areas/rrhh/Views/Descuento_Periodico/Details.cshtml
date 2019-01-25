@@ -1,0 +1,43 @@
+﻿@model MVC2013.Models.Descuento_Periodico
+@using System.Globalization;
+
+@{
+    ViewBag.Title = Resources.Resources.prestamo + "_"  + Resources.Resources.detalle;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.prestamo_detalle</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Resources.Resources.codigo</dt>
+        <dd>@Model.id_descuento_periodico</dd>
+        <dt>@Resources.Resources.empleado</dt>
+        <dd>@(Model.Empleado.primer_apellido + " " + Model.Empleado.segundo_apellido + ", " + Model.Empleado.primer_nombre + " " + Model.Empleado.segundo_nombre)</dd>
+        <dt>@Resources.Resources.fecha_inicio</dt>
+        <dd>@Model.fecha_inicio.ToString("dd/MM/yyyy")</dd>
+        <dt>@Resources.Resources.fecha_final</dt>
+        <dd>@Model.fecha_fin.Value.ToString("dd/MM/yyyy")</dd>
+        <dt>@Resources.Resources.pagos_hechos</dt>
+        <dd>@Model.pagos_actuales</dd>
+        <dt>@Resources.Resources.pagos_requeridos</dt>
+        <dd>@Model.total_pagos</dd>
+        <dt>@Resources.Resources.cantidad_pagada</dt>
+        <dd>@Model.cantidad_pagado.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</dd>
+        <dt>@Resources.Resources.prestamo_nombre</dt>
+        <dd>@Model.cantidad_a_pagar.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dd>
+            <button class="btn btn-primary btn-sm" type="button" onclick="location.href='@Url.Action("Edit", new { id = Model.id_descuento_periodico })'">
+                <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+            </button>
+        </dd>
+    </dl>
+</div>
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" type="button" onclick="location.href='@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>

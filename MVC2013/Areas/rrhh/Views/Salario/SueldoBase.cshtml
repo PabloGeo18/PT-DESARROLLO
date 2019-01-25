@@ -1,0 +1,129 @@
+﻿@model MVC2013.Models.Periodo
+@using System.Globalization;
+@{
+    ViewBag.Title = "Editar_Sueldo_General";
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<!--Modal con histórico-->
+<div class="modal fade" id="historico" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header bg-aqua">
+                Histórico
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table-striped">
+                        <thead>
+                            <tr>
+                                <th>Período</th>
+                                <th>Salario Mínimo</th>
+                                <th>Bono Decreto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.historico)
+                            {
+                                <tr>
+                                    <td>@item.año_inicial.Year - @item.año_final.Year</td>
+                                    <td>@item.salario_minimo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+                                    <td>@item.bono_decreto.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>Detalle del Período Actual</h2>
+<dl class="dl-horizontal">
+    <dt>Período</dt>
+    <dd>@Model.año_inicial.Year - @Model.año_final.Year</dd>
+    <dt>Salario Mínimo</dt>
+    <dd>@Model.salario_minimo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</dd>
+    <dt>Bono Decreto</dt>
+    <dd>@Model.bono_decreto.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</dd>
+    <dt>&nbsp;</dt>
+    <dd>&nbsp;</dd>
+    <dt></dt>
+    <dd>
+        <button class="btn btn-sm btn-info" type="button" data-toggle="modal" data-target="#historico">
+            <span class="glyphicon glyphicon-list-alt"></span>&nbsp;Ver histórico
+        </button>
+    </dd>
+</dl>
+<hr />
+<h4>Editar período actual</h4>
+
+@using (Html.BeginForm("EditarSueldoBase", "Salario", FormMethod.Post, new { id = "modificar_sueldo" }))
+{
+    @Html.HiddenFor(model => model.id_periodo)
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
+            <label class="control-label">Salario Mínimo</label>
+            <input type="text" class="form-control" id="salario_minimo_input" name="salario_minimo" />
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
+            <label class="control-label">Bono Decreto</label>
+            <input type="text" class="form-control" id="bono_decreto_input" name="bono_decreto" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 form-group">
+            <button type="submit" class="btn btn-sm btn-success">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar
+            </button>
+        </div>
+    </div>
+}
+<script>
+    $(function () {
+
+        $("#modificar_sueldo").submit(function (event) {
+            var incomplete = false;
+            var bono = $('#bono_decreto_input').val();
+            var salario = $('#salario_minimo_input').val();
+            if (bono != "" || salario != "") {
+                return;
+            }
+            event.preventDefault();
+            return (false);
+        });
+
+
+        $("#salario_minimo_input").inputmask('decimal',
+                      {
+                          'alias': 'numeric',
+                          'groupSeparator': ',',
+                          'autoGroup': true,
+                          'digits': 2,
+                          'radixPoint': ".",
+                          'digitsOptional': false,
+                          'allowMinus': false,
+                          'prefix': '',
+                          'placeholder': '0'
+                      }
+                   );
+        $("#bono_decreto_input").inputmask('decimal',
+                      {
+                          'alias': 'numeric',
+                          'groupSeparator': ',',
+                          'autoGroup': true,
+                          'digits': 2,
+                          'radixPoint': ".",
+                          'digitsOptional': false,
+                          'allowMinus': false,
+                          'prefix': '',
+                          'placeholder': '0'
+                      }
+                   );
+    });
+</script>
+
+
+

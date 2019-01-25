@@ -1,0 +1,99 @@
+﻿@model MVC2013.Models.Solicitudes
+
+@{
+    ViewBag.Title = @Resources.Resources.solicitudes + "_" + @Resources.Resources.crear;
+    Layout = "~/Areas/TransporteValores/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.solicitudes_crear</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <h3>@Html.ValidationMessage("Error")</h3>
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.solicitudes_cliente, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_cliente", null, new {@id = "id_cliente", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_cliente, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.solicitudes_origen, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="id_punto_origen" class="form-control" name="id_punto_origen"></select>
+                @Html.ValidationMessageFor(model => model.id_punto_origen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.solicitudes_destino, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="id_punto_destino" class="form-control" name="id_punto_destino"></select>
+
+                @Html.ValidationMessageFor(model => model.id_punto_destino, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.tipo_solicitud, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_solicitud_tipo", null, new { @id = "id_cliente", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_solicitud_tipo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.solicitud_origen, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.id_solicitud_origen, "", new { @type = "number", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_solicitud_origen, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value=@Resources.Resources.crear class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink(@Resources.Resources.listado_regresar, "Index")
+</div>
+
+@section Scripts {
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#id_cliente").change(function () {
+            idSelected = $(this).val();
+            $.ajax({
+                url: '@Url.Action("GetPointsByClient")' + "?id=" + idSelected,
+                type: "POST",
+                success: function (data) {
+                    var options = "";
+                    $.each(data, function (index, value) {
+                        options += '<option value="' + value.id + '">' + value.nombre + '</option>;';
+                    });
+                    $("#id_punto_origen").html(options);
+                    $("#id_punto_destino").html(options);
+                },
+                error: function () {
+                    alert("Error...");
+                }
+            });
+        }).change();
+
+
+   });
+
+</script>    
+}

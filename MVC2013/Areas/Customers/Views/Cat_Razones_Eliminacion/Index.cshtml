@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MVC2013.Models.Cat_Razones_Eliminacion>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Razones de Eliminación</h2>
+
+<p>
+    <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</p>
+<hr />
+<div class="panel panel-primary">
+    <div class="panel-heading">Tabla de Registros de Razones de Eliminación</div>
+    <div class="panel-body">
+        <table class="table-hover">
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.id_cat_razon_eliminacion
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.id_cat_razon_eliminacion })'">
+                            <span class="glyphicon glyphicon-edit"></span>&nbsp;    @Resources.Resources.editar
+                        </button>
+                        <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.id_cat_razon_eliminacion })'">
+                            <span class="glyphicon glyphicon-search"></span>&nbsp;     @Resources.Resources.detalle
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = item.id_cat_razon_eliminacion })'">
+                            <span class="glyphicon glyphicon-trash"></span>&nbsp;   @Resources.Resources.eliminar
+                        </button>
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+

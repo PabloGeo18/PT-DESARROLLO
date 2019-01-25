@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MVC2013.Models.Pt_Costos_Fijos>
+@using System.Globalization
+@{
+    ViewBag.Title = "Inicio - Costos Fijos";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+    CultureInfo gt = new CultureInfo("es-GT");
+}
+<h2>Costos Fijos</h2>
+<div class="form-group">
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</div>
+<div class="table-responsive">
+    @if (Model.Where(i => i.activo && !i.eliminado).Count() <= 0)
+    {
+    <table class="table table-striped table-bordered table-responsive">
+        <thead style="background-color:cadetblue"></thead>
+        <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+    </table>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead style="background-color:#969aa2">
+                <tr>
+                    <th class="text-center">Acciones</th>
+                    <th>Descripción</th>
+                    <th>Precio Unitario</th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td class="text-center" width="15%">
+                    <button data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.ccof_id })'">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button data-toggle="tooltip" data-placement="top" title="Detalles" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.ccof_id })'">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                    </button>
+                    <button data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = item.ccof_id })'">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.ccof_descripcion)</td>
+                <td>@item.ccof_precio_unitario.Value.ToString("c",gt)</td>
+            </tr>
+            }
+
+        </table>
+    }
+</div>

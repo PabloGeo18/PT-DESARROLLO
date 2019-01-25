@@ -1,0 +1,106 @@
+﻿@model MVC2013.Models.Puntos
+
+@{
+    ViewBag.Title =  @Resources.Resources.punto + "_" + @Resources.Resources.eliminar;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.punto_eliminar</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>@Resources.Resources.punto_clasificacion</dt>
+        <dd>@Html.DisplayFor(model => model.Clasificacion_Punto.nombre)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.punto_tipo</dt>
+        <dd>@Html.DisplayFor(model => model.Tipo_Punto.nombre)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.punto_pais</dt>
+        <dd>@Html.DisplayFor(model => model.Paises.nombre)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.punto_departamento</dt>
+        <dd>@Html.DisplayFor(model => model.Departamentos.nombre)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.punto_municipio</dt>
+        <dd>@Html.DisplayFor(model => model.Municipios.nombre)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.punto_codigo_externo</dt>
+        <dd>@Html.DisplayFor(model => model.id_punto_externo)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.punto_nombre</dt>
+        <dd>@Html.DisplayFor(model => model.nombre)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.punto_nombre_corto</dt>
+        <dd>@Html.DisplayFor(model => model.nombre_corto)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.punto_calle</dt>
+        <dd>@Html.DisplayFor(model => model.calle)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.punto_avenida</dt>
+        <dd>@Html.DisplayFor(model => model.avenida)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.punto_zona</dt>
+        <dd>@Html.DisplayFor(model => model.zona)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.punto_hora_maxima</dt>
+        <dd>@Html.DisplayFor(model => model.hora_maxima_visita)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.punto_hora_minima</dt>
+        <dd>@Html.DisplayFor(model => model.hora_minima_visita)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.punto_activo</dt>
+        <dd>@Html.DisplayFor(model => model.activo)</dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value=@Resources.Resources.eliminar class="btn btn-default" /> |
+            @Html.ActionLink(@Resources.Resources.listado_regresar, "Edit", "Clientes", new { id = Model.id_cliente }, null)
+        </div>
+    }
+</div>

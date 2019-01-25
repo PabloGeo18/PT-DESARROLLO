@@ -1,0 +1,546 @@
+﻿@model MVC2013.Models.rpt_Contrato_Result
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Contratos.css")">*@
+    <title>TestContrato</title>
+    <style type="text/css">
+        body {
+            font-size: 12pt;
+        }
+
+        .datos_representante {
+            text-decoration: underline;
+            font-size: 14pt;
+        }
+
+        .datos_empleado {
+            text-decoration: underline;
+            font-size: 14pt;
+        }
+
+
+        .datos_contrato {
+            font-size: 16pt;
+            text-decoration: underline;
+        }
+
+        .cursiva {
+            font-style: italic;
+        }
+
+        .derecha {
+            text-align: right;
+        }
+
+        .centrado {
+            text-align: center;
+        }
+
+        .negrita {
+            font-weight: bold;
+        }
+
+        .subrayado {
+            text-decoration: underline;
+        }
+
+        .datos_referencia {
+            font-size: 10pt;
+        }
+
+        .justificado {
+            text-align: justify;
+        }
+
+        .page {
+            page-break-after: always;
+            page-break-inside: avoid;
+            margin-top: 50px;
+            margin-left: 100px;
+            margin-right: 100px;
+            margin-bottom: 100px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!--Contrato-->
+    <div class="page">
+        <table width="100%">
+            <tr>
+                <td>No. <span class="datos_contrato">@Model.id_empleado</span></td>
+                <td><span class="negrita">CONTRATO INDIVIDUAL DE TRABAJO </span></td>
+                <td>ORIGINAL:</td>
+                <td>Para el patrono</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>DUPLICADO:</td>
+                <td>Para el trabajado</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>TRIPLICADO:</td>
+                <td>Para el Departamento Administrativo de Trabajo.</td>
+            </tr>
+        </table>
+
+        <div class="justificado">
+
+            <table width="100%">
+                <tr>
+                    <td>
+                        <span class="datos_representante">@Model.representante_nombre</span>;
+                    </td>
+                    <td>
+                        de <span class="datos_representante">@Model.edadR</span> años de edad;
+                    </td>
+                    <td>
+                        <span class="datos_representante">@Model.generoR</span>;
+                    </td>
+                    <td>
+                        <span class="datos_representante">@Model.estado_civilR</span>,
+                    </td>
+                    <td>
+                        <span class="datos_representante">@Model.nacionalidadR</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Nombres y apellidos del patrono o representante
+                    </td>
+                    <td>
+                        Edad
+                    </td>
+                    <td>
+                        Sexo
+                    </td>
+                    <td>
+                        Estado Civil
+                    </td>
+                    <td>
+                        Nacionalidad
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <span class="datos_representante">@Model.direccionR</span>;
+                    </td>
+                    <td>
+                        Vecino de:
+                    </td>
+                    <td colspan="2">
+                        <span class="datos_representante">@Model.municipioR</span>;
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        Dirección
+                    </td>
+                    <td></td>
+                    <td colspan="2">
+                        Municipio
+                    </td>
+                </tr>
+            </table>
+
+            Documento Personal de Identificación No.
+            <span class="negrita">@Model.dpiR</span> Extendido por el Registro Nacional de las Personas de la República de Guatemala; en representación de PROTECCION TOTAL, S.A.;
+            en la que laboran
+            <span class="negrita">@Model.cantidad_trabajadores</span> trabajadores, por una parte y por la otra
+
+            <table width="100%">
+                <tr>
+                    <td>
+                        <span class="datos_empleado">@Model.empleado_nombre</span>;
+                    </td>
+                    <td>
+                        de <span class="datos_empleado">@Model.edad</span> años de edad;
+                    </td>
+                    <td>
+                        <span class="datos_empleado">@Model.genero</span>;
+                    </td>
+                    <td>
+                        <span class="datos_empleado">@Model.estado_civil</span>,
+                    </td>
+                    <td>
+                        <span class="datos_empleado">@Model.nacionalidadt</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Nombres y apellidos del Trabajador
+                    </td>
+                    <td>
+                        Edad
+                    </td>
+                    <td>
+                        Sexo
+                    </td>
+                    <td>
+                        Estado Civil
+                    </td>
+                    <td>
+                        Nacionalidad
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <span class="datos_empleado">@Model.direcciont</span>;
+                    </td>
+                    <td>
+                        Vecino de:
+                    </td>
+                    <td colspan="2">
+                        <span class="datos_empleado">@(Model.municipiot + ", " + Model.departamentot)</span>;
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        Dirección
+                    </td>
+                    <td></td>
+                    <td colspan="2">
+                        Municipio y departamento
+                    </td>
+                </tr>
+            </table>
+            Documento Personal de Identificación:
+            <span class="negrita">@Model.dpi</span> Extendido en:
+            <span class="negrita">@Model.dpi_municipio</span>. Quienes para los efectos de este contrato se denominarán “PATRONO” y “TRABAJADOR” respectivamente, celebran el “CONTRATO INDIVIDUAL DE TRABAJO”  contenido en las siguientes cláusulas:
+            <br />1º.  La relación de trabajo se inicia
+            <span class="datos_contrato"><b>@Model.fecha_inicio.ToString("dd/MM/yyyy")</b></span>
+            <br />&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <span class="datos_referencia">Fecha de iniciación de la relación de trabajo</span>
+            <br />2º.  El trabajador prestará los servicios siguientes:
+            <span class="datos_contrato"><b>@Model.puesto</b></span>
+            o la naturaleza de la obra a ejecutar  especificando en lo posible las características y las condiciones de Trabajo
+            <br />3º.  Estos servicios serán prestados en: las oficinas de
+            <span class="datos_contrato negrita">PROTECCION TOTAL, S. A, </span>
+            <span class="datos_contrato cursiva negrita">Y DONDE SE ASIGNE POR REQUERIMIENTO DE SU JEFE INMEDIATO SUPERIOR (POR LA NATURALEZA DEL TRABAJO QUE DESEMPEÑA).</span>
+            <br /> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <span class="datos_referencia">Nombre de la Empresa, si lo tiene, Departamento, completar donde presta sus servicios</span>
+            <br />
+            <span class="datos_contrato cursiva negrita">@Model.direccion_empresa</span>
+            <br /> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <span class="datos_referencia">Dirección, Municipio, Departamento</span>
+            <br />4º.  La duración del presente contrato es:
+            <span class="datos_contrato cursiva negrita">Indefinida</span>
+            <br />&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <span class="datos_referencia">Indicar si es por tiempo indefinido, plazo fijo o para obra determinada</span>
+            <br />5º.  La jornada de trabajo será de
+            <span class="subrayado">12</span> horas diarias y de
+            <span class="subrayado">72</span> a la semana, en horarios de
+            <span class="subrayado">07:00</span> horas a
+            <span class="subrayado">19:00</span> horas de un día ó de
+            <span class="subrayado">19:00</span> horas de un día a
+            <span class="subrayado">07:00</span> del día siguiente.
+            <br />6º.  El salario será así:
+            <span class="datos_contrato cursiva negrita">@Model.definicion_salario</span>,
+            <br />
+            <span class="datos_referencia">Indicar el monto del salario, beneficio, comisión o participación que debe recibir el trabajador</span>
+            <br />Y será pagado cada: &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <span class="datos_contrato cursiva negrita">quincena del mes </span>
+            <br />&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <span class="datos_referencia">Mes, semana o quincena</span>
+            <br />En
+            <span class="datos_contrato cursiva negrita">@Model.direccion_empresa</span>
+            <br />&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <span class="datos_referencia">Lugar de pago</span>
+
+
+            <br />7º.  Las horas extras, el 7º.Día y los días de asueto, le serán pagados de conformidad con los artículos
+            <b>121, 126 y 127</b> del Código de Trabajo.
+            <br />8º.  Es entendido que de conformidad con el artículo 122 del Código de Trabajo, la jornada ordinaria y  extraordinaria No puede exceder de una suma total de 12 horas diarias.
+            <br />9º.  El presente contrato se suscribe en
+            <span class="datos_contrato cursiva negrita">Guatemala</span> el día
+            <span class="datos_contrato cursiva negrita">@Model.dia_actual</span> el mes de
+            <span class="datos_contrato cursiva negrita">@Model.mes_actual</span> de
+            <span class="datos_contrato cursiva negrita">@Model.ano_actual</span>.
+            <br />&emsp;&emsp;En tres ejemplares: uno para cada uno de las partes y uno que el Patrono remitirá al Departamento
+            <br />&emsp;&emsp;Administrativo de Trabajo.
+            <br />
+            <br />
+            <b>OBSERVACIONES:</b>
+            <br />
+            <span class="datos_contrato">Por la naturaleza del trabajo que desempeña el empleado, no esta sujeto a la jornada de Trabajo según articulo 124 Literal C de Código De Trabajo, las jornadas serán rotativas.</span>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <table width="100%" style="text-align:center">
+                <tr>
+                    <td>
+                        _________________________________
+                    </td>
+                    <td>
+                        __________________________________
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        Firma o impresión digital del Trabajador
+                    </td>
+                    <td>
+                        Firma o impresión digital del Patrono
+                    </td>
+
+                </tr>
+            </table>
+
+            <br />
+            <p>
+                DATOS IMPORTANTES. 1) El contrato individual de trabajo debe suscribirse el mismo día en que se inicia la relación de trabajo  y
+                Enviarse dentro de los 15 días siguientes al Departamento Administrativo de trabajo cuando haya modificación o renovación del contrato, deberá procederse en igual forma. (Artículo 28 Código de Trabajo). 2) Si por la naturaleza de las labores la Empresa es de aquellas comprendidas en el Artículo 128 del Código de Trabajo, debe pactarse lo relativo al trabajo en días de asueto y solicitarse la autorización respectiva a la Inspección General de Trabajo.  3) En la Cláusula 2ª. Del contrato deben especificarse en la forma más detallada posible los servicios que el trabajador se obliga a prestar para mayor claridad y seguridad de las partes. 4) En las OBSERVACIONES, deben consignarse todas aquellas particularidades a que está sujeto el contrato que no  Estén incluidas en el formato y que forman parte del mismo, tales como prestaciones, obligaciones y Derechos que deriven del Reglamento Interno de Trabajo o Pacto Colectivo de Condiciones de Trabajo jornadas extraordinarias de trabajo, aprendizaje, sueldos diferidos, aguinaldos, prestaciones en especie (habitación, manutención, víveres, etc. y cualesquiera otras que se pacten. 5) El contrato, debe mantenerse a disposición de las autoridades de trabajo, en cualquier revisión que se practique y deberá llevar el sello de REVISION del Departamento Administrativo de Trabajo.
+            </p>
+
+        </div>
+    </div>
+
+    <!--Declaracion Jurada-->
+    <div class="page" style="font-size:16pt">
+        <div class="derecha">Código No. @Model.id_empleado </div>
+        <br />
+        <br />
+        <br />
+        <div class="centrado subrayado">DECLARACIÓN JURADA</div>
+        <br />
+        <div class="justificado">
+            En el municipio de Guatemala en el Departamento de Guatemala el @Model.fecha_inicio.Day.ToString() de @Model.fecha_inicio.ToString("MMMM") de @Model.fecha_inicio.Year.ToString() yo @Model.empleado_nombre de @Model.edad años de edad, sexo @Model.genero, @Model.estado_civil, nacionalidad @Model.nacionalidadt, con número de identificación @Model.dpi, extendida en @Model.dpi_municipio,  con residencia en @Model.direcciont, @Model.municipiot, @Model.departamentot lugar que señalo para recibir citaciones y notificaciones.
+            Aseguro  ser  de  los  datos  de identificación personal antes consignados, hallarme  en  el  libre ejercicio de mis derechos civiles y voluntariamente venga a presentar la DECLARACION JURADA, así:
+            bajo Juramento Declaro que he sido enterado ampliamente por la empresa @Model.empresa:  sobre  el  compromiso que adquiero por medio del presente documento de  encontrarme en período de prueba, debiendo observar con responsabilidad y lealtad en la prestación de mis servicios a dicha empresa, en virtud de que el trabajo a desempeñar así lo exige, por lo que a partir de la presente  fecha  me  sujeto a las leyes laborales, civiles y penales vigentes en la República de Guatemala, dejando constancia de que fui enterado ampliamente por la  empresa del contenido de los Decretos números  17-73, 39-89, 1441  del Congreso de República (Código penal, Ley  de  Armas  y Municiones  y Código  de Trabajo respectivamente), Decreto de Ley 106 (Código Civil), por lo que me comprometo a  no mentir, a no participar directa o indirecta  en  la  comisión  de  actos  ilícitos de cualquier naturaleza (robos, hurtos, asaltos, revelaciones  de información, revelación de riesgos  de  clientes  ni  de la empresa, y en cualquier otro acto que   haga  perder  total  o  parcialmente,  o  ponga  en  riesgo  las operaciones y/o activos de @Model.empresa (y/o sus clientes y/o terceras personas), y en caso no  cumpliere  con  ello  desde  ya  me  someto  a las autoridades competentes. Si en el ejercicio de mi trabajo o  fuera  de  el, llegara a realizar actos que se constituyen un delito, me obligo a resarcir o pagar daños y perjuicios a @Model.empresa (y/o sus clientes y/o terceros).
+            En cuanto a mis obligaciones y prohibiciones reguladas en el contrato de trabajo en los artículos números 63, 64, 77 de la ley de la materia, estoy ampliamente enterado de las mismas obligándome a su cumplimiento total. En razón de lo anterior, estoy consiente que en caso no cumpla con mis obligaciones y/o con las leyes antes mencionadas, la empresa @Model.empresa , debe proceder ante las autoridades competentes a deducir la responsabilidad del caso en el orden civil, laboral y penal. Por lo que estando bien enterado de ello firmo este documento, en el mismo lugar y fecha indicada al principio.
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            (f)________________________________________
+            <br />En  el  municipio  de  Guatemala  del  Departamento  de  Guatemala.  Yo  el infrascrito  Notario, doy fe de que la firma que antecede es AUTENTICA, por @Model.empleado_nombre con Número de Identificación No. @Model.dpi, extendido en @Model.dpi_municipio.
+            <br />El asignado vuelve a firma.
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            (f)________________________________________
+
+
+        </div>
+    </div>
+
+    <!--Carta de Renuncia-->
+    <div class="page" style="font-size:16pt">
+        <div class="derecha">Código No. @Model.id_empleado </div>
+        <br />
+        <br />
+        <br />
+        <div class="derecha">
+            Guatemala,  ________ de ___________ del _____________
+        </div>
+        <div class="izquierda">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />Señores:
+            <br />PROTECCION TOTAL S.A.,
+            <br />Presentes.
+        </div>
+        <br />
+        <div class="justificado">
+            <br />
+            <br />
+            <br />
+            <br />
+            Por este medio deseo en forma VOLUNTARIA, presentar a ustedes mi RENUNCIA IRREVOCABLE, al puesto que venia desempeñando en la empresa PROTECCION TOTAL S.A., renuncia que será efectiva a partir del día _______________________________.
+            <br />Esta renuncia la presento por convenir a mis intereses personales, y aprovecho la oportunidad para agradecer a la empresa el tiempo que labore en ella.
+            <br />
+            <br />
+            <br />
+            <br />
+            Agradeciendo la atención,
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            F)______________________________________________
+            <br />@Model.empleado_nombre
+
+
+        </div>
+    </div>
+
+    <!--Pagare-->
+    <div class="page" style="font-size:16pt">
+        <div class="derecha">Código No. @Model.id_empleado </div>
+        <br />
+        <br />
+        <br />
+        <div class="centrado subrayado negrita">
+            PAGARE
+        </div>
+        <div class="centrado negrita">
+            <br />“LIBRE DE PROTESTO”
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            LA CANTIDAD DE:          DOS MIL QUETZALES EXACTOS  (Q. 2,000.00)
+        </div>
+        <br />
+        <div class="justificado">
+
+            La que prometo a pagar incondicionalmente, en un único pago, a PROTECCION TOTAL S.A., o a su orden de endoso, en su sede ubicada en la avenida Hincapié 29-75 ZONA 13, GUATEMALA, GUATEMALA, el ________   de ______________ de _______________ sin necesidad de cobro o requerimiento. En el caso de incumplimiento del pago a su presentación; en este mismo caso, el signatario señala como lugar para recibir citaciones y notificaciones, derivadas de la acción cambiaria, su residencia, renuncia al fuero de su domicilio, y se somete a los tribunales del departamento de Guatemala.
+            <br />Lugar y fecha de la creación del titulo, Guatemala, Guatemala  _________  de ___________de _________________
+            <br />
+            <br />
+            <br />
+            <br />
+            F)______________________________________________
+            <br />@Model.empleado_nombre con numero de identificación @Model.dpi extendida en @Model.dpi_municipio
+            <br />
+            <br />
+            <br />
+            <br />En el municipio de Guatemala del Departamento de Guatemala, el _______________ de____________  de___________, como notario doy fe: que la firma que antecede en AUTENTICA, por haber sido signada ante mi presencia, por @Model.empleado_nombre con numero de identificación   No. (@Model.dpi) , extendida en @Model.dpi_municipio, calza un pagaré; y quien firma juntamente con el notario, la presente acta de legalización.
+            <br />
+            <br />
+            <br />
+            <br />
+            f)_________________________________________________Ante mí:
+
+        </div>
+
+    </div>
+
+    <!--Registro de Firmas-->
+    <div class="page" style="font-size:16pt">
+        <div class="derecha">Código No. @Model.id_empleado </div>
+        <br />
+        <br />
+        <div class="centrado subrayado">REGISTRO DE FIRMAS</div>
+        <br />
+        <div class="justificado">
+            <b>Nombre: </b>@Model.empleado_nombre
+            <b>Código: </b> @Model.id_empleado
+            <br />
+            <b>No. De Indentificación: </b>@Model.dpi
+            <br />
+            <b>Extendida en:</b> @Model.dpi_municipio
+        </div>
+        <div class="centrado">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            F) _________________________________________________
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            F) _________________________________________________
+        </div>
+    </div>
+
+    <!--Registro de Huellas-->
+    <div style="font-size:16pt; margin:100px 100px 100px 100px;">
+        <div class="derecha">Código No. @Model.id_empleado </div>
+        <br />
+        <br />
+        <div class="centrado subrayado">REGISTRO DE HUELLAS DIGITALES</div>
+        <br />
+        <div class="justificado">
+            <b>Nombre: </b>@Model.empleado_nombre
+            <b>Código: </b> @Model.id_empleado
+            <br />
+            <b>No. De Indentificación: </b>@Model.dpi
+            <b>Extendida en:</b> @Model.dpi_municipio
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="centrado">MANO IZQUIERDA</div>
+        <br />
+        <table class="table-striped" width="800" border="1">
+            <tr>
+                <th width="20%">MEÑIQUE</th>
+                <th width="20%">ANULAR</th>
+                <th width="20%">MEDIO</th>
+                <th width="20%">INDICE</th>
+                <th width="20%">PULGAR</th>
+            </tr>
+            <tr>
+                <td height="300px"></td>
+                <td height="300px"></td>
+                <td height="300px"></td>
+                <td height="300px"></td>
+                <td height="300px"></td>
+            </tr>
+        </table>
+        <br />
+        <br />
+        <br />
+        <div class="centrado">MANO DERECHA</div>
+        <br />
+        <table class="table-striped" width="800" border="1">
+            <tr>
+                <th width="20%">PULGAR</th>
+                <th width="20%">INDICE</th>
+                <th width="20%">MEDIO</th>
+                <th width="20%">ANULAR</th>
+                <th width="20%">MEÑIQUE</th>
+            </tr>
+            <tr>
+                <td height="300px"></td>
+                <td height="300px"></td>
+                <td height="300px"></td>
+                <td height="300px"></td>
+                <td height="300px"></td>
+            </tr>
+        </table>
+        <br />
+        <br />
+        NOMBRE: _________________________________________
+        <br />
+        <br />
+        NO. DE INDENTIFICACIÓN: _________________________________________
+        <br />
+        <br />
+        <div class="derecha">
+            FIRMA: ________________________________________
+        </div>
+    </div>
+
+</body>
+</html>

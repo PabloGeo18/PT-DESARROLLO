@@ -1,0 +1,25 @@
+﻿@model MVC2013.Models.Controladores
+
+@{
+    ViewBag.Title = @Resources.Resources.controlador_nombre + "_" + @Resources.Resources.detalle;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.controlador_detalle</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Resources.Resources.controlador_nombre</dt>
+        <dd>@Html.DisplayFor(model => model.nombre)</dd>
+
+        <dt></dt><dd></dd>
+
+        <dt>@Resources.Resources.controlador_aplicacion</dt>
+        <dd> @Html.DisplayFor(model => model.Aplicaciones.nombre)</dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink(@Resources.Resources.editar, "Edit", new { id = Model.id_controlador }) |
+    @Html.ActionLink(@Resources.Resources.listado_regresar, "Index")
+</p>

@@ -1,0 +1,854 @@
+﻿@model MVC2013.Areas.rrhh.Models.EmpleadoPlanilla
+@using System.Globalization;
+@using MVC2013.Src.Comun.Util;
+@{
+    ViewBag.Title = @Resources.Resources.planilla + "_" + Resources.Resources.detalle;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<!--Confirmar Eliminación Bonificacion-->
+<div class="modal fade" id="confirm_delete_b" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-red">
+                @Resources.Resources.confirmacion
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                @Resources.Resources.confirmacion_eliminar
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger" id="btn_ok_b" type="button" data-id="">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Confirmar Eliminación Descuento-->
+<div class="modal fade" id="confirm_delete_d" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-red">
+                @Resources.Resources.confirmacion
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                @Resources.Resources.confirmacion_eliminar
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger" type="button" id="btn_ok_d" data-id="">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Mensaje-->
+<div class="modal fade" id="mostrar_mensaje" data-backdrop="static" role="dialog">
+    <div style="left: auto" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <label id="titulo">Prueba</label>
+            </div>
+            <div class="modal-body">
+                <label id="mensaje">Prueba</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Bonificaciones Crear-->
+<div class="modal fade" id="modal_bonificacion" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header bg-green">
+                @Resources.Resources.bonificacion_agregar
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="align-items:center; text-align:center">
+                    @using (Html.BeginForm("Agregar_Bonificacion", "Planilla", FormMethod.Post))
+                    {
+                    <div class="row">
+                        <label id="error_bono" style="color:red"></label>
+                        <input hidden id="b_id_bonificacion_create" name="id_empleado_encabezado_planilla" value="@Model.empleado_encabezado.id_empleado_encabezado_planilla" />
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 form-group">
+                            @Html.DropDownList("tipos_bono", null, "--Tipo Bono--", htmlAttributes: new { @class = "form-control", @id = "b_tipo_bono", @required = "required" })
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 form-group">
+                            <input type="number" min="1" class="form-control" name="cantidad" required placeholder="Cantidad" id="b_cantidad" />
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 form-group">
+                            <div style="position:relative">
+                                <input type='text' name="fecha" id="b_id_fecha" class="form-control" required placeholder="Fecha" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 form-group">
+                            <input class="form-control" type="text" min="1" id="b_total" style="text-align:right" placeholder="Total" name="total" required />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                            <button class="btn-success btn-sm" type="submit">
+                                <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                            </button>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Bonificaciones Editar-->
+<div class="modal fade" id="modal_bonificacion_editar" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                @Resources.Resources.bonificacion_editar
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="align-items:center; text-align:center">
+                    @using (Html.BeginForm("Editar_Bonificacion", "Planilla", FormMethod.Post))
+                    {
+                    <div class="row">
+                        <label id="error_bono" style="color:red"></label>
+                        <input hidden id="b_id_bonificacion_edit" name="id_bonificacion" />
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 form-group">
+                            @Html.Label(Resources.Resources.planilla_bonificacion, new { @class = "control-label" })
+                            @Html.DropDownList("tipos_bono", null, htmlAttributes: new { @class = "form-control", @id = "b_tipo_bono_edit", @required = "required" })
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 form-group">
+                            @Html.Label(Resources.Resources.planilla_cantidad, new { @class = "control-label" })
+                            <input type="number" min="1" class="form-control" placeholder="Cantidad" required id="b_cantidad_edit" name="cantidad" />
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 form-group">
+                            @Html.Label(Resources.Resources.planilla_fecha, new { @class = "control-label" })
+                            <div style="position:relative">
+                                <input type='text' name="fecha" id="b_id_fecha_edit" class="form-control" required placeholder="Fecha" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 form-group">
+                            @Html.Label(Resources.Resources.planilla_total, new { @class = "control-label" })
+                            <input class="form-control" type="text" min="1" id="b_total_edit" required style="text-align:right" name="total" placeholder="Total" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                            <button class="btn-success btn-sm" type="submit">
+                                <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                            </button>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Descuentos Crear-->
+<div class="modal fade" id="modal_descuento" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header bg-green">
+                @Resources.Resources.descuento_agregar
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="align-items:center; text-align:center">
+                    @using (Html.BeginForm("Agregar_Descuento", "Planilla", FormMethod.Post))
+                    {
+                        <div class="row">
+                            <label id="error_descuento" style="color:red"></label>
+                            <input hidden id="b_id_descuento_create" name="id_empleado_encabezado_planilla" value="@Model.empleado_encabezado.id_empleado_encabezado_planilla" />
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 form-group">
+                                @Html.DropDownList("tipos_descuento", null, "--Tipo Descuento--", htmlAttributes: new { @class = "form-control", @id = "d_tipo_descuento", @required = "required" })
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 form-group">
+                                <div style="position:relative">
+                                    <input type='text' name="fecha" id="d_id_fecha" class="form-control" required placeholder="Fecha" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 form-group">
+                                <input class="form-control" type="text" min="1" id="d_total" name="total" style="text-align:right" required placeholder="Total" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 form-group">
+                                <input type="number" min="0" id="d_id_prestamo" name="id_prestamo" class="form-control" placeholder="Código Préstamo" />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 form-group">
+                                <input type="number" min="0" id="d_cantidad" name="cantidad" class="form-control" placeholder="Cantidad" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                                <button class="btn-success btn-sm" type="submit">
+                                    <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                                </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Descuento Editar-->
+<div class="modal fade" id="modal_descuento_editar" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                @Resources.Resources.descuento_editar
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            @using (Html.BeginForm("Editar_Descuento", "Planilla", FormMethod.Post))
+            {
+                <div class="modal-body">
+                    <div class="form-group" style="align-items:center; text-align:center">
+                        <div class="row">
+                            <label id="error_bono" style="color:red"></label>
+                            <input hidden id="d_id_descuento_edit" name="id_descuento" />
+                            <input hidden id="d_id_ee" name="id_empleado_encabezado_planilla" value="@Model.empleado_encabezado.id_empleado_encabezado_planilla" />
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 form-group">
+                                @Html.Label(Resources.Resources.planilla_descuento, new { @class = "control-label" })
+                                @Html.DropDownList("tipos_descuento", null, htmlAttributes: new { @class = "form-control", @id = "d_tipo_descuento_edit", @required = "required" })
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 form-group">
+                                @Html.Label(Resources.Resources.planilla_fecha, new { @class = "control-label" })
+                                <div style="position:relative">
+                                    <input type='text' name="fecha" id="d_id_fecha_edit" class="form-control" required placeholder="Fecha" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 form-group">
+                                @Html.Label(Resources.Resources.planilla_total, new { @class = "control-label" })
+                                <input class="form-control" type="text" step="any" min="1" id="d_total_edit" style="text-align:right" required name="total" placeholder="Total" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 form-group">
+                                @Html.Label("Código Préstamo", new { @class = "control-label" })
+                                <input type="number" min="0" id="d_id_prestamo_edit" name="prestamo" class="form-control" placeholder="Código Préstamo" />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 form-group">
+                                @Html.Label("Cantidad", new { @class = "control-label" })
+                                <input type="number" min="0" id="d_cantidad_edit" name="cantidad" class="form-control" placeholder="Cantidad" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-success btn-sm" type="submit">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@if (Model.empleado_encabezado.Encabezado_Planilla.id_tipo_planilla < 3)
+{
+    
+<!--Modal Editar Ubicacion-->
+<div class="modal fade" id="editar_ubicacion" data-backdrop="static" role="dialog">
+    <div style="left: auto" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            @using (Html.BeginForm("Editar_Ubicacion", "Planilla", FormMethod.Post, new { @id = "form_ubicacion" }))
+            {
+                <div class="modal-header bg-blue">
+                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                    Editar
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        @Html.HiddenFor(model => model.empleado_encabezado.id_empleado_encabezado_planilla)
+                        <div class="form-group col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                            <label class="control-label">Ubicación</label>
+                            @Html.DropDownListFor(model => model.empleado_encabezado.id_ubicacion, (IEnumerable<SelectListItem>)ViewBag.ubicaciones, "---", htmlAttributes: new { @class = "form-control", id = "id_ubicacion_input" })
+                        </div>
+                        <div class="form-group col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                            <label class="control-label">Días trabajados</label>
+                            <input type="number" min="0" max="30" id="dias_trabajados_input" required name="empleado_encabezado.dias_trabajados" class="form-control" value="@Model.empleado_encabezado.dias_trabajados" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-sm btn-primary">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+    
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="alert alert-danger">
+            @Html.ValidationSummary(true, "", new { })
+        </div>
+    </div>
+}
+
+<div id="tabs">
+    <ul class="nav nav-tabs" id="nav_menu">
+        <li class="active" id="prueba2"><a data-toggle="tab" href="#resumen" id="tab_resumen">@Resources.Resources.resumen</a></li>
+        <li><a data-toggle="tab" href="#ver_bonificacion" id="tab_bono">@Resources.Resources.planilla_ver_bonificacion</a></li>
+        <li><a data-toggle="tab" href="#ver_descuento" id="tab_descuento">@Resources.Resources.planilla_ver_descuento</a></li>
+        @if (!Model.empleado_encabezado.Encabezado_Planilla.activo)
+        {
+            <li><a data-toggle="tab" href="#forma_pago" id="tab_forma_pago">Forma de Pago</a></li>
+        }
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="resumen">
+            <h4 style="text-align:center;"><b>@Resources.Resources.resumen</b> </h4>
+            <div class="form-group" style="align-items:center; text-align:center">
+                <table class="table-striped" style="width:auto;" align="center">
+                    <tbody>
+                        <tr>
+                            <td width="150"><b>Tipo de Planilla</b></td>
+                            <td width="300">@Html.DisplayFor(model => model.empleado_encabezado.Encabezado_Planilla.Tipo_Planilla.nombre)</td>
+                        </tr>
+                        <tr>
+                            <td><b>@Resources.Resources.empresa_nombre</b> </td>
+                            <td>@Html.DisplayFor(model => model.empleado_encabezado.Encabezado_Planilla.Empresa.nombre)</td>
+                        </tr>
+                        <tr>
+                            <td><b>@Resources.Resources.puesto</b> </td>
+                            <td>@Html.DisplayFor(model => model.empleado_encabezado.Contratacion.Puesto.nombre)</td>
+                        </tr>
+                        <tr>
+                            <td><b>@Resources.Resources.empleado</b></td>
+                            <td>@ViewBag.empleado_nombre</td>
+                        </tr>
+                        @if (!Model.empleado_encabezado.Encabezado_Planilla.activo)
+                        {
+                            <tr>
+                                <td><b>Forma de Pago</b></td>
+                                @if (Model.empleado_encabezado.id_tipo_pago.HasValue)
+                                {
+                                    <td>@Model.empleado_encabezado.Tipo_Pago.nombre</td>
+                                }
+                                else
+                                {
+                                    <td>---</td>
+                                }
+                            </tr>
+                            if (Model.empleado_encabezado.id_tipo_pago == (int)Catalogos.Tipo_Pago.Acreditacion)
+                            {
+                                <tr>
+                                    <td><b>Referencia</b></td>
+                                    <td>@(Model.empleado_encabezado.Banco.nombre + " " + Model.empleado_encabezado.agencia + "-" + Model.empleado_encabezado.cuenta + "-" + Model.empleado_encabezado.numero)</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                @if (Model.empleado_encabezado.Encabezado_Planilla.id_tipo_planilla < 3)
+                {
+                    <table id="tabla_periodo" class="table-striped" style="width:auto" align="center">
+                        <tbody>
+                            <tr>
+                                <td width="150"><b>Ubicación</b></td>
+                                @if (Model.empleado_encabezado.id_ubicacion.HasValue)
+                                {
+                                    <td width="200">@Model.empleado_encabezado.Ubicaciones.direccion</td>
+                                }
+                                else
+                                {
+                                    <td width="200">---</td>
+                                }
+                                <td rowspan="2">
+                                    @if (Model.empleado_encabezado.Encabezado_Planilla.activo)
+                                    {
+                                        <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#editar_ubicacion">
+                                            <span class="glyphicon-edit glyphicon"></span>&nbsp;@Resources.Resources.editar
+                                        </button>
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Días Trabajados</b></td>
+                                <td>
+                                    @Model.empleado_encabezado.dias_trabajados &nbsp; &nbsp;
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+                
+                <table id="tabla_bonificacion" class="table-striped" style="width: auto;" align="center">
+                    <thead>
+                        <tr>
+                            <th width="150"></th>
+                            <th width="300">@Resources.Resources.cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.empleado_encabezado.Encabezado_Planilla.id_tipo_planilla < 3)
+                        {
+                            <tr>
+                                <td><b>@Resources.Resources.planilla_salario</b></td>
+                                <td id="td_salario">@ViewBag.salario</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td><b>@Model.empleado_encabezado.Encabezado_Planilla.Tipo_Planilla.nombre</b></td>
+                                <td>@ViewBag.bonificacion</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td><b>@Resources.Resources.planilla_total_bonificacion</b></td>
+                            <td id="td_bonificacion_total">@ViewBag.total_bonificacion</td>
+                        </tr>
+                        <tr>
+                            <td><b>@Resources.Resources.planilla_total_descuento</b></td>
+                            <td id="td_descuento_total">@ViewBag.total_descuento</td>
+                        </tr>
+                        <tr>
+                            <td><b>@Resources.Resources.planilla_total</b></td>
+                            <td id="td_total"><b> @ViewBag.total</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="ver_bonificacion">
+            <div class="panel panel-default">
+                <div class="panel-heading bg-blue">
+                    <h4 class="panel-title">Bonificaciones</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @if (Model.empleado_encabezado.Encabezado_Planilla.activo)
+                        {
+                            <button class="btn btn-success btn-sm" type="button" style="position:center" data-target="#modal_bonificacion" data-toggle="modal">
+                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.agregar
+                            </button>
+                        }
+                    </div>
+                    <div style="max-height:300px; overflow-y:auto;">
+                        <table id="tabla_bonificacion" class="table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>@Resources.Resources.planilla_bono</th>
+                                    <th>@Resources.Resources.planilla_cantidad</th>
+                                    <th>@Resources.Resources.planilla_fecha</th>
+                                    <th>@Resources.Resources.planilla_total</th>
+                                    <th>@Resources.Resources.acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var bono in Model.bonos)
+                                {
+                                    <tr id="t_b_@bono.id_bonificacion">
+                                        <td>@bono.nombre_bono</td>
+                                        <td>@bono.cantidad</td>
+                                        <td>@bono.fecha.ToString("dd/MM/yyyy")</td>
+                                        <td>@bono.total.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+                                        @if (Model.empleado_encabezado.Encabezado_Planilla.activo)
+                                        {
+                                            <td>
+                                                @if (bono.modificable)
+                                                {
+                                                    <button class="btn-primary btn-sm btn_editar_bonificacion btn" data-id="@bono.id_bonificacion" data-fecha="@bono.fecha.ToString("dd/MM/yyyy")" data-tipo_bono="@bono.id_tipo_bono" data-cantidad="@bono.cantidad" type="button" data-total="@MVC2013.Src.Comun.Util.FormatUtil.getCurrencyString(bono.total)">
+                                                        <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                                                    </button>
+                                                    <button class="btn-danger btn-sm btn btn_delete_b" type="button" data-toggle="modal" data-target="#confirm_delete_b" data-id="@bono.id_bonificacion">
+                                                        <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                                                    </button>
+                                                }
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td></td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="tab-pane fade" id="ver_descuento">
+            <div class="panel panel-default">
+                <div class="panel-heading bg-blue">
+                    <h4 class="panel-title">Descuentos</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @if (Model.empleado_encabezado.Encabezado_Planilla.activo)
+                        {
+                            <button class="btn btn-success btn-sm" type="button" data-target="#modal_descuento" data-toggle="modal">
+                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.agregar
+                            </button>
+                        }
+                    </div>
+                    <div style="max-height:300px; overflow-y:auto;">
+                        <table id="tabla_descuento" class="table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>@Resources.Resources.planilla_descuento</th>
+                                    <th>@Resources.Resources.planilla_fecha</th>
+                                    <th>@Resources.Resources.planilla_total</th>
+                                    <th>@Resources.Resources.acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var descuento in Model.descuentos)
+                                {
+                                    <tr id="t_d_@descuento.id_descuento">
+                                        <td>@descuento.nombre_descuento</td>
+                                        <td>@descuento.fecha.ToString("dd/MM/yyyy")</td>
+                                        <td>@descuento.total.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+                                        @if (Model.empleado_encabezado.Encabezado_Planilla.activo)
+                                        {
+                                            <td>
+                                                @if (descuento.modificable)
+                                                {
+                                                    <button class="btn-primary btn-sm btn_editar_descuento btn" data-cantidad="@descuento.cantidad" data-id_dp="@descuento.id_descuento_periodico" data-id="@descuento.id_descuento" data-fecha="@descuento.fecha.ToString("dd/MM/yyyy")" data-tipo_descuento="@descuento.id_tipo_descuento" type="button" data-total="@MVC2013.Src.Comun.Util.FormatUtil.getCurrencyString(descuento.total)">
+                                                        <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                                                    </button>
+                                                    <button class="btn-danger btn-sm btn_delete_d btn" type="button" data-toggle="modal" data-target="#confirm_delete_d" data-id="@descuento.id_descuento">
+                                                        <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                                                    </button>
+                                                }
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td></td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Para editar la forma de pago y referencia de la planilla-->
+        @if (!Model.empleado_encabezado.Encabezado_Planilla.activo)
+        {
+            <div class="tab-pane fade" id="forma_pago">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        @using (Html.BeginForm("EditarFormaPago", "Planilla", FormMethod.Post))
+                        {
+                            <div class="panel panel-default">
+                                <div class="panel-heading bg-blue">
+                                    <h4 class="panel-title">Editar forma de pago</h4>
+                                </div>
+                                <div class="panel-body">
+                                    @Html.HiddenFor(model => model.planilla.id_planilla)
+                                    @Html.HiddenFor(model => model.empleado_encabezado.id_empleado_encabezado_planilla)
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4">
+                                            @Html.Label("Tipo de Pago", htmlAttributes: new { @class = "control-label" })
+                                            @Html.DropDownListFor(model => model.empleado_encabezado.id_tipo_pago, (IEnumerable<SelectListItem>)ViewBag.tipo_pago, "---", htmlAttributes: new { @class = "form-control", @required = "required", @id = "tipo_pago_input" })
+                                            @Html.ValidationMessageFor(model => model.empleado_encabezado.id_tipo_pago, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4">
+                                            @Html.Label("Banco", htmlAttributes: new { @class = "control-label" })
+                                            @Html.DropDownListFor(model => model.empleado_encabezado.id_banco, (IEnumerable<SelectListItem>)ViewBag.banco, "---", htmlAttributes: new { @class = "form-control", @id = "banco_input" })
+                                            @Html.ValidationMessageFor(model => model.empleado_encabezado.id_banco, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading bg-aqua">
+                                    <h4 class="panel-title">Información bancaria</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4">
+                                            @Html.Label("Agencia", htmlAttributes: new { @class = "control-label" })
+                                            @Html.EditorFor(model => model.empleado_encabezado.agencia, new { htmlAttributes = new { @class = "form-control", @id = "agencia_input" } })
+                                            @Html.ValidationMessageFor(model => model.empleado_encabezado.agencia, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4">
+                                            @Html.Label("Cuenta", htmlAttributes: new { @class = "control-label" })
+                                            @Html.EditorFor(model => model.empleado_encabezado.cuenta, new { htmlAttributes = new { @class = "form-control", @id = "cuenta_input" } })
+                                            @Html.ValidationMessageFor(model => model.empleado_encabezado.agencia, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-xs-12 col-sm-4">
+                                            @Html.Label("Número", htmlAttributes: new { @class = "control-label" })
+                                            @Html.EditorFor(model => model.empleado_encabezado.numero, new { htmlAttributes = new { @class = "form-control", @id = "numero_input" } })
+                                            @Html.ValidationMessageFor(model => model.empleado_encabezado.agencia, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pager">
+                                <button type="submit" class="btn btn-sm btn-success">
+                                    <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>
+<div class="pager">
+    <button class="btn-bitbucket btn-sm" type="button" onclick="location.href='@Url.Action("Ver_Planilla", new { id = Model.empleado_encabezado.id_encabezado_planilla })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+<script>
+    $(function () {
+
+        $(function()
+        {
+            switch(@ViewBag.tab)
+            {
+                case 0: $('#tab_resumen').trigger('click');
+                    break;
+                case 1: $('#tab_bono').trigger('click');
+                    break;
+                case 2: $('#tab_descuento').trigger('click');
+                    break;
+            }
+        });
+
+        $('#tipo_pago_input').change(function(){
+            //Aplicar formato al input de numero de cuenta como 000-0000000-0
+            var acreditacion = @ViewBag.acreditacion;
+            var tipo_pago = $(this).val();
+            if(tipo_pago == acreditacion) {
+                $('#banco_input').prop('required', 'required');
+                $('#cuenta_input').prop('required', 'required');
+                $('#numero_input').prop('required', 'required');
+                $('#agencia_input').prop('required', 'required');
+            }else {
+                $('#banco_input').prop('required', null);
+                $('#cuenta_input').prop('required', null);
+                $('#numero_input').prop('required', null);
+                $('#agencia_input').prop('required', null);
+            }
+        });
+
+
+        $("#form_ubicacion").submit(function (event) {
+            var incomplete = false;
+            var ubicacion = ViewBag.id_ubicacion;
+            var dias_trabajados = @Model.empleado_encabezado.dias_trabajados;
+            if(ubicacion != $('#id_ubicacion_input').val() || dias_trabajados != $('#dias_trabajados_input').val())
+            {
+                return;
+            } else{
+                event.preventDefault();
+                return (false);
+            }
+        });
+
+        $('#b_id_fecha').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+        $('#b_id_fecha_edit').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+        $('#d_id_fecha').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+        $('#d_id_fecha_edit').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+
+        //Transferir ID Bonificacion
+        $(document).on('click', '.btn_delete_b', function () {
+            $('#btn_ok_b').data('id', $(this).data('id'));
+        });
+
+        //Transferir ID Descuento
+        $(document).on('click', '.btn_delete_d', function () {
+            $('#btn_ok_d').data('id', $(this).data('id'));
+        });
+
+        //Boton para eliminar el bonificacion
+        $('#btn_ok_b').click(function () {
+            $('#confirm_delete_b').modal('toggle');
+            var id = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("Eliminar_Bonificacion", "Planilla")',
+                type: "POST",
+                data: { 'id': id },
+                error: function () {
+                    alert("Error con la conexión con el servidor.");
+                },
+                success: function (response) {
+                    if (response.response == true) {
+                        var url = "@Url.Action("Editar_Planilla", new { id = Model.empleado_encabezado.id_empleado_encabezado_planilla, tab = 1 })";
+                        window.location.href = url;
+                    }
+                    else {
+                        $('#mensaje').text(response.msg);
+                        $('#titulo').text("Error");
+                        $('#mostrar_mensaje').modal('show');
+                    }
+                }
+            });
+        });
+
+        //Boton para eliminar el descuento
+        $('#btn_ok_d').click(function () {
+            $('#confirm_delete_d').modal('toggle');
+            var id = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("Eliminar_Descuento", "Planilla")',
+                type: "POST",
+                data: { 'id': id },
+                error: function () {
+                    alert("Error con la conexión con el servidor.");
+                },
+                success: function (response) {
+                    if (response.response == true) {
+                        var url = "@Url.Action("Editar_Planilla", new { id = Model.empleado_encabezado.id_empleado_encabezado_planilla, tab = 2 })";
+                        window.location.href = url;
+                    }
+                    else {
+                        $('#mensaje').text(response.msg);
+                        $('#titulo').text("Error");
+                        $('#mostrar_mensaje').modal('show');
+                    }
+                }
+            });
+        });
+
+
+        $("#b_total").inputmask('decimal',
+                      {
+                          'alias': 'numeric',
+                          'groupSeparator': ',',
+                          'autoGroup': true,
+                          'digits': 2,
+                          'radixPoint': ".",
+                          'digitsOptional': false,
+                          'allowMinus': false,
+                          'prefix': '',
+                          'placeholder': '0'
+                      }
+                   );
+
+        $("#b_total_edit").inputmask('decimal',
+                      {
+                          'alias': 'numeric',
+                          'groupSeparator': ',',
+                          'autoGroup': true,
+                          'digits': 2,
+                          'radixPoint': ".",
+                          'digitsOptional': false,
+                          'allowMinus': false,
+                          'prefix': '',
+                          'placeholder': '0'
+                      }
+                   );
+        $("#d_total").inputmask('decimal',
+                      {
+                          'alias': 'numeric',
+                          'groupSeparator': ',',
+                          'autoGroup': true,
+                          'digits': 2,
+                          'radixPoint': ".",
+                          'digitsOptional': false,
+                          'allowMinus': false,
+                          'prefix': '',
+                          'placeholder': '0'
+                      }
+                   );
+        $("#d_total_edit").inputmask('decimal',
+                      {
+                          'alias': 'numeric',
+                          'groupSeparator': ',',
+                          'autoGroup': true,
+                          'digits': 2,
+                          'radixPoint': ".",
+                          'digitsOptional': false,
+                          'allowMinus': false,
+                          'prefix': '',
+                          'placeholder': '0'
+                      }
+                   );
+
+        $("#modal_bonificacion").on("hidden.bs.modal", function () {
+            $('#b_total').val('');
+            $('#b_cantidad').val('');
+            $('#b_id_fecha').val('');
+            $('#b_tipo_bono').val('');
+        });
+
+        $("#modal_descuento").on("hidden.bs.modal", function () {
+            $('#d_total').val('');
+            $('#d_cantidad').val('');
+            $('#d_id_fecha').val('');
+            $('#d_tipo_descuento').val('');
+        });
+
+        //Bonificacion
+
+        //Editar bonificaciones
+        $(document).on('click', '.btn_editar_bonificacion', function(){
+            $('#b_id_bonificacion_edit').val($(this).data('id'));
+            $('#b_cantidad_edit').val($(this).data('cantidad'));
+            $('#b_tipo_bono_edit').val($(this).data('tipo_bono'));
+            $('#b_id_fecha_edit').val($(this).data('fecha'));
+            $('#b_total_edit').val($(this).data('total'));
+            $('#modal_bonificacion_editar').modal('show');
+        });
+
+        $('#modal_bonificacion').on('hidden.bs.modal', function () {
+            $('#error_bono').text("");
+        });
+
+
+        $('#modal_descuento').on('hidden.bs.modal', function () {
+            $('#error_descuento').text("");
+        });
+
+        $(document).on('click', '.btn_editar_descuento', function(){
+            $('#d_id_descuento_edit').val($(this).data('id'));
+            $('#d_cantidad_edit').val($(this).data('cantidad'));
+            $('#d_id_fecha_edit').val($(this).data('fecha'));
+            $('#d_total_edit').val($(this).data('total'));
+            $('#d_id_prestamo_edit').val($(this).data('id_dp'));
+            $('#d_tipo_descuento_edit').val($(this).data('tipo_descuento'));
+            $('#modal_descuento_editar').modal('show');
+        });
+
+    })
+</script>

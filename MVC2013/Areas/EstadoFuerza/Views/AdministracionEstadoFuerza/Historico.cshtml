@@ -1,0 +1,22 @@
+﻿@model IEnumerable<MVC2013.Models.Estado_Fuerza>
+
+
+
+<div class="table-responsive">
+    <table class="table-striped">
+        <thead>
+            <tr>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var estado_fuerza in Model)
+            {
+                <tr>
+                    <td>@estado_fuerza
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

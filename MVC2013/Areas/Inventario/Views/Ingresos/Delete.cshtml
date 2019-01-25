@@ -1,0 +1,66 @@
+﻿@model MVC2013.Models.Ingresos
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Está seguro de eliminar el registro?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Resources.Resources.referencia
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.referencia)
+        </dd>
+
+        <dt>
+            @Resources.Resources.fecha_factura
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_factura)
+        </dd>
+
+        
+        <dt>
+            @Resources.Resources.bodega
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bodegas.descripcion)
+        </dd>
+
+        <dt>
+            @Resources.Resources.estado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ingreso_Estado.descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button class="btn btn-sm btn-danger" type="submit">
+                <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+            </button>
+        </div>
+    </div>
+
+    }
+    <div>
+        <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Index")'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+        </button>
+    </div>
+
+</div>

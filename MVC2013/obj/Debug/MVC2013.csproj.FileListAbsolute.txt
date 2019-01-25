@@ -1,0 +1,1438 @@
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\obj\Debug\Interop.Microsoft.Office.Core.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.csproj.ResolveComReference.cache
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.resources
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.en.resources
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.es.resources
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.csproj.GenerateResource.Cache
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\MVC2013.dll.config
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\MVC2013.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\MVC2013.pdb
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\en\MVC2013.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\MVC2013.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Antlr3.Runtime.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\EntityFramework.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\EntityFramework.SqlServer.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\LinqToExcel.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\log4net.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Google.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Web.Infrastructure.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Newtonsoft.Json.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Owin.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Remotion.Data.Linq.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Remotion.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Remotion.Interfaces.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Net.Http.Formatting.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.Helpers.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.Http.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.Http.WebHost.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.Mvc.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.Optimization.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.Razor.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.Deployment.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.Razor.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\WebGrease.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\LinqToExcel.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\log4net.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Net.Http.Formatting.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.Http.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.Http.WebHost.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.Helpers.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.Mvc.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.Optimization.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.Razor.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.Deployment.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.Razor.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Antlr3.Runtime.pdb
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Newtonsoft.Json.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\EntityFramework.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\EntityFramework.SqlServer.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Google.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\System.Web.Helpers.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\System.Web.Mvc.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\System.Web.Optimization.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\System.Web.Razor.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\System.Web.WebPages.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\EntityFramework.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Google.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\obj\Debug\en\MVC2013.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\obj\Debug\es\MVC2013.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.pdb
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\lcpi.data.oledb.net4_5_1.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\lcpi.lib.net4_5_1.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\lcpi.data.oledb.net4_5_1.pdb
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\lcpi.lib.net4_5_1.pdb
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\ru\lcpi.data.oledb.net4_5_1.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\bin\ru\lcpi.lib.net4_5_1.resources.dll
+C:\Workspace\VisualStudio\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.csprojResolveAssemblyReference.cache
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\MVC2013.dll.config
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\MVC2013.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\MVC2013.pdb
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\en\MVC2013.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\MVC2013.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Antlr3.Runtime.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\EntityFramework.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\EntityFramework.SqlServer.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\lcpi.data.oledb.net4_5_1.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\lcpi.lib.net4_5_1.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\LinqToExcel.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\log4net.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Core.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Cookies.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Facebook.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Google.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.OAuth.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Twitter.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Newtonsoft.Json.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Owin.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Remotion.Data.Linq.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Remotion.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Remotion.Interfaces.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Net.Http.Formatting.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.Helpers.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.Http.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.Http.WebHost.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.Mvc.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.Optimization.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.Razor.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.Deployment.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.Razor.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\WebGrease.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.Optimization.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Antlr3.Runtime.pdb
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\lcpi.data.oledb.net4_5_1.pdb
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\lcpi.lib.net4_5_1.pdb
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\LinqToExcel.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\log4net.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Net.Http.Formatting.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.Http.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.Http.WebHost.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.Helpers.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.Mvc.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.Razor.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.Deployment.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.Razor.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Newtonsoft.Json.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\EntityFramework.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\EntityFramework.SqlServer.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Core.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Facebook.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Cookies.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.OAuth.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Google.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Twitter.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\System.Web.Optimization.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\ru\lcpi.data.oledb.net4_5_1.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\ru\lcpi.lib.net4_5_1.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\System.Web.Helpers.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\System.Web.Mvc.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\System.Web.Razor.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\System.Web.WebPages.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\EntityFramework.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\EntityFramework.SqlServer.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Google.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\obj\Debug\Interop.Microsoft.Office.Core.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.csproj.ResolveComReference.cache
+C:\vs2015\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.resources
+C:\vs2015\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.en.resources
+C:\vs2015\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.es.resources
+C:\vs2015\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.csproj.GenerateResource.Cache
+C:\vs2015\MVC2013\MVC2013\MVC2013\obj\Debug\en\MVC2013.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\obj\Debug\es\MVC2013.resources.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.dll
+C:\vs2015\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.pdb
+C:\vs2015\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.csprojResolveAssemblyReference.cache
+C:\vs2015\MVC2013\MVC2013\MVC2013\bin\GridMvc.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\obj\Debug\Interop.Microsoft.Office.Core.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\obj\Debug\MVC2013.csproj.ResolveComReference.cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.en.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.es.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\obj\Debug\MVC2013.csproj.GenerateResource.Cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\obj\Debug\MVC2013.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\obj\Debug\MVC2013.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\MVC2013.dll.config
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\MVC2013.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\MVC2013.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\en\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Antlr3.Runtime.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\EntityFramework.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\EntityFramework.SqlServer.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\GridMvc.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\lcpi.data.oledb.net4_5_1.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\lcpi.lib.net4_5_1.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\LinqToExcel.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\log4net.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.Security.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Newtonsoft.Json.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Remotion.Data.Linq.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Remotion.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Remotion.Interfaces.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Net.Http.Formatting.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.Helpers.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.Http.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.Http.WebHost.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.Mvc.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.Optimization.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.Razor.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.WebPages.Deployment.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.WebPages.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.WebPages.Razor.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Telerik.Web.Mvc.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\WebGrease.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.Optimization.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Antlr3.Runtime.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\lcpi.data.oledb.net4_5_1.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\lcpi.lib.net4_5_1.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\LinqToExcel.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\log4net.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Net.Http.Formatting.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.Http.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.Http.WebHost.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.Helpers.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.Mvc.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.Razor.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.WebPages.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.WebPages.Deployment.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\System.Web.WebPages.Razor.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Newtonsoft.Json.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\EntityFramework.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\EntityFramework.SqlServer.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.Security.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\System.Web.Optimization.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\ru\lcpi.data.oledb.net4_5_1.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\ru\lcpi.lib.net4_5_1.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\System.Web.Helpers.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\System.Web.Mvc.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\System.Web.Razor.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\System.Web.WebPages.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\EntityFramework.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\Microsoft.Owin.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\Microsoft.Owin.Security.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\obj\Debug\en\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\BackOffice\MVC2013\obj\Debug\es\MVC2013.resources.dll
+C:\vs2015\MVC2013\MVC2013\obj\Debug\Interop.Microsoft.Office.Core.dll
+C:\vs2015\MVC2013\MVC2013\obj\Debug\MVC2013.csproj.ResolveComReference.cache
+C:\vs2015\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.resources
+C:\vs2015\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.en.resources
+C:\vs2015\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.es.resources
+C:\vs2015\MVC2013\MVC2013\obj\Debug\MVC2013.csproj.GenerateResource.Cache
+C:\vs2015\MVC2013\MVC2013\bin\MVC2013.dll.config
+C:\vs2015\MVC2013\MVC2013\bin\MVC2013.dll
+C:\vs2015\MVC2013\MVC2013\bin\MVC2013.pdb
+C:\vs2015\MVC2013\MVC2013\bin\en\MVC2013.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\MVC2013.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\Antlr3.Runtime.dll
+C:\vs2015\MVC2013\MVC2013\bin\EntityFramework.dll
+C:\vs2015\MVC2013\MVC2013\bin\EntityFramework.SqlServer.dll
+C:\vs2015\MVC2013\MVC2013\bin\GridMvc.dll
+C:\vs2015\MVC2013\MVC2013\bin\lcpi.data.oledb.net4_5_1.dll
+C:\vs2015\MVC2013\MVC2013\bin\lcpi.lib.net4_5_1.dll
+C:\vs2015\MVC2013\MVC2013\bin\LinqToExcel.dll
+C:\vs2015\MVC2013\MVC2013\bin\log4net.dll
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Core.dll
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.dll
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Cookies.dll
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.Security.dll
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Facebook.dll
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Google.dll
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.Security.OAuth.dll
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Twitter.dll
+C:\vs2015\MVC2013\MVC2013\bin\Newtonsoft.Json.dll
+C:\vs2015\MVC2013\MVC2013\bin\Owin.dll
+C:\vs2015\MVC2013\MVC2013\bin\Remotion.Data.Linq.dll
+C:\vs2015\MVC2013\MVC2013\bin\Remotion.dll
+C:\vs2015\MVC2013\MVC2013\bin\Remotion.Interfaces.dll
+C:\vs2015\MVC2013\MVC2013\bin\System.Net.Http.Formatting.dll
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.Helpers.dll
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.Http.dll
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.Http.WebHost.dll
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.Mvc.dll
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.Optimization.dll
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.Razor.dll
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.WebPages.Deployment.dll
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.WebPages.dll
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.WebPages.Razor.dll
+C:\vs2015\MVC2013\MVC2013\bin\WebGrease.dll
+C:\vs2015\MVC2013\MVC2013\bin\Newtonsoft.Json.xml
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.Optimization.xml
+C:\vs2015\MVC2013\MVC2013\bin\Antlr3.Runtime.pdb
+C:\vs2015\MVC2013\MVC2013\bin\lcpi.data.oledb.net4_5_1.pdb
+C:\vs2015\MVC2013\MVC2013\bin\lcpi.lib.net4_5_1.pdb
+C:\vs2015\MVC2013\MVC2013\bin\LinqToExcel.xml
+C:\vs2015\MVC2013\MVC2013\bin\log4net.xml
+C:\vs2015\MVC2013\MVC2013\bin\System.Net.Http.Formatting.xml
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.Http.xml
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.Http.WebHost.xml
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.Helpers.xml
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.Mvc.xml
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.Razor.xml
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.WebPages.xml
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.WebPages.Deployment.xml
+C:\vs2015\MVC2013\MVC2013\bin\System.Web.WebPages.Razor.xml
+C:\vs2015\MVC2013\MVC2013\bin\EntityFramework.xml
+C:\vs2015\MVC2013\MVC2013\bin\EntityFramework.SqlServer.xml
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Core.xml
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.xml
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.Security.xml
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Facebook.xml
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Cookies.xml
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.Security.OAuth.xml
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Google.xml
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Twitter.xml
+C:\vs2015\MVC2013\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\vs2015\MVC2013\MVC2013\bin\es\System.Web.Optimization.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\ru\lcpi.data.oledb.net4_5_1.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\ru\lcpi.lib.net4_5_1.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\System.Web.Helpers.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\System.Web.Mvc.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\System.Web.Razor.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\System.Web.WebPages.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\EntityFramework.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\EntityFramework.SqlServer.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\Microsoft.Owin.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Google.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+C:\vs2015\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\vs2015\MVC2013\MVC2013\obj\Debug\en\MVC2013.resources.dll
+C:\vs2015\MVC2013\MVC2013\obj\Debug\es\MVC2013.resources.dll
+C:\vs2015\MVC2013\MVC2013\obj\Debug\MVC2013.dll
+C:\vs2015\MVC2013\MVC2013\obj\Debug\MVC2013.pdb
+C:\vs2015\MVC2013\MVC2013\obj\Debug\MVC2013.csprojResolveAssemblyReference.cache
+C:\merge-ptotal\MVC2013\MVC2013\obj\Debug\Interop.Microsoft.Office.Core.dll
+C:\merge-ptotal\MVC2013\MVC2013\obj\Debug\MVC2013.csproj.ResolveComReference.cache
+C:\merge-ptotal\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.resources
+C:\merge-ptotal\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.en.resources
+C:\merge-ptotal\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.es.resources
+C:\merge-ptotal\MVC2013\MVC2013\obj\Debug\MVC2013.csproj.GenerateResource.Cache
+C:\merge-ptotal\MVC2013\MVC2013\obj\Debug\MVC2013.dll
+C:\merge-ptotal\MVC2013\MVC2013\obj\Debug\MVC2013.pdb
+C:\merge-ptotal\MVC2013\MVC2013\bin\MVC2013.dll.config
+C:\merge-ptotal\MVC2013\MVC2013\bin\MVC2013.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\MVC2013.pdb
+C:\merge-ptotal\MVC2013\MVC2013\bin\en\MVC2013.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\MVC2013.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Antlr3.Runtime.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\EntityFramework.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\EntityFramework.SqlServer.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\GridMvc.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\lcpi.data.oledb.net4_5_1.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\lcpi.lib.net4_5_1.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\LinqToExcel.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\log4net.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Core.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Cookies.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.Security.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Facebook.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Google.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.Security.OAuth.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Twitter.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Newtonsoft.Json.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Owin.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Remotion.Data.Linq.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Remotion.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Remotion.Interfaces.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Net.Http.Formatting.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.Helpers.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.Http.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.Http.WebHost.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.Mvc.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.Optimization.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.Razor.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.WebPages.Deployment.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.WebPages.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.WebPages.Razor.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\WebGrease.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\Newtonsoft.Json.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.Optimization.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\Antlr3.Runtime.pdb
+C:\merge-ptotal\MVC2013\MVC2013\bin\lcpi.data.oledb.net4_5_1.pdb
+C:\merge-ptotal\MVC2013\MVC2013\bin\lcpi.lib.net4_5_1.pdb
+C:\merge-ptotal\MVC2013\MVC2013\bin\LinqToExcel.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\log4net.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Net.Http.Formatting.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.Http.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.Http.WebHost.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.Helpers.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.Mvc.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.Razor.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.WebPages.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.WebPages.Deployment.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\System.Web.WebPages.Razor.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\EntityFramework.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\EntityFramework.SqlServer.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Core.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.Security.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Facebook.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Cookies.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.Security.OAuth.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Google.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Twitter.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\System.Web.Optimization.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\ru\lcpi.data.oledb.net4_5_1.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\ru\lcpi.lib.net4_5_1.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\System.Web.Helpers.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\System.Web.Mvc.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\System.Web.Razor.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\System.Web.WebPages.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\EntityFramework.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\EntityFramework.SqlServer.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\Microsoft.Owin.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Google.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\obj\Debug\en\MVC2013.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\obj\Debug\es\MVC2013.resources.dll
+C:\merge-ptotal\MVC2013\MVC2013\obj\Debug\MVC2013.csprojResolveAssemblyReference.cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\obj\Debug\Interop.Microsoft.Office.Core.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\obj\Debug\MVC2013.csproj.ResolveComReference.cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.en.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.es.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\obj\Debug\MVC2013.csproj.GenerateResource.Cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\obj\Debug\MVC2013.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\MVC2013.dll.config
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\MVC2013.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\MVC2013.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\en\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Antlr3.Runtime.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\EntityFramework.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\EntityFramework.SqlServer.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\GridMvc.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\lcpi.data.oledb.net4_5_1.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\lcpi.lib.net4_5_1.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\LinqToExcel.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\log4net.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.Security.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Newtonsoft.Json.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Remotion.Data.Linq.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Remotion.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Remotion.Interfaces.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Net.Http.Formatting.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.Helpers.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.Http.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.Http.WebHost.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.Mvc.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.Optimization.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.Razor.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.WebPages.Deployment.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.WebPages.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.WebPages.Razor.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\WebGrease.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Newtonsoft.Json.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.Optimization.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Antlr3.Runtime.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\lcpi.data.oledb.net4_5_1.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\lcpi.lib.net4_5_1.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\LinqToExcel.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\log4net.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Net.Http.Formatting.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.Http.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.Http.WebHost.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.Helpers.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.Mvc.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.Razor.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.WebPages.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.WebPages.Deployment.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\System.Web.WebPages.Razor.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\EntityFramework.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\EntityFramework.SqlServer.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.Security.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\System.Web.Optimization.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\ru\lcpi.data.oledb.net4_5_1.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\ru\lcpi.lib.net4_5_1.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\System.Web.Helpers.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\System.Web.Mvc.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\System.Web.Razor.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\System.Web.WebPages.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\EntityFramework.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\Microsoft.Owin.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\Microsoft.Owin.Security.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\obj\Debug\en\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\obj\Debug\es\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\MVC2013 - BC\MVC2013\obj\Debug\MVC2013.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\obj\Debug\Interop.Microsoft.Office.Core.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.csproj.ResolveComReference.cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.en.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.es.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.csproj.GenerateResource.Cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\MVC2013.dll.config
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\MVC2013.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\MVC2013.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\en\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Antlr3.Runtime.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\EntityFramework.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\EntityFramework.SqlServer.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\GridMvc.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\lcpi.data.oledb.net4_5_1.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\lcpi.lib.net4_5_1.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\LinqToExcel.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\log4net.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Newtonsoft.Json.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Remotion.Data.Linq.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Remotion.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Remotion.Interfaces.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Net.Http.Formatting.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.Helpers.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.Http.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.Http.WebHost.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.Mvc.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.Optimization.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.Razor.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.Deployment.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.Razor.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\WebGrease.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Newtonsoft.Json.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.Optimization.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Antlr3.Runtime.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\lcpi.data.oledb.net4_5_1.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\lcpi.lib.net4_5_1.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\LinqToExcel.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\log4net.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Net.Http.Formatting.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.Http.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.Http.WebHost.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.Helpers.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.Mvc.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.Razor.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.Deployment.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\System.Web.WebPages.Razor.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\EntityFramework.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\EntityFramework.SqlServer.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\System.Web.Optimization.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\ru\lcpi.data.oledb.net4_5_1.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\ru\lcpi.lib.net4_5_1.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\System.Web.Helpers.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\System.Web.Mvc.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\System.Web.Razor.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\System.Web.WebPages.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\EntityFramework.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\obj\Debug\en\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\obj\Debug\es\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\MVC2013\MVC2013\obj\Debug\MVC2013.csprojResolveAssemblyReference.cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\obj\Debug\Interop.Microsoft.Office.Core.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\obj\Debug\MVC2013.csproj.ResolveComReference.cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.en.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.es.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\obj\Debug\MVC2013.csproj.GenerateResource.Cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\obj\Debug\MVC2013.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\MVC2013.dll.config
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\MVC2013.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\MVC2013.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\en\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Antlr3.Runtime.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\EntityFramework.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\EntityFramework.SqlServer.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\GridMvc.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\lcpi.data.oledb.net4_5_1.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\lcpi.lib.net4_5_1.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\LinqToExcel.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\log4net.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.Security.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Newtonsoft.Json.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Remotion.Data.Linq.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Remotion.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Remotion.Interfaces.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Net.Http.Formatting.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.Helpers.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.Http.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.Http.WebHost.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.Mvc.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.Optimization.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.Razor.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.WebPages.Deployment.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.WebPages.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.WebPages.Razor.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\WebGrease.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Newtonsoft.Json.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.Optimization.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Antlr3.Runtime.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\lcpi.data.oledb.net4_5_1.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\lcpi.lib.net4_5_1.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\LinqToExcel.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\log4net.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Net.Http.Formatting.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.Http.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.Http.WebHost.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.Helpers.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.Mvc.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.Razor.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.WebPages.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.WebPages.Deployment.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\System.Web.WebPages.Razor.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\EntityFramework.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\EntityFramework.SqlServer.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.Security.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\System.Web.Optimization.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\ru\lcpi.data.oledb.net4_5_1.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\ru\lcpi.lib.net4_5_1.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\System.Web.Helpers.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\System.Web.Mvc.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\System.Web.Razor.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\System.Web.WebPages.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\EntityFramework.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\Microsoft.Owin.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\Microsoft.Owin.Security.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\obj\Debug\en\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\obj\Debug\es\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\obj\Debug\MVC2013.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Desarrollo\MVC2013\obj\Debug\MVC2013.csprojResolveAssemblyReference.cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\MVC2013.dll.config
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\MVC2013.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\MVC2013.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\en\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Antlr3.Runtime.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\EntityFramework.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\EntityFramework.SqlServer.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\GridMvc.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\lcpi.data.oledb.net4_5_1.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\lcpi.lib.net4_5_1.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\LinqToExcel.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\log4net.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Newtonsoft.Json.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Remotion.Data.Linq.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Remotion.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Remotion.Interfaces.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Net.Http.Formatting.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.Helpers.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.Http.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.Http.WebHost.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.Mvc.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.Optimization.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.Razor.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.WebPages.Deployment.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.WebPages.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.WebPages.Razor.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\WebGrease.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Newtonsoft.Json.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.Optimization.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Antlr3.Runtime.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\lcpi.data.oledb.net4_5_1.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\lcpi.lib.net4_5_1.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\LinqToExcel.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\log4net.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Net.Http.Formatting.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.Http.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.Http.WebHost.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.Helpers.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.Mvc.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.Razor.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.WebPages.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.WebPages.Deployment.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\System.Web.WebPages.Razor.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\EntityFramework.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\EntityFramework.SqlServer.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\System.Web.Optimization.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\ru\lcpi.data.oledb.net4_5_1.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\ru\lcpi.lib.net4_5_1.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\System.Web.Helpers.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\System.Web.Mvc.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\System.Web.Razor.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\System.Web.WebPages.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\EntityFramework.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Security.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\obj\Debug\Interop.Microsoft.Office.Core.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\obj\Debug\MVC2013.csproj.ResolveComReference.cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.en.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.es.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\obj\Debug\MVC2013.csproj.GenerateResource.Cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\obj\Debug\en\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\obj\Debug\es\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\obj\Debug\MVC2013.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\Visual Studio 2013\Projects\MVC2013\ProteccionTotal\MVC2013\obj\Debug\MVC2013.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\MVC2013.dll.config
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\MVC2013.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\MVC2013.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\en\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Antlr3.Runtime.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\EntityFramework.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\EntityFramework.SqlServer.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\GridMvc.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\lcpi.data.oledb.net4_5_1.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\lcpi.lib.net4_5_1.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\LinqToExcel.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\log4net.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.Security.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Newtonsoft.Json.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Remotion.Data.Linq.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Remotion.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Remotion.Interfaces.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Net.Http.Formatting.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.Helpers.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.Http.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.Http.WebHost.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.Mvc.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.Optimization.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.Razor.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.WebPages.Deployment.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.WebPages.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.WebPages.Razor.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\WebGrease.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Newtonsoft.Json.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.Optimization.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Antlr3.Runtime.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\lcpi.data.oledb.net4_5_1.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\lcpi.lib.net4_5_1.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\LinqToExcel.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\log4net.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Net.Http.Formatting.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.Http.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.Http.WebHost.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.Helpers.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.Mvc.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.Razor.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.WebPages.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.WebPages.Deployment.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\System.Web.WebPages.Razor.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\EntityFramework.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\EntityFramework.SqlServer.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.Security.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\System.Web.Optimization.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\ru\lcpi.data.oledb.net4_5_1.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\ru\lcpi.lib.net4_5_1.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\System.Web.Helpers.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\System.Web.Mvc.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\System.Web.Razor.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\System.Web.WebPages.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\EntityFramework.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\Microsoft.Owin.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\Microsoft.Owin.Security.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\obj\Debug\Interop.Microsoft.Office.Core.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\obj\Debug\MVC2013.csproj.ResolveComReference.cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.en.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.es.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\obj\Debug\MVC2013.csproj.GenerateResource.Cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\obj\Debug\en\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\obj\Debug\es\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\obj\Debug\MVC2013.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\obj\Debug\MVC2013.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\TMBC\MVC2013\obj\Debug\MVC2013.csprojResolveAssemblyReference.cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\obj\Debug\Interop.Microsoft.Office.Core.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\obj\Debug\MVC2013.csproj.ResolveComReference.cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.en.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.es.resources
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\obj\Debug\MVC2013.csproj.GenerateResource.Cache
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\obj\Debug\MVC2013.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\MVC2013.dll.config
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\MVC2013.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\MVC2013.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\en\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Antlr3.Runtime.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\EntityFramework.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\EntityFramework.SqlServer.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\GridMvc.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\lcpi.data.oledb.net4_5_1.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\lcpi.lib.net4_5_1.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\LinqToExcel.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\log4net.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.Security.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Newtonsoft.Json.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Owin.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Remotion.Data.Linq.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Remotion.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Remotion.Interfaces.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Net.Http.Formatting.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.Helpers.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.Http.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.Http.WebHost.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.Mvc.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.Optimization.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.Razor.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.WebPages.Deployment.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.WebPages.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.WebPages.Razor.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\WebGrease.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Newtonsoft.Json.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.Optimization.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Antlr3.Runtime.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\lcpi.data.oledb.net4_5_1.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\lcpi.lib.net4_5_1.pdb
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\LinqToExcel.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\log4net.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Net.Http.Formatting.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.Http.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.Http.WebHost.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.Helpers.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.Mvc.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.Razor.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.WebPages.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.WebPages.Deployment.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\System.Web.WebPages.Razor.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\EntityFramework.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\EntityFramework.SqlServer.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.Security.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\System.Web.Optimization.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\ru\lcpi.data.oledb.net4_5_1.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\ru\lcpi.lib.net4_5_1.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\System.Web.Helpers.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\System.Web.Mvc.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\System.Web.Razor.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\System.Web.WebPages.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\EntityFramework.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\Microsoft.Owin.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\Microsoft.Owin.Security.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\obj\Debug\en\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\obj\Debug\es\MVC2013.resources.dll
+C:\Users\bryan.cruz.PROTECCIONTOTAL.000\Documents\BC\MVC2013\obj\Debug\MVC2013.pdb
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\MVC2013.dll.config
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\MVC2013.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\MVC2013.pdb
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\en\MVC2013.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\MVC2013.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Antlr3.Runtime.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\EntityFramework.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\EntityFramework.SqlServer.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\GridMvc.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\lcpi.data.oledb.net4_5_1.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\lcpi.lib.net4_5_1.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\LinqToExcel.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\log4net.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Core.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Cookies.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.Security.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Facebook.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Google.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.Security.OAuth.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Twitter.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Newtonsoft.Json.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Owin.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Remotion.Data.Linq.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Remotion.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Remotion.Interfaces.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Net.Http.Formatting.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.Helpers.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.Http.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.Http.WebHost.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.Mvc.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.Optimization.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.Razor.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.WebPages.Deployment.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.WebPages.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.WebPages.Razor.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\WebGrease.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Newtonsoft.Json.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.Optimization.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Antlr3.Runtime.pdb
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\lcpi.data.oledb.net4_5_1.pdb
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\lcpi.lib.net4_5_1.pdb
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\LinqToExcel.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\log4net.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Net.Http.Formatting.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.Http.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.Http.WebHost.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.Helpers.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.Mvc.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.Razor.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.WebPages.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.WebPages.Deployment.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\System.Web.WebPages.Razor.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\EntityFramework.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\EntityFramework.SqlServer.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Core.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.Security.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Facebook.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Cookies.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.Security.OAuth.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Google.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.Security.Twitter.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\System.Web.Optimization.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\ru\lcpi.data.oledb.net4_5_1.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\ru\lcpi.lib.net4_5_1.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\System.Web.Helpers.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\System.Web.Mvc.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\System.Web.Razor.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\System.Web.WebPages.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\EntityFramework.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\EntityFramework.SqlServer.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\Microsoft.Owin.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Google.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\obj\Debug\Interop.Microsoft.Office.Core.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\obj\Debug\MVC2013.csproj.ResolveComReference.cache
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.resources
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.en.resources
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.es.resources
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\obj\Debug\MVC2013.csproj.GenerateResource.Cache
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\obj\Debug\en\MVC2013.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\obj\Debug\es\MVC2013.resources.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\obj\Debug\MVC2013.dll
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\obj\Debug\MVC2013.pdb
+C:\vs2015\Nueva Merge\MVC2013\MVC2013\obj\Debug\MVC2013.csprojResolveAssemblyReference.cache
+E:\WebApp\ProteccionTotal\MVC2013\bin\MVC2013.dll.config
+E:\WebApp\ProteccionTotal\MVC2013\bin\MVC2013.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\MVC2013.pdb
+E:\WebApp\ProteccionTotal\MVC2013\bin\en\MVC2013.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\MVC2013.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Antlr3.Runtime.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\EntityFramework.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\EntityFramework.SqlServer.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\GridMvc.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\lcpi.data.oledb.net4_5_1.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\lcpi.lib.net4_5_1.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\LinqToExcel.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\log4net.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.Core.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Cookies.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Facebook.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Google.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.OAuth.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Twitter.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Newtonsoft.Json.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Owin.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Remotion.Data.Linq.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Remotion.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Remotion.Interfaces.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Net.Http.Formatting.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.Helpers.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.Http.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.Http.WebHost.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.Mvc.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.Optimization.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.Razor.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.WebPages.Deployment.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.WebPages.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.WebPages.Razor.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\WebGrease.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\Newtonsoft.Json.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.Optimization.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\Antlr3.Runtime.pdb
+E:\WebApp\ProteccionTotal\MVC2013\bin\lcpi.data.oledb.net4_5_1.pdb
+E:\WebApp\ProteccionTotal\MVC2013\bin\lcpi.lib.net4_5_1.pdb
+E:\WebApp\ProteccionTotal\MVC2013\bin\LinqToExcel.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\log4net.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Net.Http.Formatting.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.Http.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.Http.WebHost.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.Helpers.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.Mvc.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.Razor.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.WebPages.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.WebPages.Deployment.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\System.Web.WebPages.Razor.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\EntityFramework.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\EntityFramework.SqlServer.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.Core.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Facebook.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Cookies.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.OAuth.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Google.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Twitter.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\System.Web.Optimization.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\ru\lcpi.data.oledb.net4_5_1.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\ru\lcpi.lib.net4_5_1.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\System.Web.Helpers.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\System.Web.Mvc.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\System.Web.Razor.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\System.Web.WebPages.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\System.Web.WebPages.Deployment.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\System.Web.WebPages.Razor.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\EntityFramework.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\EntityFramework.SqlServer.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Security.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Security.Google.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\obj\Debug\Interop.Microsoft.Office.Core.dll
+E:\WebApp\ProteccionTotal\MVC2013\obj\Debug\MVC2013.csproj.ResolveComReference.cache
+E:\WebApp\ProteccionTotal\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.resources
+E:\WebApp\ProteccionTotal\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.en.resources
+E:\WebApp\ProteccionTotal\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.es.resources
+E:\WebApp\ProteccionTotal\MVC2013\obj\Debug\MVC2013.csproj.GenerateResource.Cache
+E:\WebApp\ProteccionTotal\MVC2013\obj\Debug\en\MVC2013.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\obj\Debug\es\MVC2013.resources.dll
+E:\WebApp\ProteccionTotal\MVC2013\obj\Debug\MVC2013.dll
+E:\WebApp\ProteccionTotal\MVC2013\obj\Debug\MVC2013.pdb
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\MVC2013.dll.config
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\MVC2013.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\MVC2013.pdb
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\en\MVC2013.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\MVC2013.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Antlr3.Runtime.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\EntityFramework.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\EntityFramework.SqlServer.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\GridMvc.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\lcpi.data.oledb.net4_5_1.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\lcpi.lib.net4_5_1.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\LinqToExcel.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\log4net.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Google.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Newtonsoft.Json.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Owin.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Remotion.Data.Linq.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Remotion.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Remotion.Interfaces.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Net.Http.Formatting.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.Helpers.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.Http.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.Http.WebHost.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.Mvc.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.Optimization.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.Razor.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.WebPages.Deployment.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.WebPages.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.WebPages.Razor.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\WebGrease.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Newtonsoft.Json.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.Optimization.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Antlr3.Runtime.pdb
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\lcpi.data.oledb.net4_5_1.pdb
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\lcpi.lib.net4_5_1.pdb
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\LinqToExcel.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\log4net.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Net.Http.Formatting.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.Http.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.Http.WebHost.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.Helpers.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.Mvc.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.Razor.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.WebPages.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.WebPages.Deployment.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\System.Web.WebPages.Razor.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\EntityFramework.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\EntityFramework.SqlServer.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Google.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\System.Web.Optimization.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\ru\lcpi.data.oledb.net4_5_1.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\ru\lcpi.lib.net4_5_1.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\System.Web.Helpers.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\System.Web.Mvc.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\System.Web.Razor.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\System.Web.WebPages.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\System.Web.WebPages.Deployment.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\System.Web.WebPages.Razor.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\EntityFramework.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\EntityFramework.SqlServer.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Security.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Security.Google.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\obj\Debug\MVC2013.csprojResolveAssemblyReference.cache
+D:\Proteccion_Total\ProteccionTotal\MVC2013\obj\Debug\Interop.Microsoft.Office.Core.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\obj\Debug\MVC2013.csproj.ResolveComReference.cache
+D:\Proteccion_Total\ProteccionTotal\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.resources
+D:\Proteccion_Total\ProteccionTotal\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.en.resources
+D:\Proteccion_Total\ProteccionTotal\MVC2013\obj\Debug\MVC2013.App_GlobalResources.Resources.es.resources
+D:\Proteccion_Total\ProteccionTotal\MVC2013\obj\Debug\MVC2013.csproj.GenerateResource.Cache
+D:\Proteccion_Total\ProteccionTotal\MVC2013\obj\Debug\en\MVC2013.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\obj\Debug\es\MVC2013.resources.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\obj\Debug\MVC2013.dll
+D:\Proteccion_Total\ProteccionTotal\MVC2013\obj\Debug\MVC2013.pdb

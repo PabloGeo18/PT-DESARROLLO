@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MVC2013.Models.Facturas>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado Mensual de Facturas Generadas</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading bg-navy">Facturas Agrupadas por Mes</div>
+    <div class="panel-body">
+        <table class="table-hover">
+            <tr>
+                <th>
+                    Mes y Año
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
+
+            @foreach (var item in @ViewBag.fechas)
+            {
+                <tr>
+                    <td>
+                        @item[0]
+                    </td>
+                    <td>
+                        @if (!item[3].Equals("0"))
+                        {
+                            <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Index_Facturas_M", new { mes = item[1], anio = item[2] })'">
+                                <span class="glyphicon glyphicon-search"></span>&nbsp; Consultar Facturas
+                            </button>
+                        }
+                        @if (!item[4].Equals("0"))
+                        {
+                            <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Index_Facturas_Eliminadas", new { mes = item[1], anio = item[2] })'">
+                                <span class="glyphicon glyphicon-search"></span>&nbsp; Consultar Facturas Eliminadas
+                            </button>
+                        }
+                        
+                        
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>
+
+

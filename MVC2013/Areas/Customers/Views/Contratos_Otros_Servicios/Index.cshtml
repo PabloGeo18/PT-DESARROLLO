@@ -1,0 +1,118 @@
+﻿@model IEnumerable<MVC2013.Models.Contratos_Otros_Servicios>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.costo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precio_venta_unitario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_inicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_fin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.activo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.eliminado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_eliminacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuarios.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuarios1.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuarios2.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cat_Otros_Servicios.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contratos_Servicios.id_contrato_servicio)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.costo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precio_venta_unitario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_inicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_fin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.activo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.eliminado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_creacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_modificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_eliminacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuarios.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuarios1.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuarios2.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cat_Otros_Servicios.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contratos_Servicios.id_contrato_servicio)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_contrato_otro_servicio }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_contrato_otro_servicio }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_contrato_otro_servicio })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,404 @@
+﻿@model MVC2013.Models.Clientes
+@using System.Globalization
+@using MVC2013.Src.Comun.Util
+@{
+    ViewBag.Title = "Detalles de Ubicacion";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles de Ubicacion</h2>
+<div class="panel panel-info">
+    <div class="panel-heading bg-light-blue-active">Informacion Cliente</div>
+    <div class="panel-body">
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    Nombre Cliente
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.nombre)
+                </dd>
+                <dt>
+                    Tipo de Cliente
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Tipo_Cliente.nombre)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Details", new { id = Model.id_cliente })'">
+                <span class="glyphicon glyphicon-backward"></span>
+                &nbsp;&nbsp;&nbsp;Regresar al Detalle del Cliente
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div class="panel panel-danger">
+    <div class="panel-heading bg-red">Razones Sociales</div>
+    <div class="panel-body">
+        <div>
+            <div class="row">
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Nombre Comercial
+                        </dt>
+                        <dd>
+                            @ViewBag.Nombre_Comercial
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Nit
+                        </dt>
+                        <dd>
+                            @ViewBag.Nit
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Direccion Facturacion
+                        </dt>
+                        <dd>
+                            @ViewBag.Direccion_Facturacion
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Municipio Facturacion
+                        </dt>
+                        <dd>
+                            @ViewBag.Municipio_Facturacion
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Direccion Fiscal
+                        </dt>
+                        <dd>
+                            @ViewBag.Direccion_Fiscal
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Municipio Fiscal
+                        </dt>
+                        <dd>
+                            @ViewBag.Municipio_Fiscal
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Details_RS", new {id_Razon_Social = @ViewBag.id_RS })'">
+                <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar al Detalle de Razon Social
+            </button>
+        </div>
+    </div>
+</div>
+
+<hr /><hr />
+
+<div class="panel panel-warning">
+    <div class="panel-heading bg-yellow-active">Ubicaciones</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Ubicación
+                    </dt>
+                    <dd>
+                        @ViewBag.nombre
+                    </dd>
+                </dl>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Direccion
+                    </dt>
+                    <dd>
+                        @ViewBag.direccion
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Municipio
+                    </dt>
+                    <dd>
+                        @ViewBag.municipio
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Encargado
+                    </dt>
+                    <dd>
+                        @ViewBag.encargado
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Responsable
+                    </dt>
+                    <dd>
+                        @ViewBag.responsable
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Guardias Solicitados
+                    </dt>
+                    <dd>
+                        @ViewBag.cantidad_solicitada
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Guardias Contratados
+                    </dt>
+                    <dd>
+                        @ViewBag.cantidad_contratada
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <ul class="nav nav-tabs" id="nav_menu">
+                        @*<li class="active"><a data-toggle="tab" href="#Contratos">Contratos</a></li>
+                        <li><a data-toggle="tab" href="#Eventuales">Contratos Eventuales</a></li>*@
+                        <li class="active"><a data-toggle="tab" href="#Compromisos">Compromisos</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        @*<div class="tab-pane fade in active" id="Contratos">
+                            <p>
+                                <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create_AS_U", new {id = @ViewBag.id })'">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Nuevo Contrato
+                                </button>
+                            </p>
+                            <hr />
+                            <table class="table-hover">
+                                <tr>
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Ubicacion
+                                    </th>
+                                    <th>
+                                        Tipo de Factura
+                                    </th>
+                                    <th>
+                                        Estado de Servicio
+                                    </th>
+                                    <th>
+                                        Fecha de Creacion
+                                    </th>
+                                    <th>
+                                        Acciones
+                                    </th>
+                                </tr>
+                                @foreach (var item in ViewBag.servicios)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.id_contrato_servicio
+                                        </td>
+                                        <td>
+                                            @item.Ubicaciones.direccion
+                                        </td>
+                                        <td>
+                                            @item.Cat_Tipos_Facturacion.nombre
+                                        </td>
+                                        <td>
+                                            @item.Cat_Estados_Servicio_Contratado.nombre
+                                        </td>
+                                        <td>
+                                            @item.fecha_creacion.ToString("dd/MM/yyyy")
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-info btn-sm" type="button" onclick="location.href = '@Url.Action("Details", "Contratos_Servicios", new { id = item.id_contrato_servicio })'">
+                                                <span class="glyphicon glyphicon-search"></span>&nbsp;     @Resources.Resources.detalle
+                                            </button>
+                                            @if (item.id_cat_estado_servicio_contratado != (int)Catalogos.Estado_Contrato_Servicio.Cancelado && item.id_cat_estado_servicio_contratado != (int)Catalogos.Estado_Contrato_Servicio.Finalizado)
+                                            {
+                                                <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", "Contratos_Servicios", new { id = item.id_contrato_servicio })'">
+                                                    <span class="glyphicon glyphicon-trash"></span>&nbsp; Cancelar Contrato
+                                                </button>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="Eventuales">
+                            <p>
+                                <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create_Contrato_Servicio_Eventual", new { id = @ViewBag.id })'">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Nuevo Contrato Eventual
+                                </button>
+                            </p>
+                            <hr />
+                            <table class="table-hover">
+                                <tr>
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Ubicacion
+                                    </th>
+                                    <th>
+                                        Tipo de Factura
+                                    </th>
+                                    <th>
+                                        Estado de Servicio
+                                    </th>
+                                    <th>
+                                        Fecha de Creacion
+                                    </th>
+                                    <th>
+                                        Acciones
+                                    </th>
+                                </tr>
+                                @foreach (var item in ViewBag.servicios_eventuales)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.id_contrato_servicio
+                                        </td>
+                                        <td>
+                                            @item.Ubicaciones.direccion
+                                        </td>
+                                        <td>
+                                            @item.Cat_Tipos_Facturacion.nombre
+                                        </td>
+                                        <td>
+                                            @item.Cat_Estados_Servicio_Contratado.nombre
+                                        </td>
+                                        <td>
+                                            @item.fecha_creacion.ToString("dd/MM/yyyy")
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-info btn-sm" type="button" onclick="location.href = '@Url.Action("Details", "Contratos_Servicios", new { id = item.id_contrato_servicio })'">
+                                                <span class="glyphicon glyphicon-search"></span>&nbsp;     @Resources.Resources.detalle
+                                            </button>
+                                            @if (item.id_cat_estado_servicio_contratado != (int)Catalogos.Estado_Contrato_Servicio.Cancelado && item.id_cat_estado_servicio_contratado != (int)Catalogos.Estado_Contrato_Servicio.Finalizado)
+                                            {
+                                                <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", "Contratos_Servicios", new { id = item.id_contrato_servicio })'">
+                                                    <span class="glyphicon glyphicon-trash"></span>&nbsp; Cancelar Contrato
+                                                </button>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>*@
+                        <div class="tab-pane fade in active" id="Compromisos">
+                            <p>
+                                <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create_Compromiso", new {id = @ViewBag.id })'">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Compromiso Nuevo
+                                </button>
+                                <hr />
+                                <table class="table-hover">
+                                    <tr>
+                                        <th>
+                                            Tipo de Agente
+                                        </th>
+                                        <th>
+                                            Domingo
+                                        </th>
+                                        <th>
+                                            Lunes
+                                        </th>
+                                        <th>
+                                            Martes
+                                        </th>
+                                        <th>
+                                            Miercoles
+                                        </th>
+                                        <th>
+                                            Jueves
+                                        </th>
+                                        <th>
+                                            Viernes
+                                        </th>
+                                        <th>
+                                            Sabado
+                                        </th>
+
+                                    </tr>
+                                    @for (int i = 0; i < ViewBag.compromisos.Count; i++)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @ViewBag.compromisos[i].Contratos_Agentes.Cat_Tipos_Agente.nombre
+                                            </td>
+                                            @for (int j = 0; j <= 6; j++)
+                                            {
+
+                                                <td>
+                                                    @ViewBag.compromisos[i].cantidad
+                                                </td>
+                                                if (j < 6)
+                                                {
+                                                    i = i + 1;
+                                                }
+                                            }
+                                        </tr>
+                                    }
+                                </table>
+                            </p>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+</div>
+
+@*<p>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>
+        &nbsp;&nbsp;&nbsp;&nbsp;Regresar a listado de clientes
+    </button>
+</p>*@
+

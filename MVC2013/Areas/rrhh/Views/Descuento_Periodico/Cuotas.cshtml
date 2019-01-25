@@ -1,0 +1,317 @@
+﻿@using System.Globalization;
+@model MVC2013.Models.Descuento_Periodico
+
+@{
+    ViewBag.Title = Resources.Resources.plan_pago;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<!--Modal para insertar cuotas-->
+
+<div class="modal fade" id="nueva_cuota" data-backdrop="static">
+    <div style="left: auto" class="modal-dialog modal-sm">
+        <div class="modal-content">
+            @using(Html.BeginForm("AgregarCuota", "Descuento_Periodico", FormMethod.Post))
+            {
+            <div class="modal-header bg-green">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                @Resources.Resources.cuota
+                @Html.HiddenFor(model => model.id_descuento_periodico)
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">@Resources.Resources.fecha_pago</label>
+                        <div style="position:relative">
+                            <input type='text' class="form-control" id="fecha_crear" name="fecha" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">@Resources.Resources.cantidad</label>
+                        <input type="text" id="crear_cantidad" name="cantidad" required class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.agregar
+                </button>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Modal para editar cuotas-->
+<div class="modal fade" id="editar_cuota" data-backdrop="static">
+    <div style="left: auto" class="modal-dialog modal-sm">
+        <div class="modal-content">
+            @using(Html.BeginForm("EditarCuota", "Descuento_Periodico", FormMethod.Post))
+            {
+                <div class="modal-header bg-blue">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    @Resources.Resources.cuota
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal col-lg-12">
+                        <input hidden id="editar_descuento" name="id_descuento" />
+                        @Html.HiddenFor(model => model.id_descuento_periodico)
+                        <div class="form-group">
+                            <label class="control-label">@Resources.Resources.fecha_pago</label>
+                            <div style="position:relative">
+                                <input type='text' class="form-control" id="fecha_editar" name="fecha" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">@Resources.Resources.cantidad</label>
+                            <input type="text" id="editar_cantidad" name="cantidad" required class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Confirmar Pago-->
+<div class="modal fade" id="confirm_pago" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-yellow-gradient">
+                <b>@Resources.Resources.confirmacion</b>
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                @Resources.Resources.confirmacion_pago_cuota
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-warning" id="btn_ok_pago" data-id="">
+                    <span class="glyphicon glyphicon-check"></span>&nbsp;@Resources.Resources.ok
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Confirmar Eliminación-->
+<div class="modal fade" id="confirm_delete" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-red">
+                @Resources.Resources.confirmacion
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                @Resources.Resources.confirmacion_eliminar_cuota
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger" id="btn_ok" data-id="">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<h2>@Resources.Resources.plan_pago_nombre</h2>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="erroresCont">
+    @if (!ViewData.ModelState.IsValid && ViewBag.error == true)
+    {
+        <div class="alert alert-danger">
+            @Html.ValidationSummary(true, "", new { })
+        </div>
+    }
+</div>
+
+<div class="form-group">
+    <button class="btn btn-sm btn-success" id="btn_nueva_cuota" type="button" data-toggle="modal" data-target="#nueva_cuota">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.agregar
+    </button>
+</div>
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+        <dl class="dl-horizontal">
+            <dt>@Resources.Resources.prestamo_nombre</dt>
+            <dd>@Model.cantidad_a_pagar.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</dd>
+        </dl>
+    </div>
+    <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+        <dl class="dl-horizontal">
+            <dt>@Resources.Resources.cantidad_pagada</dt>
+            <dd>@Model.cantidad_pagado.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</dd>
+        </dl>
+    </div>
+</div>
+<div class="table-responsive" style="overflow-y:auto; max-height:300px">
+    <table class="table-striped" id="tabla_plan_pago">
+        <thead>
+            <tr>
+                <th>@Resources.Resources.cuota</th>
+                <th>@Resources.Resources.fecha_pago</th>
+                <th>@Resources.Resources.estado</th>
+                <th>@Resources.Resources.acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cuota in ViewBag.cuotas)
+            {
+                <tr>
+                    <td>@cuota.total.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+                    <td>@cuota.fecha.ToString("dd/MM/yyyy")</td>
+                    @if (cuota.activo)
+                    {
+                        <td>@Resources.Resources.pendiente</td>
+                    }
+                    else
+                    {
+                        <td>@Resources.Resources.pagada</td>
+                    }
+                    <td>
+                        @if (cuota.activo)
+                        {
+                            <button class="btn btn-sm btn-primary btn_editar_cuota" type="button" data-toggle="modal" data-target="#editar_cuota" data-id="@cuota.id_descuento" data-total="@MVC2013.Src.Comun.Util.FormatUtil.getCurrencyString(cuota.total)" data-fecha="@cuota.fecha.ToString("dd/MM/yyyy")">
+                                <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                            </button>
+
+                            <button class="btn btn-sm btn-warning btn_pagar_cuota" type="button" data-toggle="modal" data-target="#confirm_pago" data-id="@cuota.id_descuento">
+                                <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Pagar cuota
+                            </button>
+
+                            <button class="btn btn-sm btn-danger btn_eliminar_cuota" type="button" data-toggle="modal" data-target="#confirm_delete" data-id="@cuota.id_descuento">
+                                <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" type="button" onclick="location.href = '@Url.Action("Edit", new { id = Model.id_descuento_periodico })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.regresar
+    </button>
+</div>
+
+<script>
+    $(function () {
+
+        //Remover cuotas agregadas sin guardar los cambios
+        $(document).on('click', '.btn_eliminar_cuota_prev', function () {
+            var cantidad = $(this).data('cantidad');
+            $(this).closest('tr').remove();
+            $('#cantidad_agregada').data('value', $('#cantidad_agregada').data('value') - cantidad);
+            $('#cantidad_agregada').text("Q" + $('#cantidad_agregada').data('value').toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+        });
+
+
+        $('#fecha_editar').datetimepicker(
+                                        {
+                                            viewMode: 'days',
+                                            format: 'DD/MM/YYYY',
+                                        });
+        $('#fecha_editar').datetimepicker(
+                                        {
+                                            viewMode: 'days',
+                                            format: 'DD/MM/YYYY',
+                                        });
+
+        //Transferir ID para eliminar una cuota
+        $(document).on('click', '.btn_eliminar_cuota', function () {
+            $('#btn_ok').data('id', $(this).data('id'));
+        });
+
+        //Transferir ID para pagar cuota
+        $(document).on('click', '.btn_pagar_cuota', function () {
+            $('#btn_ok_pago').data('id', $(this).data('id'));
+        });
+
+        //Eliminar registro
+        $('#btn_ok').click(function () {
+            $('#confirm_delete').modal('toggle');
+            var id = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("Eliminar_Cuota", "Descuento_Periodico")',
+                type: "POST",
+                data: { 'id_descuento': id },
+                error: function () {
+                    alert("Error con la conexión con el servidor.");
+                },
+                success: function (response) {
+                    if (response.response == true) {
+                        location.reload();
+                    }
+                    else {
+                        $("#erroresCont").html("<div class='alert alert-danger'>Ocurrio un error durante la operación. Cambios no guardados.</div>");
+                    }
+                }
+            });
+        });
+
+        //Pagar cuota
+        $('#btn_ok_pago').click(function () {
+            $('#confirm_pago').modal('toggle');
+            var id = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("Pagar_Cuota", "Descuento_Periodico")',
+                type: "POST",
+                data: { 'id_descuento': id },
+                error: function () {
+                    alert("Error con la conexión con el servidor.");
+                },
+                success: function (response) {
+                    if (response.response == true) {
+                        location.reload();
+                    }
+                    else {
+                        $("#erroresCont").html("<div class='alert alert-danger'>Ocurrio un error durante la operación. Cambios no guardados.</div>");
+                    }
+                }
+            });
+
+        });
+
+        //Traspasar los datos al modal para editar la cuota
+        $('.btn_editar_cuota').click(function () {
+            var fecha = $(this).data('fecha');
+            var total = $(this).data('total');
+            var id = $(this).data('id');
+            $('#fecha_editar').val(fecha);
+            $('#editar_cantidad').val(total);
+            $('#editar_descuento').val(id);
+        });
+
+        $("#crear_cantidad").inputmask('decimal',
+              {
+                  'alias': 'numeric',
+                  'groupSeparator': ',',
+                  'autoGroup': true,
+                  'digits': 2,
+                  'radixPoint': ".",
+                  'digitsOptional': false,
+                  'allowMinus': false,
+                  'prefix': '',
+                  'placeholder': '0'
+              }
+           );
+        $("#editar_cantidad").inputmask('decimal',
+              {
+                  'alias': 'numeric',
+                  'groupSeparator': ',',
+                  'autoGroup': true,
+                  'digits': 2,
+                  'radixPoint': ".",
+                  'digitsOptional': false,
+                  'allowMinus': false,
+                  'prefix': '',
+                  'placeholder': '0'
+              }
+           );
+    });
+</script>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MVC2013.Models.Departamentos>
+
+@{
+    ViewBag.Title = "Index de Departamentos";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Departamentos</h2>
+
+<div class="form-group">
+    <button class="btn btn-sm btn-success" onclick="location.href = '@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</div>
+<hr />
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Información de Departamentos</div>
+    <div class="panel-body">
+        <table class="zebra-striped">
+            <thead>
+                <tr>
+                    <th>@Resources.Resources.departamentos_nombre</th>
+                    <th>@Resources.Resources.paises_nombre</th>
+                    <th>@Resources.Resources.acciones</th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.nombre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Paises.nombre)</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.id_departamento })'">
+                            <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                        </button>
+                        <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.id_departamento })'">
+                            <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = item.id_departamento })'">
+                            <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                        </button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+
+

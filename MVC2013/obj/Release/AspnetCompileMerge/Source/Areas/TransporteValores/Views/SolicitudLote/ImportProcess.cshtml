@@ -1,0 +1,113 @@
+﻿@model MVC2013.Models.Solicitudes_Lote
+
+@{
+    ViewBag.Title = @Resources.Resources.importacion + "_" + @Resources.Resources.detalle;
+    Layout = "~/Areas/TransporteValores/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.importacion &nbsp; @Resources.Resources.lote &nbsp; @Resources.Resources.resultado</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Resources.Resources.nombre_archivo</dt>
+        <dd>@Html.DisplayFor(model => model.nombre_archivo)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.fecha_creacion</dt>
+        <dd>@Html.DisplayFor(model => model.fecha_creacion)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.cantidad_filas</dt>
+        <dd>@Html.DisplayFor(model => model.filas)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.procesados</dt>
+        <dd>@Model.Solicitudes_Lote_Detalle.Where(x => x.procesado == true).Count()</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.ok</dt>
+        <dd>@Model.Solicitudes_Lote_Detalle.Where(x => x.procesado == true && x.error_proceso == null).Count()</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.error @Resources.Resources.validacion</dt>
+        <dd>@Model.Solicitudes_Lote_Detalle.Where(x => x.valido == false).Count()</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.error @Resources.Resources.proceso</dt>
+        <dd>@Model.Solicitudes_Lote_Detalle.Where(x => x.procesado == true && x.error_proceso != null).Count()</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.usuario_creacion</dt>
+        <dd>@Html.DisplayFor(model => model.Usuarios.nombre_completo_usuario)</dd>
+
+    </dl>
+</div>
+
+
+<hr style="height:3px; border-style:solid;background-color:#222d32">
+
+<!-- MANTENIMIENTO DE API KEYS -->
+
+<h2>@Resources.Resources.filas</h2>
+
+<p>
+    <table class="zebra-striped">
+        <thead>
+        <th>@Resources.Resources.no_fila</th>
+        <th>@Resources.Resources.solicitud_id</th>
+        <th>@Resources.Resources.valido</th>
+        <th>@Resources.Resources.procesado</th>
+        <th>@Resources.Resources.punto_origen</th>
+        <th>@Resources.Resources.punto_destino</th>
+        <th>@Resources.Resources.receptor</th>
+        <th>@Resources.Resources.fechahora_recepcion</th>
+        <th>@Resources.Resources.fechahora_entrega</th>
+        <th>@Resources.Resources.error_validacion</th>
+        <th>@Resources.Resources.error_importacion</th>
+        </thead>
+        @foreach (var detalle in Model.Solicitudes_Lote_Detalle)
+        {
+            <tr>
+                <td>@detalle.fila</td>
+                <td>@detalle.id_solicitud</td>
+                <td>@if (detalle.valido)
+                { @Resources.Resources.si}
+                else
+                {@Resources.Resources.no}</td>
+                <td>
+                    @if (detalle.procesado)
+                    { @Resources.Resources.si}
+                    else
+                    {@Resources.Resources.no}
+                </td>
+                <td>@detalle.id_punto_origen</td>
+                <td>@detalle.id_punto_destino</td>
+                <td>@detalle.id_receptor</td>
+                <td>@detalle.fecha_hora_recepcion</td>
+                <td>@detalle.fecha_hora_entrega</td>
+                <td>@detalle.error_validacion</td>
+                <td>@detalle.error_proceso</td>
+            </tr>
+        }
+    </table>
+</p>
+
+<p>
+    @Html.ActionLink(@Resources.Resources.listado_regresar + " " + @Resources.Resources.solicitudes, "Index", "Solicitudes", null, null) </br>
+    @Html.ActionLink(@Resources.Resources.listado_regresar + " " + @Resources.Resources.lote, "Index")
+</p>

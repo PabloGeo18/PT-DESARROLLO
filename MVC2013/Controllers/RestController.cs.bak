@@ -1,0 +1,241 @@
+﻿using MVC2013.Models;
+using MVC2013.Src.Comun.Json;
+using MVC2013.Src.Comun.Json.Exceptions;
+using MVC2013.Src.Comun.Util;
+using MVC2013.Src.Tdv.Json;
+using MVC2013.Src.Tdv.To;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.ServiceModel.Channels;
+using System.ServiceModel.Web;
+using System.Text;
+using System.Web;
+using System.Web.Http;
+using System.Web.Script.Serialization;
+using System.Web.Script.Services;
+
+namespace MVC2013.Controllers
+{
+    [RoutePrefix("api/rest")]
+    public class RestController : ApiController
+    {
+        private AppEntities db = new AppEntities();
+
+        [Route("todo")]
+        [HttpGet]
+        public HttpResponseMessage GetTodo()
+        {
+            var apiKey = validateRestUserHeaders(Request);
+            if (String.IsNullOrEmpty(apiKey)){
+                return JsonUtil.getJsonUnauthorizedErrorResponse(Request);
+            }
+
+            try{
+                TodoJson todo = new TodoJson(db, apiKey);
+                return JsonUtil.getJsonResponse(Request, todo.getJson());
+            }catch (Exception e){
+                return JsonUtil.getJsonErrorResponse(Request, App_GlobalResources.Resources.error_inesperado);
+            }
+        }
+
+
+        [Route("usuario")]
+        [HttpPut]
+        public HttpResponseMessage PutUsuario(){
+            var apiKey = validateRestUserHeaders(Request);
+            if (String.IsNullOrEmpty(apiKey)){
+                return JsonUtil.getJsonUnauthorizedErrorResponse(Request);
+            }
+
+            try{
+                UsuarioJson usuario = new UsuarioJson(db, apiKey);
+                return JsonUtil.getJsonResponse(Request, usuario.getJson());
+            }catch (Exception e){
+                return JsonUtil.getJsonErrorResponse(Request, App_GlobalResources.Resources.error_inesperado);
+            }
+
+        }
+
+
+        [Route("solicitudes")]
+        [HttpGet]
+        public HttpResponseMessage  GetSolicitudes()
+        {
+            var apiKey = validateRestUserHeaders(Request);
+            if (String.IsNullOrEmpty(apiKey)) {
+                return JsonUtil.getJsonUnauthorizedErrorResponse(Request);
+            }
+
+            try{
+                SolicitudesJson solicitudes = new SolicitudesJson(db, apiKey);
+                return JsonUtil.getJsonResponse(Request, solicitudes.getJson());
+            } catch(JsonParseException jpe){
+                return JsonUtil.getJsonForbiddenErrorResponse(Request, App_GlobalResources.Resources.error_inesperado);
+            } catch (Exception e) {
+                return JsonUtil.getJsonInternalServerErrorResponse(Request, App_GlobalResources.Resources.error_inesperado);
+            }
+        }
+
+
+        [Route("solicitudes")]
+        [HttpPut]
+        public HttpResponseMessage PutSolicitudes()
+        {
+            var apiKey = validateRestUserHeaders(Request);
+            if (String.IsNullOrEmpty(apiKey)){
+                return JsonUtil.getJsonUnauthorizedErrorResponse(Request);
+            }
+
+            try{
+                ParseSolicitudJson parseSolicitud = new ParseSolicitudJson(db, Request, apiKey);
+                parseSolicitud.getProcess();
+                return JsonUtil.getJsonOkResponse(Request);
+            } catch (Exception e){
+                return JsonUtil.getJsonErrorResponse(Request, e.Message);
+            }
+
+        }
+
+        [Route("reasignaciones")]
+        [HttpPut]
+        public HttpResponseMessage PutReasignaciones()
+        {
+            var apiKey = validateRestUserHeaders(Request);
+            if (String.IsNullOrEmpty(apiKey))
+            {
+                return JsonUtil.getJsonUnauthorizedErrorResponse(Request);
+            }
+
+            try{
+                ParseReasignacionJson parseReasignacion = new ParseReasignacionJson(db, Request, apiKey);
+                parseReasignacion.getProcess();
+                return JsonUtil.getJsonOkResponse(Request);
+            }catch (Exception e){
+                return JsonUtil.getJsonErrorResponse(Request, e.Message);
+            }
+
+        }
+
+         //[Route("api/{controller}/{id}")]
+        [Route("gttoken/{id}")]
+        [HttpGet]
+        public HttpResponseMessage GetTokens( int id)
+        {
+            var apiKey = validateRestUserHeaders(Request);
+            if (String.IsNullOrEmpty(apiKey))
+            {
+                return JsonUtil.getJsonUnauthorizedErrorResponse(Request);
+            }
+
+            try
+            {
+                ParseGttokenJson gttoken = new ParseGttokenJson(db, Request, apiKey, id);
+                return JsonUtil.getJsonResponse(Request, gttoken.getJson());
+            }
+            catch (Exception e)
+            {
+                return JsonUtil.getJsonInternalServerErrorResponse(Request, e.Message);
+            }
+
+        }
+
+
+
+        [Route("gttoken/tomado")]
+        [HttpPut]
+        public HttpResponseMessage PutToken()
+        {
+            var apiKey = validateRestUserHeaders(Request);
+            if (String.IsNullOrEmpty(apiKey))
+            {
+                return JsonUtil.getJsonUnauthorizedErrorResponse(Request);
+            }
+
+            try
+            {
+                ParseGttokenJson gttoken = new ParseGttokenJson(db, Request, apiKey, 0);
+                gttoken.getTokenTomado();
+                return JsonUtil.getJsonOkResponse(Request);
+            }
+            catch (Exception e)
+            {
+                return JsonUtil.getJsonInternalServerErrorResponse(Request, e.Message);
+            }
+
+        }
+
+        [Route("atp")]
+        [HttpPut]
+        public HttpResponseMessage PutSalidaToken()
+        {
+            var apiKey = validateRestUserHeaders(Request);
+            if (String.IsNullOrEmpty(apiKey))
+            {
+                return JsonUtil.getJsonUnauthorizedErrorResponse(Request);
+            }
+
+            try
+            {
+                ParseSalidaTokenJson stoken = new ParseSalidaTokenJson(db, Request, apiKey);
+                stoken.getProcesaSToken();
+                return JsonUtil.getJsonOkResponse(Request);
+            }
+            catch (Exception e)
+            {
+                return JsonUtil.getJsonErrorResponse(Request, e.Message);
+            }
+
+        }
+
+
+
+
+        // DELETE: api/Rest/5
+        public void Delete(int id)
+        {
+        }
+
+        private Decimal getVersion(String version){
+            string[] verArr = version.Split('.');
+            if (verArr.Length == 1)
+                return Decimal.Parse(verArr[0], NumberStyles.AllowDecimalPoint);
+            else if (verArr.Length > 1)
+                return Decimal.Parse(verArr[0] + "." + verArr[1], CultureInfo.InvariantCulture);
+            else
+                return 0;
+        }
+
+
+        private string validateRestUserHeaders(HttpRequestMessage request) {
+            var headers = request.Headers;
+            bool containsClientVersion = headers.Contains("RFW-Client-Version");
+            bool containsApiKey = headers.Contains("RFW-API-Key");
+
+            if (!containsApiKey || !containsClientVersion)
+            {
+                throw new HttpException(500, string.Format("An internal error occurred in the Application on {0}", Environment.MachineName));
+            }
+            else
+            {
+                Decimal clientVersion = getVersion(headers.GetValues("RFW-Client-Version").First());
+                Decimal version = new Decimal(1.0);
+                if (Decimal.Compare(clientVersion, version) < 0)
+                {
+                    throw new HttpException(500, string.Format("An internal error occurred in the Application on {0}", Environment.MachineName));
+                }
+            }
+            return headers.GetValues("RFW-API-Key").First();
+        }
+
+
+    }
+}

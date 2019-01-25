@@ -1,0 +1,87 @@
+﻿@model MVC2013.Models.Armas
+@using System.Globalization;
+@{
+    ViewBag.Title = "Detalles - Armas";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+<p>
+    <div>
+        <button class="btn btn-sm btn-bitbucket" onclick="location.href = '@Url.Action("Index")'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+        </button>
+    </div>
+</p>
+<h2>Detalle de Arma</h2>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Estado del Arma</dt>
+        <dd>@Html.DisplayFor(model => model.Arma_Estado.descripcion)</dd>
+        <dt>Tipo de Arma</dt>
+        <dd>@Html.DisplayFor(model => model.Arma_Tipo.descripcion)</dd>
+        <dt>Calibre</dt>
+        <dd>@Html.DisplayFor(model => model.Calibres.descripcion)</dd>
+        <dt>Marca</dt>
+        <dd>@Html.DisplayFor(model => model.Marcas.descripcion)</dd>
+        <dt>Modelo</dt>
+        <dd>@Html.DisplayFor(model => model.Modelos.descripcion)</dd>
+        <dt>Proveedor</dt>
+        <dd>@Html.DisplayFor(model => model.Proveedores.descripcion)</dd>
+        <dt>Capacidad de Munición</dt>
+        <dd>@Html.DisplayFor(model => model.cantidad_municion)</dd>
+        <dt>Registro</dt>
+        <dd>@Html.DisplayFor(model => model.registro)</dd>
+        <dt>No. Tenencia</dt>
+        <dd>@Html.DisplayFor(model => model.tenencia)</dd>
+        <dt>No. Portación</dt>
+        <dd>@Html.DisplayFor(model => model.portacion)</dd>
+        <dt>Valor</dt>
+        <dd>@Model.valor.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</dd>
+        <dt>Marcage</dt>
+        <dd>@Html.DisplayFor(model => model.marcage)</dd>
+        <dt>Huella</dt>
+        <dd>@Html.DisplayFor(model => model.huella)</dd>
+        <dt>Largo</dt>
+        <dd>@Html.DisplayFor(model => model.largo)</dd>
+        <dt>Fecha de Vencimiento</dt>
+        <dd>@Html.DisplayFor(model => model.fecha_vencimiento)</dd>
+        @*<dt>
+            @Resources.Resources.expediente
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expediente)
+        </dd>
+
+        <dt>
+            @Resources.Resources.responsable
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.responsable)
+        </dd>*@
+        <dt>Ubicación</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.nombre)
+            @Html.DisplayFor(model => model.Bodegas.descripcion)
+        </dd>
+        <dt>Fecha de Robo</dt>
+        @if (Model.fecha_robo != null)
+        {
+            <dd>@Html.DisplayFor(model => model.fecha_robo)</dd>
+        }
+        else
+        {
+            <dd>No hay reporte de robo</dd>
+        }
+    </dl>
+    @if (!Model.comprometida)
+    {
+        <dl class="dl-horizontal">
+            <dd>
+                <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Edit", new { id = Model.id_arma })'">
+                    <span class="glyphicon glyphicon-edit"></span> @Resources.Resources.editar
+                </button>
+            </dd>
+        </dl>
+    }
+</div>

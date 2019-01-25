@@ -1,0 +1,107 @@
+﻿@model MVC2013.Models.Traslados
+@using System.Globalization;
+@{
+    ViewBag.Title = "Detalles - Retorno";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+<h2><u>Detalle de Retornos</u></h2>
+<div>
+    <dl class="dl-horizontal">
+        @if (Model.id_bodega_origen == null)
+        {
+            <dt>Cliente ¿Quién Retorna?</dt>
+            <dd>@Html.DisplayFor(model => model.Clientes.nombre)</dd>
+        }
+        else
+        {
+            <dt>Bodega ¿Quién Retorna?</dt>
+            <dd>@Html.DisplayFor(model => model.Bodegas1.descripcion)</dd>
+        }
+        <dt>Bodega ¿Quién Recibe?</dt>
+        <dd>@Html.DisplayFor(model => model.Bodegas.descripcion)</dd>
+        <dt>@Resources.Resources.estado</dt>
+        <dd>@Html.DisplayFor(model => model.Traslado_Estado.descripcion)</dd>
+    </dl>
+    <hr style="height:3px; border-style:solid;background-color:#222d32">
+</div>
+
+<div class="table-responsive">
+@if (Model.Traslado_Detalle.Where(i => i.activo && !i.eliminado).Count() <= 0)
+    {
+    <table class="table table-striped table-bordered table-responsive">
+        <thead style="background-color:cadetblue"></thead>
+        <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+    </table>
+    }
+    else
+    {
+    <table class="zebra-striped">
+        <thead style="background-color:#969aa2">
+            <tr>
+                <th class="text-center">@Resources.Resources.tipo</th>
+                <th class="text-center">@Resources.Resources.valor</th>
+                <th class="text-center">@Resources.Resources.cantidad</th>
+                <th class="text-center">Total</th>
+            </tr>
+        </thead>
+        @foreach (var Traslado_Detalle in Model.Traslado_Detalle)
+        {
+            if (Traslado_Detalle.activo && !Traslado_Detalle.eliminado)
+            {
+                <tr>
+                    @if (Traslado_Detalle.id_arma != null)
+                    {
+                        <td class="text-center">
+                            @Resources.Resources.arma
+                            <br>Tipo - @Traslado_Detalle.Armas.Arma_Tipo.descripcion
+                            <br>Marca - @Traslado_Detalle.Armas.Marcas.descripcion
+                            <br>Calibre - @Traslado_Detalle.Armas.Calibres.descripcion
+                        </td>
+                    }
+                    @if (Traslado_Detalle.id_articulo != null)
+                    {
+                        <td class="text-center">
+                            @Resources.Resources.articulo
+                            <br>Tipo - @Traslado_Detalle.Articulos.Articulo_Tipo.descripcion
+                        </td>
+                    }
+                    @if (Traslado_Detalle.id_consumible != null)
+                    {
+                        <td class="text-center">
+                            @Resources.Resources.consumible
+                            <br>@Traslado_Detalle.Consumibles.descripcion
+                            <br>Tipo - @Traslado_Detalle.Consumibles.Consumible_Tipo.descripcion
+
+                        </td>
+                    }
+                    @if (Traslado_Detalle.id_uniforme != null)
+                    {
+                        <td class="text-center">
+                            @Resources.Resources.uniforme
+                            <br>@Traslado_Detalle.Uniformes.descripcion
+                            <br>Tipo - @Traslado_Detalle.Uniformes.Uniforme_Tipo.descripcion
+                            <br>Talla - @Traslado_Detalle.Uniformes.talla
+                        </td>
+                    }
+                    @if (Traslado_Detalle.id_municion != null)
+                    {
+                        <td class="text-center">
+                            @Resources.Resources.municion
+                            <br>@Traslado_Detalle.Municiones.descripcion
+                            <br>Calibre - @Traslado_Detalle.Municiones.Calibres.descripcion
+                        </td>
+                    }
+                    <td class="text-center">@Convert.ToDecimal(Traslado_Detalle.valor).ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => Traslado_Detalle.cantidad)</td>
+                    <td class="text-center">@((Traslado_Detalle.valor.Value * Traslado_Detalle.cantidad.Value).ToString("C", CultureInfo.GetCultureInfo("es-GT")))</td>
+                </tr>
+            }
+        }
+    </table>
+}
+</div>

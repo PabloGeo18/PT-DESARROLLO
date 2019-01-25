@@ -1,0 +1,175 @@
+﻿@using MVC2013.Src.Comun.Helper
+<!DOCTYPE html>
+<html>
+<head><link rel="icon" href="~/Content/AdminLte/img/pt.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/font-awesome.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/ionicons.min.css")">
+    @*<link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/AdminLTE.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/skins/skin-red.css")">*@
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/AdminLTE.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/skins/_all-skins.min.css")">
+
+
+</head>
+<body class="hold-transition skin-black fixed sidebar-mini">
+
+    @Html.Partial("_LoginPartial")
+
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="@Url.Content("~/Content/AdminLte/img/user2_160-160.png")" class="img-circle" alt="User Image" />
+                </div>
+                <div class="pull-left info">
+                    <p>@Html.Encode(User.Identity.Name.ToUpper())</p>
+                    <!-- Status -->
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu">
+                <!-- Optionally, you can add icons to the links -->
+
+
+                <li>@Html.SpecialActionLink("Inicio", "Index", "Home", "<i class='fa fa-home'></i>")</li>
+                <li>@Html.SpecialActionLink("Acerca de", "About", "Home", "<i class='fa fa-info-circle'></i>")</li>
+                <li>@Html.SpecialActionLink("Contacto", "Contact", "Home", "<i class='fa fa-user'></i>")</li>
+                <!--RRHH, ESTADOFUERZA, INVENTARIO, ALIMENTACION, CLIENTES, ADMON SIS, COMERCIALIZACION-->
+                <li class="header">APLICACIONES</li>
+                <li>
+                    <a href="@Url.Action("Index", "Home", new { area = "Administracion" })"><i class="fa fa-circle-o text-green"></i> <span>Administracion Sistema</span></a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Home", new { area = "Tickets" })"><i class="fa fa-circle-o text-gray"></i> <span>Alimentación</span></a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Home", new { area = "Customers" })"><i class="fa fa-circle-o text-blue"></i> <span>Clientes</span></a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Home", new { area = "Comercializacion" })"><i class="fa fa-circle-o text-yellow"></i> <span>Comercialización</span></a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Home", new { area = "EstadoFuerza" })"><i class="fa fa-circle-o text-maroon"></i> <span>Estado de Fuerza</span></a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Home", new { area = "Inventario" })"><i class="fa fa-circle-o text-aqua"></i> <span>Inventario</span></a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Home" , new { area="rrhh" })"><i class="fa fa-circle-o text-gray"></i> <span>Recursos Humanos</span></a>
+                </li>
+
+                @*<li class="treeview">
+            <a href="#"><span>Aplicaciones</span> <i class="fa fa-angle-left pull-right"></i></a>
+            <ul class="treeview-menu">
+                <li>@Html.ActionLink("Administración", "", "Administracion")</li>
+                <li>@Html.ActionLink(@Resources.Resources.recursos_humanos_nombre, "", "rrhh")</li>
+                <li>@Html.ActionLink("Estado de Fuerza", "", "EstadoFuerza")</li>
+                <li>@Html.ActionLink("Inventario", "", "Inventario")</li>
+                <li>@Html.ActionLink("Tickets", "", "Tickets")</li>
+            </ul>
+        </li>*@
+                @*<li class="treeview">
+            <a href="#"><span>Idiomas</span> <i class="fa fa-angle-left pull-right"></i></a>
+            <ul class="treeview-menu">
+                <li>@Html.ActionLink("Spanish", "ChangeCulture", "Home", new { lang = "es-gt" }, null)</li>
+                <li>@Html.ActionLink("English", "ChangeCulture", "Home", new { lang = "en-us" }, null)</li>
+            </ul>
+        </li>*@
+
+            </ul><!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+    <!--**********************************-->
+    <div class="container-fluid">
+        <div class="col-md-12 col-lg-12" style="position: fixed; padding: 0px; margin: 0px;">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox" id="backgroundCarousel">
+                    <div class="item active">
+                        <img src="@Url.Content("~/Content/img/banner1.png")" alt="..." style="width:100%;opacity: 0.5; filter: alpha(opacity=50);">
+                    </div>
+                    <div class="item">
+                        <img src="@Url.Content("~/Content/img/banner2.png")" alt="..." style="width:100%;opacity: 0.5; filter: alpha(opacity=50);">
+                    </div>
+                    <div class="item">
+                        <img src="@Url.Content("~/Content/img/banner3.png")" alt="..." style="width:100%;opacity: 0.5; filter: alpha(opacity=50);">
+                    </div>
+                    @*<div class="item">
+                        <img src="@Url.Content("~/Content/img/banner4.png")" alt="..." style="width:100%;opacity: 0.5; filter: alpha(opacity=50);">
+                    </div>*@
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /.container-fluid -->
+    <!--**********************************-->
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header"></section>
+        <!-- Main content -->
+        <section class="content">
+            @RenderBody()
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <!-- Main Footer -->
+    <footer class="main-footer">
+
+        <!--<div class="row">
+            <div class="hidden-sm hidden-xs col-md-1 col-lg-1">&nbsp;</div>
+            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+                @*@RenderBody()*@
+            </div>
+            <div class="hidden-sm hidden-xs col-md-1 col-lg-1">&nbsp;</div>
+
+        </div><!-- /.row -->
+        <!-- Default to the left -->
+
+
+        <div class="row">
+            <!--<div class="hidden-sm hidden-xs col-md-1 col-lg-1">&nbsp;</div>-->
+            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+                @*<strong>Copyright &copy; @DateTime.Today.Year <a href="#">Protección Total</a>.</strong> All rights reserved.*@
+                <strong>ERPGEO</strong>, Derechos reservados 2018
+
+            </div>
+            <div class="hidden-sm hidden-xs col-md-1 col-lg-1">&nbsp;</div>
+            <!-- Your Page Content Here -->
+        </div><!-- /.row -->
+    </footer>
+
+
+
+    <!--- COMIENZA EL CODIGO HTML ORIGINAL --->
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+
+
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/bootstrap.js")
+    @Scripts.Render("~/Content/AdminLte/js/app.js")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Content/plugins/slimscroll/jquery.slimscroll.min.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

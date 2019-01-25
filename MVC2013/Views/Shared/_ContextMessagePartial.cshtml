@@ -1,0 +1,36 @@
+﻿@model MVC2013.Src.Comun.View.ContextMessage
+@{
+    ViewBag.Title = Model.Title;
+}
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+        <div class="panel @Model.GetContextDefaultClass()">
+            <div class="panel-heading">
+                <h4 class="panel-title">@Model.Title</h4>
+            </div>
+            <div class="panel-body">
+                @if (String.IsNullOrEmpty(Model.CustomViewString))
+                {
+                    <text>@Model.Message</text>
+                }
+                else
+                {
+                    @Html.Partial(Model.CustomViewString);
+                }
+            </div>
+            @if (Model.HasFooter)
+            {
+                <div class="panel-footer">
+                    <i>Mensaje generado el @DateTime.Now.ToShortDateString() a las @DateTime.Now.ToShortTimeString()</i>
+                </div>
+            }
+        </div>
+        @if (!String.IsNullOrEmpty(Model.ReturnUrl))
+        {
+            <button class="btn btn-sm btn-primary" onclick="location.href='@Model.ReturnUrl'">
+                <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;@Resources.Resources.regresar
+            </button>
+        }
+    </div>
+</div>
+

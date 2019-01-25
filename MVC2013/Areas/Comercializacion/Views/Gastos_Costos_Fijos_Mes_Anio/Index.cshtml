@@ -1,0 +1,142 @@
+﻿@model IEnumerable<MVC2013.Models.Pt_Gastos_Costos_Fijos_Mes_Anio>
+@using System.Globalization
+@{
+    ViewBag.Title = "Inicio - Gastos Administrativos";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+    CultureInfo gt = new CultureInfo("es-GT");
+    List<MVC2013.Models.Pt_Gastos_Costos_Fijos_Mes_Anio> consumibles = ViewBag.cons;
+    List<MVC2013.Models.Pt_Gastos_Costos_Fijos_Mes_Anio> depreciables = ViewBag.depr;
+}
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index","Costos_Fijos_Mes_Anio")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar al listado de Costos
+    </button>
+</div>
+<h2>Gastos Administrativos <u>@ViewBag.costos.Pt_Meses.cmes_descripcion @ViewBag.costos.ccfma_anio</u></h2>
+<div class="form-group">
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Create", new { id = ViewBag.id })'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</div>
+<div class="row col-md-12">
+    <div class="col-md-6 table-responsive">
+        @if (consumibles.Count() <= 0)
+        {
+            <table class="table table-striped table-bordered table-responsive">
+                <thead style="background-color:cadetblue"></thead>
+                <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+            </table>
+        }
+        else
+        {
+            <h3 class="text-center"><b><u>Gastos Consumibles</u></b></h3>
+            <table class="table table-striped" id="tab">
+                <tr>
+                    <th class="text-center">Acciones</th>
+                    <th class="text-center">Descripción</th>
+                    <th class="text-center">Cantidad</th>
+                    <th class="text-center">Precio Unitario</th>
+                    <th class="text-center">Sub-total</th>
+                </tr>
+
+                @foreach (var item in consumibles)
+                {
+                    if (item.cgcf_consumible == true)
+                    {
+                        <tr class="txtMult">
+                            <td class="text-center">
+                                @*<button data-toggle="tooltip" data-placement="top" title="Ver Gastos" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("Create","Gastos_Costos_Fijos_Mes_Anio", new { id= item.ccfma_id})'">
+                                            <span class="glyphicon glyphicon-eye-open"></span>
+                                        </button>
+                                    <button data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.cgcf_id })'">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                    <button data-toggle="tooltip" data-placement="top" title="Detalles" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.cgcf_id })'">
+                                        <span class="glyphicon glyphicon-list-alt"></span>
+                                    </button>*@
+                                <button data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = item.cgcf_id })'">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.cgcf_descripcion)</td>
+                            <td class="text-center">@item.cgcf_cantidad</td>
+                            @if (item.cgcf_precio_unitario == null)
+                            {
+                                <td class="text-center">----</td>
+                            }
+                            else
+                            {
+                                <td class="text-center">@item.cgcf_precio_unitario.Value.ToString("c", gt)</td>
+                            }
+                            <td class="text-center">@((item.cgcf_cantidad * item.cgcf_precio_unitario).Value.ToString("c", gt))</td>
+                        </tr>
+                    }
+                }
+
+            </table>
+        }
+    </div>
+    <div class="col-md-6 table-responsive">
+        @if (depreciables.Count() <= 0)
+        {
+            <table class="table table-striped table-bordered table-responsive">
+                <thead style="background-color:cadetblue"></thead>
+                <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+            </table>
+        }
+        else
+        {
+            <h3 class="text-center"><b><u>Gastos Depreciables</u></b></h3>
+            <table class="table table-striped">
+                <tr>
+                    <th class="text-center">Acciones</th>
+                    <th class="text-center">Descripción</th>
+                    <th class="text-center">Cantidad</th>
+                    <th class="text-center">Precio Unitario</th>
+                    <th class="text-center">Sub-Total</th>
+                    <th class="text-center">% depreciación</th>
+                    <th class="text-center">Total Depreciable</th>
+                </tr>
+
+                @foreach (var item in depreciables)
+                {
+                    if (item.cgcf_depreciable == true)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                @*<button data-toggle="tooltip" data-placement="top" title="Ver Gastos" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("Create","Gastos_Costos_Fijos_Mes_Anio", new { id= item.ccfma_id})'">
+                                            <span class="glyphicon glyphicon-eye-open"></span>
+                                        </button>
+                                    <button data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.cgcf_id })'">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                    <button data-toggle="tooltip" data-placement="top" title="Detalles" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.cgcf_id })'">
+                                        <span class="glyphicon glyphicon-list-alt"></span>
+                                    </button>*@
+                                <button data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = item.cgcf_id })'">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.cgcf_descripcion)</td>
+                            <td class="text-center">@item.cgcf_cantidad</td>
+                            @if (item.cgcf_precio_unitario == null)
+                            {
+                                <td class="text-center">----</td>
+                            }
+                            else
+                            {
+                                <td class="text-center">@item.cgcf_precio_unitario.Value.ToString("c", gt)</td>
+                            }
+                            <td class="text-center">@((item.cgcf_cantidad * item.cgcf_precio_unitario).Value.ToString("c", gt))</td>
+                            <td class="text-center">
+                                @((item.cgcf_porcentaje_depreciacion / 100).Value.ToString("P", gt))
+                            </td>
+                            <td class="text-center">@((item.cgcf_cantidad * item.cgcf_precio_unitario * (item.cgcf_porcentaje_depreciacion/100)).Value.ToString("c", gt))</td>
+                        </tr>
+                    }
+                }
+
+            </table>
+        }
+    </div>
+</div>

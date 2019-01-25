@@ -1,0 +1,672 @@
+﻿@model IEnumerable<MVC2013.Models.Gestion_Cobro>
+
+@{
+    ViewBag.Title = "Gestion Cobro";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<!--Modals-->
+<!--Confirmar Eliminación-->
+<div class="modal fade" id="confirm_delete" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-red">
+                @Resources.Resources.confirmacion
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                @Resources.Resources.confirmacion_eliminar
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger" id="btn_ok" data-id="">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Mensaje-->
+<div class="modal fade" id="mostrar_mensaje" data-backdrop="static" role="dialog">
+    <div style="left: auto" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <label id="titulo">Prueba</label>
+            </div>
+            <div class="modal-body">
+                <label id="mensaje">Prueba</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal para crear una gestion-->
+<div class="modal fade" id="nueva_gestion" data-backdrop="static">
+    <div style="left: auto" class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header bg-green">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                Nueva gestión
+            </div>
+            <div class="modal-body">
+                <div class=" form-group">
+                    @Html.DropDownList("id_tipo_gestion", (IEnumerable<SelectListItem>)ViewBag.tipo_gestion, "Tipo de Gestión", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required", @id = "c_tipo_gestion", @style = "width: 100%" })
+                </div>
+                <div class="form-group">
+                    <div style="position:relative">
+                        <input type='text' class="form-control" id="c_fecha_proyectada" name="fecha_proyectada" required placeholder="Fecha Proyectada" />
+                    </div>
+                </div>
+                <label id="error_crear_gestion" style="color:red"></label>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success btn-sm" id="btn_crear_gestion">
+                    <span class="glyphicon glyphicon-save"></span> @Resources.Resources.crear
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal para editar una gestion-->
+<div class="modal fade" id="editar_gestion" data-backdrop="static">
+    <div style="left: auto" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                Editar gestión
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="id_gestion_detalle_edit" value="" />
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                        <label>Proyectado</label>
+                        <div class="form-group">
+                            @Html.DropDownList("id_tipo_gestion", (IEnumerable<SelectListItem>)ViewBag.tipo_gestion, "Tipo de Gestión", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required", @id = "e_tipo_gestion_proyectada", @style = "width: 100%" })
+                        </div>
+                        <div class="form-group">
+                            <div style="position:relative">
+                                <input type='text' class="form-control" id="e_fecha_proyectada" style="max-width:100%" required placeholder="Fecha proyectada" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                        <label>Realizado</label>
+                        <div class="form-group">
+                            @Html.DropDownList("id_tipo_gestion", (IEnumerable<SelectListItem>)ViewBag.tipo_gestion, "Tipo de Gestión", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required", @id = "e_tipo_gestion_realizado", @style = "width: 100%" })
+                        </div>
+                        <div class="form-group">
+                            <div style="position:relative">
+                                <input type='text' class="form-control" id="e_fecha_realizado" style="max-width:100%" required placeholder="Fecha realizada" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+                        <label>Cliente</label>
+                        <div class="form-group">
+                            @Html.DropDownList("id_cat_tipo_respuesta_gestion", (IEnumerable<SelectListItem>)ViewBag.tipo_respuesta_gestion, "Respuesta de Cliente", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required", @id = "e_tipo_respuesta_gestion", @style = "width: 100%" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
+                        <textarea style="max-width: 100%;max-height: 114px;" rows="5" maxlength="500" id="ed_gestion_comentario" class="form-control" placeholder="Comentario..."></textarea>
+                    </div>
+                </div>
+                <label id="error_editar_gestion" style="color:red"></label>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-sm" id="btn_editar_gestion">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.editar
+                </button>
+                <button type="submit" class="btn btn-warning btn-sm" id="btn_finalizar_gestion">
+                    <span class="glyphicon glyphicon-check"></span>&nbsp;Realizada
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal para detalle de la gestión-->
+<div class="modal fade" id="detalle_gestion" data-backdrop="static">
+    <div style="left: auto" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-aqua">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                Detalle de la gestión
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>Gestión proyectada</dt>
+                    <dd id="dd_gestion_proyectada"></dd>
+                    <dt>Fecha proyectada</dt>
+                    <dd id="dd_fecha_proyectada"></dd>
+                    <dt>Gestión realizada</dt>
+                    <dd id="dd_gestion_realizada"></dd>
+                    <dt>Fecha realizada</dt>
+                    <dd id="dd_fecha_realizada"></dd>
+                    <dt>Respuesta de Cliente</dt>
+                    <dd id="dd_respuesta_cliente"></dd>
+                    <dt>Comentario</dt>
+                    <dd id="dd_comentario"></dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Confirmar Terminar Gestion-->
+<div class="modal fade" id="finalizar_gestion" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-blue-gradient">
+                @Resources.Resources.confirmacion
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <b>¿Desea finalizar la gestión de cobro actual?</b>
+                    <div style="position:relative">
+                        <input type='text' class="form-control" id="fecha_fin_gestion" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-sm btn-bitbucket" id="btn_terminar_gestion" type="button">
+                    Finalizar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading bg-blue">Razón Social</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 col-xs-12 col-sm-12">
+                        <div class="form-group">
+                            @Html.DropDownList("id_razon_social", (List<SelectListItem>)ViewBag.id_razon_social, "Seleccionar razón social", htmlAttributes: new { @class = "form-control dropdown_select", @required = "required", @id = "dropdown_razon_social", @style = "width: 100%" })
+                        </div>
+                        <div class="form-group">
+                            <select id="dropdown_pf" class="dropdown_select form-control" style="width:100%;">
+                                <option value="">Seleccionar fecha</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-sm btn-primary" type="button" id="btn_buscar_gestion_cobro" data-loading-text="Cargando...">
+                            <span class="glyphicon glyphicon-search"></span>&nbsp;Buscar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
+        <div class="panel panel-default hide_panel">
+            <div class="panel-heading bg-navy">Gestión de Cobro</div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <input type="hidden" id="id_gestion_cobro_actual" />
+                    <input type="hidden" id="id_proceso_facturacion_actual" />
+                    <input type="hidden" id="id_razon_social_actual" />
+                    <table class="table-condensed">
+                        <tr>
+                            <td><b>Razón Social</b></td>
+                            <td id="td_razon_social"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Fecha de Inicio</b></td>
+                            <td id="td_fecha_inicio"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Fecha de Fin</b></td>
+                            <td id="td_fecha_fin"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Actividad programada para hoy</b></td>
+                            <td id="td_actividad">Ninguna</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 col-sm-12 col-xs-12 col-md-6">
+        <div class="panel panel-default hide_panel">
+            <div class="panel-heading bg-green">Gestiones</div>
+            <div class="panel-body">
+                <div id="hide_section">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <input type="hidden" id="id_gestion_cobro" value="" />
+                            <div class="form-group hide_buttons">
+                                <button class="btn btn-sm btn-success" type="button" data-toggle="modal" data-target="#nueva_gestion" id="btn_nueva_gestion">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Nueva
+                                </button>
+                                <button class="btn btn-sm btn-bitbucket" type="button" data-toggle="modal" data-target="#finalizar_gestion">
+                                    <span class="glyphicon glyphicon-check"></span>&nbsp;Finalizar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="text-align:right">
+                            <h4>
+                                <span class="label label-waring">Pendiente</span>
+                                <span class="label label-success">Realizada</span>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                            <div class="table-responsive">
+                                <table class="table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th width="25%">Gestión Proyectada</th>
+                                            <th width="15%">Fecha Proyectada</th>
+                                            <th width="25%">Gestión Realizada</th>
+                                            <th width="15%">Fecha Realizada</th>
+                                            <th width="15%"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabla_gestion_cobro_detalle"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+        <div class="panel panel-default hide_panel">
+            <div class="panel-heading bg-purple">Detalle del Proceso de Facturación</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <button class="btn btn-sm bg-purple" type="button" id="btn_detalle_proceso_facturacion">
+                        <span class="glyphicon glyphicon-list-alt"></span>&nbsp;Ver servicios
+                    </button>
+                </div>
+                <table class="table-striped" id="tabla_proceso_facturacion"></table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $('#dropdown_pf').select2();
+            $('.dropdown_select').select2();
+            $('.hide_panel').hide();
+        });
+
+        $('#dropdown_razon_social').css('max-width', '100%');
+
+
+        //Finalizar gestion de cobro
+        $('#btn_terminar_gestion').click(function () {
+            var fecha = $('#fecha_fin_gestion').val();
+            var gestion_cobro = $('#id_gestion_cobro_actual').val();
+            if (fecha != '' && gestion_cobro != '') {
+                $.ajax({
+                    url: '@Url.Action("FinalizarGestionCobro", "Gestion_Cobro")',
+                    type: 'POST',
+                    data: { 'id_gestion_cobro': gestion_cobro, 'fecha': fecha },
+                    success: function (response) {
+                        switch (response.result) {
+                            case 3:
+                                $('#btn_buscar_gestion_cobro').click();
+                                break;
+                            case 2:
+                                $('#mensaje').text("Todavia existen actividades pendientes.");
+                                $('#titulo').text("Error");
+                                $('#mostrar_mensaje').modal('show');
+                                break;
+                            case 1:
+                                $('#mensaje').text("No se pudo terminar la gestion correctamente.");
+                                $('#titulo').text("Error");
+                                $('#mostrar_mensaje').modal('show');
+                                break;
+                        }
+                    },
+                    error: function () {
+                        alert("Error en la conexión con el servidor. No se pudo obtener los procesos de facturación.");
+                    }
+                });
+                $('#finalizar_gestion').modal('toggle');
+            }
+        });
+
+
+        //Transferir ID
+        $(document).on('click', '.b_eliminar_gestion', function () {
+            $('#btn_ok').data('id', $(this).data('id'));
+        });
+
+        //Eliminar registro
+        $('#btn_ok').click(function () {
+            $('#confirm_delete').modal('toggle');
+            var id = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("EliminarGestionDetalle", "Gestion_Cobro")',
+                type: "POST",
+                data: { 'id': id },
+                error: function () {
+                    alert("Error con la conexión con el servidor.");
+                },
+                success: function (response) {
+                    if (response.result == 1) {
+                        $('#mensaje').text("No se pudo eliminar el registro seleccionado.");
+                        $('#titulo').text("Error");
+                        $('#mostrar_mensaje').modal('show');
+                    }
+                    else
+                    {
+                        $('#btn_buscar_gestion_cobro').click();
+                    }
+                }
+            });
+        });
+
+        //Crear gestion
+        $('#btn_crear_gestion').click(function () {
+            var fecha = $('#c_fecha_proyectada').val();
+            var tipo_gestion = $('#c_tipo_gestion').val();
+            var gestion_cobro = $('#id_gestion_cobro_actual').val();
+            if (fecha != '' && tipo_gestion != '') {
+                $('#error_crear_gestion').text('');
+                $.ajax({
+                    url: '@Url.Action("NuevaGestionDetalle", "Gestion_Cobro")',
+                    type: 'POST',
+                    data: { 'id_gestion_cobro': gestion_cobro, 'id_tipo_gestion_proyectada': tipo_gestion, 'fecha_proyectada': fecha },
+                    success: function (response) {
+                        if (response.result == 1) {
+                            $('#mensaje').text("No se pudo crear el registro.");
+                            $('#titulo').text("Error");
+                            $('#mostrar_mensaje').modal('show');
+                        }
+                        else {
+                            $('#btn_buscar_gestion_cobro').click();
+                        }
+                        $('#nueva_gestion').modal('toggle');
+                    },
+                    error: function () {
+                        alert("Error en la conexión con el servidor. No se pudo obtener los procesos de facturación.");
+                    }
+                });
+            }
+            else {
+                $('#error_crear_gestion').text('Completar todos los campos.');
+            }
+        });
+
+        //Editar Gestión
+        $('#btn_editar_gestion').click(function () {
+            var gestion_proyectada, fecha_proyectada, fecha_realizada, gestion_realizada, respuesta_cliente, comentario, id_gestion_detalle;
+            gestion_proyectada = $('#e_tipo_gestion_proyectada').val();
+            fecha_proyectada = $('#e_fecha_proyectada').val();
+            fecha_realizada = $('#e_fecha_realizado').val();
+            gestion_realizada = $('#e_tipo_gestion_realizado').val();
+            respuesta_cliente = $('#e_tipo_respuesta_gestion').val();
+            comentario = $('#ed_gestion_comentario').val();
+            id_gestion_detalle = $('#id_gestion_detalle_edit').val();
+            if (gestion_proyectada != "" && fecha_proyectada != "") {
+                $('#error_editar_gestion').text('');
+                editarGestion(id_gestion_detalle, fecha_proyectada, gestion_proyectada, fecha_realizada, gestion_realizada, respuesta_cliente, comentario, false);
+                $('#editar_gestion').modal('toggle');
+            }
+            else {
+                $('#error_editar_gestion').text('La gestión y fecha proyectada deben ser ingresadas.');
+            }
+        });
+
+        //Finalizar gestión
+        $('#btn_finalizar_gestion').click(function () {
+            gestion_proyectada = $('#e_tipo_gestion_proyectada').val();
+            fecha_proyectada = $('#e_fecha_proyectada').val();
+            fecha_realizada = $('#e_fecha_realizado').val();
+            gestion_realizada = $('#e_tipo_gestion_realizado').val();
+            respuesta_cliente = $('#e_tipo_respuesta_gestion').val();
+            comentario = $('#ed_gestion_comentario').val();
+            id_gestion_detalle = $('#id_gestion_detalle_edit').val();
+            var gestion_proyectada, fecha_proyectada, fecha_realizada, gestion_realizada, respuesta_cliente, comentario, id_gestion_detalle;
+            if (gestion_proyectada != "" && fecha_proyectada != "" && fecha_realizada != "" && gestion_realizada != "" && respuesta_cliente != "" &&
+                comentario != "") {
+                $('#error_editar_gestion').text('');
+                editarGestion(id_gestion_detalle, fecha_proyectada, gestion_proyectada, fecha_realizada, gestion_realizada, respuesta_cliente, comentario, true);
+                $('#editar_gestion').modal('toggle');
+            }
+            else {
+                $('#error_editar_gestion').text('Todos los campos deben ser completados.');
+            }
+        });
+
+        $(document).on('click', '.b_editar_gestion', function () {
+            $('#e_tipo_gestion_proyectada').val($(this).data('gestion_proyectada')).trigger('change');
+            $('#e_fecha_proyectada').val($(this).data('fecha_proyectada'));
+            $('#e_fecha_realizado').val($(this).data('fecha_realizado'));
+            $('#e_tipo_gestion_realizado').val($(this).data('gestion_realizado')).trigger('change');
+            $('#e_tipo_respuesta_gestion').val($(this).data('respuesta_gestion')).trigger('change');
+            $('#ed_gestion_comentario').val($(this).data('comentario'));
+            $('#id_gestion_detalle_edit').val($(this).data('id'));
+            $('#editar_gestion').show();
+        });
+
+        $(document).on('click', '.b_detalle_gestion', function () {
+            $('#dd_gestion_proyectada').text($(this).data('gestion_proyectada')).trigger('change');
+            $('#dd_fecha_proyectada').text($(this).data('fecha_proyectada'));
+            $('#dd_fecha_realizada').text($(this).data('fecha_realizado'));
+            $('#dd_gestion_realizada').text($(this).data('gestion_realizado')).trigger('change');
+            $('#dd_respuesta_cliente').text($(this).data('respuesta_gestion')).trigger('change');
+            $('#dd_comentario').text($(this).data('comentario'));
+            $('#detalle_gestion').show();
+        });
+
+        //Funcion Editar Gestion
+        function editarGestion(id_gestion_detalle, fecha_proyectada, gestion_proyectada, fecha_realizada, gestion_realizada, respuesta_cliente, comentario, realizado) {
+            $.ajax({
+                url: '@Url.Action("EditarGestionDestalle", "Gestion_Cobro")',
+                type: 'POST',
+                data: {
+                    'id_gestion_cobro_detalle': id_gestion_detalle, 'id_tipo_gestion_proyectada': gestion_proyectada, 'fecha_proyectada': fecha_proyectada,
+                    'id_tipo_gestion_realizada': gestion_realizada, 'fecha_gestion_realizada': fecha_realizada, 'id_tipo_respuesta_gestion': respuesta_cliente,
+                    'comentario': comentario, 'realizada': realizado
+                },
+                success: function (response) {
+                    switch (response.result) {
+                        case 1:
+                            $('#mensaje').text("No se pudo editar el registro.");
+                            $('#titulo').text("Error");
+                            $('#mostrar_mensaje').modal('show');
+                            break;
+                        case 2: $('#btn_buscar_gestion_cobro').click();
+                            break;
+                    }
+                },
+                error: function () {
+                    alert("Error en la conexión con el servidor.");
+                }
+            });
+        };
+
+
+        //Dropdown Razones Sociales
+        $('#dropdown_razon_social').change(function () {
+            var id = $(this).val();
+            $('#dropdown_pf').empty();
+            $('.hide_panel').hide();
+            if (id != "") {
+                $.ajax({
+                    url: '@Url.Action("GetProcesosFacturas", "Gestion_Cobro")',
+                    type: 'GET',
+                    data: { 'id_razon_social': id },
+                    success: function (response) {
+                        $('#dropdown_pf').append(new Option("Seleccionar Fecha", ""));
+                        $.each(response, function (i, proceso) {
+                            $('#dropdown_pf').append(new Option(proceso.fecha, proceso.id_proceso_facturacion));
+                        });
+                    },
+                    error: function () {
+                        alert("Error en la conexión con el servidor. No se pudo obtener los procesos de facturación.");
+                    }
+                });
+                $('.dropdown_select').select2();
+            }
+        });
+
+        function refreshGestiones(id_gestion_cobro) {
+            $('#tabla_gestion_cobro_detalle').html('');
+            $.ajax({
+                url: '@Url.Action("GetGestionCobroDetalle", "Gestion_Cobro")',
+                type: 'GET',
+                data: { 'id_gestion_cobro': id_gestion_cobro },
+                success: function (response) {
+                    var html;
+                    $.each(response, function (i, detalle) {
+                        if (detalle.realizada == true) {
+                            html += "<tr class=\"bg-green\">" +
+                            "<td>" + detalle.gestion_proyectada + "</td>" +
+                            "<td>" + detalle.fecha_proyectada + "</td>" +
+                            "<td>" + detalle.gestion_realizada + "</td>" +
+                            "<td>" + detalle.fecha_realizado + "</td>" +
+                            "<td><button class=\"btn btn-sm btn-info b_detalle_gestion\" type=\"button\" data-toggle=\"modal\" data-target=\"#detalle_gestion\"" +
+                            "data-id=\"" + detalle.id_gestion_cobro_detalle + "\"" +
+                            "data-comentario=\"" + detalle.comentario + "\"" +
+                            "data-fecha_proyectada=\"" + detalle.fecha_proyectada + "\"" +
+                            "data-fecha_realizado=\"" + detalle.fecha_realizado + "\"" +
+                            "data-gestion_proyectada=\"" + detalle.gestion_proyectada + "\"" +
+                            "data-gestion_realizado=\"" + detalle.gestion_realizada + "\"" +
+                            "data-respuesta_gestion=\"" + detalle.respuesta + "\"" +
+                            "data-realizada=\"" + detalle.realizada + "\"" +
+                            "><span class=\"glyphicon glyphicon-search\"></span></button>"
+                            "</td>" +
+                    "</tr>";
+                        }
+                        else {
+                            html += "<tr class = \"bg-yellow\">" +
+                            "<td>" + detalle.gestion_proyectada + "</td>" +
+                            "<td>" + detalle.fecha_proyectada + "</td>" +
+                            "<td>" + detalle.gestion_realizada + "</td>" +
+                            "<td>" + detalle.fecha_realizado + "</td>" +
+                            "<td><button class=\"btn btn-sm btn-primary b_editar_gestion\" type=\"button\" data-toggle=\"modal\" data-target=\"#editar_gestion\"" +
+                            "data-id=\"" + detalle.id_gestion_cobro_detalle + "\"" +
+                            "data-comentario=\"" + detalle.comentario + "\"" +
+                            "data-fecha_proyectada=\"" + detalle.fecha_proyectada + "\"" +
+                            "data-fecha_realizado=\"" + detalle.fecha_realizado + "\"" +
+                            "data-gestion_proyectada=\"" + detalle.id_cat_tipo_gestion_proyectada + "\"" +
+                            "data-gestion_realizado=\"" + detalle.id_cat_tipo_gestion_realizada + "\"" +
+                            "data-respuesta_gestion=\"" + detalle.id_cat_tipo_respuesta_gestion + "\"" +
+                            "data-realizada=\"" + detalle.realizada + "\"" +
+                            "><span class=\"glyphicon glyphicon-edit\"></span></button>" +
+                            "<button class=\"btn btn-sm btn-danger b_eliminar_gestion\" data-toggle=\"modal\" data-target=\"#confirm_delete\" data-id=\"" + detalle.id_gestion_cobro_detalle + "\"><span class=\"glyphicon glyphicon-trash\"></<span></button>"
+                            "</td>" +
+                        "</tr>";
+                        }
+                    });
+                    $('#tabla_gestion_cobro_detalle').html(html);
+                },
+                error: function () {
+                    alert("Error en la conexión con el servidor. No se pudo obtener los procesos de facturación.");
+                }
+            });
+        }
+
+
+        //Dropdown Procesos de Facturación
+        $('#dropdown_pf').change(function () {
+            $('.hide_panel').hide();
+        });
+
+        $('#btn_buscar_gestion_cobro').click(function () {
+            var btn = $(this);
+            btn.button('loading');
+            var razon_social = $('#dropdown_razon_social').val();
+            var proceso_facturacion = $('#dropdown_pf').val();
+            $('.hide_panel').hide();
+            if (razon_social != "" && proceso_facturacion != "") {
+                $.ajax({
+                    url: '@Url.Action("GetGestionCobro", "Gestion_Cobro")',
+                    type: 'GET',
+                    data: { 'id_razon_social': razon_social, 'id_proceso_facturacion': proceso_facturacion },
+                    success: function (response) {
+                        $('#id_gestion_cobro_actual').val(response.id_gestion_cobro);
+                        $('#id_proceso_facturacion_actual').val(proceso_facturacion);
+                        $('#td_razon_social').text(response.nombre);
+                        $('#td_fecha_inicio').text(response.fecha_inicio);
+                        $('#td_fecha_fin').text(response.fecha_fin);
+                        $('#td_actividad').text(response.actividad);
+                        if (response.tiene_actividad) {
+                            $('#td_actividad').addClass('bg-teal');
+                        }
+                        else {
+                            $('#td_actividad').removeClass('bg-teal');
+                        }
+                        if (response.fecha_fin != "") {
+                            $('.hide_buttons').hide();
+                        }
+                        else {
+                            $('.hide_buttons').show();
+                        }
+                        $('#tabla_gestion_cobro').show();
+                        refreshGestiones(response.id_gestion_cobro);
+                        $('#tabla_proceso_facturacion').html('');
+                        var html = '';
+                        $.each(response.facturacion, function (i, item) {
+                            html += "<tr>" +
+                                "<td><b>" + item.nombre + "</b></td>" +
+                                "<td>" + item.total + "</td>" +
+                                "</tr>";
+                        });
+                        $('#tabla_proceso_facturacion').html(html);
+                        
+                        $('.hide_panel').show();
+                    },
+                    error: function () {
+                        alert("Error en la conexión con el servidor. No se pudo obtener los procesos de facturación.");
+                    }
+                });
+            }
+            btn.button('reset');
+        });
+
+        $(document).on('click', '#btn_detalle_proceso_facturacion', function () {
+            window.open("/Customers/Procesos_Facturacion_Detalle/Facturacion_Detalle/" + $('#id_proceso_facturacion_actual').val(), "_blank");
+        });
+
+        $('#c_fecha_proyectada, #fecha_fin_gestion, #e_fecha_proyectada, #e_fecha_realizado').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+
+        //Cuando se cierra el modal para crear gestion
+        $('#nueva_gestion').on('hidden.bs.modal', function () {
+            $("#c_tipo_gestion").val('').trigger('change');
+            $('#error_crear_gestion').text('');
+            $('#c_fecha_proyectada').val('');
+        });
+
+        //Cuando se cierra el modal para editar gestion
+        $('#editar_gestion').on('hidden.bs.modal', function () {
+            $('#error_editar_gestion').text('');
+        });
+
+        $('#finalizar_gestion').on('hidden.bs.modal', function () {
+            $('#fecha_fin_gestion').val('');
+        });
+
+
+
+    });
+</script>

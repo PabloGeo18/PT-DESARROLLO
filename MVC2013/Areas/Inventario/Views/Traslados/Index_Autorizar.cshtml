@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MVC2013.Models.Traslados>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Traslados a Autorizar</h2>
+@if (Model.Where(i => i.activo && !i.eliminado).Count() <= 0)
+    {
+    <table class="table table-striped table-bordered table-responsive">
+        <thead style="background-color:cadetblue"></thead>
+        <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+    </table>
+    }
+    else
+    {
+<table class="table table-striped">
+    <thead style="background-color:#969aa2">
+        <tr>
+            <th class="text-center">@Resources.Resources.acciones</th>
+            <th class="text-center">@Resources.Resources.bodega_origen</th>
+            <th class="text-center">@Resources.Resources.bodega_destino</th>
+            <th class="text-center">@Resources.Resources.traslado_estado</th>
+        </tr>
+        </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center" width="20%">
+                    <button data-toggle="tooltip" data-placement="top" title="Aprobar" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("Aprobar", new { id = item.id_traslado })'">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                    <button data-toggle="tooltip" data-placement="top" title="Rechazar" class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Rechazar", new { id = item.id_traslado })'">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <button data-toggle="tooltip" data-placement="top" title="Detalles" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details_Autorizar", new { id = item.id_traslado })'">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                    </button>
+                </td>
+                @if (item.id_bodega_origen == null)
+                {
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Clientes.nombre)</td>
+                }
+                else
+                {
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Bodegas1.descripcion)</td>
+                }
+                <td class="text-center">@Html.DisplayFor(modelItem => item.Bodegas.descripcion)</td>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.Traslado_Estado.descripcion)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+}

@@ -1,0 +1,363 @@
+﻿@model MVC2013.Models.Pt_Insumos
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+}
+<style>
+    /* The switch - the box around the slider */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            display: none;
+        }
+
+    /* The slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+</style>
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+<h2>Editar Insumo</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.cins_id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cins_descripcion, "Descripción", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.cins_descripcion, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+            @Html.ValidationMessageFor(model => model.cins_descripcion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cins_precio_costo, "Precio Costo", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.cins_precio_costo, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+            @Html.ValidationMessageFor(model => model.cins_precio_costo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.cins_precio_venta, "Precio Venta", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.cins_precio_venta, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+            @Html.ValidationMessageFor(model => model.cins_precio_venta, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">¿Es uniforme?</label>
+        <div class="col-md-10">
+            <label class="switch">
+                @if (Model.cins_es_uniforme == true)
+                {
+                    <input checked type="checkbox" class="form-control" id="cins_es_uniforme">
+                }
+                else
+                {
+                    <input type="checkbox" class="form-control" id="cins_es_uniforme">
+                }
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+    @if (Model.cins_es_uniforme == true)
+    {
+        <div class="form-group" id="talla">
+            @Html.LabelFor(model => model.cins_talla, "Talla", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cins_talla, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.cins_talla, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="form-group" id="tallas">
+            @Html.LabelFor(model => model.cins_talla, "Talla", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cins_talla, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.cins_talla, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    }
+    <div class="form-group">
+        <label class="control-label col-md-2">¿Es depreciable?</label>
+        <div class="col-md-10">
+            <label class="switch">
+                @if (Model.cins_depreciacion == true)
+                {
+                    <input checked type="checkbox" class="form-control" id="cins_depreciacion">
+                }
+                else
+                {
+                    <input type="checkbox" class="form-control" id="cins_depreciacion">
+                }
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+    @if (Model.cins_depreciacion == true)
+    {
+        <div class="form-group" id="percent">
+            @Html.LabelFor(model => model.cins_porcentaje_depreciacion, "Porcentaje Depreciación", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cins_porcentaje_depreciacion, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @onkeyup = "validate()" } })
+                @Html.ValidationMessageFor(model => model.cins_porcentaje_depreciacion, "", new { @class = "text-danger" })
+                <span id="error" class="text-danger"></span>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="form-group" id="percents">
+            @Html.LabelFor(model => model.cins_porcentaje_depreciacion, "Porcentaje Depreciación", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cins_porcentaje_depreciacion, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @onkeyup = "validate()" } })
+                @Html.ValidationMessageFor(model => model.cins_porcentaje_depreciacion, "", new { @class = "text-danger" })
+                <span id="error" class="text-danger"></span>
+            </div>
+        </div>
+    }
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button class="btn btn-success btn-sm" type="button" id="guardar">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+            </button>
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        function validate() {
+            var porcentaje = document.getElementById('cins_porcentaje_depreciacion').value;
+            if (porcentaje <= 0 || porcentaje > 100) {
+                document.getElementById('error').innerHTML = "ERROR: Porcentaje inválido. Debe de ser entre 1 y 100";
+                $('#guardar').prop('disabled', true);
+            } else {
+                document.getElementById('error').innerHTML = "";
+                $('#guardar').prop('disabled', false);
+            }
+        }
+        $(document).ready(function () {
+            porcentaje = $("#cins_porcentaje_depreciacion").val();
+            precioCosto = $("#cins_precio_costo").val();
+            precioVenta = $("#cins_precio_venta").val();
+            var replaceCommand = [',', 'goodbye'];
+            var replaceOutput = ['.', 'hello'];
+            for (var i = 0; i < replaceCommand.length; i++) {
+                precioCosto = precioCosto.replace(replaceCommand[i], replaceOutput[i]);
+                precioVenta = precioVenta.replace(replaceCommand[i], replaceOutput[i]);
+                porcentaje = porcentaje.replace(replaceCommand[i], replaceOutput[i]);
+            }
+            $('#cins_precio_costo').val(precioCosto);
+            $('#cins_precio_venta').val(precioVenta);
+            $('#cins_porcentaje_depreciacion').val(porcentaje);
+            $("#percents").hide();
+            $("#tallas").hide();
+            $('#porcentaje').keypress(function (event) {
+                if ((event.which != 46 || $(this).val().indexOf('.') != -1) &&
+                    ((event.which < 48 || event.which > 57) &&
+                        (event.which != 0 && event.which != 8))) {
+                    event.preventDefault();
+                }
+
+                var text = $(this).val();
+
+                if ((text.indexOf('.') != -1) &&
+                    (text.substring(text.indexOf('.')).length > 8) &&
+                    (event.which != 0 && event.which != 8) &&
+                    ($(this)[0].selectionStart >= text.length - 8)) {
+                    event.preventDefault();
+                }
+            });
+
+            $('#cins_precio_costo').keypress(function (event) {
+                if ((event.which != 46 || $(this).val().indexOf('.') != -1) &&
+                    ((event.which < 48 || event.which > 57) &&
+                        (event.which != 0 && event.which != 8))) {
+                    event.preventDefault();
+                }
+
+                var text = $(this).val();
+
+                if ((text.indexOf('.') != -1) &&
+                    (text.substring(text.indexOf('.')).length > 2) &&
+                    (event.which != 0 && event.which != 8) &&
+                    ($(this)[0].selectionStart >= text.length - 2)) {
+                    event.preventDefault();
+                }
+            });
+            $('#cins_precio_venta').keypress(function (event) {
+                if ((event.which != 46 || $(this).val().indexOf('.') != -1) &&
+                    ((event.which < 48 || event.which > 57) &&
+                        (event.which != 0 && event.which != 8))) {
+                    event.preventDefault();
+                }
+
+                var text = $(this).val();
+
+                if ((text.indexOf('.') != -1) &&
+                    (text.substring(text.indexOf('.')).length > 2) &&
+                    (event.which != 0 && event.which != 8) &&
+                    ($(this)[0].selectionStart >= text.length - 2)) {
+                    event.preventDefault();
+                }
+            });
+            $("#cins_depreciacion").change(function () {
+                if ($(this).prop("checked") == true) {
+                    $("#percent").show();
+                    $("#percents").show();
+                    $("#cins_porcentaje_depreciacion").val('');
+                    $('#guardar').prop('disabled', true);
+                }
+                if ($(this).prop("checked") == false) {
+                    $('#guardar').prop('disabled', false);
+                    $("#percents").hide();
+                    $("#percent").hide();
+                }
+            });
+            $("#cins_es_uniforme").change(function () {
+                if ($(this).prop("checked") == true) {
+                    $("#talla").show();
+                    $("#tallas").show();
+                }
+                if ($(this).prop("checked") == false) {
+                    $("#talla").hide();
+                    $("#tallas").hide();
+                }
+            });
+        });
+
+        $("#guardar").click(function () {
+            cins_id = $("#cins_id").val();
+            cins_descripcion = $("#cins_descripcion").val();
+            cins_precio_costo = $("#cins_precio_costo").val();
+            cins_precio_venta = $("#cins_precio_venta").val();
+            console.log(cins_precio_costo);
+            if ($('#cins_depreciacion').is(":checked")) {
+                cins_porcentaje_depreciacion = $("#cins_porcentaje_depreciacion").val();
+                cins_depreciacion = true;
+            } else {
+                cins_depreciacion = false;
+            }
+            if ($('#cins_es_uniforme').is(":checked")) {
+                cins_talla = $("#cins_talla").val();
+                cins_es_uniforme = true;
+            } else {
+                cins_es_uniforme = false;
+            }
+            if (cins_depreciacion == true) {
+                if (cins_es_uniforme == true) {
+                    $.ajax({
+                        url: '@Url.Action("Edit")',
+                        data: { cins_id, cins_descripcion, cins_precio_costo, cins_precio_venta, cins_depreciacion, cins_porcentaje_depreciacion, cins_es_uniforme, cins_talla },
+                        type: "POST",
+                        success: function (data, status) {
+                            window.location.href = '@Url.Action("Index")';
+                        },
+                        error: function () {
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        url: '@Url.Action("Edit")',
+                        data: { cins_id, cins_descripcion, cins_precio_costo, cins_precio_venta, cins_depreciacion, cins_porcentaje_depreciacion, cins_es_uniforme },
+                        type: "POST",
+                        success: function (data, status) {
+                            window.location.href = '@Url.Action("Index")';
+                        },
+                        error: function () {
+                        }
+                    });
+                }
+            } else {
+                if (cins_es_uniforme == true) {
+                    $.ajax({
+                        url: '@Url.Action("Edit")',
+                        data: { cins_id, cins_descripcion, cins_precio_costo, cins_precio_venta, cins_depreciacion, cins_es_uniforme, cins_talla },
+                        type: "POST",
+                        success: function (data, status) {
+                            window.location.href = '@Url.Action("Index")';
+                        },
+                        error: function () {
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        url: '@Url.Action("Edit")',
+                        data: { cins_id, cins_descripcion, cins_precio_costo, cins_precio_venta, cins_depreciacion, cins_es_uniforme },
+                        type: "POST",
+                        success: function (data, status) {
+                            window.location.href = '@Url.Action("Index")';
+                        },
+                        error: function () {
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+}

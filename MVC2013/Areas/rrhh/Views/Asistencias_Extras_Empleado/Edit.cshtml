@@ -1,0 +1,65 @@
+﻿@model MVC2013.Models.Asistencias_Extras_Empleado
+
+@{
+    ViewBag.Title = "Asistencias_Extras_Empleado_Editar";
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar Asistencia</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_asistencias_extras_empleados)
+
+        <div class="form-group">
+            @Html.Label("Empleado", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <label>@(Model.Empleado.primer_nombre + " " +
+        (!String.IsNullOrEmpty(Model.Empleado.segundo_nombre) ? Model.Empleado.segundo_nombre + " " : "") +
+        Model.Empleado.primer_apellido + " " +
+        (!String.IsNullOrEmpty(Model.Empleado.segundo_apellido) ? Model.Empleado.segundo_apellido : ""))</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Fecha", "Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="fecha" name="fecha" class="form-control" required value="@ViewBag.fecha" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Días", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dias, new { htmlAttributes = new { @class = "form-control", @required = "required", @min = "1" } })
+                @Html.ValidationMessageFor(model => model.dias, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-sm btn-success">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+
+<script>
+    $(function () {
+        $('#fecha').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+    });
+</script>

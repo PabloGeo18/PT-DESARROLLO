@@ -1,0 +1,115 @@
+﻿@model MVC2013.Models.Pt_Cantidad_Planilla_Mes_Anio
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pt_Cantidad_Planilla_Mes_Anio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ccpma_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ccpma_descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ccpma_anio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ccpma_anio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ccpma_cantidad_planilla)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ccpma_cantidad_planilla)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_usuario_creacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_usuario_creacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_creacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_usuario_modificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_usuario_modificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_modificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_usuario_eliminacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_usuario_eliminacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_eliminacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_eliminacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eliminado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eliminado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pt_Meses.cmes_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pt_Meses.cmes_descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ccpma_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

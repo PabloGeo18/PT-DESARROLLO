@@ -1,0 +1,108 @@
+﻿@model MVC2013.Models.Facturas
+@using System.Globalization
+@{
+    ViewBag.Title = Resources.Resources.clientes + "_" + Resources.Resources.detalle;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles de la Factura</h2>
+<div class="panel panel-info">
+    <div class="panel-heading bg-navy">Información Factura</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                <label class="col-md-3">Serie</label>
+                <div class="col-md-9">@Model.Tipos_Factura.serie</div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                <label class="col-md-3">Numero Factura</label>
+                <div class="col-md-9">@Model.numero_factura</div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                <label class="col-md-3">Fecha</label>
+                <div class="col-md-9">@Model.fecha_factura.ToString("dd/MM/yyyy")</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                <label class="col-md-3">Descripción</label>
+                <div class="col-md-9">@Model.descripcion</div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                <label class="col-md-3">Direccion</label>
+                <div class="col-md-9">@Model.Razones_Sociales.direccion_facturacion</div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                <label class="col-md-3">Nit</label>
+                <div class="col-md-9">@Model.Razones_Sociales.nit</div>
+            </div>
+        </div>
+        <hr />
+        <table class="table-hover">
+            <tr>
+                <th>
+                    Tipo de Servicio
+                </th>
+                <th>
+                    Cantidad
+                </th>
+                <th>
+                    Precio de Venta Unitario
+                </th>
+                <th>
+                    Importe
+                </th>
+            </tr>
+            @foreach (var item_agente in ViewBag.agentes_contratados)
+            {
+                <tr>
+                    <td>
+                        @item_agente.Tipos_Agente.nombre
+                    </td>
+                    <td>
+                        @item_agente.cantidad
+                    </td>
+                    <td>
+                        @item_agente.precio_de_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                    </td>
+                    <td>
+                        @((item_agente.cantidad * item_agente.precio_de_venta).ToString("C", CultureInfo.GetCultureInfo("es-GT")))
+                    </td>
+                </tr>
+            }
+            @foreach (var item_servicio in ViewBag.servicios_contratados)
+            {
+                <tr>
+                    <td>
+                        @item_servicio.Tipos_Servicios.nombre
+                    </td>
+                    <td>
+                        @item_servicio.cantidad
+                    </td>
+                    <td>
+                        @item_servicio.precio_de_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                    </td>
+                    <td>
+                        @((item_servicio.cantidad * item_servicio.precio_de_venta).ToString("C", CultureInfo.GetCultureInfo("es-GT")))
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div class="row">
+            <div class="col-md-9 col-lg-9 col-sm-9 col-xs-9"></div>
+            <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                <h3><label>Total:&nbsp;</label>&nbsp;@Model.total.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</h3>
+            </div>
+        </div>
+    </div>
+</div>
+       
+<p>
+    <div>
+        <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Create_Factura_Eventual", new { id = Model.id_razon_social })'">
+            <span class="glyphicon glyphicon-backward"></span>Regresar a Listado de Facturas
+        </button>
+    </div>
+
+</p>

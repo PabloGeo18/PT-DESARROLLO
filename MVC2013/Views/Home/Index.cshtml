@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Proteccion Total";
+}
+@if (ViewBag.message != null) 
+{ 
+    <div class="modal fade" id="expired">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Sesión expirada</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Por seguridad su sesión anterior fue expirada.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-dismiss="modal">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+        <script>
+            $(function () {
+                $("#expired").modal();
+            })
+        </script>    
+    }
+}

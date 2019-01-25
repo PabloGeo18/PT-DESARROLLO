@@ -1,0 +1,262 @@
+﻿@model MVC2013.Models.Puesto
+
+@{
+    ViewBag.Title = Resources.Resources.puesto + "_" + Resources.Resources.editar;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<!--Agregar Documento-->
+<div class="modal fade" id="agregar_documento" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-green">
+                Agregar Documento
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                @Html.DropDownList("id_documento", null, "---", htmlAttributes: new { @class = "form-control", @required = "required" })
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-success" id="btn_agregar" type="button">
+                    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Agregar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Mensaje-->
+<div class="modal fade" id="mostrar_mensaje" data-backdrop="static" role="dialog">
+    <div style="left: auto" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <label id="titulo">Prueba</label>
+            </div>
+            <div class="modal-body">
+                <label id="mensaje">Prueba</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>@Resources.Resources.puesto_editar</h2>
+<hr />
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        @using (Html.BeginForm("Edit", "Puesto", FormMethod.Post))
+        {
+            <dl class="dl-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id_puesto)
+                <dt></dt>
+                <dd>&nbsp;</dd>
+                <dt>Empresa</dt>
+                <dd>@Model.Tipo_Puesto.Empresa.nombre</dd>
+                <dt></dt>
+                <dd>@(Model.Tipo_Puesto.Empresa.prestaciones == true ? "Genera prestaciones" : "No genera prestaciones")</dd>
+                <dt></dt>
+                <dd>&nbsp;</dd>
+                <dt>Tipo de Puesto</dt>
+                <dd>
+                    @Html.DropDownListFor(model => model.id_tipo_puesto, (IEnumerable<SelectListItem>)ViewBag.tipo_puesto, "---", htmlAttributes: new { @class = "form-control", @required = "required", @id = "dropdown_puesto" })
+                    <label id="titulo_salario"></label>
+                </dd>
+                <dt>Puesto</dt>
+                <dd>
+                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                </dd>
+                <dt></dt>
+                <dd>&nbsp;</dd>
+                <dt>Sueldo Base</dt>
+                <dd>
+                    <input type="text" id="sueldo_base_input" class="form-control" value="@MVC2013.Src.Comun.Util.FormatUtil.getCurrencyString(Model.sueldo_base)" required name="sueldo_base" />
+                </dd>
+                <dt></dt>
+                <dd>&nbsp;</dd>
+                <dt>Bono Decreto</dt>
+                <dd>
+                    <input type="text" id="bono_decreto_input" class="form-control" value="@MVC2013.Src.Comun.Util.FormatUtil.getCurrencyString(Model.bono_decreto)" name="bono_decreto" />
+                </dd>
+                <dt></dt>
+                <dd>&nbsp;</dd>
+                <dt>Bono Extra</dt>
+                <dd>
+                    <input type="text" id="bono_extra_input" class="form-control" value="@MVC2013.Src.Comun.Util.FormatUtil.getCurrencyString(Model.bono_extra)" name="bono_extra" />
+                </dd>
+                <dt></dt>
+                <dd>&nbsp;</dd>
+                <dt></dt>
+                <dd>
+                    <button class="btn btn-sm btn-success" type="submit">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                    </button>
+                </dd>
+            </dl>
+        }
+        <div class="form-group">
+            <button class="btn-sm btn-bitbucket" onclick="location.href='@Url.Action("Index", "Puesto")'">
+                <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+            </button>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">Documentos</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <button class="btn btn-sm btn-success" data-target="#agregar_documento" data-toggle="modal">
+                        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Agregar documento
+                    </button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Documento</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="body_documentos">
+                        @foreach (var doc in Model.Documento_Puesto.Where(d => d.activo))
+                        {
+                            <tr class="tr_doc">
+                                <td>@doc.Documentos.nombre</td>
+                                <td>
+                                    <button class="btn btn-sm btn-danger btn_remover_documento" data-id="@doc.id_documento_puesto">
+                                        <span class="glyphicon glyphicon-trash"></span>&nbsp;Remover
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $(document).ready(function () {
+            $('#dropdown_puesto').change();
+        });
+
+        //Obtener los rangos de salario del puesto seleccionado
+        $('#dropdown_puesto').change(function () {
+            var id = $(this).val();
+            if (id != "") {
+                $.ajax({
+                    url: '@Url.Action("GetRangoSalario", "Empleado")',
+                    type: 'GET',
+                    data: { 'id_tipo_puesto': id },
+                    success: function (response) {
+                        $('#titulo_salario').text("[Rango: " + response.rango + "]");
+                    },
+                    error: function () {
+                        alert("Error en la conexión con el servidor. No se pudo obtener el salario del puesto.");
+                        $('#titulo_salario').text("");
+                    }
+                });
+            }
+            else {
+                $('#titulo_salario').text("");
+            }
+        });
+
+        $("#sueldo_base_input").inputmask('decimal',
+                      {
+                          'alias': 'numeric',
+                          'groupSeparator': ',',
+                          'autoGroup': true,
+                          'digits': 2,
+                          'radixPoint': ".",
+                          'digitsOptional': false,
+                          'allowMinus': false,
+                          'prefix': '',
+                          'placeholder': '0'
+                      }
+                   );
+        $("#bono_decreto_input").inputmask('decimal',
+                      {
+                          'alias': 'numeric',
+                          'groupSeparator': ',',
+                          'autoGroup': true,
+                          'digits': 2,
+                          'radixPoint': ".",
+                          'digitsOptional': false,
+                          'allowMinus': false,
+                          'prefix': '',
+                          'placeholder': '0'
+                      }
+                   );
+        $("#bono_extra_input").inputmask('decimal',
+                      {
+                          'alias': 'numeric',
+                          'groupSeparator': ',',
+                          'autoGroup': true,
+                          'digits': 2,
+                          'radixPoint': ".",
+                          'digitsOptional': false,
+                          'allowMinus': false,
+                          'prefix': '',
+                          'placeholder': '0'
+                      }
+                   );
+
+        $('#btn_agregar').click(function(){
+            $('#agregar_documento').modal('toggle');
+            var id = $('#id_documento').val();
+            if(id != "")
+            {
+                $.ajax({
+                    url: '@Url.Action("AgregarDocumento", "Puesto")',
+                    type: "POST",
+                    data: { 'id_puesto': @Model.id_puesto, 'id_documento': id },
+                    error: function () {
+                        alert("Error con la conexión con el servidor.");
+                    },
+                    success: function (response) {
+                        if (response.respuesta == true) {
+                            $('#body_documentos').append('<tr class=\"tr_doc\">' +
+                                    '<td>' + response.nombre +'</td>' +
+                                    '<td><button class=\"btn btn-sm btn-danger btn_remover_documento\" data-id=\"' + response.id + '\"><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;Remover' +
+                                        '</button></td>'
+                                    + '</tr>');
+                        }
+                        else {
+                            $('#mensaje').text(response.msg);
+                            $('#titulo').text("Error");
+                            $('#mostrar_mensaje').modal('show');
+                        }
+                    }
+                });
+
+            }
+        });
+
+        $(document).on('click', '.btn_remover_documento', function () {
+            var id = $(this).data('id');
+            btn = $(this);
+            $.ajax({
+                url: '@Url.Action("RemoverDocumento", "Puesto")',
+                type: "POST",
+                data: { 'id': id },
+                error: function () {
+                    alert("Error con la conexión con el servidor.");
+                },
+                success: function (response) {
+                    if (response.respuesta == true) {
+                        btn.closest('.tr_doc').remove();
+                    }
+                    else {
+                        $('#mensaje').text(response.msg);
+                        $('#titulo').text("Error");
+                        $('#mostrar_mensaje').modal('show');
+                    }
+                }
+            });
+        });
+    });
+</script>

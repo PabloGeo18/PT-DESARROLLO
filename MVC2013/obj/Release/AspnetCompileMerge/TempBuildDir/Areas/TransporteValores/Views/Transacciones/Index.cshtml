@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MVC2013.Models.Transacciones>
+
+@{
+    ViewBag.Title =   Resources.Resources.transaccion + "_" + Resources.Resources.lista;
+    Layout = "~/Areas/TransporteValores/Views/Shared/_Layout.cshtml";
+    bool firstSolicitud = true;
+}
+
+<h2>@Resources.Resources.transacciones_lista</h2>
+
+    
+<table class="zebra-striped">
+    <tr>
+        <th>@Resources.Resources.transaccion Id</th>
+        <th>@Resources.Resources.voucher</th>
+        <th>@Resources.Resources.gttoken</th>
+        <th>@Resources.Resources.tipo</th>
+        <th>@Resources.Resources.fecha_hora</th>
+        <th>@Resources.Resources.receptor</th>
+        <th>@Resources.Resources.cliente</th>
+        <th>@Resources.Resources.agencia_visitada</th>
+        <th>@Resources.Resources.verificada</th>
+        <th>@Resources.Resources.solicitudes</th>
+        <th>@Resources.Resources.cantidad_bolsas</th>
+        <th>@Resources.Resources.acciones</th>
+    </tr>
+
+    @foreach (var item in Model) {
+     MVC2013.Src.Tdv.EntityExtension.TransaccionesExtension trn = new  MVC2013.Src.Tdv.EntityExtension.TransaccionesExtension(item);
+    <tr>
+        <td>@item.id_transaccion</td>
+        <td>@item.referencia</td>
+        <td> @if (item.Token.Count() > 0) { @item.Token.First().valor } else { <text>&nbsp;</text> } </td>
+        <td>
+            @if (trn.esRecibir()){<text>@Resources.Resources.recepcion</text>}
+            else {<text>@Resources.Resources.entrega</text>}
+        </td>
+        <td>@item.hh_fecha_hora</td>
+        <td>@item.ReceptorCreacion.nombre_completo_usuario</td>
+        <td>@trn.getFirstSolicitud().Clientes.nombre</td>
+        <td>@item.Punto.nombre</td>
+        <td>
+            @if(item.agencia_verificada){<text>@Resources.Resources.si</text>}
+            else{<text>@Resources.Resources.no</text>}
+        </td>
+        <td>
+            @foreach (var solicitud in item.Solicitud_Transaccion) {
+                if (!firstSolicitud){<text>,</text>}<text>@solicitud.id_solicitud</text>                                                  
+            }
+        </td>
+        <td>@trn.getAllPaqueteDetalles().Count()</td>      
+        <td>
+            @Html.ActionLink( @Resources.Resources.detalle, "Details", new { id = item.id_transaccion }, new { target = "_blank" })
+        </td>
+    </tr>
+}
+
+</table>

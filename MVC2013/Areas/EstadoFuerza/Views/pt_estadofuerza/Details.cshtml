@@ -1,0 +1,76 @@
+﻿@model MVC2013.Models.pt_estadofuerza
+
+@{
+    ViewBag.Title = "Detalle de Registro";
+    Layout = "~/Areas/EstadoFuerza/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h4>Estado de Fuerza</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Nombre Empleado
+        </dt>
+
+        <dd>
+            @ViewBag.NombreEmpleado
+        </dd>
+
+        <dt>
+            Estado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pt_situacion.nombre)
+        </dd>
+
+        <dt>
+            Ubicacion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pt_ubicacion.DIRECCION)
+        </dd>
+
+        <dt>
+            Tipo Servicio
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pt_tipo_ubicacion.DESCRIPCION)
+        </dd>
+
+        <dt>
+            Observaciones
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.observaciones)
+        </dd>
+
+        <dt>
+            Fecha Modificacion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modificado_el)
+        </dd>
+
+        <dt>
+            Usuario Creacion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario_creacion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.pt_id }, new { @class = "btn btn-info btn-sm" }) |
+    @Html.ActionLink("Regresar al Listado", "Index", null, new { @class = "btn btn-primary btn-sm" })
+</p>

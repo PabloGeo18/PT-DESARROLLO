@@ -1,0 +1,48 @@
+﻿@model MVC2013.Models.Tipos_Servicios
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Servicio Adicional</h2>
+
+<h3>¿Está seguro de eliminar el registro?</h3>
+<div>
+    <hr />
+    <div class="panel panel-danger">
+        <div class="panel-heading bg-red">Informacion del Servicio Adicional</div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.nombre)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <dl class="dl-horizontal">
+        <dd>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = Model.id_tipo_servicio })'">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            }
+        </dd>
+    </dl>
+    <p>
+        <div>
+            <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Index")'">
+                <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+            </button>
+        </div>
+
+    </p>
+
+</div>

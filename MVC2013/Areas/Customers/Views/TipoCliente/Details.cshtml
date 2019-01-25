@@ -1,0 +1,30 @@
+﻿@model MVC2013.Models.Tipo_Cliente
+
+@{
+    ViewBag.Title = Resources.Resources.tipo_cliente + "_" + Resources.Resources.detalle;
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.tipo_cliente_detalle</h2>
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Resources.Resources.nombre</dt>
+        <dd>@Html.DisplayFor(model => model.nombre)</dd>
+
+    </dl>
+    <dl class="dl-horizontal">
+        <dd>
+            <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Edit", new { id = Model.id_tipo_cliente })'">
+                <span class="glyphicon glyphicon-edit"></span> @Resources.Resources.editar
+            </button>
+        </dd>
+    </dl>
+</div>
+<div class="form-group">
+    <button class="btn-sm btn-bitbucket" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>

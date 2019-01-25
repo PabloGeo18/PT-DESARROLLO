@@ -1,0 +1,139 @@
+﻿@model MVC2013.Models.Asignaciones
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/TransporteValores/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Asignaciones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_hora_recepcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_hora_recepcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_hora_entrega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_hora_entrega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_hora_notificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_hora_notificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reasignada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reasignada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eliminado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eliminado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_creacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_modificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_eliminacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_eliminacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios1.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios1.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios2.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios2.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Asignacion_Estado.codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Asignacion_Estado.codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Receptores.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Receptores.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Solicitudes.id_solicitud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Solicitudes.id_solicitud)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_asignacion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,169 @@
+﻿@using MVC2013.Src.Comun.Helper
+
+<!DOCTYPE html>
+<html>
+<head><link rel="icon" href="~/Content/AdminLte/img/pt.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @Resources.Resources.aplicacion</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/font-awesome.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/ionicons.min.css")">
+    @*<link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/AdminLTE.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/skins/skin-red.css")">*@
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/AdminLTE.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/skins/_all-skins.min.css")">
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap/css/bootstrap.min.css")">
+
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/AdminLte/js/app.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+    <script src="@Url.Content("~/Scripts/filter-inclusive.js")"></script>
+
+    <!--- Calendar --->
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap/css/datepicker.css")">
+    @*<script src="@Url.Content("~/Content/bootstrap/js/bootstrap-datepicker.js")"></script>*@
+
+    <!--- Calendar/Time --->
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap-datetimepicker.css")">
+    <script src="@Url.Content("~/Scripts/moment.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
+
+    <!-- Grid MVC -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/Gridmvc.css")">
+    <script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+
+</head>
+<body class="hold-transition skin-black fixed sidebar-mini">
+
+
+    @Html.Partial("_LoginPartial")
+
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar" style="background-color: #5b5b5b !important">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="@Url.Content("~/Content/AdminLte/img/user2_160-160.png")" class="img-circle" alt="User Image" />
+                </div>
+                <div class="pull-left info">
+                    <p>@Resources.Resources.administracion</p>
+                    <!-- Status -->
+                    <a href="#"><i class="fa fa-circle text-success"></i> @Html.Encode(User.Identity.Name)</a>
+                </div>
+            </div>
+            <!-- search form (Optional)
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Busqueda..." />
+                <span class="input-group-btn">
+                    <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+         search form -->
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="@Url.Action("Index", "Home", new { area = "" })"><i class="fa fa-home"></i> <span>Inicio</span></a>
+                </li>
+
+                <li class="treeview">
+                    <a href="#"><span>Catalogo Sistema</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu" style="max-height:250px; overflow-y:auto">
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_usuarios, "Index", "Usuarios", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_roles, "Index", "Roles", User.Identity.Name)
+
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_aplicaciones, "Index", "Aplicaciones", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_controladores, "Index", "Controladores", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_controladores + " Reflection", "IndexR", "Controladores", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_acceso, "Index", "Permisos", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_acciones, "Index", "Acciones", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_empresa, "Index", "Empresas", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_reporte, "Index", "Reportes", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_rol_acciones, "Index", "Rol_Acciones", User.Identity.Name)
+                        
+                        
+                        @*@Html.MenuLinkLi("Tipos de Agentes", "Index", "Tipos_Agente", User.Identity.Name)
+                @Html.MenuLinkLi("Tipos de Servicios", "Index", "Tipos_Servicios", User.Identity.Name)*@
+
+                    </ul>
+
+                </li>
+                <li class="treeview">
+                    <a href="#"><span>@Resources.Resources.administracion_menu_catalogo_general</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu" style="max-height:250px; overflow-y:auto">
+                        @*@Html.MenuLinkLi("Tipos de Factura", "Index", "Tipos_Factura", User.Identity.Name)
+                        @Html.MenuLinkLi("Estados de Factura", "Index", "Estados_Factura", User.Identity.Name)*@
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_banco, "Index", "Banco", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_departamentos, "Index", "Departamentos", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_estado_civil, "Index", "Estado_Civil", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_monedas, "Index", "Monedas", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_municipios, "Index", "Municipios", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_paises, "Index", "Paises", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_profesion, "Index", "Profesion", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_tipo_archivo, "Index", "Tipo_Archivo", User.Identity.Name)
+                        @*@Html.MenuLinkLi(Resources.Resources.administracion_menu_tipo_cliente, "Index", "TipoCliente", User.Identity.Name)*@
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_tipo_cuenta, "Index", "Tipo_Cuenta", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_tipo_direccion, "Index", "Tipo_Direccion", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_tipo_licencia, "Index", "Tipo_Licencia", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_tipo_telefono, "Index", "Tipo_Telefono", User.Identity.Name)
+                        @*@Html.MenuLinkLi("Tipos de Agentes", "Index", "Tipos_Agente", User.Identity.Name)
+                        @Html.MenuLinkLi("Tipos de Servicios", "Index", "Tipos_Servicios", User.Identity.Name)*@
+
+                    </ul>
+
+                </li>
+
+                <li class="treeview">
+                    <a href="#"><span>@Resources.Resources.administracion_menu_catalogo_administracion</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_clientes, "Index", "Clientes", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_contactos, "Index", "Contactos", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_puesto_contacto, "Index", "Contacto_Puesto", User.Identity.Name)
+                        @Html.MenuLinkLi(Resources.Resources.administracion_menu_razones_sociales, "Index", "Razones_Sociales", User.Identity.Name)
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><span>@Resources.Resources.consultas</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li>@Html.SpecialMenuLinkLi("Reportes", "ViewReport", "Reportes", User.Identity.Name, "<i class='fa fa-file-text-o'></i>")</li>
+                    </ul>
+                </li>
+            </ul><!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="padding: 0px !important">
+        <!-- Content Header (Page header) -->
+        <section class="content-header"></section>
+        <!-- Main content -->
+        <section class="content">
+            @RenderBody()
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+
+        </div>
+        <!-- Default to the left -->
+        @*<strong>Copyright &copy; @DateTime.Today.Year <a href="#">Protecci&oacute;n Total</a>.</strong> All rights reserved.*@
+        <strong>ERPGEO</strong>, Derechos reservados 2018
+    </footer>
+
+
+    @Scripts.Render("~/Content/plugins/slimscroll/jquery.slimscroll.min.js")
+    @RenderSection("scripts", required: false)
+</body>
+    </html>

@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @Resources.Resources.aplicacion</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/font-awesome.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/ionicons.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/AdminLTE.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/skins/skin-red.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap/css/bootstrap.min.css")">
+
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/AdminLte/js/app.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+
+    <!--- Calendar --->
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap/css/datepicker.css")">
+    <script src="@Url.Content("~/Content/bootstrap/js/bootstrap-datepicker.js")"></script>
+
+    <!--- Calendar/Time --->
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap-datetimepicker.css")">
+    <script src="@Url.Content("~/Scripts/moment.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
+
+
+
+</head>
+<body class="skin-red">
+
+
+    @Html.Partial("_LoginPartial")
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="" style="">
+        <!-- Content Header (Page header) -->
+        <section class="content-header"></section>
+        <!-- Main content -->
+        <section class="content">
+            @RenderBody()
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <!-- Main Footer -->
+    <footer class="content-footer">
+        <!-- To the right -->
+
+        <div class="pull-left hidden-xs" style="margin-left:20px;margin-top:100px;">
+            <strong>Copyright &copy; 2015 <a href="#">Geo Informatica</a>.</strong> All rights reserved.
+        </div>
+        <!-- Default to the left -->
+        <!--strong>Copyright &copy; 2015 <a href="#">Geo Informatica</a>.</strong-->
+    </footer>
+
+
+    @RenderSection("scripts", required: false)
+
+    </body>
+    </html>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MVC2013.Models.Token_Salida>
+
+@{
+    ViewBag.Title = @Resources.Resources.stoken + "_" + Resources.Resources.lista;
+    Layout = "~/Areas/TransporteValores/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.stoken_lista</h2>
+
+<p>
+    @Html.ActionLink(@Resources.Resources.crear_nuevo, "Create")
+</p>
+<table class="zebra-striped">
+    <thead>
+        <th>@Resources.Resources.stoken_valor</th>
+        <th>@Resources.Resources.consumido</th>
+        <th>@Resources.Resources.consumido_fh</th>
+        <th>@Resources.Resources.creacion_fh</th>
+        <th>@Resources.Resources.consumo_receptor</th>
+        <th>@Resources.Resources.acciones</th>        
+    </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.valor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.consumido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.consumido_fecha_hora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_creacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Receptores.nombre_completo_usuario)
+        </td>
+        <td>
+            &nbsp;
+        </td>
+    </tr>
+}
+
+</table>

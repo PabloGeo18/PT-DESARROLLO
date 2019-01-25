@@ -1,0 +1,129 @@
+﻿@model IEnumerable<MVC2013.Models.Facturas>
+@using System.Globalization
+@using MVC2013.Src.Comun.Util
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Facturas Eliminadas</h2>
+<h4>@ViewBag.fecha_factura</h4>
+
+<div class="panel panel-warning">
+    <div class="panel-heading bg-yellow">Facturas</div>
+    <div class="panel-body">
+        <table class="table-hover" id="tabla_facturas">
+            <tr>
+                <th>
+                    Serie
+                </th>
+                <th>
+                    Numero Factura
+                </th>
+                <th>
+                    Cliente
+                </th>
+                <th>
+                    Razon Social
+                </th>
+
+                <th>
+                    Descripcion
+                </th>
+                <th>
+                    Total
+                </th>
+                <th>
+                    Acciones
+                </th>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td><input type="text" id="nombre_cliente" autocomplete="off" style="width:100%" /></td>
+                <td><input type="text" id="nombre_razon_social" autocomplete="off" style="width:100%" /></td>
+
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.serie
+                    </td>
+                    <td>
+                        @item.numero_factura
+                    </td>
+                    <td class="fl_cliente">
+                        @item.Razones_Sociales.Clientes.nombre
+                    </td>
+                    <td class="fl_razon_social">
+                        @item.Razones_Sociales.razon_social
+                    </td>
+
+                    <td>
+                        @item.descripcion
+                    </td>
+                    <td>
+                        @item.total.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                    </td>
+                    <td>
+                        @if (item.Razones_Sociales.orden_aceptacion && item.orden_aceptacion_numero == null)
+                        {
+                            <button class="btn btn-primary btn-sm btn_factura_abrir" data-url="@Url.Action("Edit", new { id = item.id_factura })">
+                                <span class="glyphicon glyphicon-edit"></span>&nbsp;Ingresar Orden de Aceptacion
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-info btn-sm btn_factura_abrir" data-url="@Url.Action("Details","Facturas_Detalle", new { id = item.id_factura })">
+                                <span class="glyphicon glyphicon-search"></span>&nbsp;     @Resources.Resources.detalle
+                            </button>
+                            if (item.Facturas_Detalle.ToList().Count() > 0)
+                            {
+                                if (item.Facturas_Detalle.ToList().FirstOrDefault().id_proceso_facturacion_detalle.HasValue && item.id_cat_estado_factura == (int)Catalogos.Estado_Factura.creada)
+                                {
+                                    <button class="btn btn-warning btn-sm btn_factura_abrir" data-url="@Url.Action("Anular","Facturas_Detalle", new { id = item.id_factura })">
+                                        <span class="glyphicon glyphicon-warning-sign"></span>&nbsp;Anular
+                                    </button>
+                                }
+                            }
+
+                        }
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+
+
+    </div>
+</div>
+<script>
+    $(document).on('click', '.btn_factura_abrir', function () {
+        var data = $(this).data("url");
+        window.open(data);
+    });
+
+    $(function () {
+        //Filtro de la tabla de empleados
+        $('#tabla_facturas').filterByMultiColumn([
+            {
+                filterClass: 'fl_cliente', //Celda
+                field: 'nombre_cliente' //Campo de busqueda
+            },
+            {
+                filterClass: 'fl_razon_social', //Celda
+                field: 'nombre_razon_social'//Campo de busqueda
+            }
+
+        ]);
+    });
+</script>

@@ -1,0 +1,45 @@
+﻿@model MVC2013.Models.Facturas
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Asignar Orden de Aceptacion</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Facturas</h4>
+        <hr />
+        <input class="hidden" name="id_factura" value="@Model.id_factura" />
+
+        <div class="panel panel-default">
+            <div class="panel-heading bg-purple">Asignar Orden de Aceptacion</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.orden_aceptacion_numero, "Numero de Orden de Aceptacion", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.orden_aceptacion_numero, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.serie, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-success btn-sm" type="submit">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                </button>
+            </div>
+        </div>
+
+    </div>
+}
+

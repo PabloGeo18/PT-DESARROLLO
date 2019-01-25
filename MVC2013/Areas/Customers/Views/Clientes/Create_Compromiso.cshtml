@@ -1,0 +1,178 @@
+﻿@model MVC2013.Models.Compromisos
+
+@{
+    ViewBag.Title = "Crear Compromiso";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+<h2>Crear Compromiso</h2>
+<h4><label>Cliente:</label>&nbsp;@ViewBag.cliente</h4>
+<h4><label>Razon Social:</label>&nbsp;@ViewBag.razon_social</h4>
+<h4><label>Ubicacion:</label>&nbsp;@ViewBag.ubicacion</h4>
+
+@using (Html.BeginForm("Create_Compromiso", "Clientes", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" value="@ViewBag.id_ubicacion" name="id_u" />
+    <div class="form-horizontal">
+        <hr />
+        <div class="panel panel-default">
+            <div class="panel-heading bg-navy-active">Informacion de Compromiso</div>
+            <div class="panel-body">
+                @if (ViewBag.id_agente == null)
+                {
+                    <h4>Se deben contratar Agentes primero</h4>
+                }
+                else
+                {
+                    <div>
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-lg-12 col-sm-12 col-xs-12">Agentes Contratados</label>
+                                    <div class="col-md-12">
+                                        @Html.DropDownList("id_agente", null, "----", htmlAttributes: new { @class = "form-control", required = "required" })
+                                        @*@Html.ValidationMessageFor(model => model.id_agente_contratado, "", new { @class = "text-danger" })*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-lg-12 col-sm-12 col-xs-12">Domingo</label>
+                                    <div class="col-md-12">
+                                        <input type="number" name="cantidad1" class="form-control required" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-lg-12 col-sm-12 col-xs-12">Lunes</label>
+                                    <div class="col-md-12">
+                                        <input type="number" name="cantidad2" class="form-control required" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-lg-12 col-sm-12 col-xs-12">Martes</label>
+                                    <div class="col-md-12">
+                                        <input type="number" name="cantidad3" class="form-control required" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-lg-12 col-sm-12 col-xs-12">Miercoles</label>
+                                    <div class="col-md-12">
+                                        <input type="number" name="cantidad4" class="form-control required" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-lg-12 col-sm-12 col-xs-12">Jueves</label>
+                                    <div class="col-md-12">
+                                        <input type="number" name="cantidad5" class="form-control required" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-lg-12 col-sm-12 col-xs-12">Viernes</label>
+                                    <div class="col-md-12">
+                                        <input type="number" name="cantidad6" class="form-control required" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-6">
+                                <div class="form-group">
+                                    <label class="col-md-12 col-lg-12 col-sm-12 col-xs-12">Sabado</label>
+                                    <div class="col-md-12">
+                                        <input type="number" name="cantidad7" class="form-control required" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button class="btn btn-success btn-sm" type="submit">
+                                <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.crear
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading bg-purple">Compromisos</div>
+        <div class="panel-body">
+            <table class="table-hover">
+                <tr>
+                    <th>
+                        Tipo de Agente
+                    </th>
+                    <th>
+                        Domingo
+                    </th>
+                    <th>
+                        Lunes
+                    </th>
+                    <th>
+                        Martes
+                    </th>
+                    <th>
+                        Miercoles
+                    </th>
+                    <th>
+                        Jueves
+                    </th>
+                    <th>
+                        Viernes
+                    </th>
+                    <th>
+                        Sabado
+                    </th>
+                    
+                </tr>
+                @for (int i = 0; i < ViewBag.compromiso.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @ViewBag.compromiso[i].Contratos_Agentes.Cat_Tipos_Agente.nombre
+                        </td>
+                        @for (int j = 0; j < 7; j++)
+                        {
+                            <td>
+                                @ViewBag.compromiso[i].cantidad
+                            </td>
+                            if (j < 6)
+                            {
+                                i = i + 1;
+                            }
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+}
+
+
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Details_U", new { id_ubicacion = @ViewBag.id_ubicacion})'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar a Detalles de Ubicacion
+    </button>
+</div>

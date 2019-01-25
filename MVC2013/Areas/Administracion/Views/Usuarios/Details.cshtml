@@ -1,0 +1,49 @@
+﻿@model MVC2013.Models.Usuarios
+
+@{
+    ViewBag.Title = @Resources.Resources.usuario + "_" + @Resources.Resources.detalle;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.usuario_detalle</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt> @Resources.Resources.usuario_usuario </dt>
+        <dd> @Html.DisplayFor(model => model.usuario) </dd>
+        <dt>&nbsp;</dt><dd></dd>
+        <dt> @Resources.Resources.usuario_nombre </dt>
+        <dd> @Html.DisplayFor(model => model.nombre_completo_usuario) </dd>
+        <dt>&nbsp;</dt><dd></dd>
+        <dt> @Resources.Resources.usuario_email </dt>
+        <dd> @Html.DisplayFor(model => model.email) </dd>
+        <dt>&nbsp;</dt><dd></dd>
+        <dt> @Resources.Resources.usuario_fecha_bloqueo </dt>
+        <dd> @Html.DisplayFor(model => model.fecha_final_bloqueo_utc) </dd>
+        <dt>&nbsp;</dt><dd></dd>
+        <dt> @Resources.Resources.usuario_telefono_trabajo </dt>
+        <dd> @Html.DisplayFor(model => model.telefono_trabajo) </dd>
+        <dt>&nbsp;</dt><dd></dd>
+        <dt> @Resources.Resources.usuario_telefono_movil </dt>
+        <dd> @Html.DisplayFor(model => model.telefono_movil) </dd>
+        <dt>&nbsp;</dt><dd></dd>
+        <dt> @Resources.Resources.usuario_bloqueado </dt>
+        <dd> @Html.DisplayFor(model => model.bloqueo_habilitado) </dd>
+        <dt>&nbsp;</dt><dd></dd>
+        <dt> @Resources.Resources.usuario_externo </dt>
+        <dd> @Html.DisplayFor(model => model.usuario_externo) </dd>
+        <dt>&nbsp;</dt><dd> </dd>
+        <dt> @Resources.Resources.usuario_accesos_fallidos </dt>
+        <dd  @Html.DisplayFor(model => model.conteo_accesos_fallidos) </dd>
+
+    </dl>
+</div>
+<div>
+    <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = Model.id_usuario })'">
+        @Resources.Resources.editar
+    </button>
+    <button class="btn btn-warning btn-sm" onclick="location.href = '@Url.Action("Index", new { id = @Resources.Resources.boton_regresar_id })'">
+        @Resources.Resources.listado_regresar
+    </button>
+</div>

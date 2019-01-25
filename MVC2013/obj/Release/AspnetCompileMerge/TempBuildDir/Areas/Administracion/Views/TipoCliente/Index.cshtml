@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MVC2013.Models.Tipo_Cliente>
+
+@{
+    ViewBag.Title = @Resources.Resources.tipo_cliente + "_" + @Resources.Resources.lista;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.tipo_cliente_lista</h2>
+
+<p>
+    @Html.ActionLink(@Resources.Resources.crear_nuevo, "Create")
+</p>
+<table class="zebra-striped">
+    <thead>
+        <th>
+            @Resources.Resources.tipo_cliente
+        </th>
+        <th>
+            @Resources.Resources.tipo_cliente_activo
+        </th>
+        <th></th>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.activo)
+            </td>
+            <td>
+                @Html.ActionLink(@Resources.Resources.editar, "Edit", new { id = item.id_tipo_cliente }) |
+                @Html.ActionLink(@Resources.Resources.detalle, "Details", new { id = item.id_tipo_cliente }) |
+                @Html.ActionLink(@Resources.Resources.eliminar, "Delete", new { id = item.id_tipo_cliente })
+            </td>
+        </tr>
+    }
+
+</table>

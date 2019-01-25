@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MVC2013.Models.Municiones>
+@using System.Globalization;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+@{ int id_ingreso = @ViewBag.id_ingreso; }
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Edit","Ingresos", new { id = id_ingreso })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+<h2>Listado de Municiones</h2>
+<div class="table-responsive">
+    @if (Model.Where(x => x.activo && !x.eliminado && x.autorizada).Count() <= 0)
+    {
+        <table class="table table-striped table-bordered table-responsive">
+            <thead style="background-color:cadetblue"></thead>
+            <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+        </table>
+    }
+    else {
+    <table class="table table-striped">
+        <thead style="background-color:#969aa2">
+            <tr>
+                <th class="text-center">@Resources.Resources.acciones</th>
+                <th class="text-center">@Resources.Resources.descripcion</th>
+                <th class="text-center">@Resources.Resources.calibre</th>
+                <th class="text-center">@Resources.Resources.costo</th>
+                <th class="text-center">@Resources.Resources.costo_venta</th>
+                @*<th>
+                        @Resources.Resources.existencia
+                    </th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Where(x=>x.autorizada))
+            {
+                <tr>
+                    <td width="10%" class="text-center">
+                        <button data-toggle="tooltip" data-placement="top" title="Agregar" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("add_municiones_existencia", new { id_municion = item.id_municion, id_ingreso = id_ingreso })'">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                        </button>
+                    </td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.descripcion)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Calibres.descripcion)</td>
+                    <td class="text-center">@item.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+                    <td class="text-center">@item.costo_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.existencia)
+                        </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+    }
+    <hr style="height:3px; border-style:solid;background-color:#222d32">
+</div>
+<div>
+    <button class="btn btn-sm btn-success" type="button" onclick="location.href='@Url.Action("add_municiones_new", "Ingresos", new { id = id_ingreso })'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.agregar
+    </button>
+</div>

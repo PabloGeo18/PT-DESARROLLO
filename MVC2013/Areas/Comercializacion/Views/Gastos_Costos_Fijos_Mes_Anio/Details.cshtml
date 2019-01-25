@@ -1,0 +1,45 @@
+﻿@model MVC2013.Models.Pt_Gastos_Costos_Fijos_Mes_Anio
+@using System.Globalization
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+    CultureInfo gt = new CultureInfo("es-GT");
+}
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index", new { id = ViewBag.id})'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar
+    </button>
+</div>
+<h2>Detalles Gasto</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Descripción</dt>
+        <dd>@Html.DisplayFor(model => model.cgcf_descripcion)</dd>
+        <dt>Precio Unitario</dt>
+        @if (Model.cgcf_precio_unitario == null)
+        {
+            <dd>-----</dd>
+        }
+        else
+        {
+            <dd>@Model.cgcf_precio_unitario.Value.ToString("c", gt)</dd>
+        }
+        @if (Model.cgcf_depreciable == true)
+        {
+            <dt>% Depreciación</dt>
+            <dd>@Html.DisplayFor(model => model.cgcf_porcentaje_depreciacion)</dd>
+        }
+        <dt>Gasto correspondiente a</dt>
+        <dd>@Html.DisplayFor(model => model.Pt_Costos_Fijos_Mes_Anio.ccfma_descripcion)</dd>
+
+    </dl>
+    <dl class="dl-horizontal">
+        <dd>
+            <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = Model.cgcf_id })'">
+                <span class="glyphicon glyphicon-edit"></span>&nbsp;Editar
+            </button>
+        </dd>
+    </dl>
+</div>

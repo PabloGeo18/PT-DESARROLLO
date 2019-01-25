@@ -1,0 +1,43 @@
+﻿@model MVC2013.Models.Clientes
+
+@{
+    ViewBag.Title = @Resources.Resources.clientes + "_" + @Resources.Resources.eliminar;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.clientes_eliminar</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>@Resources.Resources.clientes_nombre</dt>
+        <dd>@Html.DisplayFor(model => model.nombre)</dd>
+
+        <dt>&nbsp;</dt><dd></dd>
+
+        <dt>@Resources.Resources.clientes_nombre_corto</dt>
+        <dd>@Html.DisplayFor(model => model.nombre_corto)</dd>
+
+        <dt>&nbsp;</dt><dd></dd>
+
+        <dt>@Resources.Resources.clientes_tipo</dt>
+        <dd>@Html.DisplayFor(model => model.Tipo_Cliente.nombre)</dd>
+
+        <dt>&nbsp;</dt><dd></dd>
+
+        <dt>@Resources.Resources.clientes_activo/dt>
+        <dd>@Html.DisplayFor(model => model.activo)</dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value=@Resources.Resources.eliminar class="btn btn-default" /> |
+            @Html.ActionLink(@Resources.Resources.listado_regresar, "Index")
+        </div>
+    }
+</div>

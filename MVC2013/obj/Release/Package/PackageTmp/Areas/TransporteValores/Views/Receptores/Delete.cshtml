@@ -1,0 +1,58 @@
+﻿@model MVC2013.Models.Receptores
+
+@{
+    ViewBag.Title = @Resources.Resources.receptores + "_" + @Resources.Resources.eliminar;
+    Layout = "~/Areas/TransporteValores/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.receptores_eliminar</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>@Resources.Resources.usuario_usuario</dt>
+        <dd>@Html.DisplayFor(model => model.usuario)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd>&nbsp;</dd>
+
+        <dt>@Resources.Resources.usuario_nombre</dt>
+        <dd>@Html.DisplayFor(model => model.nombre_completo_usuario)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd>&nbsp;</dd>
+
+        <dt>@Resources.Resources.usuario_email</dt>
+        <dd>@Html.DisplayFor(model => model.email)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd>&nbsp;</dd>
+
+        <dt>@Resources.Resources.usuario_telefono_trabajo</dt>
+        <dd>@Html.DisplayFor(model => model.telefono_trabajo)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd>&nbsp;</dd>
+
+        <dt>@Resources.Resources.usuario_telefono_movil</dt>
+        <dd>@Html.DisplayFor(model => model.telefono_movil)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd>&nbsp;</dd>
+
+        <dt>@Resources.Resources.usuario_activo</dt>
+        <dd>@Html.DisplayFor(model => model.activo)</dd>
+  
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value=@Resources.Resources.eliminar class="btn btn-default" /> |
+            @Html.ActionLink(@Resources.Resources.listado_regresar, "Index")
+        </div>
+    }
+</div>

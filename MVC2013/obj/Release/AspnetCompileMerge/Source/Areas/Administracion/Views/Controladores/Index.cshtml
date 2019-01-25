@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MVC2013.Models.Controladores>
+
+@{
+    ViewBag.Title = @Resources.Resources.controlador_nombre + "_" + @Resources.Resources.lista;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.controlador_lista</h2>
+
+<p>
+    @Html.ActionLink(@Resources.Resources.crear_nuevo, "Create")
+</p>
+<table class="zebra-striped">
+    <thead>
+        <th>
+            @Resources.Resources.controlador_nombre
+        </th>
+        <th>
+            @Resources.Resources.controlador_aplicacion
+        </th>
+        <th></th>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aplicaciones.nombre)
+            </td>
+            <td>
+                @Html.ActionLink(@Resources.Resources.editar, "Edit", new { id = item.id_controlador }) |
+                @Html.ActionLink(@Resources.Resources.detalle, "Details", new { id = item.id_controlador }) |
+                @Html.ActionLink(@Resources.Resources.eliminar, "Delete", new { id = item.id_controlador })
+            </td>
+        </tr>
+    }
+
+</table>

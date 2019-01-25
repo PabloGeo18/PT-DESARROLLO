@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Mensaje";
+    Layout = "~/Areas/EstadoFuerza/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+        <div class="panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title">Carga Masiva</h4>
+            </div>
+            <div class="panel-body">
+
+                @ViewBag.Mensaje
+
+            </div>
+
+                <div class="panel-footer">
+                    <i>Mensaje generado el @DateTime.Now.ToShortDateString() a las @DateTime.Now.ToShortTimeString()</i>
+                </div>
+        </div>
+                         
+    </div>
+</div>
+
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-arrow-left"></span> @Resources.Resources.regresar
+    </button>
+</div>

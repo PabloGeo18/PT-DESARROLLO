@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MVC2013.Models.Inventario_Tipo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tipo de Inventario</h2>
+
+<p>
+    <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+
+</p>
+<div class="table-responsive">
+    @if (Model.Count() <= 0)
+    {
+        <table class="table table-striped table-bordered table-responsive">
+            <thead style="background-color:cadetblue"></thead>
+            <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+        </table>
+    }
+    else
+    {
+        <table class="table-striped">
+            <thead style="background-color:#969aa2">
+                <tr>
+                    <th class="text-center">Acciones</th>
+                    <th class="text-center">Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td width="20%" class="text-center">
+                            <button data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.id_inventario_tipo })'">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                            <button data-toggle="tooltip" data-placement="top" title="Detalles" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.id_inventario_tipo })'">
+                                <span class="glyphicon glyphicon-list-alt"></span>
+                            </button>
+                            <button data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = item.id_inventario_tipo })'">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.descripcion)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

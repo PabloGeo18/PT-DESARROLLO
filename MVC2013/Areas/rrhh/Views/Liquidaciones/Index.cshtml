@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MVC2013.Models.Liquidaciones>
+
+@{
+    ViewBag.Title = Resources.Resources.liquidacion + "_" + Resources.Resources.lista;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.liquidacion_lista</h2>
+
+<div class="table-responsive">
+    <table class="table-striped">
+        <tr>
+            <th>
+                @Resources.Resources.empleado
+            </th>
+            <th>
+                @Resources.Resources.vacaciones_pendientes
+            </th>
+            <th>
+                @Resources.Resources.bono_14_pendiente
+            </th>
+            <th>
+                @Resources.Resources.aguinaldo_pendiente
+            </th>
+            <th>
+                @Resources.Resources.indeminizacion
+            </th>
+            <th>
+                @Resources.Resources.total
+            </th>
+            <th>
+                @Resources.Resources.acciones
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empleado.primer_nombre)
+                    @Html.DisplayFor(modelItem => item.Empleado.segundo_nombre)
+                    @Html.DisplayFor(modelItem => item.Empleado.primer_apellido)
+                    @Html.DisplayFor(modelItem => item.Empleado.segundo_apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.vacaciones_pendientes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bono_14_pendiente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.aguinaldo_pendiente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.indeminizacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("Edit", new { id = item.id_liquidacion })'">
+                        <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                    </button>
+                    <button class="btn btn-info btn-sm" onclick="location.href='@Url.Action("Finiquito", new { id = item.id_liquidacion })'">
+                        <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.finiquito
+                    </button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

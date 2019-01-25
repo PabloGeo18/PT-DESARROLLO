@@ -1,0 +1,82 @@
+﻿@model MVC2013.Models.Pt_Cotizaciones
+@using MVC2013.Src.Comun.Helper
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+}
+@if (Model.ccot_finaliza_cotizacion != true && Model.activo == true && Model.eliminado == false)
+{
+    <div class="form-group">
+        <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+        </button>
+    </div>
+}
+else if (Model.ccot_finaliza_cotizacion != true && Model.activo == false && Model.eliminado == true)
+{
+    <div class="form-group">
+        <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("CotizacionesEliminadas")'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+        </button>
+    </div>
+}
+else
+{
+    <div class="form-group">
+        <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("CotizacionesFinalizadas")'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+        </button>
+    </div>
+}
+<h2>Detalles de la cotización</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Nombre del Proyecto</dt>
+        <dd>@Html.DisplayFor(model => model.ccot_nombre_proyecto)</dd>
+        <dt>Descripción General</dt>
+        <dd>@Html.DisplayFor(model => model.ccot_descripcion_general)</dd>
+        <dt>Tipo de Proyecto</dt>
+        <dd>@Html.DisplayFor(model => model.Pt_Tipos_Proyecto.ctpo_descripcion)</dd>
+        <dt>Contacto</dt>
+        <dd>@Html.DisplayFor(model => model.ccot_contacto)</dd>
+        <dt>Teléfono de Contacto</dt>
+        <dd>@Html.DisplayFor(model => model.ccot_telefono_contacto)</dd>
+        <dt>Correo de Contacto</dt>
+        <dd>@Html.DisplayFor(model => model.ccot_correo_contacto)</dd>
+        <dt>Dirección de Contacto</dt>
+        <dd>@Html.DisplayFor(model => model.ccot_direccion_contacto)</dd>
+        <dt>Fecha de Creación</dt>
+        <dd>
+            @if (Model.fecha_creacion != null)
+            {
+                @Model.fecha_creacion.ToString("dd/MM/yyyy")
+            }
+            else
+            {
+                <text>-----</text>
+            }
+        </dd>
+        <dt>Fecha de entrega</dt>
+        <dd>
+            @if (Model.ccot_fecha_entrega.HasValue)
+            {
+                @Model.ccot_fecha_entrega.Value.ToString("dd/MM/yyyy")
+            }
+            else
+            {
+                <text>-----</text>
+            }
+        </dd>
+    </dl>
+    @if (Model.ccot_finaliza_cotizacion != true && Model.activo == true && Model.eliminado == false)
+    {
+        <dl class="dl-horizontal">
+            <dd>
+                @Html.MenuLinkButton(" Editar", "Edit", "Cotizaciones", User.Identity.Name, "glyphicon glyphicon-edit", "btn btn-md btn-primary", new { id = Model.ccot_id }, true, null, null, "Editar")
+            </dd>
+        </dl>
+    }
+</div>
+

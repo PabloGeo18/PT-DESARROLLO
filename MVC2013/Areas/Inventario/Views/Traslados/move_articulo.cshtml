@@ -1,0 +1,72 @@
+﻿@model IEnumerable<MVC2013.Models.Articulos>
+@using System.Globalization;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Artículos</h2>
+@{ int id_traslado = @ViewBag.id_traslado; }
+<table class="table">
+    <tr>
+        <th>
+            @Resources.Resources.serie
+        </th>
+        <th>
+            @Resources.Resources.costo
+        </th>
+        <th>
+            @Resources.Resources.costo_venta
+        </th>
+        <th>
+            @Resources.Resources.ubicacion
+        </th>
+        <th>
+            @Resources.Resources.articulo_tipo
+        </th>
+        <th>
+            @Resources.Resources.marca
+        </th>
+        <th>
+            @Resources.Resources.proveedor
+        </th>
+        <th>@Resources.Resources.acciones</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.serie)
+        </td>
+        <td>
+            @item.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+        </td>
+        <td>
+            @item.costo_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clientes.nombre)
+            @Html.DisplayFor(modelItem => item.Bodegas.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Articulo_Tipo.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marcas.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proveedores.descripcion)
+        </td>
+        <td>
+            <button class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("enviar_articulo", new { id_articulo = item.id_articulo, id_traslado = id_traslado })'">
+                <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;     @Resources.Resources.enviar_articulo
+            </button>
+
+        </td>
+    </tr>
+}
+
+</table>
+<button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Edit",  new { id = id_traslado })'">
+    <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+</button>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MVC2013.Models.Transaccion_Inventario_Tipo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Tipos de Transaccion de Inventario</h2>
+
+<p>
+    <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</p>
+<table class="table-striped">
+    <tr>
+        <th>
+            @Resources.Resources.descripcion
+        </th>
+
+        <th>@Resources.Resources.acciones</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+
+            <td>
+                <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.id_transaccion_inventario_tipo })'">
+                    <span class="glyphicon glyphicon-edit"></span>&nbsp;    @Resources.Resources.editar
+                </button>
+                <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.id_transaccion_inventario_tipo })'">
+                    <span class="glyphicon glyphicon-search"></span>&nbsp;     @Resources.Resources.detalle
+                </button>
+                <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = item.id_transaccion_inventario_tipo })'">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;   @Resources.Resources.eliminar
+                </button>
+
+            </td>
+        </tr>
+    }
+
+</table>

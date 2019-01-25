@@ -1,0 +1,33 @@
+﻿@model MVC2013.Models.Pt_Costos_Fijos_Mes_Anio
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+}
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar
+    </button>
+</div>
+<h2>Detalles</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>Descripción</dt>
+        <dd>@Html.DisplayFor(model => model.ccfma_descripcion)</dd>*@
+        <dt>Tipo de Gasto</dt>
+        <dd>@Html.DisplayFor(model => model.ccfma_tipo_gasto)</dd>
+        <dt>Mes</dt>
+        <dd>@Html.DisplayFor(model => model.ccfma_mes)</dd>
+        <dt>Año</dt>
+        <dd>@Html.DisplayFor(model => model.ccfma_anio)</dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dd>
+            <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = Model.ccfma_id })'">
+                <span class="glyphicon glyphicon-edit"></span>&nbsp;Editar
+            </button>
+        </dd>
+    </dl>
+</div>

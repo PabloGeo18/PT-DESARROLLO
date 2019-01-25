@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head><link rel="icon" href="~/Content/AdminLte/img/pt.ico">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Administración Seguridad 360</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/ionicons.min.css")">
+    @*<link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/AdminLTE.css")">
+        <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/skins/skin-red.css")">*@
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/AdminLTE.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/skins/_all-skins.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/plugins/iCheck/square/blue.css")">
+
+
+
+</head>
+@*<body class="skin-red">*@
+@*<body class="hold-transition skin-black fixed sidebar-mini">*@
+<body class="hold-transition login-page" style="padding:0px !important; background-image:url('@Url.Content("~/Content/img/banner1.png")'); background-size:100%;background-repeat:no-repeat; background-size: cover; -webkit-background-size cover; -moz-background-size cover; -o-background-size cover;">
+
+
+    <div class="login-box">
+        @*<div class="login-logo">
+                <a href="#" class="logo">
+                    <img src="@Url.Content("~/Content/AdminLte/img/logo.png")" width="194" height="54" class="" alt="User Image" />
+                </a>
+            </div>*@
+        @Html.Partial("_LoginPartialLogin")
+
+        @RenderBody()
+    </div>
+
+    @*<section class="content-header"></section>
+        <!-- Main content -->
+        <section class="content">
+            @RenderBody()
+        </section>
+
+
+
+        <!-- Main Footer -->
+        <footer class="content-footer">
+            <!-- To the right -->
+
+            <div class="pull-left hidden-xs" style="margin-left:20px;margin-top:100px;">
+                <strong>Copyright &copy; @DateTime.Today.Year <a href="#">Protecc&oacute;n Total</a>.</strong> All rights reserved.
+            </div>
+            <!-- Default to the left -->
+            <!--strong>Copyright &copy; 2015 <a href="#">Geo Informatica</a>.</strong-->
+        </footer>*@
+
+
+    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @Scripts.Render("~/Scripts/bootstrap.js")
+    @Scripts.Render("~/Content/AdminLte/js/app.js")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("scripts", required: false)
+    >
+</body>
+</html>

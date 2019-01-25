@@ -1,0 +1,201 @@
+﻿@model MVC2013.Models.Facturas
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Facturas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.serie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.serie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numero_factura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero_factura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_factura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_factura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_factura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_factura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_cobro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_cobro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_pago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_pago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eliminado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eliminado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_creacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_modificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_eliminacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_eliminacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios1.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios1.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios2.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios2.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cat_Estados_Factura.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cat_Estados_Factura.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cat_Tipos_Facturacion.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cat_Tipos_Facturacion.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Series_Facturas.serie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Series_Facturas.serie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Razones_Sociales.razon_social)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Razones_Sociales.razon_social)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

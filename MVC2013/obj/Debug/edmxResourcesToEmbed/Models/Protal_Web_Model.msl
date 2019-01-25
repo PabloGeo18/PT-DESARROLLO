@@ -1,0 +1,545 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Protal_webModelStoreContainer" CdmEntityContainer="Protal_webEntities">
+    <EntitySetMapping Name="pt_estadofuerza">
+      <EntityTypeMapping TypeName="Protal_webModel.pt_estadofuerza">
+        <MappingFragment StoreEntitySet="pt_estadofuerza">
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="pt_id" ColumnName="pt_id" />
+          <ScalarProperty Name="ptempleadoid" ColumnName="ptempleadoid" />
+          <ScalarProperty Name="ptubicacionid" ColumnName="ptubicacionid" />
+          <ScalarProperty Name="pttipoid" ColumnName="pttipoid" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="modificado_el" ColumnName="modificado_el" />
+          <ScalarProperty Name="id_encabezado" ColumnName="id_encabezado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pt_estadofuerza_encabezado">
+      <EntityTypeMapping TypeName="Protal_webModel.pt_estadofuerza_encabezado">
+        <MappingFragment StoreEntitySet="pt_estadofuerza_encabezado">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+          <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+          <ScalarProperty Name="creado_el" ColumnName="creado_el" />
+          <ScalarProperty Name="creado_por" ColumnName="creado_por" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="modificado_por" ColumnName="modificado_por" />
+          <ScalarProperty Name="modificado_el" ColumnName="modificado_el" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pt_situacion">
+      <EntityTypeMapping TypeName="Protal_webModel.pt_situacion">
+        <MappingFragment StoreEntitySet="pt_situacion">
+          <ScalarProperty Name="id_situacion" ColumnName="id_situacion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="es_pago" ColumnName="es_pago" />
+          <ScalarProperty Name="baja_rrhh" ColumnName="baja_rrhh" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pt_contratacion">
+      <EntityTypeMapping TypeName="Protal_webModel.pt_contratacion">
+        <MappingFragment StoreEntitySet="pt_contratacion">
+          <ScalarProperty Name="PTCONTRATOID" ColumnName="PTCONTRATOID" />
+          <ScalarProperty Name="PTPRESTACIONID" ColumnName="PTPRESTACIONID" />
+          <ScalarProperty Name="PTEMPLEADOID" ColumnName="PTEMPLEADOID" />
+          <ScalarProperty Name="PTEMPRESAID" ColumnName="PTEMPRESAID" />
+          <ScalarProperty Name="PTCATEGORIAID" ColumnName="PTCATEGORIAID" />
+          <ScalarProperty Name="NOMBRE_REFERIDO" ColumnName="NOMBRE_REFERIDO" />
+          <ScalarProperty Name="FECHA_APRENDIZ" ColumnName="FECHA_APRENDIZ" />
+          <ScalarProperty Name="FECHA_APRENDIZ_FIN" ColumnName="FECHA_APRENDIZ_FIN" />
+          <ScalarProperty Name="FECHA_ALTA" ColumnName="FECHA_ALTA" />
+          <ScalarProperty Name="FECHA_BAJA" ColumnName="FECHA_BAJA" />
+          <ScalarProperty Name="CAPACITACION" ColumnName="CAPACITACION" />
+          <ScalarProperty Name="OBSERVACIONES_ALTA" ColumnName="OBSERVACIONES_ALTA" />
+          <ScalarProperty Name="OBSERVACIONES_BAJA" ColumnName="OBSERVACIONES_BAJA" />
+          <ScalarProperty Name="MOTIVO_BAJA" ColumnName="MOTIVO_BAJA" />
+          <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+          <ScalarProperty Name="creado_el" ColumnName="creado_el" />
+          <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
+          <ScalarProperty Name="modificado_el" ColumnName="modificado_el" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="PTCONTRATACIONID" ColumnName="PTCONTRATACIONID" />
+          <ScalarProperty Name="PTTIPOID" ColumnName="PTTIPOID" />
+          <ScalarProperty Name="PTAREAID" ColumnName="PTAREAID" />
+          <ScalarProperty Name="OBSERVACIONES_APRENDIZ" ColumnName="OBSERVACIONES_APRENDIZ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pt_empleado">
+      <EntityTypeMapping TypeName="Protal_webModel.pt_empleado">
+        <MappingFragment StoreEntitySet="pt_empleado">
+          <ScalarProperty Name="PTEMPLEADOID" ColumnName="PTEMPLEADOID" />
+          <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+          <ScalarProperty Name="IDENTIFICACION" ColumnName="IDENTIFICACION" />
+          <ScalarProperty Name="CEDULA" ColumnName="CEDULA" />
+          <ScalarProperty Name="NOMBRE1" ColumnName="NOMBRE1" />
+          <ScalarProperty Name="NOMBRE2" ColumnName="NOMBRE2" />
+          <ScalarProperty Name="APELLIDO1" ColumnName="APELLIDO1" />
+          <ScalarProperty Name="APELLIDO2" ColumnName="APELLIDO2" />
+          <ScalarProperty Name="APELLIDO_CASADA" ColumnName="APELLIDO_CASADA" />
+          <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+          <ScalarProperty Name="ESTADO_CIVIL" ColumnName="ESTADO_CIVIL" />
+          <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
+          <ScalarProperty Name="NIT" ColumnName="NIT" />
+          <ScalarProperty Name="NUMERO_IGSS" ColumnName="NUMERO_IGSS" />
+          <ScalarProperty Name="NUMERO_IRTRA" ColumnName="NUMERO_IRTRA" />
+          <ScalarProperty Name="estatura" ColumnName="estatura" />
+          <ScalarProperty Name="peso" ColumnName="peso" />
+          <ScalarProperty Name="DPI" ColumnName="DPI" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="NACIONALIDAD" ColumnName="NACIONALIDAD" />
+          <ScalarProperty Name="SERVICIO_MILITAR" ColumnName="SERVICIO_MILITAR" />
+          <ScalarProperty Name="SABE_LEER" ColumnName="SABE_LEER" />
+          <ScalarProperty Name="SABE_ESCRIBIR" ColumnName="SABE_ESCRIBIR" />
+          <ScalarProperty Name="DIR_NACIMIENTO" ColumnName="DIR_NACIMIENTO" />
+          <ScalarProperty Name="MUN_NACIMIENTO" ColumnName="MUN_NACIMIENTO" />
+          <ScalarProperty Name="DEPTO_NACIMIENTO" ColumnName="DEPTO_NACIMIENTO" />
+          <ScalarProperty Name="ptescolaridadid" ColumnName="ptescolaridadid" />
+          <ScalarProperty Name="ptprofesionid" ColumnName="ptprofesionid" />
+          <ScalarProperty Name="TIPOCUENTA" ColumnName="TIPOCUENTA" />
+          <ScalarProperty Name="CUENTA" ColumnName="CUENTA" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="EXTENDIDA_EN" ColumnName="EXTENDIDA_EN" />
+          <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+          <ScalarProperty Name="creado_el" ColumnName="creado_el" />
+          <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
+          <ScalarProperty Name="modificado_el" ColumnName="modificado_el" />
+          <ScalarProperty Name="tipo_licencia" ColumnName="tipo_licencia" />
+          <ScalarProperty Name="licencia" ColumnName="licencia" />
+          <ScalarProperty Name="fecha_vencimiento" ColumnName="fecha_vencimiento" />
+          <ScalarProperty Name="cuadra" ColumnName="cuadra" />
+          <ScalarProperty Name="ptcamaid" ColumnName="ptcamaid" />
+          <ScalarProperty Name="PTBANCOID" ColumnName="PTBANCOID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_ausentes_automatico" FunctionName="Protal_webModel.Store.sp_ausentes_automatico" />
+    <EntitySetMapping Name="pt_ubicacion">
+      <EntityTypeMapping TypeName="Protal_webModel.pt_ubicacion">
+        <MappingFragment StoreEntitySet="pt_ubicacion">
+          <ScalarProperty Name="responsable" ColumnName="responsable" />
+          <ScalarProperty Name="ENCARGADO" ColumnName="ENCARGADO" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="MODIFICADO_EL" ColumnName="MODIFICADO_EL" />
+          <ScalarProperty Name="MODIFICADO_POR" ColumnName="MODIFICADO_POR" />
+          <ScalarProperty Name="CREADO_EL" ColumnName="CREADO_EL" />
+          <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+          <ScalarProperty Name="CONTRATADOS" ColumnName="CONTRATADOS" />
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="PTRAZONSOCIALID" ColumnName="PTRAZONSOCIALID" />
+          <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+          <ScalarProperty Name="PTUBICACIONID" ColumnName="PTUBICACIONID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pt_tipo_ubicacion">
+      <EntityTypeMapping TypeName="Protal_webModel.pt_tipo_ubicacion">
+        <MappingFragment StoreEntitySet="pt_tipo_ubicacion">
+          <ScalarProperty Name="CREADO_EL" ColumnName="CREADO_EL" />
+          <ScalarProperty Name="CREADO_POR" ColumnName="CREADO_POR" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="PTTIPOID" ColumnName="PTTIPOID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="fn_detalle_estado_fuerza_dia" FunctionName="Protal_webModel.Store.fn_detalle_estado_fuerza_dia">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Protal_webModel.fn_detalle_estado_fuerza_dia_Result">
+          <ScalarProperty Name="id_estado_fuerza" ColumnName="id_estado_fuerza" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+          <ScalarProperty Name="nombre_empleado" ColumnName="nombre_empleado" />
+          <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
+          <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+          <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+          <ScalarProperty Name="tipo_servicio" ColumnName="tipo_servicio" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ausentes_baja_automatico" FunctionName="Protal_webModel.Store.sp_ausentes_baja_automatico" />
+    <EntitySetMapping Name="Pt_Puestos">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Puestos">
+        <MappingFragment StoreEntitySet="Pt_Puestos">
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="cpue_descripcion" ColumnName="cpue_descripcion" />
+          <ScalarProperty Name="cpue_id" ColumnName="cpue_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Tipo_Pagos">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Tipo_Pagos">
+        <MappingFragment StoreEntitySet="Pt_Tipo_Pagos">
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="ctpa_descripcion" ColumnName="ctpa_descripcion" />
+          <ScalarProperty Name="ctpa_id" ColumnName="ctpa_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Puesto_Insumos">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Puesto_Insumos">
+        <MappingFragment StoreEntitySet="Pt_Puesto_Insumos">
+          <ScalarProperty Name="cpin_cantidad" ColumnName="cpin_cantidad" />
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="cpin_cins_id" ColumnName="cpin_cins_id" />
+          <ScalarProperty Name="cpin_cpue_id" ColumnName="cpin_cpue_id" />
+          <ScalarProperty Name="cpin_id" ColumnName="cpin_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Costos_Fijos">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Costos_Fijos">
+        <MappingFragment StoreEntitySet="Pt_Costos_Fijos">
+          <ScalarProperty Name="ccof_depreciable" ColumnName="ccof_depreciable" />
+          <ScalarProperty Name="ccof_consumible" ColumnName="ccof_consumible" />
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="ccof_precio_unitario" ColumnName="ccof_precio_unitario" />
+          <ScalarProperty Name="ccof_descripcion" ColumnName="ccof_descripcion" />
+          <ScalarProperty Name="ccof_id" ColumnName="ccof_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Pagos_Puesto">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Pagos_Puesto">
+        <MappingFragment StoreEntitySet="Pt_Pagos_Puesto">
+          <ScalarProperty Name="cppu_depende_sb" ColumnName="cppu_depende_sb" />
+          <ScalarProperty Name="cppu_descripcion" ColumnName="cppu_descripcion" />
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="cppu_porcentaje_calculo" ColumnName="cppu_porcentaje_calculo" />
+          <ScalarProperty Name="cppu_salario_base" ColumnName="cppu_salario_base" />
+          <ScalarProperty Name="cppu_monto" ColumnName="cppu_monto" />
+          <ScalarProperty Name="cppu_cpue_id" ColumnName="cppu_cpue_id" />
+          <ScalarProperty Name="cppu_ctpa_id" ColumnName="cppu_ctpa_id" />
+          <ScalarProperty Name="cppu_id" ColumnName="cppu_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Insumos">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Insumos">
+        <MappingFragment StoreEntitySet="Pt_Insumos">
+          <ScalarProperty Name="cins_porcentaje_depreciacion" ColumnName="cins_porcentaje_depreciacion" />
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="cins_depreciacion" ColumnName="cins_depreciacion" />
+          <ScalarProperty Name="cins_es_uniforme" ColumnName="cins_es_uniforme" />
+          <ScalarProperty Name="cins_es_arma" ColumnName="cins_es_arma" />
+          <ScalarProperty Name="cins_es_insumo" ColumnName="cins_es_insumo" />
+          <ScalarProperty Name="cins_talla" ColumnName="cins_talla" />
+          <ScalarProperty Name="cins_precio_venta" ColumnName="cins_precio_venta" />
+          <ScalarProperty Name="cins_precio_costo" ColumnName="cins_precio_costo" />
+          <ScalarProperty Name="cins_descripcion" ColumnName="cins_descripcion" />
+          <ScalarProperty Name="cins_id" ColumnName="cins_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Estados_Fase">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Estados_Fase">
+        <MappingFragment StoreEntitySet="Pt_Estados_Fase">
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="cefa_descripcion" ColumnName="cefa_descripcion" />
+          <ScalarProperty Name="cefa_id" ColumnName="cefa_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Cotizaciones">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Cotizaciones">
+        <MappingFragment StoreEntitySet="Pt_Cotizaciones">
+          <ScalarProperty Name="ccot_ctpo_id" ColumnName="ccot_ctpo_id" />
+          <ScalarProperty Name="ccot_id_usuario_finalizacion" ColumnName="ccot_id_usuario_finalizacion" />
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="ccot_fecha_finalizacion" ColumnName="ccot_fecha_finalizacion" />
+          <ScalarProperty Name="ccot_finaliza_cotizacion" ColumnName="ccot_finaliza_cotizacion" />
+          <ScalarProperty Name="ccot_fecha_entrega" ColumnName="ccot_fecha_entrega" />
+          <ScalarProperty Name="ccot_direccion_contacto" ColumnName="ccot_direccion_contacto" />
+          <ScalarProperty Name="ccot_correo_contacto" ColumnName="ccot_correo_contacto" />
+          <ScalarProperty Name="ccot_telefono_contacto" ColumnName="ccot_telefono_contacto" />
+          <ScalarProperty Name="ccot_contacto" ColumnName="ccot_contacto" />
+          <ScalarProperty Name="ccot_descripcion_general" ColumnName="ccot_descripcion_general" />
+          <ScalarProperty Name="ccot_nombre_proyecto" ColumnName="ccot_nombre_proyecto" />
+          <ScalarProperty Name="ccot_id" ColumnName="ccot_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Fases_Cotizacion">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Fases_Cotizacion">
+        <MappingFragment StoreEntitySet="Pt_Fases_Cotizacion">
+          <ScalarProperty Name="historico" ColumnName="historico" />
+          <ScalarProperty Name="cfas_rc_gge" ColumnName="cfas_rc_gge" />
+          <ScalarProperty Name="cfas_id_usuario_gge" ColumnName="cfas_id_usuario_gge" />
+          <ScalarProperty Name="cfas_id_usuario_ope" ColumnName="cfas_id_usuario_ope" />
+          <ScalarProperty Name="cfas_id_usuario_ven" ColumnName="cfas_id_usuario_ven" />
+          <ScalarProperty Name="cfas_ok_gge" ColumnName="cfas_ok_gge" />
+          <ScalarProperty Name="cfas_ok_ven" ColumnName="cfas_ok_ven" />
+          <ScalarProperty Name="cfas_ok_ope" ColumnName="cfas_ok_ope" />
+          <ScalarProperty Name="cfas_rev_gge" ColumnName="cfas_rev_gge" />
+          <ScalarProperty Name="cfas_rev_ope" ColumnName="cfas_rev_ope" />
+          <ScalarProperty Name="cfas_rev_ven" ColumnName="cfas_rev_ven" />
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="cfas_ccot_id" ColumnName="cfas_ccot_id" />
+          <ScalarProperty Name="cfas_cefa_id" ColumnName="cfas_cefa_id" />
+          <ScalarProperty Name="cfas_fecha_entrega" ColumnName="cfas_fecha_entrega" />
+          <ScalarProperty Name="cfas_descripcion" ColumnName="cfas_descripcion" />
+          <ScalarProperty Name="cfas_nombre" ColumnName="cfas_nombre" />
+          <ScalarProperty Name="cfas_id" ColumnName="cfas_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Tipos_Proyecto">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Tipos_Proyecto">
+        <MappingFragment StoreEntitySet="Pt_Tipos_Proyecto">
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="ctpo_descripcion" ColumnName="ctpo_descripcion" />
+          <ScalarProperty Name="ctpo_id" ColumnName="ctpo_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Meses">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Meses">
+        <MappingFragment StoreEntitySet="Pt_Meses">
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="cmes_descripcion" ColumnName="cmes_descripcion" />
+          <ScalarProperty Name="cmes_id" ColumnName="cmes_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Tipo_Gasto">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Tipo_Gasto">
+        <MappingFragment StoreEntitySet="Pt_Tipo_Gasto">
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="ctga_descripcion" ColumnName="ctga_descripcion" />
+          <ScalarProperty Name="ctga_id" ColumnName="ctga_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Gastos_Costos_Fijos_Mes_Anio">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Gastos_Costos_Fijos_Mes_Anio">
+        <MappingFragment StoreEntitySet="Pt_Gastos_Costos_Fijos_Mes_Anio">
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="cgcf_porcentaje_depreciacion" ColumnName="cgcf_porcentaje_depreciacion" />
+          <ScalarProperty Name="cgcf_depreciable" ColumnName="cgcf_depreciable" />
+          <ScalarProperty Name="cgcf_consumible" ColumnName="cgcf_consumible" />
+          <ScalarProperty Name="cgcf_cantidad" ColumnName="cgcf_cantidad" />
+          <ScalarProperty Name="cgcf_precio_unitario" ColumnName="cgcf_precio_unitario" />
+          <ScalarProperty Name="cgcf_descripcion" ColumnName="cgcf_descripcion" />
+          <ScalarProperty Name="cgcf_ccfma_id" ColumnName="cgcf_ccfma_id" />
+          <ScalarProperty Name="cgcf_id" ColumnName="cgcf_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Cantidad_Planilla_Mes_Anio">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Cantidad_Planilla_Mes_Anio">
+        <MappingFragment StoreEntitySet="Pt_Cantidad_Planilla_Mes_Anio">
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="ccpma_cantidad_planilla" ColumnName="ccpma_cantidad_planilla" />
+          <ScalarProperty Name="ccpma_anio" ColumnName="ccpma_anio" />
+          <ScalarProperty Name="ccpma_mes" ColumnName="ccpma_mes" />
+          <ScalarProperty Name="ccpma_descripcion" ColumnName="ccpma_descripcion" />
+          <ScalarProperty Name="ccpma_id" ColumnName="ccpma_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Tmp_Cotizacion_Fase_Insumos">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Tmp_Cotizacion_Fase_Insumos">
+        <MappingFragment StoreEntitySet="Pt_Tmp_Cotizacion_Fase_Insumos">
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="ctpfi_cfas_id" ColumnName="ctpfi_cfas_id" />
+          <ScalarProperty Name="ctpfi_cantidad" ColumnName="ctpfi_cantidad" />
+          <ScalarProperty Name="ctpfi_cins_id" ColumnName="ctpfi_cins_id" />
+          <ScalarProperty Name="ctpfi_id" ColumnName="ctpfi_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Tmp_Cotizacion_Fase_Insumos_New">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Tmp_Cotizacion_Fase_Insumos_New">
+        <MappingFragment StoreEntitySet="Pt_Tmp_Cotizacion_Fase_Insumos_New">
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="ctpfin_cfas_id" ColumnName="ctpfin_cfas_id" />
+          <ScalarProperty Name="ctpfin_cantidad" ColumnName="ctpfin_cantidad" />
+          <ScalarProperty Name="ctpfin_porcentaje_depreciacion" ColumnName="ctpfin_porcentaje_depreciacion" />
+          <ScalarProperty Name="ctpfin_depreciacion" ColumnName="ctpfin_depreciacion" />
+          <ScalarProperty Name="ctpfin_es_uniforme" ColumnName="ctpfin_es_uniforme" />
+          <ScalarProperty Name="ctpfin_es_arma" ColumnName="ctpfin_es_arma" />
+          <ScalarProperty Name="ctpfin_es_insumo" ColumnName="ctpfin_es_insumo" />
+          <ScalarProperty Name="ctpfin_talla" ColumnName="ctpfin_talla" />
+          <ScalarProperty Name="ctpfin_precio_venta" ColumnName="ctpfin_precio_venta" />
+          <ScalarProperty Name="ctpfin_precio_costo" ColumnName="ctpfin_precio_costo" />
+          <ScalarProperty Name="ctpfin_descripcion" ColumnName="ctpfin_descripcion" />
+          <ScalarProperty Name="ctpfin_id" ColumnName="ctpfin_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Tmp_Propuesta_Fase_Puesto">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Tmp_Propuesta_Fase_Puesto">
+        <MappingFragment StoreEntitySet="Pt_Tmp_Propuesta_Fase_Puesto">
+          <ScalarProperty Name="ctpf_facConIVA" ColumnName="ctpf_facConIVA" />
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="ctpf_personal" ColumnName="ctpf_personal" />
+          <ScalarProperty Name="ctpf_cfas_id" ColumnName="ctpf_cfas_id" />
+          <ScalarProperty Name="ctpf_cpue_id" ColumnName="ctpf_cpue_id" />
+          <ScalarProperty Name="ctpf_id" ColumnName="ctpf_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Tmp_Cotizacion_Fase_Margen_Conf">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Tmp_Cotizacion_Fase_Margen_Conf">
+        <MappingFragment StoreEntitySet="Pt_Tmp_Cotizacion_Fase_Margen_Conf">
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="ctcfm_cfas_id" ColumnName="ctcfm_cfas_id" />
+          <ScalarProperty Name="ctcfm_margen" ColumnName="ctcfm_margen" />
+          <ScalarProperty Name="ctcfm_id" ColumnName="ctcfm_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pt_Costos_Fijos_Mes_Anio">
+      <EntityTypeMapping TypeName="Protal_webModel.Pt_Costos_Fijos_Mes_Anio">
+        <MappingFragment StoreEntitySet="Pt_Costos_Fijos_Mes_Anio">
+          <ScalarProperty Name="ccfma_monto_gasto_operativo" ColumnName="ccfma_monto_gasto_operativo" />
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="ccfma_monto_gasto_administrativo" ColumnName="ccfma_monto_gasto_administrativo" />
+          <ScalarProperty Name="ccfma_anio" ColumnName="ccfma_anio" />
+          <ScalarProperty Name="ccfma_mes" ColumnName="ccfma_mes" />
+          <ScalarProperty Name="ccfma_descripcion" ColumnName="ccfma_descripcion" />
+          <ScalarProperty Name="ccfma_id" ColumnName="ccfma_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

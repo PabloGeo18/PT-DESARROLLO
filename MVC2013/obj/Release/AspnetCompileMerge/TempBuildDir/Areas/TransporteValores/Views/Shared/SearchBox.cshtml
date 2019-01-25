@@ -1,0 +1,120 @@
+﻿@*
+	Iván Loire - www.iloire.com
+	Please readme README file for license terms.
+
+	ASP.NET MVC3 ACME Invocing app (demo app for training purposes)
+*@
+
+@model string
+
+ <script type="text/javascript">
+     $(document).ready(function () {
+         $("ul.filtroAlfab a").click(function (e) {
+             $.ajax({ url: this.href, success: function (data) {
+                 $("#ajaxReponse").html(data);
+             }
+             });
+             return false;
+         });
+
+
+
+         var nowTemp = new Date();
+         var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+         var checkin = $('#dateFrom').datepicker({
+             format: 'dd/mm/yyyy',
+             onRender: function (date) {
+                 //return date.valueOf() < now.valueOf() ? 'disabled' : '';
+                 return '';
+             }
+         }).on('changeDate', function (ev) {
+             if (ev.date.valueOf() > checkout.date.valueOf()) {
+                 var newDate = new Date(ev.date)
+                 newDate.setDate(newDate.getDate() + 1);
+                 checkout.setValue(newDate);
+             }
+             checkin.hide();
+             $('#dateTo')[0].focus();
+         }).data('datepicker');
+         var checkout = $('#dateTo').datepicker({
+             format: 'dd/mm/yyyy',
+             onRender: function (date) {
+                 return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+             }
+         }).on('changeDate', function (ev) {
+             checkout.hide();
+         }).data('datepicker');
+
+
+
+     });
+
+
+
+
+     
+
+</script>
+@{
+    bool showLetters   = (ViewData["showLetters"] != null ? (bool)ViewData["showLetters"] : false);
+    bool showDates     = (ViewData["showDates"] != null ? (bool)ViewData["showDates"] : false);
+   // DateTime? dateFrom = (DateTime?)ViewData["dateFrom"];
+    //DateTime? dateTo   = (DateTime?)ViewData["dateFrom"];
+    //String wordSearch = (ViewData["dateFrom"] != null && String.IsNullOrEmpty((String)ViewData["dateFrom"]) ? (String)ViewData["dateFrom"] : "");
+   // wordSearch = String.IsNullOrEmpty(wordSearch) ? Request["q"] : wordSearch;
+
+    //var wordSearch = Request["q"];
+    //var dateFrom = Request["dateFrom"];
+    
+}
+
+
+@using (Html.BeginForm("Search", Model))
+{
+    <div class="searchBox">
+        <table border="0" style="border-width:0;width:700px;border-style:none" class="none">
+            <tr>
+                <td style="border-width:0;width:50px;">
+                    @Resources.Resources.search_buscar
+                    <input name="q" id="search_Box" type="text" value="@Request["q"]" placeholder="" class="form-control" />
+                </td>
+                @if (showDates)
+                {
+                    <td style="border-width:0;width:50px;">
+                        @Resources.Resources.search_date_from
+                        <input type="text" class="form-control datepicke" placeholder="" id="dateFrom" name="dateFrom" value="@Request["datefrom"]" />
+                    </td>
+                    <td style="border-width:0;width:50px;">
+                        @Resources.Resources.search_date_to
+                        <input type="text" class="form-control datepicke" placeholder="" id="dateTo" name="dateTo" value="@Request["dateTo"]" />
+                    </td>
+                }  
+                <td style="border-width:0;width:30px;">
+                    &nbsp;&nbsp;<br/>  
+                    <input type="submit" value=@Resources.Resources.search_button class="btn small" />
+                </td>       
+            </tr>
+        </table>     
+    </div>
+}
+
+@if (showLetters) {
+<ul class="filtroAlfab">
+@foreach (var letra in "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ")
+ {
+    if (ViewBag.LetraAlfabetica == letra.ToString())
+    {     
+        <li class="selected">@letra</li>
+    }
+    else
+    { 
+        <text>
+        <li>@Html.ActionLink(letra.ToString(), "Search", Model, new { q = letra }, null)</li>
+        </text>
+    }
+}   
+</ul>
+}
+
+

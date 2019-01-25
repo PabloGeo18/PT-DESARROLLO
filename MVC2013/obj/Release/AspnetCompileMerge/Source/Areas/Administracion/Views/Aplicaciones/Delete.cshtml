@@ -1,0 +1,31 @@
+﻿@model MVC2013.Models.Aplicaciones
+
+@{
+    ViewBag.Title = @Resources.Resources.aplicacion_nombre + "_" + @Resources.Resources.eliminar;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.aplicacion_borrar</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Resources.Resources.aplicacion_nombre</dt>
+        <dd>@Html.DisplayFor(model => model.nombre)</dd>
+
+        <dt>&nbsp;</dt><dd></dd>
+
+        <dt>@Resources.Resources.aplicacion_ruta</dt>
+        <dd>@Html.DisplayFor(model => model.ruta)</dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value=@Resources.Resources.eliminar class="btn btn-default" /> |
+            @Html.ActionLink(@Resources.Resources.listado_regresar, "Index")
+        </div>
+    }
+</div>

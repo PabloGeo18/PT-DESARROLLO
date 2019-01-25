@@ -1,0 +1,87 @@
+﻿@model IEnumerable<MVC2013.Models.Pt_Insumos>
+@using System.Globalization
+@{
+    ViewBag.Title = "Inicio - Insumos";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+    CultureInfo gt = new CultureInfo("es-GT");
+}
+
+<h2>Insumos</h2>
+<div class="form-group">
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</div>
+<div class="table-responsive">
+    @if (Model.Where(i => i.activo && !i.eliminado).Count() <= 0)
+    {
+        <table class="table table-striped table-bordered table-responsive">
+            <thead style="background-color:cadetblue"></thead>
+            <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+        </table>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead style="background-color:#969aa2">
+                <tr>
+                    <th class="text-center">Acciones</th>
+                    <th class="text-center">Descripción</th>
+                    <th class="text-center">Precio Costo</th>
+                    <th class="text-center">Precio Venta</th>
+                    @*<th class="text-center">Tipo de Insumo</th>*@
+                    <th class="text-center">Detalles</th>
+                    <th class="text-center">Depreciación</th>
+                    <th class="text-center">Porcentaje Depreciación</th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td class="text-center">
+                    <button data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.cins_id })'">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button data-toggle="tooltip" data-placement="top" title="Detalles" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.cins_id })'">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                    </button>
+                    <button data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = item.cins_id })'">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </td>
+                <td class="text-center">@Html.DisplayFor(modelItem => item.cins_descripcion)</td>
+                <td class="text-center">@item.cins_precio_costo.Value.ToString("c", gt)</td>
+                <td class="text-center">@item.cins_precio_venta.Value.ToString("c", gt)</td>
+                @*<td class="text-center">Herramientas</td>*@
+                @if (item.cins_es_uniforme == true)
+                {
+                    <td class="text-center">Talla @item.cins_talla</td>
+                }
+                else
+                {
+                    <td class="text-center">No aplica</td>
+                }
+                @if (item.cins_depreciacion == true)
+                {
+                    <td class="text-center">Es depreciable</td>
+                    if (item.cins_porcentaje_depreciacion == null)
+                    {
+                        <td class="text-center">-----</td>
+                    }
+                    else
+                    {
+                        <td class="text-center">@((item.cins_porcentaje_depreciacion / 100).Value.ToString("P", gt))</td>
+                    }
+                }
+                else
+                {
+                    <td class="text-center">No es depreciable</td>
+                    <td class="text-center">No aplica</td>
+                }
+            </tr>
+            }
+
+        </table>
+    }
+</div>

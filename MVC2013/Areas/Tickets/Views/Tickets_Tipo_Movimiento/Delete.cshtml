@@ -1,0 +1,36 @@
+﻿@model MVC2013.Models.Tickets_Tipo_Movimiento
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Tickets/Views/Shared/_Layout.cshtml";
+}
+<p>
+    <div>
+        <button class="btn btn-sm btn-bitbucket" onclick="location.href = '@Url.Action("Index")'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+        </button>
+    </div>
+
+</p>
+<h2>Eliminar Tipo de Ticket Movimiento</h2>
+<h3>¿Está seguro de eliminar el registro?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Nombre</dt>
+        <dd>@Html.DisplayFor(model => model.nombre)</dd>
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dd>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = Model.id_ticket_tipo_movimiento })'">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            }
+        </dd>
+    </dl>
+
+</div>

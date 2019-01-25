@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MVC2013.Models.Rol_Acciones>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="zebra-striped">
+    <thead>
+        <th>
+            @Html.DisplayNameFor(model => model.Acciones.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Controladores.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Roles.nombre)
+        </th>
+        <th></th>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Acciones.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Controladores.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Roles.nombre)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>

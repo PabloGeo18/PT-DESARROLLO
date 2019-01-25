@@ -1,0 +1,190 @@
+﻿@model MVC2013.Models.Razones_Sociales
+@{
+    ViewBag.Title = "Crear Razon Social";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+    string meses = "@Meses";
+}
+
+<h2>@Resources.Resources.razon_social_crear</h2>
+<h5><label>Cliente:</label> @ViewBag.Cliente.nombre</h5>
+
+@using (Html.BeginForm("Create_Razon_Social", "Clientes", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        <input type="hidden" name="id_cliente" value="@ViewBag.Cliente.id_cliente"/>
+        <div class="panel panel-danger">
+            <div class="panel-heading bg-red">Informacion Razon Social</div>
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.razon_social, Resources.Resources.razon_social_nombre, htmlAttributes: new { @class = "control-label col-md-3", @style = "padding: 0px" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.razon_social, new { htmlAttributes = new { @class = "form-control", required = "required", id = "focus" } })
+                                @Html.ValidationMessageFor(model => model.razon_social, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.nombre_comercial, Resources.Resources.nombre_comercial, htmlAttributes: new { @class = "control-label col-md-3", @style = "padding: 0px" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.nombre_comercial, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.nombre_comercial, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.nit, Resources.Resources.nit, htmlAttributes: new { @class = "control-label col-md-3", @style = "padding: 0px" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.nit, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.nit, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.dias_credito, "Días para Crédito", htmlAttributes: new { @class = "control-label col-md-3", @style = "padding: 0px" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.dias_credito, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.dias_credito, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.direccion_fiscal, "Direccion Fiscal", htmlAttributes: new { @class = "control-label col-md-3", @style = "padding: 0px" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.direccion_fiscal, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.direccion_fiscal, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.municipio_direccion_fiscal, "Municipio Fiscal", htmlAttributes: new { @class = "control-label col-md-3", @style = "padding: 0px" })
+                            <div class="col-md-9">
+                                @Html.DropDownList("municipio_direccion_fiscal", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.municipio_direccion_fiscal, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.direccion_facturacion, "Direccion Facturacion", htmlAttributes: new { @class = "control-label col-md-3", @style = "padding: 0px" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.direccion_facturacion, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.direccion_facturacion, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.municipio_direccion_facturacion, "Municipio Facturacion", htmlAttributes: new { @class = "control-label col-md-3", @style = "padding: 0px" })
+                            <div class="col-md-9">
+                                @Html.DropDownList("municipio_direccion_facturacion", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.municipio_direccion_facturacion, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.autogeneracion_factura, "Auto-Generacion de Factura", htmlAttributes: new { @class = "control-label col-md-3", @style = "padding: 0px" })
+                            <div class="col-md-9">
+                                @Html.CheckBoxFor(model => model.autogeneracion_factura, new { htmlAttributes = new { @class = "form-control" } })
+                                <label style="color:darkblue">(Marcar para que  se autogenere la factura)</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 ">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.orden_aceptacion, "Orden de Aceptacion", htmlAttributes: new { @class = "control-label col-md-3", @style = "padding: 2px" })
+                            <div class="col-md-9">
+                                @Html.CheckBoxFor(model => model.orden_aceptacion, new { htmlAttributes = new { @class = "form-control", @style = "padding: 5px" } })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.descripcion_factura, "Descripcion Factura", htmlAttributes: new { @class = "control-label col-md-2", @style = "padding: 5px" })
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <input type="text" class="form-control col-md-4" style="display:inline-block" id="comentario1" name="descripcion_factura1" value="@ViewBag.descripcion1" />
+                                &nbsp;<text class="col-md-1">@meses</text>&nbsp;
+                                <input type="text" class="form-control  col-md-4" style="display:inline-block" id="comentario2" name="descripcion_factura2" value="@ViewBag.descripcion2" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        @Html.Label("ejemplo1", "Ejemplo", htmlAttributes: new { @class = "col-md-1", @style = "padding-left: 2cm" })
+                        <div class="col-md-offset-2">
+                            <h5 style="display:inline-block" id="Ejemplo1" name="Ejemplo1"></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        @Html.Label("ejemplo2", "Ejemplo", htmlAttributes: new { @class = "col-md-1", @style = "padding-left: 2cm" })
+                        <div class="col-md-offset-2">
+                            <h5 style="display:inline-block" id="Ejemplo2" name="Ejemplo2"></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button class="btn btn-success btn-sm" type="submit">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;Crear
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="form-group">
+    <button class="btn-sm btn-bitbucket" onclick="location.href = '@Url.Action("Details", new { id = @ViewBag.Cliente.id_cliente })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar a Detalle del Cliente
+    </button>
+</div>
+
+<script>
+    $('#focus').focus();
+
+    $('#comentario1, #comentario2').on("keyup", function () {
+        var comentario1 = $('#comentario1').val();
+        var comentario2 = $('#comentario2').val();
+        $.ajax({
+            url: '@Url.Action("Obtener_Ejemplos", "Clientes")',
+            type: "GET",
+            data: { 'Texto1': comentario1, 'Texto2': comentario2 },
+            datatype: JSON,
+            error: function () {
+                target = $('#Ejemplo1')
+                target.html("Error")
+                target2 = $('#Ejemplo2')
+                target2.html("Error")
+            },
+            success: function(response ){
+                target = $('#Ejemplo1')
+                target.html(response.Ejemplo1)
+                target2 = $('#Ejemplo2')
+                target2.html(response.Ejemplo2)
+            }
+        });
+
+    });
+
+</script>

@@ -1,0 +1,137 @@
+﻿@model IEnumerable<MVC2013.Models.Pt_Cantidad_Planilla_Mes_Anio>
+
+@{
+    ViewBag.Title = "Inicio - Cantidad Planilla";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+}
+<h2>Inicio</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-3">
+            <label class="control-label col-md-2 no-padding">Año</label>
+            <div class="col-md-10 input-group">
+                <select class="form-control" id="anio" name="anio">
+                    @foreach (var a in ViewBag.anios)
+                    {
+                        if (a == ViewBag.a)
+                        {
+                            <option selected value="@a">@a</option>
+                        }
+                        else
+                        {
+                            <option value="@a">@a</option>}
+                    }
+                </select>
+                <span class="input-group-btn">
+                    <button data-toggle="tooltip" data-placement="top" title="Filtrar por año" class="btn btn-success" id="search">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    <button data-toggle="tooltip" data-placement="top" title="Restaurar Filtro" class="btn btn-info" onclick="location.href = '@Url.Action("Index")'">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<hr style="height:3px; border-style:solid;background-color:#222d32">
+<div class="form-group">
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</div>
+<div class="row col-md-12">
+    <div class="table-responsive">
+        <div class="table-responsive">
+            <h3 class="text-center"><b><u>Planilla</u></b></h3>
+            <table class="table table-striped" id="result"></table>
+        </div>
+    </div>
+</div>
+@section Scripts{
+<script>
+        $(document).ready(function () {
+            $("#search").trigger("click");
+        })
+
+        $("#search").click(function () {
+            anio = $("#anio").val();
+            $.ajax({
+                url: '@Url.Action("FiltroAnio")',
+                data: { "anio": anio},
+                type: "GET",
+                success: function (response) {
+                    select = "#result";
+                    target = $(select);
+                    if (response.length == 0) {
+                        target.html(
+                            "<thead style='background-color:cadetblue'></thead>"+
+                            "<tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>"
+                        );
+                    } else {
+                        target.html(
+                            "<thead style='background-color: #969aa2'>" +
+                            "<tr>" +
+                            "<th class='text-center'>Acciones</th>" +
+                            "<th class='text-center'>Año</th>" +
+                            "<th class='text-center'>Mes</th>" +
+                            //"<th class='text-center'>Descripción</th>" +
+                            "<th class='text-center'>Cantidad de personal</th>" +
+                            "</tr>" +
+                            "</thead><tbody>"
+                        );
+                        $.each(response, function ($in, item) {
+                            //if (item.evaluadate <= item.actualdate) {
+                            //    target.append(
+                            //        "<tr>" +
+                            //        "<td class='text-center' width='20%'>" +
+                            //        "<p>No hay acciones disponibles, sólo puede modificar meses futuros</p>" +
+                            //        //"<button data-toggle='tooltip' data-placement='top' title='Editar' class='btn btn-info btn-sm' onclick='edit(" + item.id + ")'>" +
+                            //        //"<span class='glyphicon glyphicon-pencil'></span>" +
+                            //        //"</button>" +
+                            //        //"<button data-toggle='tooltip' data-placement='top' title='Eliminar' class='btn btn-danger btn-sm' onclick='del(" + item.id + ")'>" +
+                            //        //"<span class='glyphicon glyphicon-trash'></span>" +
+                            //        //"</button>" +
+                            //        "</td> " +
+                            //        "<td class='text-center'>" + item.anio + "</td>" +
+                            //        "<td class='text-center'>" + item.mes + "</td>" +
+                            //        //"<td class='text-center'>" + item.descripcion + "</td>" +
+                            //        "<td class='text-center'>" + item.cantidad + "</td>" +
+                            //        "</tr>"
+                            //    );
+                            //} else {
+                                target.append(
+                                    "<tr>" +
+                                    "<td class='text-center' width='20%'>" +
+                                    "<button data-toggle='tooltip' data-placement='top' title='Editar' class='btn btn-info btn-sm' onclick='edit(" + item.id + ")'>" +
+                                    "<span class='glyphicon glyphicon-pencil'></span>" +
+                                    "</button>" +
+                                    "<button data-toggle='tooltip' data-placement='top' title='Eliminar' class='btn btn-danger btn-sm' onclick='del(" + item.id + ")'>" +
+                                    "<span class='glyphicon glyphicon-trash'></span>" +
+                                    "</button>" +
+                                    "</td> " +
+                                    "<td class='text-center'>" + item.anio + "</td>" +
+                                    "<td class='text-center'>" + item.mes + "</td>" +
+                                    //"<td class='text-center'>" + item.descripcion + "</td>" +
+                                    "<td class='text-center'>" + item.cantidad + "</td>" +
+                                    "</tr>"
+                                );
+                            //}
+                        });
+                        target.append("</tbody>");
+                    }
+                },
+                error: function () {
+                }
+            });
+        });
+        var edit = function (id) {
+            var url = '@Url.Action("Edit", new { id = "__id__" })';
+            window.location.href = url.replace('__id__', id);
+        }
+        var del = function (id) {
+            var url = '@Url.Action("Delete", new { id = "__id__" })';
+            window.location.href = url.replace('__id__', id);
+        }
+</script>
+}

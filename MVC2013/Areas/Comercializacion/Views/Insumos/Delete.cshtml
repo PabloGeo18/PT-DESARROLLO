@@ -1,0 +1,64 @@
+﻿@model MVC2013.Models.Pt_Insumos
+@using System.Globalization
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+    CultureInfo gt = new CultureInfo("es-GT");
+}
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+<h2>Eliminar Insumo</h2>
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Descripción</dt>
+        <dd>@Html.DisplayFor(model => model.cins_descripcion)</dd>
+        <dt>Precio Costo</dt>
+        <dd>@Model.cins_precio_costo.Value.ToString("c", gt)</dd>
+        <dt>Precio Venta</dt>
+        <dd>@Model.cins_precio_venta.Value.ToString("c", gt)</dd>
+        <dt>Tipo de insumo</dt>
+        @if (Model.cins_es_insumo == true)
+        {
+            <dd>Heramientas</dd>
+        }
+        @if (Model.cins_es_arma == true)
+        {
+            <dd>Armamento</dd>
+        }
+        @if (Model.cins_es_uniforme == true)
+        {
+            <dd>Uniformes</dd>
+        }
+        @if (Model.cins_es_uniforme == true)
+        {
+            <dt>Detalles</dt>
+            <dd>Talla @Html.DisplayFor(model => model.cins_talla)</dd>
+        }
+        <dt>Depreciación</dt>
+        @if (Model.cins_depreciacion == true)
+        {
+            <dd>Es depreciable</dd>
+        }
+        else
+        {
+            <dd>No es depreciable</dd>
+        }
+    </dl>
+    <dl class="dl-horizontal">
+        <dd>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = Model.cins_id })'">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            }
+        </dd>
+    </dl>
+</div>

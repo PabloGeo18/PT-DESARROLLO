@@ -1,0 +1,50 @@
+﻿@model MVC2013.Models.Rol_Acciones
+
+@{
+    ViewBag.Title = @Resources.Resources.rol_acciones + "_" + @Resources.Resources.eliminar;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.rol_acciones_eliminar</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Resources.Resources.rol_acciones_acciones_nombre</dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acciones.nombre)
+        </dd>
+
+        <dt>@Resources.Resources.rol_acciones_controlador</dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Controladores.nombre)
+        </dd>
+
+        <dt>@Resources.Resources.rol_acciones_rol</dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Roles.nombre)
+        </dd>
+
+    </dl>
+
+    <div class="dl-horizontal">
+        <dt>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = Model.id_rol })'">
+                    @Resources.Resources.eliminar
+                </button>
+            }
+        </dt>
+        <dd>
+            <button class="btn btn-warning btn-sm" onclick="location.href = '@Url.Action("Index", new { id = @Resources.Resources.boton_regresar_id })'">
+                @Resources.Resources.listado_regresar
+            </button>
+        </dd>
+    </div>
+</div>

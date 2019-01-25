@@ -1,0 +1,367 @@
+﻿@model IEnumerable<MVC2013.Models.Procesos_Facturacion_Detalle>
+@using System.Globalization
+@using MVC2013.Src.Comun.Util
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+    CultureInfo cultura_chapina = new CultureInfo("es-GT");
+}
+
+<h2>Listado de Detalle del Proceso de Facturacion</h2>
+<h4>@ViewBag.Mes&nbsp;&nbsp;@ViewBag.Anio</h4>
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Index", "Procesos_Facturacion")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+<br />
+
+<button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Contrato_Agente", new { id = @ViewBag.id})'">
+    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Contrato Adicional Agente
+</button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Contrato_Servicio", new { id = @ViewBag.id })'">
+    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Contrato Adicional Servicio
+</button>
+<hr />
+<h4><span class="label label-info">Activo</span><span class="label label-warning">Facturado</span> <span class="label label-success">Pagado</span> </h4>
+<div class="panel panel-default ">
+    <div class="panel-heading bg-purple">Detalle de Procesos de Facturacion</div>
+    <div class="panel-body" style="overflow-x: scroll;overflow-y:scroll;height:750px;">
+        <table class=" formathtml5 table-hover" id="tabla_procesos_facturacion_detalle">
+            <tr>
+                <th>
+                    Acciones
+                </th>
+                <th>
+                    Cliente
+                </th>
+                <th>
+                    Razon Social
+                </th>
+                <th>
+                    Ubicacion
+                </th>
+                <th>
+                    Grupo Factura
+                </th>
+
+                <th>
+                    Servicio
+                </th>
+                <th>
+                    Cantidad
+                </th>
+                <th>
+                    Precio
+                </th>
+                <th>
+                    Total
+                </th>
+                <th>
+                    Fecha Inicio
+                </th>
+                <th>
+                    Fecha Fin
+                </th>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="text" id="nombre_cliente" autocomplete="off" style="width:100%" /></td>
+                <td><input type="text" id="nombre_razon_social" autocomplete="off" style="width:100%" /></td>
+                <td><input type="text" id="nombre_ubicacion" autocomplete="off" style="width:100%" /></td>
+                <td></td>
+                <td><input type="text" id="nombre_servicio" autocomplete="off" style="width:100%" /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+            </tr>
+            @foreach (var item in Model)
+            {
+                if (item.id_cat_estado_proceso_facturacion_detalle == (int)Catalogos.Estado_Proceso_Facturacion_Detalle.Activo)
+                {
+                    <tr class="f" style="background-color:deepskyblue;color:white">
+
+                        <td style="width:10%">
+
+                            @if (@item.id_cat_estado_proceso_facturacion_detalle == (int)Catalogos.Estado_Proceso_Facturacion_Detalle.Activo)
+                            {
+                                <div class="dropdown" style="display: inline-block">
+                                    <button class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                        Acciones
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="btn_subir_archivo" onclick="location.href = '@Url.Action("Edit", new { id = item.id_proceso_facturacion_detalle })'">
+                                                <span class="glyphicon glyphicon-edit"></span>&nbsp;Editar
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="btn_eliminar_descuentos" onclick="location.href = '@Url.Action("Delete", new { id = item.id_proceso_facturacion_detalle })'">
+                                                <span class="glyphicon glyphicon-trash"></span>&nbsp;Eliminar
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
+                        </td>
+
+                        <td style="width:15%" class="fl_cliente" name="cliente_@item.id_proceso_facturacion_detalle" value="@item.id_cliente">
+                            @item.Clientes.nombre
+                        </td>
+                        <td style="width:15%" class="fl_razon_social" name="razon_social_@item.id_proceso_facturacion_detalle">
+                            @item.Razones_Sociales.razon_social
+                        </td>
+                        <td style="width:15%" class="fl_ubicacion" name="ubicacion_@item.id_proceso_facturacion_detalle">
+                            @if (item.id_ubicacion.HasValue)
+                            {
+                                @item.Ubicaciones.direccion
+                            }
+                            else
+                            {
+                                <text>-----</text>
+                            }
+                        </td>
+                        <td style="width:15%">
+                            @if (item.id_razon_social_grupo_factura.HasValue)
+                            {
+                                @item.Razon_Social_Grupos_Factura.correlativo<text>. </text>@item.Razon_Social_Grupos_Factura.nombre
+                            }
+                            else
+                            {
+                                <text>----</text>
+                            }
+                        </td>
+                        <td style="width:15%" class="fl_descripcion">
+                            @item.descripcion
+                        </td>
+                        <td style="width:10%">
+                            @item.cantidad
+                        </td>
+                        <td>
+                            @item.precio_venta_unitario.ToString("C", cultura_chapina)
+                        </td>
+                        <td style="width:10%">
+                            @((item.cantidad * item.precio_venta_unitario).ToString("C", cultura_chapina))
+                        </td>
+                        <td style="width:10%">
+                            @item.fecha_inicio.ToString("dd/MM/yyyy")
+                        </td>
+                        <td style="width:10%">
+                            @if (item.fecha_fin.HasValue)
+                            {
+                                @item.fecha_fin.Value.ToString("dd/MM/yyyy")
+                            }
+                            else
+                            {
+                                <label>-----</label>
+                            }
+                        </td>
+                    </tr>
+                }
+                else if (item.id_cat_estado_proceso_facturacion_detalle == (int)Catalogos.Estado_Proceso_Facturacion_Detalle.Facturado)
+                {
+                    <tr class="f" style="background-color:goldenrod;color:white">
+
+                        <td style="width:10%">
+
+                            @if (@item.id_cat_estado_proceso_facturacion_detalle == (int)Catalogos.Estado_Proceso_Facturacion_Detalle.Activo)
+                            {
+                                <div class="dropdown" style="display: inline-block">
+                                    <button class="btn btn-sm btn-warning dropdown-toggle" type="button" data-toggle="dropdown">
+                                        Acciones
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="btn_subir_archivo" onclick="location.href = '@Url.Action("Edit", new { id = item.id_proceso_facturacion_detalle })'">
+                                                <span class="glyphicon glyphicon-edit"></span>&nbsp;Editar
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="btn_eliminar_descuentos" onclick="location.href = '@Url.Action("Delete", new { id = item.id_proceso_facturacion_detalle })'">
+                                                <span class="glyphicon glyphicon-trash"></span>&nbsp;Eliminar
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
+                        </td>
+
+                        <td style="width:15%" class="fl_cliente" name="cliente_@item.id_proceso_facturacion_detalle" value="@item.id_cliente">
+                            @item.Clientes.nombre
+                        </td>
+                        <td style="width:15%" class="fl_razon_social" name="razon_social_@item.id_proceso_facturacion_detalle">
+                            @item.Razones_Sociales.razon_social
+                        </td>
+                        <td style="width:15%" class="fl_ubicacion" name="ubicacion_@item.id_proceso_facturacion_detalle">
+                            @if (item.id_ubicacion.HasValue)
+                            {
+                                @item.Ubicaciones.direccion
+                            }
+                            else
+                            {
+                                <text>-----</text>
+                            }
+                        </td>
+                        <td style="width:15%">
+                            @if (item.id_razon_social_grupo_factura.HasValue)
+                            {
+                                @item.Razon_Social_Grupos_Factura.correlativo<text>. </text>@item.Razon_Social_Grupos_Factura.nombre
+                            }
+                            else
+                            {
+                                <text>----</text>
+                            }
+                        </td>
+                        <td style="width:15%" class="fl_descripcion">
+                            @item.descripcion
+                        </td>
+                        <td style="width:10%">
+                            @item.cantidad
+                        </td>
+                        <td>
+                            @item.precio_venta_unitario.ToString("C", cultura_chapina)
+                        </td>
+                        <td style="width:10%">
+                            @((item.cantidad * item.precio_venta_unitario).ToString("C", cultura_chapina))
+                        </td>
+                        <td style="width:10%">
+                            @item.fecha_inicio.ToString("dd/MM/yyyy")
+                        </td>
+                        <td style="width:10%">
+                            @if (item.fecha_fin.HasValue)
+                            {
+                                @item.fecha_fin.Value.ToString("dd/MM/yyyy")
+                            }
+                            else
+                            {
+                                <label>-----</label>
+                            }
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr class="f" style="background-color:forestgreen;color:white">
+
+                        <td style="width:10%">
+
+                            @if (@item.id_cat_estado_proceso_facturacion_detalle == (int)Catalogos.Estado_Proceso_Facturacion_Detalle.Activo)
+                            {
+                                <div class="dropdown" style="display: inline-block">
+                                    <button class="btn btn-sm btn-warning dropdown-toggle" type="button" data-toggle="dropdown">
+                                        Acciones
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="btn_subir_archivo" onclick="location.href = '@Url.Action("Edit", new { id = item.id_proceso_facturacion_detalle })'">
+                                                <span class="glyphicon glyphicon-edit"></span>&nbsp;Editar
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="btn_eliminar_descuentos" onclick="location.href = '@Url.Action("Delete", new { id = item.id_proceso_facturacion_detalle })'">
+                                                <span class="glyphicon glyphicon-trash"></span>&nbsp;Eliminar
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
+                        </td>
+
+                        <td style="width:15%" class="fl_cliente" name="cliente_@item.id_proceso_facturacion_detalle" value="@item.id_cliente">
+                            @item.Clientes.nombre
+                        </td>
+                        <td style="width:15%" class="fl_razon_social" name="razon_social_@item.id_proceso_facturacion_detalle">
+                            @item.Razones_Sociales.razon_social
+                        </td>
+                        <td style="width:15%" class="fl_ubicacion" name="ubicacion_@item.id_proceso_facturacion_detalle">
+                            @if (item.id_ubicacion.HasValue)
+                            {
+                                @item.Ubicaciones.direccion
+                            }
+                            else
+                            {
+                                <text>-----</text>
+                            }
+                        </td>
+                        <td style="width:15%">
+                            @if (item.id_razon_social_grupo_factura.HasValue)
+                            {
+                                @item.Razon_Social_Grupos_Factura.correlativo<text>. </text>@item.Razon_Social_Grupos_Factura.nombre
+                            }
+                            else
+                            {
+                                <text>----</text>
+                            }
+                        </td>
+                        <td style="width:15%" class="fl_descripcion">
+                            @item.descripcion
+                        </td>
+                        <td style="width:10%">
+                            @item.cantidad
+                        </td>
+                        <td>
+                            @item.precio_venta_unitario.ToString("C", cultura_chapina)
+                        </td>
+                        <td style="width:10%">
+                            @((item.cantidad * item.precio_venta_unitario).ToString("C", cultura_chapina))
+                        </td>
+                        <td style="width:10%">
+                            @item.fecha_inicio.ToString("dd/MM/yyyy")
+                        </td>
+                        <td style="width:10%">
+                            @if (item.fecha_fin.HasValue)
+                            {
+                                @item.fecha_fin.Value.ToString("dd/MM/yyyy")
+                            }
+                            else
+                            {
+                                <label>-----</label>
+                            }
+                        </td>
+                    </tr>
+                }
+
+            }
+
+        </table>
+
+    </div>
+
+</div>
+
+
+
+
+<script>
+
+    $(function () {
+        //Filtro de la tabla de empleados
+        $('#tabla_procesos_facturacion_detalle').filterByMultiColumn([
+            {
+                filterClass: 'fl_cliente', //Celda
+                field: 'nombre_cliente' //Campo de busqueda
+            },
+            {
+                filterClass: 'fl_razon_social', //Celda
+                field: 'nombre_razon_social'//Campo de busqueda
+            },
+            {
+                filterClass: 'fl_ubicacion', //Celda
+                field: 'nombre_ubicacion' //Campo de busqueda
+            },
+             {
+                 filterClass: 'fl_descripcion', //Celda
+                 field: 'nombre_servicio' //Campo de busqueda
+             }
+
+        ]);
+    });
+</script>

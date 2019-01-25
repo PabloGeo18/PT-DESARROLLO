@@ -1,0 +1,154 @@
+﻿@model IEnumerable<MVC2013.Models.Empleado>
+
+@{
+    ViewBag.Title = "Busqueda de empleados para asignar";
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+@{ int id_egreso = @ViewBag.id_egreso; }
+<input id="egreso" hidden value="@id_egreso" />
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Edit", "Egresos", new { id = id_egreso })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+<h2 class="text-center"><u>Búscar empleados</u></h2>
+@{ int id_detalle = @ViewBag.id_detalle; }
+<input id="detalle" hidden value="@id_detalle" />
+
+<div class="row">
+    <div class="col-lg-12 form-group">
+        <table class="table table-striped" id="lista_empleados_head">
+            <thead style="background-color:#969aa2">
+                <tr>
+                    <th class="text-center">@Resources.Resources.acciones</th>
+                    <th class="text-center">@Resources.Resources.empleado_codigo</th>
+                    <th class="text-center">@Resources.Resources.empleado_primer_apellido</th>
+                    <th class="text-center">@Resources.Resources.empleado_segundo_apellido</th>
+                    <th class="text-center">@Resources.Resources.empleado_primer_nombre</th>
+                    <th class="text-center">@Resources.Resources.empleado_segundo_nombre</th>
+                    <th class="text-center">@Resources.Resources.empleado_dpi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <button class="btn btn-primary btn-sm" id="b_search" data-loading-text="Cargando...">
+                            <span class="glyphicon glyphicon-search"></span>&nbsp;@Resources.Resources.buscar
+                        </button>
+                    </td>
+                    <td><input type="number" id="id_empleado" class="form-control" autofocus autocomplete="off" /></td>
+                    <td><input type="text" id="primer_apellido" autocomplete="off" class="form-control" style="text-transform:uppercase" /></td>
+                    <td><input type="text" id="segundo_apellido" autocomplete="off" class="form-control" style="text-transform:uppercase" /></td>
+                    <td><input type="text" id="primer_nombre" autocomplete="off" class="form-control" style="text-transform:uppercase" /></td>
+                    <td><input type="text" id="segundo_nombre" autocomplete="off" class="form-control" style="text-transform:uppercase" /></td>
+                    <td><input type="text" id="dpi" autocomplete="off" class="form-control" style="text-transform:uppercase" /></td>
+                </tr>
+            </tbody>
+            <tbody id ="lista_empleados">
+            </tbody>
+        </table>
+        @*<div class="table-responsive">
+            <table class="table-striped" id="lista_empleados"></table>
+        </div>*@
+    </div>
+</div>
+<!--Limpiar los imputs al cierre del modal-->
+<script type="text/javascript">
+    var asignarEmpleado = function (id) {
+        egreso = $("#egreso").val();
+        detalle = $("#detalle").val();
+        var url = '@Url.Action("Empleado_Asignado", "Egresos", new { id_empleado = "__id__", id_egreso = "__di__", id_detalle = "__idd__" })';
+        var url2 = url.replace('__id__', id);
+        var url3 = url2.replace('amp;', '');
+        var url4 = url3.replace('__di__', egreso);
+        var url5 = url4.replace('amp;', '');
+        var url6 = url5.replace('__idd__', detalle);
+        window.location.href = url6;
+    }
+    $(function () {
+        //Busqueda de empleados
+        $('#b_search').click(function () {
+            var btn = $(this);
+            btn.button('loading');
+            var nombre = $('#primer_nombre').val();
+            var dpi = $('#dpi').val();
+            var apellido = $('#primer_apellido').val();
+            var id = $('#id_empleado').val();
+            var segundo_nombre = $('#segundo_nombre').val();
+            var segundo_apellido = $('#segundo_apellido').val();
+            $.ajax({
+                url: '@Url.Action("Search", "Egresos")',
+                type: "GET",
+                data: { 'primer_nombre': nombre, 'dpi': dpi, 'primer_apellido': apellido, 'id_empleado': id, 'segundo_nombre': segundo_nombre, 'segundo_apellido': segundo_apellido },
+                error: function () {
+                    btn.button('reset');
+                    alert("Error en la obtención de datos del servidor.");
+                },
+                success: function (response) {
+                    $("#lista_empleados").empty();
+                    btn.button('reset');
+                    selector = "#lista_empleados";
+                    target = $(selector);
+                    if (response.length != 0) {
+                        $.each(response, function ($in, item) {
+                            @*var url = '@Url.Action("Empleado_Asignado", "Egresos", new { id_empleado = "__id__", id_egreso = id_egreso, id_detalle = id_detalle })';
+                            var new_url = url.replace('__id__', item.id_empleado);
+                            console.log("new", new_url);*@
+                            target.append(
+                                "<tr><td class='text-center'>" +
+                                "<button data-toggle='tooltip' data-placement='top' title='Asignar Empleado' class='btn btn-success btn-sm' onclick='asignarEmpleado(" + item.id_empleado + ")'>" +
+                                "<span class='glyphicon glyphicon-pushpin'></span>" +
+                                "</button>" +
+                                "</td>" +
+                                "<td class='text-center'>" + item.id_empleado + "</td>" +
+                                "<td class='text-center'>" + item.primer_apellido + "</td>" +
+                                "<td class='text-center'>" + item.segundo_apellido + "</td>" +
+                                "<td class='text-center'>" + item.primer_nombre + "</td>" +
+                                "<td class='text-center'>" + item.segundo_nombre + "</td>" +
+                                "<td class='text-center'>" + item.dpi + "</td>"
+                                @*"<button class=\"btn btn-info btn-sm btn_details_empleado \" data-id_empleado=\"" + item.id_empleado + " \">" +
+                                "<span class=\"glyphicon glyphicon-list-alt\"></span>&nbsp;@Resources.Resources.detalle</button>"
+                                 + "<button class=\"btn btn-sm btn-danger btn_delete\" data-toggle=\"modal\" data-target=\"#confirm_delete\" data-id=\"" + item.id_empleado + "\"><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;@Resources.Resources.eliminar</button>"*@
+                                );
+                        });
+                    } else {
+                        target.append(
+                            "<td></td>" +
+                            "<td colspan='6'><p>No hay datos para mostrar</p></td>"
+                            );
+                    }
+                    @*target.html("<thead style='background-color:#969aa2'><tr>" +
+                        "<th class='text-center'>@Resources.Resources.acciones</th>"+
+                        "<th class='text-center'>@Resources.Resources.empleado_codigo</th>" +
+                        "<th class='text-center'>@Resources.Resources.empleado_primer_apellido</th>" +
+                        "<th class='text-center'>@Resources.Resources.empleado_segundo_apellido</th>" +
+                        "<th class='text-center'>@Resources.Resources.empleado_primer_nombre</th>" +
+                        "<th class='text-center'>@Resources.Resources.empleado_segundo_nombre</th>" +
+                        "<th class='text-center'>@Resources.Resources.empleado_dpi</th>" +
+                        "</tr></thead>");*@
+                }
+            });
+        });
+        //$(function() {
+        //    //Filtro de la tabla de empleados
+        //    $('#lista_empleados').filterByMultiColumn([
+        //        {
+        //            filterClass: 'c_id_empleado',
+        //            field: 'id_codigo_empleado'
+        //        },
+        //        {
+        //            filterClass: 'c_dpi_empleado',
+        //            field: 'empleado_dpi'
+        //        },
+        //        {
+        //            filterClass: 'c_primer_apellido',
+        //            field: 'primer_apellido'
+        //        },
+        //        {
+        //            filterClass: 'c_primer_nombre',
+        //            field: 'primer_nombre'
+        //        }
+        //    ]);
+        //});
+    });
+</script>

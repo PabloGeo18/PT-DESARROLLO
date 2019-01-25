@@ -1,0 +1,464 @@
+﻿@model MVC2013.Areas.rrhh.Models.CapacitacionCursoModel
+
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = @Resources.Resources.capacitacion;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<!--Modals-->
+<!--Crear Capacitacion-->
+<div class="modal fade" id="crear_capacitacion" data-backdrop="static" role="dialog">
+    <div style="left: auto" class="modal-dialog modal-sm">
+        <div class="modal-content">
+            @using (Html.BeginForm("CrearCapacitacion", "Capacitacion", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true, "Error", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id_academia)
+
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    @Resources.Resources.capacitacion_crear
+                </div>
+                <div class="modal-body">
+                    <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+                        @Html.Label(@Resources.Resources.capacitacion_nombre)
+                        <input type="text" required class="form-control" name="nombre_capacitacion" autocomplete="off" />
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            @Html.Label(@Resources.Resources.curso_nombre)
+                            <select id="id_cursos" name="id_cursos" class="form-control" multiple size="5">
+                                @foreach (var curso in Model.cursos)
+                                {
+                                    <option value="@curso.id_curso">@curso.nombre </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <button type='button' class="btn-xs btn-primary" id='selectall'>Seleccionar todo</button>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <button type='button' class="btn-xs btn-warning" id='deselectall'>Deshacer</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.crear
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Crear Curso-->
+<div class="modal fade" id="nuevo_curso" data-backdrop="static" role="dialog">
+    <div style="left: auto" class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("CrearCurso", "Capacitacion", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true, "Error", new { @class = "text-danger" })
+                @Html.HiddenFor(m => m.id_academia)
+                <div class="modal-header  bg-primary">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    @Resources.Resources.curso_crear
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @Html.Label(@Resources.Resources.curso_nombre)
+                            <input type="text" class="form-control" id="nombre_curso" name="nombre_curso" maxlength="50" required />
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.Label(@Resources.Resources.capacitacion_nombre)
+                            @Html.DropDownList("id_capacitacion", null, "-", htmlAttributes: new { @class = "form-control", @id = "id_nueva_capacitacion" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.crear
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Editar curso-->
+<div class="modal fade" id="editar_curso" data-backdrop="static" role="dialog">
+    <div style="left: auto" class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("EditarCurso", "Capacitacion", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true, "Error", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id_academia)
+                <input type="number" id="id_edi_cap_cur" name="id_edi_cap_cur" hidden />
+                <input type="number" id="id_ed_cur" name="id_ed_cur" hidden />
+                <div class="modal-header  bg-primary">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    @Resources.Resources.curso_editar
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @Html.Label(@Resources.Resources.curso_nombre)
+                            <input type="text" class="form-control" id="t_edi_nom_cur" name="t_edi_nom_cur" maxlength="50" required />
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.Label(@Resources.Resources.capacitacion_nombre)
+                            @Html.DropDownList("id_capacitacion", null, "--Sin asignar--", htmlAttributes: new { @class = "form-control", @id = "ed_capaciacion" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Modificar capacitación impartida-->
+<div class="modal fade" id="modificar_capacitacion" data-backdrop="static" role="dialog">
+    <div style="left: auto" class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("EditarCapacitacionImpartida", "Capacitacion_Impartida", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true, "Error", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id_academia)
+                <input type="number" id="id_capacitacion_impartida" name="id_capacitacion_impartida" hidden />
+                <div class="modal-header  bg-primary">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    @Resources.Resources.editar
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @Html.Label(@Resources.Resources.fecha_inicio)
+                            <div style="position:relative">
+                                <input type='text' name="fecha_inicio" id="id_fi" class="form-control" required autocomplete="off" />
+                            </div>
+                            <script type="text/javascript">
+                                $(function () {
+
+                                });
+                            </script>
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.Label(@Resources.Resources.fecha_fin)
+                            <div style="position:relative">
+                                <input type='text' name="fecha_fin" id="id_ff" class="form-control" required autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!--Confirmar Eliminación-->
+<div class="modal fade" id="confirm_delete" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-red">
+                @Resources.Resources.confirmacion
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                @Resources.Resources.confirmacion_eliminar
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger" id="btn_ok" data-id="">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Mensaje-->
+<div class="modal fade" id="mostrar_mensaje" data-backdrop="static" role="dialog">
+    <div style="left: auto" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <label id="titulo">Prueba</label>
+            </div>
+            <div class="modal-body">
+                <label id="mensaje">Prueba</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Inicio de la página-->
+<h2>@ViewBag.titulo_academia</h2>
+
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#lista_capacitacion">@Resources.Resources.capacitaciones_disponibles</a></li>
+        <li><a data-toggle="tab" href="#capacitacion_en_curso">@Resources.Resources.capacitaciones_impartidas</a></li>
+    </ul>
+    <div class="tab-content">
+        <!--Capacitaciones disponibles-->
+        <div class="tab-pane fade in active" id="lista_capacitacion">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6 form-group">
+                            <button class="btn btn-md btn-success" data-target="#crear_capacitacion" data-toggle="modal">
+                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.capacitacion_nueva_capacitacion
+                            </button>
+                            <button class="btn btn-md btn-success" data-target="#nuevo_curso" data-toggle="modal">
+                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.capacitacion_nuevo_curso
+                            </button>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <button class="btn btn-md btn-info" onclick="location.href='@Url.Action("List", new { @id_academia = Model.id_academia })'">
+                                <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.catalogo_capacitacion
+                            </button>
+                            <button class="btn btn-md btn-info" onclick="location.href='@Url.Action("Index", "Curso", new { @id_academia = Model.id_academia })'">
+                                <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.catalogo_curso
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 form-group">
+                            @Html.Label(@Resources.Resources.capacitacion_seleccionar, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("id_capacitacion", null, "-", htmlAttributes: new { @class = "form-control", @id = "capacitacion_opcion" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <div class="panel-title">@Resources.Resources.capacitacion_capacitacion_curso</div>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table-responsive" id="lista_cursos"></table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <div class="panel-title">@Resources.Resources.capacitacion_cursos_no_asignados</div>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table-responsive" id="cursos"></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Capacitaciones en curso-->
+        <div class="tab-pane fade" id="capacitacion_en_curso">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 form-group">
+                            <button class="btn btn-success" onclick="location.href = '@Url.Action("Create", "Capacitacion_Impartida", new { id_academia = Model.id_academia })'">
+                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.capacitacion_nuevo_grupo
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 form-group table-responsive">
+                            <table class="table-striped">
+                                <tr>
+                                    <th>@Resources.Resources.codigo</th>
+                                    <th>@Resources.Resources.fecha_inicio</th>
+                                    <th>@Resources.Resources.fecha_fin</th>
+                                    <th>@Resources.Resources.no_participantes</th>
+                                    <th>@Resources.Resources.acciones</th>
+                                </tr>
+                                @if (Model.capacitacion_impartida.Count() > 0)
+                                {
+                                    foreach (var item in Model.capacitacion_impartida.Zip(Model.no_participantes, (c, n) => new { capacitacion = c, participantes = n }))
+                                    {
+                                        <tr id="t_@item.capacitacion.id_capacitacion_impartida">
+                                            <td>@item.capacitacion.id_capacitacion_impartida</td>
+                                            <td>@item.capacitacion.fecha_inicio.ToString("dd/MM/yyyy")</td>
+                                            <td>@item.capacitacion.fecha_fin.Date.ToString("dd/MM/yyyy")</td>
+                                            <td>@item.participantes</td>
+                                            <td>
+                                                <button class="btn btn-primary btn-sm btn-editar-capacitacion" data-id_ci="@item.capacitacion.id_capacitacion_impartida" data-fecha_inicio="@item.capacitacion.fecha_inicio.ToString("dd/MM/yyyy")" data-fecha_fin="@item.capacitacion.fecha_fin.ToString("dd/MM/yyyy")" data-toggle="modal" data-target="#modificar_capacitacion">
+                                                    <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                                                </button>
+                                                <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", "Capacitacion_Impartida", new { id = item.capacitacion.id_capacitacion_impartida, id_academia = Model.id_academia })'">
+                                                    <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                                                </button>
+                                                <button class="btn btn-danger btn-sm btn_delete" data-toggle="modal" data-target="#confirm_delete" data-id="@item.capacitacion.id_capacitacion_impartida">
+                                                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index", "Academias")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+
+
+<script>
+    $(function () {
+
+        //Transferir ID
+        $(document).on('click', '.btn_delete', function () {
+            $('#btn_ok').data('id', $(this).data('id'));
+        });
+
+        //Boton para eliminar la capacitacion impartida
+        $('#btn_ok').click(function () {
+            $('#confirm_delete').modal('toggle');
+            var id = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("EliminarCapacitacionImpartida", "Capacitacion_Impartida")',
+                type: "POST",
+                data: { 'id': id },
+                error: function () {
+                    alert("Error con la conexión con el servidor.");
+                },
+                success: function (response) {
+                    if (response.response == true) {
+                        $('#t_' + id.toString()).remove();
+                    }
+                    else {
+                        $('#mensaje').text(response.msg);
+                        $('#titulo').text("Error");
+                        $('#mostrar_mensaje').modal('show');
+                    }
+                }
+            });
+        });
+
+        $('.btn-editar-capacitacion').click(function () {
+            var fecha_inicio = $(this).data('fecha_inicio');
+            var fecha_fin = $(this).data('fecha_fin');
+            $('#id_fi').val(fecha_inicio);
+            $('#id_ff').val(fecha_fin);
+            $('#id_capacitacion_impartida').val($(this).data('id_ci'));
+        });
+
+        $('#id_ff').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+        $('#id_fi').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+
+
+        //Seleccionar todos los cursos
+        $('#selectall').click(function () {
+            $('select#id_cursos option').prop("selected", true);
+        });
+
+        //De-seleccionar los cursos
+        $('#deselectall').click(function () {
+            $('select#id_cursos option').prop("selected", false);
+        });
+
+        $('#editar_curso').on('hidden.bs.modal', function () {
+            $(this).find("input").val('').end();
+        });
+
+        $('#nuevo_curso').on('hidden.bs.modal', function () {
+            $(this).find('input').val('').end();
+            $('#id_nueva_capacitacion').prop("selectedIndex", 0);
+        });
+
+        $('#crear_capacitacion').on('hidden.bs.modal', function () {
+            $(this).find("input").val('').end();
+        });
+
+
+        //Editar un curso que tiene ya asignada una capacitacion
+        $(document).on('click', '.btn_edi_cur', function () {
+            $('#t_edi_nom_cur').val($(this).data('edi_nom_cur'));
+            $('#id_edi_cap_cur').val($(this).data('edi_id_cap_cur'));
+            $("#ed_capaciacion option").filter(function () {
+                if ($(this).val() == $('#capacitacion_opcion').val()) {
+                    return true;
+                }
+            }).prop('selected', true);
+        });
+
+        //Editar un curso sin tener asignada un curso
+        $(document).on('click', '.btn_ed_curso_catego', function () {
+            $('#t_edi_nom_cur').val($(this).data('ed_curso_nombre'));
+            $('#id_edi_cap_cur').val($(this).data(0));
+            $('#id_ed_cur').val($(this).data('ed_id_curso'));
+            $('#ed_capaciacion').prop("selectedIndex", 0);
+        });
+
+        $("#capacitacion_opcion").change(function () {
+            idCapacitacion = $(this).val();
+            if (idCapacitacion) {
+                $.ajax({
+                    type: "GET",
+                    url: '@Url.Action("GetCursos")?id_capacitacion=' + idCapacitacion,
+                    error: function () {
+                        alert("Error al solicitar capacitaciones.");
+                    },
+                    success: function (response) {
+                        selector = "#lista_cursos";
+                        target = $(selector);
+                        target.html("");
+                        options = "<tr><th>Código</th><th>Curso</th><th>Acciones</th></tr>"
+                        $.each(response.cursos_categoria, function ($in, item) {
+                            options += "<tr><td>" + item.id_curso + "</td><td>" + item.nombre + "</td><td><button class=\"btn btn-primary btn-sm btn_edi_cur\" data-target=\"#editar_curso\" data-toggle=\"modal\" data-edi_id_cap_cur=\"" + item.id_capacitacion_curso + "\" data-edi_nom_cur=\"" + item.nombre + "\"><span class=\"glyphicon glyphicon-edit\"></span>&nbsp;@Resources.Resources.editar</button></button></td></tr>"
+                        });
+                        target.html(options);
+                        selector = "#cursos";
+                        target = $(selector);
+                        target.html("");
+                        options = "<tr><th>Código</th><th>Curso</th><th>Acciones</th></tr>"
+                        $.each(response.cursos, function ($in, item) {
+                            options += "<tr><td>" + item.id_curso + "</td><td>" + item.nombre + "</td><td><button class=\"btn btn-primary btn-sm btn_ed_curso_catego\" data-toggle=\"modal\" data-target=\"#editar_curso\" data-ed_curso_nombre=\"" + item.nombre + "\" data-ed_id_curso=\"" + item.id_curso + "\"><span class=\"glyphicon glyphicon-edit\"></span>&nbsp;@Resources.Resources.editar</td></tr>"
+                        });
+                        target.html(options);
+                    }
+                })
+            }
+            else {
+                selector = "#lista_cursos";
+                target = $(selector);
+                target.html("");
+                selector = "#cursos";
+                target = $(selector);
+                target.html("");
+            }
+        }).change();
+
+
+    })
+</script>

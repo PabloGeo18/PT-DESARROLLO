@@ -1,0 +1,53 @@
+﻿@using MVC2013.Src.EstadoFuerza;
+@{
+    ViewBag.Title = "DetalleCarga";
+    Layout = "~/Areas/EstadoFuerza/Views/Shared/_Layout.cshtml";
+    int correctos = ViewBag.listado_cargado;
+    Lista_EstadoFuerzaMasivo error = ViewBag.listado_errores;
+}
+
+<div class="page-header">
+    <h1>Detalle de Carga <small>Estado de Fuerza</small></h1>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Registros Correctos</div>
+    <div class="panel-body">
+        <p>Registros procesados Correctamente: @correctos </p>
+    </div>
+</div>
+
+@if (error != null)
+{ 
+<div class="panel panel-danger">
+    <div class="panel-heading">Registros con Error</div>
+    <div class="panel-body">
+        <p>Registros con error: @error.lista_carga.Count() </p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Codigo Empleado</th>
+                    <th>Error</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (EstadoFuerzaMasivo item in error.lista_carga)
+                {
+
+
+                    <tr>
+                        <td>@item.id_empleado</td>
+                        <td>@item.error_msg</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+</div>
+</div>
+}
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-arrow-left"></span> @Resources.Resources.regresar
+    </button>
+</div>

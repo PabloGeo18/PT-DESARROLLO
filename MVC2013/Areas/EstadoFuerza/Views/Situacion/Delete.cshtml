@@ -1,0 +1,47 @@
+﻿@model MVC2013.Models.Situacion
+
+@{
+    ViewBag.Title = "Situacion_Eliminar";
+    Layout = "~/Areas/EstadoFuerza/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Situación</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Nombre</dt>
+        <dd>@Model.nombre</dd>
+        <dt>¿Es pago?</dt>
+        @if (Model.es_pago)
+        {
+            <dd>Sí</dd>
+        }
+        else
+        {
+            <dd>No</dd>
+        }
+        <dt>Días de falta para Baja en RRHH</dt>
+        <dd>@Model.baja_rrhh</dd>
+    </dl>
+</div>
+<dl class="dl-horizontal">
+    @using (Html.BeginForm("Eliminar", "Situacion", FormMethod.Post))
+    {
+        <dt>&nbsp;</dt>
+        <dd>
+            @Html.HiddenFor(model=>model.id_situacion)
+            <button class="btn btn-sm btn-primary" type="submit">
+                <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+            </button>
+        </dd>
+    }
+</dl>
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" type="button" onclick="location.href='@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+

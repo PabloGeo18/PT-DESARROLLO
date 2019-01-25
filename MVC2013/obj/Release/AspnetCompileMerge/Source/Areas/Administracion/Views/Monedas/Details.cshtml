@@ -1,0 +1,40 @@
+﻿@model MVC2013.Models.Monedas
+
+@{
+    ViewBag.Title = @Resources.Resources.monedas + "_" + @Resources.Resources.detalle;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.monedas_detalle</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>@Resources.Resources.monedas_nombre</dt>
+        <dd>@Html.DisplayFor(model => model.nombre)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.monedas_simbolo</dt>
+        <dd>@Html.DisplayFor(model => model.simbolo)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.monedas_base</dt>
+        <dd>@Html.DisplayFor(model => model.moneda_base)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.monedas_activo</dt>
+        <dd>@Html.DisplayFor(model => model.activo)</dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink(@Resources.Resources.editar, "Edit", new { id = Model.id_moneda }) |
+    @Html.ActionLink(@Resources.Resources.listado_regresar, "Index")
+</p>

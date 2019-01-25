@@ -1,0 +1,70 @@
+﻿@model MVC2013.Models.Pt_Cantidad_Planilla_Mes_Anio
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+}
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+<h2>Crear Planilla</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ccpma_descripcion, "Descripción", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ccpma_descripcion, new { htmlAttributes = new { @class = "form-control", @autocomplete="off" } })
+                @Html.ValidationMessageFor(model => model.ccpma_descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ccpma_mes, "Mes", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ccpma_mes", (IEnumerable<SelectListItem>)ViewBag.ccpma_mes, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ccpma_anio, "Año", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="form-control" id="ccpma_anio" name="ccpma_anio">
+                    @foreach (var a in ViewBag.anios)
+                    {
+                        if (a == 2018)
+                        {
+                            <option selected value="@a">@a</option>
+                        }
+                        else
+                        {
+                            <option value="@a">@a</option>}
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ccpma_cantidad_planilla,"Cantidad", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ccpma_cantidad_planilla, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ccpma_cantidad_planilla, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn-success btn btn-sm">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;Crear
+                </button>
+            </div>
+        </div>
+    </div>
+}

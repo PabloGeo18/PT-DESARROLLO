@@ -1,0 +1,236 @@
+﻿@model MVC2013.Models.Usuarios
+
+@{
+    ViewBag.Title = @Resources.Resources.usuario + "_" + @Resources.Resources.editar;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.usuario_editar</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_usuario, new { @id = "id_usuario_hidden" })
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.usuario_usuario + "  ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.usuario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.usuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.usuario_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nombre_completo_usuario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nombre_completo_usuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.usuario_email + " ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.usuario_password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.password_hash, new { @value = Model.password_hash, @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.password_hash, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.usuario_telefono_trabajo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.telefono_trabajo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.telefono_trabajo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.usuario_telefono_movil, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.telefono_movil, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.telefono_movil, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.usuario_externo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.usuario_externo)
+                    @Html.ValidationMessageFor(model => model.usuario_externo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(@Resources.Resources.usuario_bloqueado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.bloqueo_habilitado)
+                    @Html.ValidationMessageFor(model => model.bloqueo_habilitado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value=@Resources.Resources.guardar class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink(@Resources.Resources.listado_regresar, "Index")
+</div>
+
+<hr style="height:3px; border-style:solid;background-color:#222d32">
+
+<!-- MANTENIMIENTO DE ROLES -->
+
+<h2>@Resources.Resources.usuario_roles</h2>
+
+<p>
+    <a href="#" class="" data-toggle="modal" data-target="#myModal">
+        @Resources.Resources.crear_nuevo
+    </a>
+</p>
+
+<table class="zebra-striped">
+    <thead>
+        <th>
+            @Resources.Resources.rol_aplicacion
+        </th>
+        <th>
+            @Resources.Resources.rol_nombre
+        </th>
+        <th></th>
+    </thead>
+    @foreach (var rol in Model.Roles)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => rol.Aplicaciones.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => rol.nombre)
+            </td>
+            <td>
+                @Html.ActionLink(@Resources.Resources.eliminar, "RemoveUserRole", new { idRol = rol.id_rol, idUsuario = Model.id_usuario }, new { onclick = "return confirm('" + @Resources.Resources.confirmacion_eliminar + "');" })
+            </td>
+        </tr>
+    }
+</table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Ajax.BeginForm("addUserRole",new AjaxOptions() { }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">@Resources.Resources.usuario_rol_agregar</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.Label(@Resources.Resources.rol_aplicacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("id_aplicacion", null, new {@id = "primera-lista",  @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(@Resources.Resources.rol_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <select id="segunda-lista" class="form-control" name="idRol"></select>
+                            <span class="text-danger field-validation-error" id="segunda-lista-validacion" hidden="hidden">
+                                <span>@Resources.Resources.rol_error_requerido</span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btn_modal_close">@Resources.Resources.cerrar</button>
+                    <button type="button" class="btn btn-default" id="save_rol_button">@Resources.Resources.guardar</button>
+                </div>
+            }
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+@section Scripts {
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#primera-lista").change(function () {
+            idSelected = $(this).val();
+            $.ajax({
+                url: '@Url.Action("GetRolesByApplication")' + "?id=" + idSelected,
+                type: "POST",
+                success: function (data) {
+                    var options = "";
+                    $.each(data, function (index, value) {
+                        options += '<option value="' + value.id + '">' + value.nombre + '</option>;';
+                    });
+                    $("#segunda-lista").html(options);
+                },
+                error: function () {
+                    alert("Error...");
+                }
+            });
+        }).change();
+
+
+        $("#save_rol_button").click(function () {
+                idSelectedRol = $("#segunda-lista").val();
+                idSelectedUser = $("#id_usuario_hidden").val();
+                if (idSelectedRol == null || idSelectedRol === "") {
+                    $("#segunda-lista-validacion").show();
+                }
+                else {
+                    $("#segunda-lista-validacion").hide();
+                    $.ajax({
+                        url: '@Url.Action("CreateUserRole")' + "?idRol=" + idSelectedRol + "&idUsuario=" + idSelectedUser,
+                        type: "POST",
+                        success: function (data, status) {
+                            $("#btn-btn_modal_close").click();
+                            window.location.reload();
+                        },
+                        error: function () {
+                            if (idSelectedRol == null || idSelectedRol === "")
+                                $("#segunda-lista-validacion").show();
+                            else
+                                $("#segunda-lista-validacion").hide();
+                        }
+                    });
+                }
+
+
+            });
+
+
+        });
+ 
+</script>
+}

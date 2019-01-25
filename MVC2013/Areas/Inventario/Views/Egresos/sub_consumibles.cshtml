@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MVC2013.Models.Bodega_Inventario_Consumibles>
+@using System.Globalization;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Consumibles por Bodega</h2>
+@{ int id_egreso = @ViewBag.id_egreso; }
+<table class="table">
+    <tr>
+        <th>
+            @Resources.Resources.bodega
+        </th>
+        <th>
+            @Resources.Resources.consumible
+        </th>
+        <th>
+            @Resources.Resources.existencia
+        </th>
+        <th>
+            @Resources.Resources.acciones
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (item.existencia != 0)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bodegas.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Consumibles.descripcion)
+                <br>Tipo - @Html.DisplayFor(modelItem => item.Consumibles.Consumible_Tipo.descripcion)
+                <br>Costo - @item.Consumibles.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                <br>Costo de Venta - @item.Consumibles.costo_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.existencia)
+            </td>
+            <td>
+                <button class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("enviar_consumibles", new { id_consumible = item.id_consumible, id_egreso = id_egreso })'">
+                    <span class="glyphicon glyphicon-ok-circle"></span>&nbsp;     @Resources.Resources.enviar_consumibles
+                </button>
+            </td>
+        </tr>
+    }
+
+}
+
+</table>
+<button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Edit", "Egresos", new { id = id_egreso })'">
+    <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+</button>

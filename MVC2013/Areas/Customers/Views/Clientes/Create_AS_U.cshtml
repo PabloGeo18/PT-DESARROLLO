@@ -1,0 +1,374 @@
+﻿@model MVC2013.Models.Contratos_Servicios
+@using System.Globalization
+@{
+    ViewBag.Title = "Crear Empleados y Servicios";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+<h2>Contratar Agentes o Agregar Servicios</h2>
+<h4><label>Cliente:</label>&nbsp;@ViewBag.cliente</h4>
+<h4><label>Razon Social:</label>&nbsp;@ViewBag.razon_social.razon_social</h4>
+
+@using (Html.BeginForm("Create_AS_U", "Clientes", FormMethod.Post, new { id = "Nuevo_Registro" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id_razon_social" value="@ViewBag.razon_social.id_razon_social" />
+    <div class="panel panel-default">
+        <div class="panel-heading bg-maroon-active">Nuevo Memorandum</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                        <label class="col-md-12">Memorandum</label>
+                        <div class="col-md-12">
+                            <input type="number" min="0" name="memorandum" required class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                        <label class="col-md-12">Solicitante</label>
+                        <div class="col-md-12">
+                            <input type="text" name="solicitante" required class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div class="form-group">
+                        <label class="col-md-12">Observacion</label>
+                        <div class="col-md-12">
+                            <input type="text" name="observacion" required class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading bg-purple">Nuevos Servicios</div>
+        <div class="panel-body">
+            <div>
+                <button class="btn btn-sm btn-success" type="button" id="add_agente">
+                    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir Agente
+                </button>
+                &nbsp;&nbsp;
+                <button class="btn btn-sm btn-success" type="button" id="add_servicio">
+                    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir Servicio
+                </button>
+            </div>
+            <hr />
+            <div id="Nuevo1">
+                <h5><label>Agentes</label></h5>
+                <div class="hidden form_agente" id="Agt_">
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-12">Tipo de Agente</label>
+                                <div class="col-md-12">
+                                    @Html.DropDownList("id_agente_", (IEnumerable<SelectListItem>)ViewBag.id_agente, "----", htmlAttributes: new { @class = "form-control", @requierd = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-12">Cantidad a Solicitar</label>
+                                <div class="col-md-12">
+                                    <input type="number" min="0" name="cant_agt_" required class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-12">Costo</label>
+                                <div class="col-md-12">
+                                    <input type="number" step="any" min="0" name="costo_unitario_agt_" required class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-12">Venta por Unidad</label>
+                                <div class="col-md-12">
+                                    <input type="number" step="any" min="0" name="precio_venta_unitario_agt_" required class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-12">Fecha de Inicio de Contratacion</label>
+                                <div class="col-md-12">
+                                    <div style="position:relative">
+                                        <input type='text' class="form-control fecha1" required name="fecha_inicio_agt_" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-12">Fecha de Fin de Contratacion</label>
+                                <div class="col-md-12">
+                                    <div style="position:relative">
+                                        <input type='text' class="form-control fecha1" name="fecha_fin_agt_" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-12">Agrupacion Razon Social</label>
+                                <div class="col-md-12">
+                                    @Html.DropDownList("id_agrupacion_agt_", (IEnumerable<SelectListItem>)ViewBag.id_razon_social_grupo_factura, "----", htmlAttributes: new { @class = "form-control", @requierd = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-12">Ubicacion</label>
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        @Html.DropDownList("id_ubicacion_agt_", (IEnumerable<SelectListItem>)ViewBag.id_ubicacion, "----", htmlAttributes: new { @class = "form-control", @requierd = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <br />
+                            <button class="btn btn-sm btn-danger btn_remover_agente" type="button">
+                                <span class="glyphicon glyphicon-remove"></span>&nbsp;Remover
+                            </button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-sm btn-success  btn_agente_nuevo" type="button" id="add_agente_nuevo">
+                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir Mas Agentes
+                            </button>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+            <br />
+            <div id="Nuevo2">
+                <h5><label>Servicios</label></h5>
+                <div class="form_servicio hidden" id="Serv_">
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-12">Tipo de Servicio</label>
+                                <div class="col-md-12">
+                                    @Html.DropDownList("id_cat_otro_servicio_", (IEnumerable<SelectListItem>)ViewBag.id_servicio, "-", htmlAttributes: new { @class = "form-control required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-12">Cantidad a Solicitar</label>
+                                <div class="col-md-12">
+                                    <input type="number" min="0" name="cant_serv_" required class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-12">Costo</label>
+                                <div class="col-md-12">
+                                    <input type="number" min="0" step="any" name="costo_serv_" required class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-12">Venta por Unidad</label>
+                                <div class="col-md-12">
+                                    <input type="number" min="0" step="any" name="venta_serv_" required class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-12">Fecha de Inicio de Contratacion</label>
+                                <div class="col-md-12">
+                                    <div style="position:relative">
+                                        <input type='text' class="form-control fecha2" required name="fecha_inicio_serv_" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-12">Fecha de Fin de Contratacion</label>
+                                <div class="col-md-12">
+                                    <div style="position:relative">
+                                        <input type='text' class="form-control fecha2" name="fecha_fin_serv_" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-12">Agrupacion Razon Social</label>
+                                <div class="col-md-12">
+                                    @Html.DropDownList("id_agrupacion_serv_", (IEnumerable<SelectListItem>)ViewBag.id_razon_social_grupo_factura, "----", htmlAttributes: new { @class = "form-control", required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                            <div class="form-group">
+                                <label class="col-md-12">Ubicacion</label>
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        @Html.DropDownList("id_ubicacion_serv_", (IEnumerable<SelectListItem>)ViewBag.id_ubicacion, "----", htmlAttributes: new { @class = "form-control", required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-5 col-md-5 form-group">
+                            <br />
+                            <button class="btn btn-sm btn-danger btn_remover_servicio" type="button">
+                                <span class="glyphicon glyphicon-remove"></span>&nbsp;Remover
+                            </button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button class="btn btn-sm btn-success  btn_servicio_nuevo" type="button" id="btn_servicio_nuevo">
+                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Añadir Mas Servicios
+                            </button>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+            <hr />
+
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-success btn-sm" type="submit" id="btn_contratato_servicio_nuevo" name="btn_contratato_servicio_nuevo" value="0">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar Informacion
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+}
+
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Details_RS", new { id_Razon_Social = @ViewBag.razon_social.id_razon_social })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar a Detalles de la Razon Social
+    </button>
+</div>
+
+<script>
+    $(function () {
+
+        var form_agente = $('#Agt_').clone().removeClass("hidden");
+        modificar_agt(0);
+
+
+        var Agt = 1;
+        $('#add_agente').click(function () {
+            nuevo_agente();
+            Agt++;
+        });
+
+        function modificar_agt(id) {
+            $(document).find('#Agt_').attr('id', 'Agt_' + id.toString());
+            var form_Agt = $('#Agt_' + id.toString());
+            form_Agt.find('input[name=costo_unitario_agt_]').attr('name', 'costo_unitario_agt_' + id.toString());
+            form_Agt.find('input[name=precio_venta_unitario_agt_]').attr('name', 'precio_venta_unitario_agt_' + id.toString());
+            form_Agt.find('input[name=fecha_inicio_agt_]').attr('name', 'fecha_inicio_agt_' + id.toString());
+            form_Agt.find('input[name=fecha_fin_agt_]').attr('name', 'fecha_fin_agt_' + id.toString());
+            form_Agt.find('input[name=cant_agt_]').attr('name', 'cant_agt_' + id.toString());
+            form_Agt.find('select[name=id_agente_]').attr('name', 'id_agente_' + id.toString());
+            form_Agt.find('select[id=id_agente_]').attr('id', 'id_agente_' + id.toString());
+            form_Agt.find('select[name=id_agrupacion_agt_]').attr('name', 'id_agrupacion_agt_' + id.toString());
+            form_Agt.find('select[name=id_ubicacion_agt_]').attr('name', 'id_ubicacion_agt_' + id.toString());
+            
+            if (id == 0) {
+                $(document).find('#Agt_0').remove();
+            }
+            form_Agt.find('.fecha1').datetimepicker(
+            {
+                viewMode: 'days',
+                format: 'DD/MM/YYYY',
+            });
+        }
+
+        function nuevo_agente() {
+            selector = "#Nuevo1";
+            target = $(selector);
+            target.append(form_agente.clone());
+            modificar_agt(Agt);
+        }
+
+        $(document).on('click', '.btn_remover_agente', function () {
+            $(this).closest('.form_agente').remove();
+        });
+
+        var form_servicio = $('#Serv_').clone().removeClass("hidden");
+        modificar_serv(0);
+
+        var Serv = 1;
+        $('#add_servicio').click(function () {
+            nuevo_servicio();
+            Serv++;
+        });
+
+        function modificar_serv(id) {
+            $(document).find('#Serv_').attr('id', 'Serv_' + id.toString());
+            var form_Serv = $('#Serv_' + id.toString());
+            form_Serv.find('input[name=cant_serv_]').attr('name', 'cant_serv_' + id.toString());
+            form_Serv.find('input[name=costo_serv_]').attr('name', 'costo_serv_' + id.toString());
+            form_Serv.find('input[name=venta_serv_]').attr('name', 'venta_serv_' + id.toString());
+            form_Serv.find('input[name=fecha_inicio_serv_]').attr('name', 'fecha_inicio_serv_' + id.toString());
+            form_Serv.find('input[name=fecha_fin_serv_]').attr('name', 'fecha_fin_serv_' + id.toString());
+            form_Serv.find('select[id=id_cat_otro_servicio_]').attr('name', 'id_cat_otro_servicio_' + id.toString());
+            form_Serv.find('select[name=id_cat_otro_servicio_]').attr('name', 'id_cat_otro_servicio_' + id.toString());
+            form_Serv.find('select[name=id_agrupacion_serv_]').attr('name', 'id_agrupacion_serv_' + id.toString());
+            form_Serv.find('select[name=id_ubicacion_serv_]').attr('name', 'id_ubicacion_serv_' + id.toString());
+            if (id == 0) {
+                $(document).find('#Serv_0').remove();
+            }
+            form_Serv.find('.fecha2').datetimepicker(
+            {
+                viewMode: 'days',
+                format: 'DD/MM/YYYY',
+            });
+        }
+
+        function nuevo_servicio() {
+            selector = "#Nuevo2";
+            target = $(selector);
+            target.append(form_servicio.clone());
+            modificar_serv(Serv);
+        }
+
+        $(document).on('click', '.btn_remover_servicio', function () {
+            $(this).closest('.form_servicio').remove();
+        });
+
+
+        $(document).on('click', '.btn_agente_nuevo', function () {
+            nuevo_agente();
+            Agt++;
+        });
+
+        $(document).on('click', '.btn_servicio_nuevo', function () {
+            nuevo_servicio();
+            Serv++;
+        });
+
+    });
+</script>

@@ -1,0 +1,122 @@
+﻿@model MVC2013.Models.Pt_Costos_Fijos_Mes_Anio
+
+@{
+    ViewBag.Title = "Editar - Costos Fijos";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+}
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar
+    </button>
+</div>
+<h2>Editar Gastos <u>@Model.Pt_Meses.cmes_descripcion @Model.ccfma_anio</u></h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ccfma_id)
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Mes</label>
+        <div class="col-md-10">
+            @*@Html.EditorFor(model => model.ccfma_mes, new { htmlAttributes = new { @class = "form-control", @hidden="hidden", @value=Model.ccfma_mes } })*@
+            @Html.DropDownList("ccfma_mes", (IEnumerable<SelectListItem>)ViewBag.meses, new { @class = "form-control", @value = Model.ccfma_mes, @readonly = "readonly" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ccfma_anio, "Año", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ccfma_anio, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.ccfma_anio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.ccfma_anio, "Tipo de Gasto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ccfma_anio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ccfma_anio, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    @*<div class="form-group">
+            <label class="control-label col-md-2">Descripción</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ccfma_descripcion, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.ccfma_descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    <div class="form-group">
+        <label class="control-label col-md-2">Monto Gastos Administrativos</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ccfma_monto_gasto_administrativo, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+            @Html.ValidationMessageFor(model => model.ccfma_monto_gasto_administrativo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Monto Costo Operativo Indirecto</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ccfma_monto_gasto_operativo, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+            @Html.ValidationMessageFor(model => model.ccfma_monto_gasto_operativo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button class="btn btn-success btn-sm" type="submit">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+            </button>
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts{
+    <script>
+        ccfma_monto_gasto_administrativo = $("#ccfma_monto_gasto_administrativo").val();
+        ccfma_monto_gasto_operativo = $("#ccfma_monto_gasto_operativo").val();
+        var replaceCommand = [',', 'goodbye'];
+        var replaceOutput = ['.', 'hello'];
+        for (var i = 0; i < replaceCommand.length; i++) {
+            ccfma_monto_gasto_administrativo = ccfma_monto_gasto_administrativo.replace(replaceCommand[i], replaceOutput[i]);
+            ccfma_monto_gasto_operativo = ccfma_monto_gasto_operativo.replace(replaceCommand[i], replaceOutput[i]);
+        }
+        $('#ccfma_monto_gasto_administrativo').val(ccfma_monto_gasto_administrativo);
+        $('#ccfma_monto_gasto_operativo').val(ccfma_monto_gasto_operativo);
+        $('#ccfma_monto_gasto_administrativo').keypress(function (event) {
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) &&
+                ((event.which < 48 || event.which > 57) &&
+                    (event.which != 0 && event.which != 8))) {
+                event.preventDefault();
+            }
+
+            var text = $(this).val();
+
+            if ((text.indexOf('.') != -1) &&
+                (text.substring(text.indexOf('.')).length > 2) &&
+                (event.which != 0 && event.which != 8) &&
+                ($(this)[0].selectionStart >= text.length - 2)) {
+                event.preventDefault();
+            }
+        });
+        $('#ccfma_monto_gasto_operativo').keypress(function (event) {
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) &&
+                ((event.which < 48 || event.which > 57) &&
+                    (event.which != 0 && event.which != 8))) {
+                event.preventDefault();
+            }
+
+            var text = $(this).val();
+
+            if ((text.indexOf('.') != -1) &&
+                (text.substring(text.indexOf('.')).length > 2) &&
+                (event.which != 0 && event.which != 8) &&
+                ($(this)[0].selectionStart >= text.length - 2)) {
+                event.preventDefault();
+            }
+        });
+    </script>
+    }

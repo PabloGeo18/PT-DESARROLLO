@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MVC2013.Models.Consumibles>
+@using System.Globalization;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Consumibles</h2>
+@{ int id_ingreso = @ViewBag.id_ingreso; }
+<table class="table">
+    <tr>
+        <th>
+            @Resources.Resources.descripcion
+        </th>
+        <th>
+            @Resources.Resources.costo
+            
+        </th>
+        <th>
+            @Resources.Resources.costo_venta
+        </th>
+        <th>
+            @Resources.Resources.existencia
+        </th>
+        <th>
+            @Resources.Resources.consumible_tipo
+        </th>
+        <th>@Resources.Resources.acciones</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        <td>
+            @item.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+        </td>
+        <td>
+            @item.costo_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.existencia)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Consumible_Tipo.descripcion)
+        </td>
+        <td>
+            <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("add_consumibles_existencia", new { id_consumible = item.id_consumible, id_ingreso = id_ingreso })'">
+                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;     @Resources.Resources.agregar
+            </button>
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Edit","Ingresos", new { id = id_ingreso })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-sm btn-success" type="button" onclick="location.href='@Url.Action("add_consumibles_new", "Ingresos", new { id = id_ingreso })'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.agregar
+    </button>
+</div>

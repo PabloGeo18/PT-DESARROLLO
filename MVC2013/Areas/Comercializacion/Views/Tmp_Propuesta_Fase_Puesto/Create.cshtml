@@ -1,0 +1,1418 @@
+﻿@model MVC2013.Models.Pt_Tmp_Propuesta_Fase_Puesto
+@using System.Globalization
+@using MVC2013.Src.Comun.Helper
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+    CultureInfo gt = new CultureInfo("es-GT");
+    List<MVC2013.Models.Pt_Puestos> puestos = ViewBag.puesto;
+    List<MVC2013.Models.Pt_Tmp_Cotizacion_Fase_Insumos_New> listInsert = ViewBag.listInsertIns;
+    List<MVC2013.Models.Pt_Tmp_Cotizacion_Fase_Insumos> insumos = ViewBag.insumoList;
+    Decimal total = 0;
+    Decimal facTotal = 0;
+}
+<style>
+    /* The switch - the box around the slider */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            display: none;
+        }
+
+    /* The slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+</style>
+@Html.MenuLinkButton("", "EnviarRevisionGerenteG", "Fases_Cotizacion", User.Identity.Name, "glyphicon glyphicon-send", "btn btn-lg btn-primary", new { id = ViewBag.fase.cfas_id }, true, null, "margin:10px; border-radius: 50%; position: fixed; right: 10px; bottom: 106px; z-index: 1000", "Enviar a Gerente General")
+@Html.MenuLinkButton("", "EnviarRevisionOperaciones", "Fases_Cotizacion", User.Identity.Name, "glyphicon glyphicon-send", "btn btn-lg btn-info", new { id = ViewBag.fase.cfas_id }, true, null, "margin:10px; border-radius: 50%; position: fixed; right: 10px; bottom: 58px; z-index: 1000", "Enviar a Operaciones")
+@Html.MenuLinkButton("", "AprobadoVentas", "Fases_Cotizacion", User.Identity.Name, "glyphicon glyphicon-check", "btn btn-lg btn-success", new { id = ViewBag.fase.cfas_id }, true, null, "margin:10px; border-radius: 50%; position: fixed; right: 10px; bottom: 10px; z-index: 1000", "Aprobar")
+@Html.MenuLinkButton("", "EnviarRevisionVentas", "Fases_Cotizacion", User.Identity.Name, "glyphicon glyphicon-send", "btn btn-lg btn-info", new { id = ViewBag.fase.cfas_id }, true, null, "margin:10px; border-radius: 50%; position: fixed; right: 10px; bottom: 10px; z-index: 1000", "Enviar a Ventas")
+@Html.MenuLinkButton("", "AprobadoGerente", "Fases_Cotizacion", User.Identity.Name, "glyphicon glyphicon-check", "btn btn-lg btn-success", new { id = ViewBag.fase.cfas_id }, true, null, "margin:10px; border-radius: 50%; position: fixed; right: 10px; bottom: 10px; z-index: 1000", "Aprobar")
+@Html.MenuLinkButton("", "RechazoGerente", "Fases_Cotizacion", User.Identity.Name, "glyphicon glyphicon-remove", "btn btn-lg btn-danger", new { id = ViewBag.fase.cfas_id }, true, null, "margin:10px; border-radius: 50%; position: fixed; right: 10px; bottom: 58px; z-index: 1000", "Rechazar")
+@*<button data-toggle="tooltip" data-placement="top" title="Enviar a Revisión" class="btn btn-info btn-lg" style="margin: 10px; border-radius: 50%; position: fixed; right: 10px; bottom: 10px; z-index: 1000" onclick="location.href = '@Url.Action("EnviarRevisionOperaciones", "Fases_Cotizacion", new { id = ViewBag.fase.cfas_ccot_id })'">
+        <span class="glyphicon glyphicon-send"></span>
+    </button>
+    <button data-toggle="tooltip" data-placement="top" title="Rechazar" class="btn btn-danger btn-lg" style="margin: 10px; border-radius: 50%; position: fixed; right: 65px; bottom: 10px; z-index: 1000" onclick="location.href = '@Url.Action("EnviarRevisionOperaciones", "Fases_Cotizacion", new { id = ViewBag.fase.cfas_ccot_id })'">
+        <span class="glyphicon glyphicon-remove-circle"></span>
+    </button>
+    <button data-toggle="tooltip" data-placement="top" title="Aprobar" class="btn btn-success btn-lg" style="margin:10px; border-radius: 50%; position: fixed; right: 120px; bottom: 10px; z-index: 1000" onclick="location.href = '@Url.Action("EnviarRevisionOperaciones", "Fases_Cotizacion", new { id = ViewBag.fase.cfas_ccot_id })'">
+        <span class="glyphicon glyphicon-check"></span>
+    </button>*@
+<button class="btn btn-bitbucket btn-md" onclick="location.href = '@Url.Action("Index", "Fases_Cotizacion", new { id = ViewBag.fase.cfas_ccot_id })'">
+    <span class="glyphicon glyphicon-chevron-left"></span>&nbsp;Regresar al listado de fases
+</button>
+<div class="row">
+    <div class="col-md-6">
+        <h2>Manejador de Propuesta</h2>
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="row">
+            @* Costo / Salario *@
+            <div class="col-md-12" id="personalInputs">
+                <hr style="height:3px; border-style:solid;background-color:#222d32">
+                <h3 data-toggle="collapse" data-target="#costoSalario" class="text-center"><b><span class="glyphicon glyphicon-large glyphicon-menu-down"></span> <u>Costo Directo</u></b></h3><hr />
+                <div id="costoSalario" class="collapse in customCollapse">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group no-padding">
+                                @Html.LabelFor(model => model.ctpf_cpue_id, "Puesto", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-3" hidden>
+                                    @Html.DropDownList("ctpf_cfas_id", null, htmlAttributes: new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-4 input-group">
+                                    <input hidden id="ctpf_cfas_id" value="@ViewBag.fase.cfas_id" />
+                                    @Html.DropDownList("ctpf_cpue_id", null, htmlAttributes: new { @class = "form-control", @autofocus = "autofocus" })
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-success" onclick="location.href = '@Url.Action("Create", new { ctpf_cfas_id = ViewBag.fase.cfas_ccot_id })'">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group no-padding">
+                                <label class="control-label col-md-2">% Margen</label>
+                                <div class="col-md-4 input-group">
+                                    <input value="@ViewBag.margenFase" style="max-width:75px" class="form-control" id="ctcfm_margen" onkeyup="validateAndInsert()" onfocusout="insertMargen()" />
+                                </div>
+                                <span class="text-danger" id="errorMargen"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    @if (puestos.Count() <= 0)
+                    {
+                        <table class="table table-striped table-bordered table-responsive">
+                            <thead style="background-color:cadetblue"></thead>
+                            <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        foreach (var puesto in puestos)
+                        {
+                            <div class="row col-md-12">
+                                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#puestos_@puesto.cpue_id">
+                                    <span class="glyphicon glyphicon-large glyphicon-menu-down"></span>
+                                </button>
+                                @foreach (var t in puesto.Pt_Tmp_Propuesta_Fase_Puesto)
+                                {
+                                    if (puesto.cpue_id == t.ctpf_cpue_id && ViewBag.fase.cfas_id == t.ctpf_cfas_id && t.activo && !t.eliminado)
+                                    {
+                                        <button type="button" class="btn btn-danger btn-group-lg" onclick="location.href = '@Url.Action("Delete", new { id = t.ctpf_id })'">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                        <label>&nbsp;Personal&nbsp;</label><input min="1" value="@t.ctpf_personal" class="text-center" style="max-width:50px" type="number" data-tag-id="@puesto.cpue_id" name="personal_@puesto.cpue_id" id="personal_@puesto.cpue_id" onkeyup="cantPersonal(@puesto.cpue_id)" onfocusout="insertPersonal(@puesto.cpue_id)" />
+                                    }
+                                }
+                                <span id="error" class="text-danger"></span>
+                                <div class="row col-md-12">
+                                    <div class="col-md-6">
+                                        <p>
+                                            Salario @puesto.cpue_descripcion:
+                                            @if (puesto.Pt_Pagos_Puesto.Where(pi => pi.activo && !pi.eliminado).Count() > 0)
+                                            {
+                                                <b>
+                                                    @(((puesto.Pt_Pagos_Puesto.Where(pp => pp.cppu_salario_base == true && pp.activo && !pp.eliminado).Select(x => x.cppu_monto).Sum()) +
+                                                                                                                                                                                                                                                                                                            (puesto.Pt_Pagos_Puesto.Where(pp => pp.cppu_salario_base == false && pp.cppu_depende_sb == false && pp.activo && !pp.eliminado).Select(x => x.cppu_monto).Sum()))
+                                                                                                                                                                                                                                                                                                            .Value.ToString("c", gt))
+                                                </b>
+                                            }
+                                            else
+                                            {
+                                                <b>Q0.00</b>
+                                            }
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>
+                                            Insumos @puesto.cpue_descripcion:
+                                            @if (puesto.Pt_Puesto_Insumos.Where(pp => pp.activo && !pp.eliminado).Count() > 0)
+                                            {
+                                                total = 0;
+                                                foreach (var sumIns in puesto.Pt_Puesto_Insumos.Where(x => x.activo && !x.eliminado && x.cpin_cpue_id == puesto.cpue_id))
+                                                {
+                                                    total += (((sumIns.cpin_cantidad.Value) * (sumIns.Pt_Insumos.cins_precio_costo.Value)));
+                                                }
+                                                <b>@total.ToString("c", gt)</b>
+                                            }
+                                            else
+                                            {
+                                                <b>Q0.00</b>
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="puestos_@puesto.cpue_id" class="collapse in customCollapse">
+                                    <div class="table-responsive col-md-6">
+                                        <table class="table table-striped">
+                                            <thead style="background-color:#969aa2">
+                                                <tr>
+                                                    <th class="text-center">@puesto.cpue_descripcion</th>
+                                                    <th class="text-center" colspan="2">Pasivo</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (puesto.Pt_Pagos_Puesto.Where(pp => pp.activo && !pp.eliminado).Count() > 0)
+                                                {
+                                                    foreach (var pagos in puesto.Pt_Pagos_Puesto)
+                                                    {
+                                                        if (pagos.cppu_salario_base == true && pagos.activo && !pagos.eliminado)
+                                                        {
+                                                            <tr>
+                                                                <td class="text-center">@pagos.cppu_descripcion</td>
+                                                                <td id="calc" class="text-center">@pagos.cppu_monto.Value.ToString("c", gt)</td>
+                                                                <td width="3%"></td>
+                                                            </tr>
+                                                        }
+                                                        else if (pagos.cppu_depende_sb != false && pagos.activo && !pagos.eliminado)
+                                                        {
+                                                            <tr>
+                                                                <td class="text-center">@pagos.cppu_descripcion</td>
+                                                                <td id="calc" class="text-center">@pagos.cppu_monto.Value.ToString("c", gt)</td>
+                                                                <td width="3%"></td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                    if ((puesto.Pt_Pagos_Puesto.Where(pp => pp.activo && !pp.eliminado && pp.cppu_salario_base == true).Count() > 0) || (puesto.Pt_Pagos_Puesto.Where(pp => pp.activo && !pp.eliminado && pp.cppu_depende_sb == true).Count() > 0))
+                                                    {
+                                                        <tr><td class="text-center" colspan="3"><hr style="height:1px; border-style:solid;background-color:#222d32; margin-bottom:0px; margin-top:0px;"></td></tr>
+                                                        <tr>
+                                                            <td class="text-center"><b>Total</b></td>
+                                                            <td class="text-center">
+                                                                @(((puesto.Pt_Pagos_Puesto.Where(pp => pp.cppu_salario_base == true && pp.activo && !pp.eliminado).Select(x => x.cppu_monto).Sum()) +
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        (puesto.Pt_Pagos_Puesto.Where(pp => pp.cppu_salario_base == false && pp.cppu_depende_sb == true && pp.activo && !pp.eliminado).Select(x => x.cppu_monto).Sum()))
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        .Value.ToString("c", gt))
+                                                            </td>
+                                                            <td width="3%"></td>
+                                                        </tr>
+                                                    }
+                                                    foreach (var pagos in puesto.Pt_Pagos_Puesto.Where(pp => pp.activo && !pp.eliminado))
+                                                    {
+                                                        if (pagos.cppu_salario_base == false && pagos.cppu_depende_sb == false && pagos.cppu_cpue_id == puesto.cpue_id && pagos.activo && !pagos.eliminado)
+                                                        {
+                                                            <tr>
+                                                                <td class="text-center">@pagos.cppu_descripcion</td>
+                                                                <td id="calc" class="text-center">@pagos.cppu_monto.Value.ToString("c", gt)</td>
+                                                                <td width="3%"></td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                    <tr><td class="text-center" colspan="3"><hr style="height:1px; border-style:solid;background-color:#222d32; margin-bottom:0px; margin-top:0px;"></td></tr>
+                                                    <tr>
+                                                        <td class="text-center"><b>Costo Pasivo Laboral</b></td>
+                                                        <td class="text-center">
+                                                            @(((puesto.Pt_Pagos_Puesto.Where(pp => pp.cppu_salario_base == true && pp.activo && !pp.eliminado).Select(x => x.cppu_monto).Sum()) +
+                                                                                                                                                                        (puesto.Pt_Pagos_Puesto.Where(pp => pp.cppu_salario_base == false && pp.cppu_depende_sb == true && pp.activo && !pp.eliminado).Select(x => x.cppu_monto).Sum()) +
+                                                                                                                                                                        (puesto.Pt_Pagos_Puesto.Where(pp => pp.cppu_salario_base == false && pp.cppu_depende_sb == false && pp.activo && !pp.eliminado).Select(x => x.cppu_monto).Sum()))
+                                                                                                                                                                        .Value.ToString("c", gt))
+                                                        </td>
+                                                        <td width="3%"></td>
+                                                    </tr>
+                                                    <tr><td class="text-center" colspan="3"><hr style="height:1px; border-style:solid;background-color:#222d32; margin-bottom:0px; margin-top:0px;"></td></tr>
+                                                    <tr><td class="text-center" colspan="3"><hr style="height:1px; border-style:solid;background-color:#222d32; margin-bottom:0px; margin-top:0px;"></td></tr>
+                                                    <tr>
+                                                        <td class="text-center"><p>Costo/Salario</p></td>
+                                                        <td class="text-center">
+                                                            <input hidden value="@(((puesto.Pt_Pagos_Puesto.Where(pp => pp.cppu_salario_base == true && pp.activo && !pp.eliminado).Select(x => x.cppu_monto).Sum()) +
+                                                                (puesto.Pt_Pagos_Puesto.Where(pp => pp.cppu_salario_base == false && pp.cppu_depende_sb == true && pp.activo && !pp.eliminado).Select(x => x.cppu_monto).Sum()) +
+                                                                (puesto.Pt_Pagos_Puesto.Where(pp => pp.cppu_salario_base == false && pp.cppu_depende_sb == false && pp.activo && !pp.eliminado).Select(x => x.cppu_monto).Sum())).Value)"
+                                                                   name="costoSalario_@puesto.cpue_id" />
+                                                            <p>
+                                                                @(((puesto.Pt_Pagos_Puesto.Where(pp => pp.cppu_salario_base == true && pp.activo && !pp.eliminado).Select(x => x.cppu_monto).Sum()) +
+                                                                                                                                                                                 (puesto.Pt_Pagos_Puesto.Where(pp => pp.cppu_salario_base == false && pp.cppu_depende_sb == true && pp.activo && !pp.eliminado).Select(x => x.cppu_monto).Sum()) +
+                                                                                                                                                                                 (puesto.Pt_Pagos_Puesto.Where(pp => pp.cppu_salario_base == false && pp.cppu_depende_sb == false && pp.activo && !pp.eliminado).Select(x => x.cppu_monto).Sum()))
+                                                                                                                                                                                 .Value.ToString("c", gt))
+                                                            </p>
+                                                            <input hidden value="@puesto.cpue_id" name="puestoId_@puesto.cpue_id" />
+                                                        </td>
+                                                        <td width="3%"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><p>Costo Operativo</p></td>
+                                                        <td class="text-center"><input class="text-center" readonly style="max-width:75px" name="cOperativo_@puesto.cpue_id" /></td>
+                                                        <td width="3%"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center"><p>Comisión PT</p></td>
+                                                        <td class="text-center"><input class="text-center" readonly style="max-width:75px" name="comisionPT_@puesto.cpue_id" /></td>
+                                                        <td width="3%"><span class="glyphicon glyphicon-plus"></span></td>
+                                                    </tr>
+                                                    <tr><td class="text-center" colspan="3"><hr style="height:1px; border-style:solid;background-color:#222d32; margin-bottom:0px; margin-top:0px;"></td></tr>
+                                                    <tr>
+                                                        <td class="text-center"><p>Facturación sin IVA</p></td>
+                                                        <td class="text-center"><input class="text-center" readonly style="max-width:75px" name="facSinIva_@puesto.cpue_id" /></td>
+                                                        <td width="3%"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        @foreach (var fiva in puesto.Pt_Tmp_Propuesta_Fase_Puesto.Where(x => x.activo && !x.eliminado && x.ctpf_cpue_id == puesto.cpue_id))
+                                                        {
+                                                            facTotal = fiva.ctpf_facConIVA.Value;
+                                                        }
+                                                        <td class="text-center"><p>Facturación Unitario con IVA</p></td>
+                                                        <td class="text-center"><input class="text-center" readonly style="max-width:75px" name="facConIva_@puesto.cpue_id" id="facConIva_@puesto.cpue_id" /></td>
+                                                        <td width="3%"></td>
+                                                    </tr>
+                                                    <tr><td class="text-center" colspan="3"><hr style="height:1px; border-style:solid;background-color:#222d32; margin-bottom:0px; margin-top:0px;"></td></tr>
+                                                    <tr>
+                                                        <td class="text-center"><b>Total Facturación Mes con IVA</b></td>
+                                                        <td class="text-center"><input class="text-center" readonly style="max-width:75px" name="facMesConIva_@puesto.cpue_id" /></td>
+                                                        <td width="3%"></td>
+                                                    </tr>
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <td colspan="2" class="text-center"><p>No hay datos configurados para mostrar en este puesto. Comuniquese con el administrador de operaciones</p></td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="table-responsive col-md-6">
+                                        <table class="table table-striped">
+                                            <thead style="background-color:#969aa2">
+                                                <tr>
+                                                    <th class="text-center">@puesto.cpue_descripcion</th>
+                                                    <th class="text-center">Cantidad</th>
+                                                    <th class="text-center">Precio Unitario</th>
+                                                    <th class="text-center">Sub-Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (puesto.Pt_Puesto_Insumos.Where(pp => pp.activo && !pp.eliminado).Count() > 0)
+                                                {
+                                                    foreach (var pagos in puesto.Pt_Puesto_Insumos)
+                                                    {
+                                                        if (pagos.activo && !pagos.eliminado)
+                                                        {
+                                                            <tr>
+                                                                <td class="text-center">@pagos.Pt_Insumos.cins_descripcion</td>
+                                                                <td id="calc" class="text-center">@pagos.cpin_cantidad</td>
+                                                                <td class="text-center">@pagos.Pt_Insumos.cins_precio_costo.Value.ToString("c", gt)</td>
+                                                                <td class="text-center">@(((pagos.cpin_cantidad) * (pagos.Pt_Insumos.cins_precio_costo)).Value.ToString("c", gt))</td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <td colspan="4" class="text-center"><p>No hay insumos configurados para mostrar en este puesto. Comuniquese con el administrador de operaciones</p></td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="row col-md-12">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-6">
+                                <span class="text-success"><b>Total Insumos de puestos: @ViewBag.sumtotal</b></span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @* Gastos del Proyecto *@
+            <div class="col-md-12">
+                <hr style="height:3px; border-style:solid;background-color:#222d32">
+                <h3 data-toggle="collapse" data-target="#gastos" class="text-center"><b><span class="glyphicon glyphicon-large glyphicon-menu-down"></span> <u>Gastos</u></b></h3>
+                <div id="gastos" class="collapse in customCollapse">
+                    @* Gastos Administrativos *@
+                    <div class="col-md-6">
+                        <div class="form-horizontal">
+                            <h3 class="text-center">Gastos Administrativos</h3>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Monto</label>
+                                <div class="col-md-9">
+                                    <input type="text" style="max-width:150px" class="form-control" id="ccfma_monto_gasto_administrativo" autocomplete="off" value="@ViewBag.costosFijos.ccfma_monto_gasto_administrativo" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Planilla</label>
+                                <div class="col-md-9">
+                                    <input type="text" style="max-width:150px" class="form-control" id="planilla" autocomplete="off" value="@ViewBag.planillaMes.ccpma_cantidad_planilla" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Personal a Contratar</label>
+                                <div class="col-md-9">
+                                    <input type="text" style="max-width:150px" class="form-control" id="cantidadPerAdmin" autocomplete="off" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Monto Total por Personal a Contratar</label>
+                                <div class="col-md-9">
+                                    <input type="text" style="max-width:150px" class="form-control" id="sumTotalAdmin" autocomplete="off" readonly />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @* Gastos Operativos*@
+                    <div class="col-md-6">
+                        <div class="form-horizontal">
+                            <h3 class="text-center">Operativos</h3>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Monto</label>
+                                <div class="col-md-9">
+                                    <input type="text" style="max-width:150px" class="form-control" id="ccfma_monto_gasto_operativo" autocomplete="off" value="@ViewBag.costosFijos.ccfma_monto_gasto_operativo" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Planilla</label>
+                                <div class="col-md-9">
+                                    <input type="text" style="max-width:150px" class="form-control" id="planilla" autocomplete="off" value="@ViewBag.planillaMes.ccpma_cantidad_planilla" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Personal a Contratar</label>
+                                <div class="col-md-9">
+                                    <input type="text" style="max-width:150px" class="form-control" id="cantidadPerOper" autocomplete="off" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Monto Total por Personal a Contratar</label>
+                                <div class="col-md-9">
+                                    <input type="text" style="max-width:150px" class="form-control" id="sumTotalOper" autocomplete="off" readonly />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @* Form para insumos *@
+            <div class="col-md-12">
+                <hr style="height:3px; border-style:solid;background-color:#222d32">
+                <div class="row col-md-12">
+                    <div class="form-horizontal">
+                        <h3 class="text-center">Costos Indirectos</h3>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Agregar</label>
+                            <div class="col-md-10">
+                                @Html.DropDownList("ctpfi_cins_id", (IEnumerable<SelectListItem>)ViewBag.costos, "Seleccione una opción", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        @* Inicia Modal Nuevo Insumo *@
+                        <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header text-center">
+                                        <h4 class="modal-title w-100 font-weight-bold">Nuevo Insumo</h4>
+                                        <input id="ctpfin_cfas_id" hidden value="@ViewBag.fase.cfas_id" />
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body ">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3" data-error="wrong" data-success="right" for="defaultForm-email">Descripción</label>
+                                            <div class="col-md-9">
+                                                <input id="ctpfin_descripcion" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3" data-error="wrong" data-success="right" for="defaultForm-pass">Precio Costo</label>
+                                            <div class="col-md-9">
+                                                <input id="ctpfin_precio_costo" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3" data-error="wrong" data-success="right" for="defaultForm-pass">Precio Venta</label>
+                                            <div class="col-md-9">
+                                                <input id="ctpfin_precio_venta" class="form-control validate">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3" data-error="wrong" data-success="right" for="defaultForm-pass">Cantidad</label>
+                                            <div class="col-md-9">
+                                                <input id="ctpfin_cantidad" type="number" class="form-control validate">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">¿Es uniforme?</label>
+                                            <div class="col-md-9">
+                                                <label class="switch">
+                                                    <input type="checkbox" class="form-control" id="ctpfin_es_uniforme">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="talla">
+                                            <label class="control-label col-md-3" data-error="wrong" data-success="right" for="defaultForm-pass">Talla</label>
+                                            <div class="col-md-9">
+                                                <input id="ctpfin_talla" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3">¿Es depreciable?</label>
+                                            <div class="col-md-9">
+                                                <label class="switch">
+                                                    <input type="checkbox" class="form-control" id="ctpfin_depreciacion">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="percent">
+                                            <label class="control-label col-md-3" data-error="wrong" data-success="right" for="defaultForm-pass">% Depreciación</label>
+                                            <div class="col-md-9">
+                                                <input id="ctpfin_porcentaje_depreciacion" class="form-control" onkeyup="validate()">
+
+                                            </div>
+                                        </div>
+                                        <script type="text/javascript">
+                                                function validate() {
+                                                    var porcentaje = document.getElementById('ctpfin_porcentaje_depreciacion').value;
+                                                    if (porcentaje <= 0 || porcentaje > 100) {
+                                                        document.getElementById('anddy').innerHTML = "ERROR: Porcentaje inválido. Debe de ser entre 1 y 100";
+                                                        $('#guardar').prop('disabled', true);
+                                                    } else {
+                                                        document.getElementById('error').innerHTML = "";
+                                                        $('#guardar').prop('disabled', false);
+                                                    }
+                                                }
+                                                    $(document).ready(function () {
+                                                    porcentaje = $("#ctpfin_porcentaje_depreciacion").val();
+                                                    precioCosto = $("#ctpfin_precio_costo").val();
+                                                    precioVenta = $("#ctpfin_precio_venta").val();
+                                                    var replaceCommand = [',', 'goodbye'];
+                                                    var replaceOutput = ['.', 'hello'];
+                                                    for (var i = 0; i < replaceCommand.length; i++) {
+                                                        precioCosto = precioCosto.replace(replaceCommand[i], replaceOutput[i]);
+                                                        precioVenta = precioVenta.replace(replaceCommand[i], replaceOutput[i]);
+                                                        porcentaje = porcentaje.replace(replaceCommand[i], replaceOutput[i]);
+                                                    }
+                                                    $('#ctpfin_precio_costo').val(precioCosto);
+                                                    $('#ctpfin_precio_venta').val(precioVenta);
+                                                    $('#ctpfin_porcentaje_depreciacion').val(porcentaje);
+
+                                                    $('#ctpfin_porcentaje_depreciacion').keypress(function (event) {
+                                                        if ((event.which != 46 || $(this).val().indexOf('.') != -1) &&
+                                                            ((event.which < 48 || event.which > 57) &&
+                                                                (event.which != 0 && event.which != 8))) {
+                                                            event.preventDefault();
+                                                        }
+
+                                                        var text = $(this).val();
+
+                                                        if ((text.indexOf('.') != -1) &&
+                                                            (text.substring(text.indexOf('.')).length > 2) &&
+                                                            (event.which != 0 && event.which != 8) &&
+                                                            ($(this)[0].selectionStart >= text.length - 2)) {
+                                                            event.preventDefault();
+                                                        }
+                                                    });
+
+                                                    $('#ctpfin_precio_costo').keypress(function (event) {
+                                                        if ((event.which != 46 || $(this).val().indexOf('.') != -1) &&
+                                                            ((event.which < 48 || event.which > 57) &&
+                                                                (event.which != 0 && event.which != 8))) {
+                                                            event.preventDefault();
+                                                        }
+
+                                                        var text = $(this).val();
+
+                                                        if ((text.indexOf('.') != -1) &&
+                                                            (text.substring(text.indexOf('.')).length > 2) &&
+                                                            (event.which != 0 && event.which != 8) &&
+                                                            ($(this)[0].selectionStart >= text.length - 2)) {
+                                                            event.preventDefault();
+                                                        }
+                                                    });
+                                                    $('#ctpfin_precio_venta').keypress(function (event) {
+                                                        if ((event.which != 46 || $(this).val().indexOf('.') != -1) &&
+                                                            ((event.which < 48 || event.which > 57) &&
+                                                                (event.which != 0 && event.which != 8))) {
+                                                            event.preventDefault();
+                                                        }
+
+                                                        var text = $(this).val();
+
+                                                        if ((text.indexOf('.') != -1) &&
+                                                            (text.substring(text.indexOf('.')).length > 2) &&
+                                                            (event.which != 0 && event.which != 8) &&
+                                                            ($(this)[0].selectionStart >= text.length - 2)) {
+                                                            event.preventDefault();
+                                                        }
+                                                    });
+                                                    $("#percent").hide();
+                                                    $("#talla").hide();
+                                                    $("#ctpfin_depreciacion").change(function () {
+                                                        if ($(this).prop("checked") == true) {
+                                                            $("#percent").show();
+                                                            $("#ctpfin_porcentaje_depreciacion").val('');
+                                                            $('#guardar').prop('disabled', true);
+                                                        }
+                                                        if ($(this).prop("checked") == false) {
+                                                            $('#guardar').prop('disabled', false);
+                                                            $("#percent").hide();
+                                                        }
+                                                    });
+                                                    $("#ctpfin_es_uniforme").change(function () {
+                                                        if ($(this).prop("checked") == true) {
+                                                            $("#talla").show();
+                                                            $("#ctpfin_talla").val('');
+                                                        }
+                                                        if ($(this).prop("checked") == false) {
+                                                            $("#talla").hide();
+                                                        }
+                                                    });
+                                                });
+                                                var guardar = function () {
+                                                //$("#guardar").click(function () {
+                                                    var url = '@Url.Action("Create", new { id = "__id__" })';
+                                                    ctpfin_cfas_id = $("#ctpfin_cfas_id").val();
+                                                    ctpfin_descripcion = $("#ctpfin_descripcion").val();
+                                                    ctpfin_precio_costo = $("#ctpfin_precio_costo").val();
+                                                    ctpfin_precio_venta = $("#ctpfin_precio_venta").val();
+                                                    ctpfin_cantidad = $("#ctpfin_cantidad").val();
+                                                    if ($('#ctpfin_depreciacion').is(":checked")) {
+                                                        ctpfin_porcentaje_depreciacion = $("#ctpfin_porcentaje_depreciacion").val();
+                                                        ctpfin_depreciacion = true;
+                                                    } else {
+                                                        ctpfin_depreciacion = false;
+                                                    }
+                                                    if ($('#ctpfin_es_uniforme').is(":checked")) {
+                                                        ctpfin_talla = $("#ctpfin_talla").val();
+                                                        ctpfin_es_uniforme = true;
+                                                    } else {
+                                                        ctpfin_es_uniforme = false;
+                                                    }
+                                                    if (ctpfin_depreciacion == true) {
+                                                        if (ctpfin_es_uniforme == true) {
+                                                            $.ajax({
+                                                            url: '@Url.Action("CreateInsumosTmp", "Tmp_Propuesta_Fase_Puesto")',
+                                                            data: { ctpfin_descripcion, ctpfin_precio_costo, ctpfin_cfas_id, ctpfin_precio_venta, ctpfin_depreciacion, ctpfin_cantidad, ctpfin_porcentaje_depreciacion, ctpfin_es_uniforme, ctpfin_talla },
+                                                            type: "POST",
+                                                                success: function (data, status) {
+                                                                    window.location.href = url.replace('__id__', ctpfin_cfas_id);
+                                                            },
+                                                            error: function () {
+                                                            }
+                                                        });
+                                                        } else {
+                                                            $.ajax({
+                                                            url: '@Url.Action("CreateInsumosTmp", "Tmp_Propuesta_Fase_Puesto")',
+                                                            data: { ctpfin_descripcion, ctpfin_precio_costo, ctpfin_cfas_id, ctpfin_precio_venta, ctpfin_depreciacion, ctpfin_cantidad, ctpfin_porcentaje_depreciacion, ctpfin_es_uniforme },
+                                                            type: "POST",
+                                                            success: function (data, status) {
+                                                                window.location.href = url.replace('__id__', ctpfin_cfas_id);
+                                                            },
+                                                            error: function () {
+                                                            }
+                                                        });
+                                                        }
+                                                    } else {
+                                                        if (ctpfin_es_uniforme == true) {
+                                                            $.ajax({
+                                                            url: '@Url.Action("CreateInsumosTmp", "Tmp_Propuesta_Fase_Puesto")',
+                                                            data: { ctpfin_descripcion, ctpfin_precio_costo, ctpfin_cfas_id, ctpfin_precio_venta, ctpfin_depreciacion, ctpfin_cantidad, ctpfin_es_uniforme, ctpfin_talla },
+                                                            type: "POST",
+                                                            success: function (data, status) {
+                                                                window.location.href = url.replace('__id__', ctpfin_cfas_id);
+                                                            },
+                                                            error: function () {
+                                                            }
+                                                        });
+                                                        } else {
+                                                            $.ajax({
+                                                            url: '@Url.Action("CreateInsumosTmp", "Tmp_Propuesta_Fase_Puesto")',
+                                                            data: { ctpfin_descripcion, ctpfin_precio_costo, ctpfin_cfas_id, ctpfin_precio_venta, ctpfin_depreciacion, ctpfin_cantidad, ctpfin_es_uniforme },
+                                                            type: "POST",
+                                                            success: function (data, status) {
+                                                                window.location.href = url.replace('__id__', ctpfin_cfas_id);
+                                                            },
+                                                            error: function () {
+                                                            }
+                                                        });
+                                                        }
+                                                }
+                                                }
+                                                //});
+                                        </script>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div id="anddy" class="text-danger">hola</div>
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <button type="button" onclick="guardar()" class="btn-success btn btn-sm">
+                                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Crear
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @* Finaliza Modal Nuevo Insumo *@
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="button" data-toggle="modal" data-target="#modalLoginForm" class="btn-info btn btn-sm">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Crear Insumo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @* Tabla Insumos Indirectos *@
+                <div class="row col-md-12">
+                    @if (listInsert.Where(x => x.activo && !x.eliminado).Count() <= 0 && insumos.Where(x => x.activo && !x.eliminado).Count() <= 0)
+                    {
+                        <table class="table table-striped table-bordered table-responsive">
+                            <thead style="background-color:cadetblue"></thead>
+                            <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <div class="table-responsive col-md-12 no-padding" style="max-height:300px">
+                            <table class="table table-striped">
+                                <thead style="background-color:#969aa2">
+                                    <tr>
+                                        <th class="text-center">Acciones</th>
+                                        <th class="text-center">Descripción</th>
+                                        <th class="text-center">Cantidad</th>
+                                        <th class="text-center">Precio Costo</th>
+                                        <th class="text-center">Total P/Costo</th>
+                                        <th class="text-center">Precio Venta</th>
+                                        <th class="text-center">Total P/Venta</th>
+                                        <th class="text-center">Detalles</th>
+                                        <th class="text-center">Depreciación</th>
+                                        <th class="text-center">Porcentaje Depreciación</th>
+                                        <th class="text-center">Monto Depreciado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var newInsert in listInsert.Where(x => x.activo && !x.eliminado))
+                                    {
+                                        <tr>
+                                            <td class="text-center">
+                                                <button data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" onclick="elimina(@newInsert.ctpfin_id,0)">
+                                                    <span class="glyphicon glyphicon-trash"></span>
+                                                </button>
+                                            </td>
+                                            @if (newInsert.ctpfin_descripcion == null)
+                                            {
+                                                <td class="text-center">-----</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center">@newInsert.ctpfin_descripcion</td>
+                                            }
+                                            @if (newInsert.ctpfin_cantidad == null)
+                                            {
+                                                <td class="text-center">-----</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center">@newInsert.ctpfin_cantidad</td>
+                                            }
+                                            @if (newInsert.ctpfin_precio_costo == null)
+                                            {
+                                                <td class="text-center">-----</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center">@newInsert.ctpfin_precio_costo.Value.ToString("c", gt)</td>
+                                            }
+                                            @if (((newInsert.ctpfin_cantidad * newInsert.ctpfin_precio_costo)) == null)
+                                            {
+                                                <td class="text-center">-----</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center">@((newInsert.ctpfin_cantidad * newInsert.ctpfin_precio_costo).Value.ToString("c", gt))</td>
+                                            }
+                                            @if (newInsert.ctpfin_precio_venta == null)
+                                            {
+                                                <td class="text-center">-----</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center">@newInsert.ctpfin_precio_venta.Value.ToString("c", gt)</td>
+                                            }
+                                            @if (((newInsert.ctpfin_cantidad * newInsert.ctpfin_precio_venta)) == null)
+                                            {
+                                                <td class="text-center">-----</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center">@((newInsert.ctpfin_cantidad * newInsert.ctpfin_precio_venta).Value.ToString("c", gt))</td>
+                                            }
+                                            @if (newInsert.ctpfin_es_uniforme == false)
+                                            {
+                                                <td class="text-center">No aplica</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center">Talla @newInsert.ctpfin_talla</td>
+                                            }
+                                            @if (newInsert.ctpfin_depreciacion == true)
+                                            {
+                                                <td class="text-center"><p>Es Depreciable</p></td>
+                                                <td class="text-center">@((newInsert.ctpfin_porcentaje_depreciacion / 100).Value.ToString("P", gt))</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center"><p>No es depreciable</p></td>
+                                                <td class="text-center"><p>----</p></td>
+                                            }
+                                            @if (((newInsert.ctpfin_precio_venta * newInsert.ctpfin_cantidad) * (newInsert.ctpfin_porcentaje_depreciacion / 100)) == null)
+                                            {
+                                                <td class="text-center">-----</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center">@(((newInsert.ctpfin_precio_venta * newInsert.ctpfin_cantidad) * (newInsert.ctpfin_porcentaje_depreciacion / 100)).Value.ToString("c", gt))</td>
+                                            }
+                                        </tr>
+                                    }
+                                    @foreach (var ins in insumos.Where(x => x.activo && !x.eliminado))
+                                    {
+                                        <tr>
+                                            <td class="text-center">
+                                                <button data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" onclick="elimina(0, @ins.ctpfi_id)">
+                                                    <span class="glyphicon glyphicon-trash"></span>
+                                                </button>
+                                            </td>
+                                            @if (ins.Pt_Insumos.cins_descripcion == null)
+                                            {
+                                                <td class="text-center">-----</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center">@ins.Pt_Insumos.cins_descripcion</td>
+                                            }
+                                            @if (ins.ctpfi_cantidad == null)
+                                            {
+                                                <td class="text-center"></td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center">@ins.ctpfi_cantidad</td>
+                                            }
+                                            @if (ins.Pt_Insumos.cins_precio_costo == null)
+                                            {
+                                                <td class="text-center">-----</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center">@ins.Pt_Insumos.cins_precio_costo.Value.ToString("c", gt)</td>
+                                            }
+                                            @if (((ins.ctpfi_cantidad * ins.Pt_Insumos.cins_precio_costo)) == null)
+                                            {
+                                                <td class="text-center">-----</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center">@((ins.ctpfi_cantidad * ins.Pt_Insumos.cins_precio_costo).Value.ToString("c", gt))</td>
+                                            }
+                                            @if (ins.Pt_Insumos.cins_precio_venta == null)
+                                            {
+                                                <td class="text-center"></td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center">@ins.Pt_Insumos.cins_precio_venta.Value.ToString("c", gt)</td>
+                                            }
+                                            @if (((ins.ctpfi_cantidad * ins.Pt_Insumos.cins_precio_venta)) == null)
+                                            {
+                                                <td class="text-center">-----</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center">@((ins.ctpfi_cantidad * ins.Pt_Insumos.cins_precio_venta).Value.ToString("c", gt))</td>
+                                            }
+                                            @if (ins.Pt_Insumos.cins_es_uniforme == false)
+                                            {
+                                                <td class="text-center">No aplica</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center">Talla @ins.Pt_Insumos.cins_talla</td>
+                                            }
+                                            @if (ins.Pt_Insumos.cins_depreciacion == true)
+                                            {
+                                                <td class="text-center"><p>Es Depreciable</p></td>
+                                                if (ins.Pt_Insumos.cins_porcentaje_depreciacion != null)
+                                                {
+                                                    <td class="text-center">@((ins.Pt_Insumos.cins_porcentaje_depreciacion / 100).Value.ToString("P", gt))</td>
+                                                }
+                                                else
+                                                {
+
+                                                    <td class="text-center">----</td>}
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center"><p>No es depreciable</p></td>
+                                                <td class="text-center"><p>----</p></td>
+                                            }
+                                            @if (((ins.Pt_Insumos.cins_precio_venta * ins.ctpfi_cantidad) * (ins.Pt_Insumos.cins_porcentaje_depreciacion / 100)) == null)
+                                            {
+                                                <td class="text-center">-----</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-center">@(((ins.Pt_Insumos.cins_precio_venta * ins.ctpfi_cantidad) * (ins.Pt_Insumos.cins_porcentaje_depreciacion / 100)).Value.ToString("c", gt))</td>
+                                            }
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td class="text-center" colspan="11"><hr style="height:1px; border-style:solid;background-color:#222d32; margin-bottom:0px; margin-top:0px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="10" class="text-right">Total</td>
+                                        <td class="text-center">@ViewBag.totalIns</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    <span class="text-success"><b>Total Costos Indirectos Monto Depreciado: @ViewBag.totalIns</b></span>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="align-content:center; margin-top:0px">
+            <div class="col-md-12">
+                @*Tabla de Sumatoria de Totales*@
+                <hr style="height:3px; border-style:solid;background-color:#222d32">
+                <div class="col-md-6">
+                    <h3 class="text-center" data-toggle="collapse" data-target="#sumatoriatotales"><b><span class="glyphicon glyphicon-large glyphicon-menu-down"></span> <u>Sumatoria de Totales</u></b></h3>
+                    <div class="list-group col-md-12 collapse in customCollapse" id="sumatoriatotales">
+                        <table class="table table-striped">
+                            <thead style="background-color:#969aa2">
+                                <tr><th colspan="3" class="text-center"><p>Sumatoria de Totales</p></th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center" width="70%"><p>Gastos Administrativos del proyecto</p></td>
+                                    <td class="text-center"><p id="totalGastosAdmin"></p></td>
+                                    <td width="5%"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" width="70%"><p>Costos Operativos Indirectos del proyecto</p></td>
+                                    <td class="text-center"><p id="totalGastosOper"></p></td>
+                                    <td width="5%"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" width="70%"><p>Insumos directos de los puestos</p></td>
+                                    <td class="text-center"><input hidden id="insdirecT" value="@ViewBag.sumtotal2" /><p>@ViewBag.sumtotal</p></td>
+                                    <td width="5%"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" width="70%"><p>Insumos independientes de los puestos</p></td>
+                                    <td class="text-center"><input hidden id="insindepT" value="@ViewBag.totalIns2" /><p>@ViewBag.totalIns</p></td>
+                                    <td class="text-center" width="5%"><span class="glyphicon glyphicon-plus"></span></td>
+                                </tr>
+                                <tr><td colspan="3"><hr style="height:1px; border-style:solid;background-color:#222d32; margin-bottom:0px; margin-top:0px;"></td></tr>
+                                <tr>
+                                    <td class="text-right">Total de Gastos Operativos</td>
+                                    <td class="text-center"><p id="tGen"></p></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right">Estado de Fuerza</td>
+                                    <td class="text-center"><p id="eFuerza"></p></td>
+                                    <td class="text-center"><b style="font-size:25px">÷</b></td>
+                                </tr>
+                                <tr><td colspan="3"><hr style="height:1px; border-style:solid;background-color:#222d32; margin-bottom:0px; margin-top:0px;"></td></tr>
+                                <tr>
+                                    <td class="text-right">Costo Operativo</td>
+                                    <td class="text-center"><input class="text-center" readonly style="max-width:75px" id="OperCosto" /></td>
+                                    <td id="ope"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                @*Tabla de TOTAL General*@
+                <div class="col-md-6">
+                    <h3 data-toggle="collapse" data-target="#totales" class="text-center">
+                        <b>
+                            <span class="glyphicon glyphicon-large glyphicon-menu-down"></span>
+                            &nbsp;<u>Cálculo Total</u>
+                        </b>
+                    </h3>
+                    <div class="col-md-12 collapse in customCollapse" id="totales">
+                        <table class="table table-striped">
+                            <thead style="background-color:#969aa2">
+                                <tr>
+                                    <th class="text-center" colspan="2">Cálculo Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="width:80%">Total Estado de Fuerza</td>
+                                    <td><p class="text-center" id="estadoFuerza"></p></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:80%">Total Facturación Mes con IVA</td>
+                                    <td><input class="text-center" readonly style="max-width:75px" id="totalConIva" name="totalConIva" /></td>
+                                </tr>
+                                <tr><td class="text-center" colspan="2"><hr style="height:1px; border-style:solid;background-color:#222d32; margin-bottom:0px; margin-top:0px;"></td></tr>
+                                <tr>
+                                    <td style="width:80%">Total Facturación Mes sin IVA</td>
+                                    <td><input class="text-center" readonly style="max-width:75px" id="totalSinIva" name="totalSinIva" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:80%">Comisión PROTAL</td>
+                                    <td><input class="text-center" readonly style="max-width:75px" id="totalComProt" name="totalComProt" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:80%">% Margen</td>
+                                    <td><input class="text-center" readonly style="max-width:75px" id="percentMar" name="percentMar" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*}*@
+    </div>
+
+}
+<script type="text/javascript">
+    var tags = []
+    var tagsa = []
+    var cantPer = 0;
+    var id = 0;
+    var replaceCommand = [',', 'goodbye'];
+    var replaceOutput = ['.', 'hello'];
+    var insdirecT = $('#insdirecT').val();
+    var insindepT = $('#insindepT').val();
+    var operativo = 0;
+
+    $(document).ready(function () {
+        var totalConIva = 0;
+        var totalSinIva = 0;
+        var totalComProt = 0;
+        var totalGeneral = 0;
+        var total = 0;
+        var opera = 0;
+        var costoOp = 0;
+        var costoOperativo = 0;
+        var totalMargen = 0;
+        var comisionProtal = 0;
+        var costoSalario = 0;
+        var ccfma_monto_gasto_administrativo = $('#ccfma_monto_gasto_administrativo').val();
+        var ccfma_monto_gasto_operativo = $('#ccfma_monto_gasto_operativo').val();
+        var planilla = $('#planilla').val();
+        var ctcfm_margen = $("#ctcfm_margen").val();
+        /*Remplaza , por .*/
+        for (var i = 0; i < replaceCommand.length; i++) {
+            ccfma_monto_gasto_administrativo = ccfma_monto_gasto_administrativo.replace(replaceCommand[i], replaceOutput[i]);
+            ctcfm_margen = ctcfm_margen.replace(replaceCommand[i], replaceOutput[i]);
+            ccfma_monto_gasto_operativo = ccfma_monto_gasto_operativo.replace(replaceCommand[i], replaceOutput[i]);
+        }
+        $('#ccfma_monto_gasto_administrativo').val(ccfma_monto_gasto_administrativo);
+        $('#ccfma_monto_gasto_operativo').val(ccfma_monto_gasto_operativo);
+        $('#ctcfm_margen').val(ctcfm_margen);
+        document.getElementById('percentMar').value = ctcfm_margen;
+        var divAdmin = parseFloat(ccfma_monto_gasto_administrativo) / parseFloat(planilla);
+        var divOper = parseFloat(ccfma_monto_gasto_operativo) / parseFloat(planilla);
+        ctpf_cfas_id = $("#ctpf_cfas_id").val();
+        $('[data-tag-id]').each(function () {
+            var id = $(this).val();
+            id = parseInt(id);
+            tags.push({ id });
+            suma();
+        })
+        multiAdmin = divAdmin * parseFloat(cantPer);
+        multiOper = divOper * parseFloat(cantPer);
+        totalAdmin = (Math.round(multiAdmin * 100) / 100).toFixed(2);
+        totalOper = (Math.round(multiOper * 100) / 100).toFixed(2);
+        totalGeneral = parseFloat(totalAdmin) + parseFloat(insdirecT) + parseFloat(insindepT) + parseFloat(totalOper);
+        costoOp = (parseFloat(totalGeneral) / parseFloat(cantPer));
+        costoOp = (Math.round(costoOp * 100) / 100).toFixed(2);
+        totalGeneral = (Math.round(totalGeneral * 100) / 100).toFixed(2);
+        document.getElementById('totalGastosAdmin').innerHTML = "Q" + totalAdmin;
+        document.getElementById('totalGastosOper').innerHTML = "Q" + totalOper;
+        document.getElementById('tGen').innerHTML = "Q" + totalGeneral;
+        document.getElementById('OperCosto').value = costoOp;
+        document.getElementById('sumTotalAdmin').value = totalAdmin;
+        document.getElementById('sumTotalOper').value = totalOper;
+        document.getElementById('estadoFuerza').innerHTML = cantPer;
+        $('#personalInputs').find("input[name^='cOperativo']").each(function () {
+            var val = $(this).val();
+            opera = val + costoOp;
+            operativo = val + costoOp;
+            $(this).val(opera);
+        });
+
+        $('#personalInputs').find("input[name^='cOperativo']").each(function () {
+            var value = $(this).val();
+            costoOperativo = parseFloat(value);
+            p = 0;
+            $('#personalInputs').find("input[name^='personal']").each(function () {
+                var personal = $(this).val();
+                p = parseFloat(personal);
+                costoSalario = 0;
+                console.log("personal", p)
+                $('#personalInputs').find("input[name^='costoSalario']").each(function () {
+                    var val = $(this).val();
+                    costoSalario += (parseFloat(val) + costoOperativo) * p;
+                    console.log("costo de salario", costoSalario)
+                });
+            });
+        });
+
+        totalMargen = ((costoSalario * parseFloat(ctcfm_margen)) / 100);
+        console.log("Margen Total", totalMargen)
+        console.log("cantidad de Personal", cantPer)
+        comisionProtal = (totalMargen / cantPer);
+        console.log("Comishion", comisionProtal)
+        comisionProtal = (Math.round(comisionProtal * 100) / 100).toFixed(2);
+        $('#personalInputs').find("input[name^='comisionPT']").each(function () {
+            $(this).val(comisionProtal);
+        });
+        var salarioCosto = 0;
+        var sinIva = 0;
+        $('#personalInputs').find("input[name^='puestoId']").each(function () {
+            var id = $(this).val();
+            $('#personalInputs').find("input[name^='costoSalario_"+id+"']").each(function () {
+                var val = $(this).val();
+                salarioCosto = parseFloat(val);
+                sinIva = (costoOperativo + salarioCosto + parseFloat(comisionProtal));
+                $('#personalInputs').find("input[name^='facSinIva_" + id + "']").each(function () {
+                    var val = $(this).val();
+                    val = sinIva
+                    val = (Math.round(val * 100) / 100).toFixed(2);
+                    totalSinIva += parseFloat(val);
+                    $(this).val(val);
+                });
+                $('#personalInputs').find("input[name^='comisionPT_" + id + "']").each(function () {
+                    var val = $(this).val();
+                    totalComProt += parseFloat(val);
+                });
+                $('#personalInputs').find("input[name^='facConIva_" + id + "']").each(function () {
+                    var val = $(this).val();
+                    val = ((sinIva * 0.12) + sinIva)
+                    val = (Math.round(val * 100) / 100).toFixed(2);
+                    $(this).val(val);
+                    var personal=0
+                    $('#personalInputs').find("input[name^='personal_" + id + "']").each(function () {
+                        personal = $(this).val();
+                    });
+                    $('#personalInputs').find("input[name^='facMesConIva_" + id + "']").each(function () {
+                        var facMesConIva = $(this).val();
+                        facMesConIva = 0;
+                        facMesConIva = (parseFloat(val) * parseFloat(personal));
+                        facMesConIva = (Math.round(facMesConIva * 100) / 100).toFixed(2);
+                        $(this).val(facMesConIva);
+                        totalConIva += parseFloat(facMesConIva);
+                    });
+                });
+            });
+        });
+
+        totalConIva = (Math.round(totalConIva * 100) / 100).toFixed(2);
+        totalSinIva = (Math.round(totalSinIva * 100) / 100).toFixed(2);
+        totalComProt = (Math.round(totalComProt * 100) / 100).toFixed(2);
+        document.getElementById('totalConIva').value = totalConIva;
+        document.getElementById('totalSinIva').value = totalSinIva;
+        document.getElementById('totalComProt').value = totalComProt;
+
+    });
+
+    var suma = function () {
+        var costoSalario = 0;
+        var costoOperativo = 0;
+        var OperCosto = document.getElementById('ope').value
+        if (tags.length > 0) {
+            for (var i = tags.length-1; i < tags.length; i++) {
+                cantPer += tags[i].id;
+            }
+            $('#personalInputs').find("input[name^='costoSalario']").each(function () {
+                var val = $(this).val();
+                costoSalario = val;
+            });
+            var totalSinComision = (parseFloat(costoSalario) + parseFloat(costoOperativo))
+            document.getElementById('cantidadPerAdmin').value = cantPer;
+            document.getElementById('cantidadPerOper').value = cantPer;
+            document.getElementById('eFuerza').innerHTML = cantPer;
+        }
+    }
+
+    function cantPersonal(id) {
+        var facConIva = 0;
+        var facMesConIva = 0;
+        var totalGeneral = 0;
+        var total = 0;
+        var cant = 0;
+        var costoOp = 0;
+        var montoTotal = $('#monto_total').val();
+        var planilla = $('#planilla').val();
+        /*div gastos admin entre planilla*/
+        var div = parseFloat(montoTotal) / parseFloat(planilla);
+        /*Obteniendo valor de input group*/
+        $('#personalInputs').find("input[name^='personal_"+id+"']").each(function () {
+            var val = $(this).val();
+            cant += parseInt(val);
+        });
+        $('#personalInputs').find("input[name^='facConIva_" + id + "']").each(function () {
+            facConIva = $(this).val();
+        });
+        /*multi result div por cantidad de personal*/
+        var multi = div * cant;
+        /*Mostrando data */
+        document.getElementById('cantidadPer').value = cant;
+        document.getElementById('estadoFuerza').innerHTML = cant;
+        document.getElementById('eFuerza').innerHTML = cant;
+        total = (Math.round(multi * 100) / 100).toFixed(2);
+        document.getElementById('totalGastos').innerHTML = "Q" + total;
+
+        /*Total General Operacion*/
+        totalGeneral = parseFloat(total) + parseFloat(insdirecT) + parseFloat(insindepT);
+        totalGeneral = (Math.round(totalGeneral * 100) / 100).toFixed(2);
+        /*Total General mostrando data*/
+        document.getElementById('sumTotal').value = total;
+        document.getElementById('tGen').innerHTML = "Q" + totalGeneral;
+
+        /*Costo operativo operacion*/
+        costoOp = (parseFloat(totalGeneral) / parseFloat(cant));
+        costoOp = (Math.round(costoOp * 100) / 100).toFixed(2);
+
+        /*Costo Operativo Mostrando data*/
+        document.getElementById('costoOp').innerHTML = "Q" + costoOp;
+
+        $('#personalInputs').find("input[name^='cOperativo']").each(function () {
+            var val = $(this).val();
+            val = 0;
+            val = parseFloat(val) + parseFloat(costoOp);
+            $(this).val(val);
+        });
+
+        $('#personalInputs').find("input[name^='facMesConIva_"+id+"']").each(function () {
+            var facMesConIva = $(this).val();
+            facMesConIva = 0;
+            facMesConIva = (parseFloat(facConIva) * parseFloat(cant));
+            facMesConIva = (Math.round(facMesConIva * 100) / 100).toFixed(2);
+            $(this).val(facMesConIva);
+        });
+
+        //insert cantidad personal
+    }
+
+    function insertPersonal(id) {
+        var cant = 0;
+        var fase = $('#ctpf_cfas_id').val();
+        console.log("fase", fase)
+        $('#personalInputs').find("input[name^='personal_" + id + "']").each(function () {
+            var val = $(this).val();
+            cant += parseInt(val);
+        });
+        $.ajax({
+            url: '@Url.Action("UpdateCantidadPersonal", "Tmp_Propuesta_Fase_Puesto")',
+            data: { fase, id, cant },
+            type: "POST",
+            success: function (data, status) {
+                window.location.reload();
+            },
+            error: function () {
+            }
+        });
+    }
+
+    function totConIva(id) {
+        var costoSalario = 0;
+        var cOperativo = 0;
+        var facConIva = 0;
+        var facSinIva = 0;
+        var personal = 0;
+        /*Obteniendo valor de input group*/
+        $('#personalInputs').find("input[name^='costoSalario_"+id+"']").each(function () {
+            var val = $(this).val();
+            costoSalario = val;
+        });
+        $('#personalInputs').find("input[name^='cOperativo_"+id+"']").each(function () {
+            var val = $(this).val();
+            cOperativo = val;
+        });
+        $('#personalInputs').find("input[name^='personal_"+id+"']").each(function () {
+            var val = $(this).val();
+            personal += parseInt(val);
+        });
+        $('#personalInputs').find("input[name^='facConIva_" + id + "']").each(function () {
+            facSinIva = 0;
+            facConIva = $(this).val();
+            facSinIva = parseFloat(facConIva) / 1.12;
+            facSinIva = (Math.round(facSinIva * 100) / 100).toFixed(2);
+            $('#personalInputs').find("input[name^='facSinIva_" + id + "']").each(function () {
+                var val = $(this).val();
+                val = 0;
+                val = facSinIva
+                $(this).val(val);
+            });
+            $('#personalInputs').find("input[name^='comisionPT_" + id + "']").each(function () {
+                var val = $(this).val();
+                val = 0;
+                val = facSinIva - (parseFloat(costoSalario) + parseFloat(cOperativo));
+                val = (Math.round(val * 100) / 100).toFixed(2);
+                $(this).val(val);
+            });
+            $('#personalInputs').find("input[name^='facMesConIva_" + id + "']").each(function () {
+                var val = $(this).val();
+                val = 0;
+                val = facConIva * personal;
+                val = (Math.round(val * 100) / 100).toFixed(2);
+                $(this).val(val);
+            });
+        });
+    }
+
+    function insertIVA(id) {
+        var facConIVA = 0;
+        var fase = $('#ctpf_cfas_id').val();
+        console.log("fase", fase)
+        $('#personalInputs').find("input[name^='facConIva_" + id + "']").each(function () {
+            var facMesConIva = $(this).val();
+            facConIVA = facMesConIva;
+        });
+        $.ajax({
+            url: '@Url.Action("UpdateFacConIVA", "Tmp_Propuesta_Fase_Puesto")',
+            data: { fase, id, facConIVA },
+            type: "POST",
+            success: function (data, status) {
+                window.location.reload();
+            },
+            error: function () {
+            }
+        });
+    }
+
+    $("#ctpfi_cins_id").change(function () {
+        var id = $('option:selected', $(this)).val();
+        ctpfi_cfas_id = $("#ctpfin_cfas_id").val();
+        ctpfi_cins_id = id;
+        ctpfi_cantidad = 1;
+        $.ajax({
+            url: '@Url.Action("CreateInsumosGenerales", "Tmp_Propuesta_Fase_Puesto")',
+            data: { ctpfi_cfas_id, ctpfi_cins_id, ctpfi_cantidad },
+            type: "POST",
+            success: function (data, status) {
+                window.location.reload();
+            },
+            error: function () {
+            }
+        });
+    });
+
+    var elimina = function (NewId, ListId) {
+        $.ajax({
+            url: '@Url.Action("DeleteInsmos", "Tmp_Propuesta_Fase_Puesto")',
+            data: { NewId, ListId },
+            type: "POST",
+            success: function (data, status) {
+            },
+            error: function () {
+            }
+        });
+    }
+
+    function validateAndInsert() {
+        var ctcfm_margen = $("#ctcfm_margen").val();
+        if (ctcfm_margen <= 0 || ctcfm_margen > 100) {
+            document.getElementById('errorMargen').innerHTML = "ERROR: Porcentaje inválido. Debe de ser entre 1 y 100";
+        } else {
+            document.getElementById('errorMargen').innerHTML = "";
+        }
+    }
+
+    function insertMargen() {
+        var fase = $('#ctpf_cfas_id').val();
+        var ctcfm_margen = $("#ctcfm_margen").val();
+        $.ajax({
+            url: '@Url.Action("ManejoMargen", "Tmp_Propuesta_Fase_Puesto")',
+            data: { fase, ctcfm_margen },
+            type: "POST",
+            success: function (data, status) {
+                window.location.reload();
+            },
+            error: function () {
+            }
+        });
+
+    }
+
+    $('#ctcfm_margen').keypress(function (event) {
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) &&
+            ((event.which < 48 || event.which > 57) &&
+                (event.which != 0 && event.which != 8))) {
+            event.preventDefault();
+        }
+
+        var text = $(this).val();
+
+        if ((text.indexOf('.') != -1) &&
+            (text.substring(text.indexOf('.')).length > 2) &&
+            (event.which != 0 && event.which != 8) &&
+            ($(this)[0].selectionStart >= text.length - 2)) {
+            event.preventDefault();
+        }
+    });
+
+</script>

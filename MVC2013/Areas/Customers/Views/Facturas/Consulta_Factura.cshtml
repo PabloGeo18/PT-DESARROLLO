@@ -1,0 +1,396 @@
+﻿@model IEnumerable<MVC2013.Models.Facturas>
+@using MVC2013.Src.Comun.Util
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Facturas por Cliente</h2>
+
+
+
+
+<div class="col-md-4 col-lg-4">
+    <div class="panel panel-danger">
+        <div class="panel-heading bg-red">Consultar Factura</div>
+        <div class="panel-body">
+
+            <div class="row">
+                <label class="col-md-12 col-lg-12 col-sm-12 col-xs-12">Serie</label>
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+
+                    <select class="form-control" id="id_serie" required>
+                        <option>--Seleccione una Serie--</option>
+                        @foreach (var item in ViewBag.serie)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <label class="col-md-12 col-lg-12 col-sm-12 col-xs-12">Correlativo</label>
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-" id="input_correlativo">
+                    <input type="number" id="correlativo" class="form-control correlativo" min="0" max="0" value="0" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <button class="btn btn-info btn-sm btn_index_rs" )">
+                        <span class="glyphicon glyphicon-search"></span>&nbsp;Buscar Factura
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="col-md-8 col-lg-8">
+
+        <div class="panel panel-info">
+            <div class="panel-heading bg-navy">Información Factura</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <label class="">Cliente</label>
+                        <div class="" id="fac_cliente"></div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <label class="">Razon Social</label>
+                        <div class="" id="fac_rs"></div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <label class="">Estado</label>
+                        <div class="" id="fac_estado"></div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <label class="">Serie</label>
+                        <div class="" id="fac_serie"></div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <label class="">Numero Factura</label>
+                        <div class="" id="fac_num"></div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <label class="">Fecha</label>
+                        <div class="" id="fac_fecha"></div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <label class="">Descripción</label>
+                        <div class="" id="fac_descripcion"></div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <label class="">Direccion</label>
+                        <div class="" id="fac_direccion"></div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <label class="">Nit</label>
+                        <div class="" id="fac_nit"></div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading bg-purple">Datos de Auditoría</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                                <label class="">Creado Por</label>
+                                <div class="" id="fac_creador"></div>
+                            </div>
+                            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                                <label class="">Fecha de Creación</label>
+                                <div class="" id="fac_creacion"></div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                                <label class="">Modificado Por</label>
+                                <div class="" id="fac_modificador"></div>
+                            </div>
+                            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                                <label class="">Fecha de Modificacion</label>
+                                <div class="" id="fac_modificacion"></div>
+                            </div>
+                            <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6 hidden" id="comentario_anulacion">
+                                <label class="">Comentario Anulación</label>
+                                <div class="" id="fac_comentario"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <table class="table-hover" id="fac_detalle">
+                    <tr>
+                        <th>
+                            Ubicacion
+                        </th>
+                        <th>
+                            Servicio
+                        </th>
+                        <th>
+                            Cantidad
+                        </th>
+                        <th>
+                            Precio
+                        </th>
+                        <th>
+                            Importe
+                        </th>
+                    </tr>
+                </table>
+
+                <div class="col-md-offset-8 col-lg-offset-8 col-xs-offset-8 col-sm-offset-8" id="fac_total"></div>
+                <br />
+                <div id="btn_descargar"></div>
+            </div>
+        </div>
+
+
+</div>
+
+
+<script>
+
+    var catalogo_creada = @((int)Catalogos.Estado_Factura.creada);
+    var catalogo_cobro = @((int)Catalogos.Estado_Factura.En_Cobro);
+    var catalogo_pagada = @((int)Catalogos.Estado_Factura.Pagada);
+    var catalogo_anulada = @((int)Catalogos.Estado_Factura.Anulada);
+    var catalogo_eliminada = @((int)Catalogos.Estado_Factura.Eliminada);
+   
+
+    $(document).on('click', '.btn_index_rs', function () {
+        var id_serie = $('#id_serie').val();
+        var correlativo = $('#correlativo').val();
+        $.ajax({
+            url: '@Url.Action("Obtener_Factura", "Facturas")',
+            type: "GET",
+            data: { 'serie': id_serie,  'corr' : correlativo },
+            datatype: JSON,
+            error: function () {
+                /*Auditoria - Creador*/
+                target_creador = $("#fac_creador");
+                target_creador.html("<text></text>");
+                /*Auditoria - Fecha de Creacion*/
+                target_creacion = $("#fac_creacion");
+                target_creacion.html("<text></text>");
+                /*Auditoria - Modificador*/
+                target_modificador = $("#fac_modificador");
+                target_modificador.html("<text></text>");
+                /*Auditoria - Modificacion*/
+                target_modificacion = $("#fac_modificacion");
+                target_modificacion.html("<text></text>");
+                /*Cliente*/
+                target_serie = $("#fac_cliente");
+                target_serie.html("<text></text>");
+                /*Razon Social*/
+                target_serie = $("#fac_rs");
+                target_serie.html("<text></text>");
+                /*Estado*/
+                target_estado = $("#fac_estado");
+                target_estado.html("<text></text>");
+                /*Serie*/
+                target_serie = $("#fac_serie");
+                target_serie.html("<text></text>");
+                /*Serie*/
+                target_serie = $("#fac_serie");
+                target_serie.html("<text></text>");
+                /*Numero*/
+                target_num = $("#fac_num");
+                target_num.html("<text></text>");
+                /*Fecha*/
+                target_fecha = $("#fac_fecha");
+                target_fecha.html("<text></text>");
+                /*Descripcion*/
+                target_desc = $("#fac_descripcion");
+                target_desc.html("<text></text>");
+                /*Direccion*/
+                target_dirr = $("#fac_direccion");
+                target_dirr.html("<text></text>");
+                /*Nit*/
+                target_nit = $("#fac_nit");
+                target_nit.html("<text></text>");
+                /*Detalle*/
+                target_detalle = $("#fac_detalle");
+                target_detalle.html("<tr>" +
+                                        "<th>" +
+                                            "Ubicacion" +
+                                        "</th>" +
+                                        "<th>" +
+                                            "Servicio" +
+                                        "</th>" +
+                                        "<th>" +
+                                            "Cantidad" +
+                                        "</th>" +
+                                        "<th>" +
+                                            "Precio" +
+                                        "</th>" +
+                                        "<th>" +
+                                            "Importe" +
+                                        "</th>" +
+                                    "</tr>");
+                target_btn = $("#btn_descargar");
+                target_btn.html("<text></text>");
+                target_total = $("#fac_total");
+                target_total.html("<text><text>");
+            },
+            success: function (response) {
+                /*Auditoria - Creador*/
+                target_creador = $("#fac_creador");
+                target_creador.html("<text>" + response.Creador + "</text>");
+                /*Auditoria - Fecha de Creacion*/
+                target_creacion = $("#fac_creacion");
+                target_creacion.html("<text>" + response.Creacion + "</text>");
+                /*Auditoria - Modificador*/
+                target_modificador = $("#fac_modificador");
+                target_modificador.html("<text>" + response.Modificador + "</text>");
+                /*Auditoria - Modificacion*/
+                target_modificacion = $("#fac_modificacion");
+                target_modificacion.html("<text>" + response.Modificacion + "</text>");
+                /*Auditoria - Comentario*/
+                if (!response.estado_temp) {
+                    target_comentario = $('#fac_comentario');
+                    target_comentario.html("<text>" + response.comentario + "</text>");
+                    target_div_comentario = $('#comentario_anulacion');
+                    target_div_comentario.removeClass("hidden");
+                }
+                else {
+                    target_div_comentario = $('#comentario_anulacion');
+                    target_div_comentario.addClass("hidden");
+                }
+                /*Cliente*/
+                target_cliente = $("#fac_cliente");
+                target_cliente.html("<text>" + response.Cliente + "</text>");
+                /*Razon Social*/
+                target_rs = $("#fac_rs");
+                target_rs.html("<text>" + response.Razon_Social + "</text>");
+                /*Estado*/
+                target_estado = $("#fac_estado");
+                target_estado.html("<text style=\"font-size:xx-large\">" + response.estado + "</text>");
+                if (response.estado_int == catalogo_creada) {
+                    target_estado.addClass("label-primary");
+                    //target_estado.html("<text style=\"font-size:xx-large\" class=\"label-primary\">" + response.estado + "</text>");
+                }
+                else if (response.estado_int == catalogo_cobro) {
+                    target_estado.addClass("label-info");
+                }
+                else if (response.estado_int == catalogo_pagada) {
+                    target_estado.addClass("label-success");
+                }
+                else if (response.estado_int == catalogo_anulada) {
+                    target_estado.addClass("label-warning");
+                }
+                else if (response.estado_int == catalogo_eliminada) {
+                    target_estado.addClass("label-danger");
+                }
+
+                /*Serie*/
+                target_serie = $("#fac_serie");
+                target_serie.html("<text style=\"font-size:xx-large\">" + response.Serie + "</text>");
+                /*Numero*/
+                target_num = $("#fac_num");
+                target_num.html("<text style=\"font-size:xx-large\">" + response.num + "</text>");
+                /*Fecha*/
+                target_fecha = $("#fac_fecha");
+                target_fecha.html("<text>" + response.fecha + "</text>");
+                /*Descripcion*/
+                target_desc = $("#fac_descripcion");
+                target_desc.html("<text>" + response.Desc + "</text>");
+                /*Direccion*/
+                target_dirr = $("#fac_direccion");
+                target_dirr.html("<text>" + response.Dirr + "</text>");
+                /*Nit*/
+                target_nit = $("#fac_nit");
+                target_nit.html("<text>" + response.Nit + "</text>");
+                /*Detalle*/
+                target_detalle = $("#fac_detalle");
+                target_detalle.html("<tr>" +
+                                        "<th>" +
+                                            "Ubicacion" +
+                                        "</th>" +
+                                        "<th>" +
+                                            "Servicio" +
+                                        "</th>" +
+                                        "<th>" +
+                                            "Cantidad" +
+                                        "</th>" +
+                                        "<th>" +
+                                            "Precio" +
+                                        "</th>" +
+                                        "<th>" +
+                                            "Importe" +
+                                        "</th>" +
+                                    "</tr>");
+                $.each(response.detalles, function ($in, item) {
+                    target_detalle.append(
+                        "<tr>" +
+                                        "<td>" +
+                                            item.ubicacion +
+                                        "</td>" +
+                                        "<td>" +
+                                            item.servicio +
+                                        "</td>" +
+                                        "<td>" +
+                                            item.cantidad +
+                                        "</td>" +
+                                        "<td>" +
+                                            item.precio +
+                                        "</td>" +
+                                        "<td>" +
+                                            item.importe +
+                                        "</td>" +
+                                    "</tr>");
+                });
+                /*Boton*/
+                if (response.estado_temp) {
+                    target_btn = $("#btn_descargar");
+                    target_btn.html(
+                        "<button class=\"btn btn-warning btn-sm btn_factura\" data-id_f=" + response.id + ">" +
+                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar Factura</button>"
+                        );
+                }
+                else {
+                    target_btn = $("#btn_descargar");
+                    target_btn.html(
+                        ""
+                        );
+                }
+                target_total = $("#fac_total");
+                target_total.html("<text style=\"font-size:x-large\">" + response.Total + "<text>");
+
+            }
+        });
+    });
+
+    $(document).on('click', '.btn_factura', function () {
+        var id_factura = $(this).data("id_f");
+        var url = "@Url.Action("GetFactura", "Clientes")?id=" + id_factura;
+        window.location.href = url;
+    });
+
+    $("#id_serie").change(function () {
+        var id_serie = $("#id_serie").val();
+        $.ajax({
+            url: '@Url.Action("Obtener_Correlativo", "Facturas")',
+            type: "GET",
+            data: { 'id': id_serie },
+            datatype: JSON,
+            error: function () {
+                target = $("#input_correlativo");
+                target.html("<input type=\"number\" id=\"correlativo\" class=\"form-control correlativo\" min=\"0\" max=\"0\" value=\"0\">")
+            },
+            success: function (response) {
+                target = $("#input_correlativo");
+                target.html("<input type=\"number\" id=\"correlativo\" class=\"form-control correlativo\" min=\"0\" max=\"" + response + "\" value=\"" + response + "\">")
+            }
+        });
+
+    });
+</script>

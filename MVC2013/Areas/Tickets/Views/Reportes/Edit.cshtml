@@ -1,0 +1,149 @@
+﻿@model MVC2013.Models.Reportes
+
+@{
+    ViewBag.Title = @Resources.Resources.reporte + "_" + @Resources.Resources.editar;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<div class="modal fade" id="clienteCatalog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Agregar Roles a Reporte</h3>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover">
+                        <tr>
+                            <td>Rol</td>
+                            <td>@Resources.Resources.opciones</td>
+                        </tr>
+                        @foreach (MVC2013.Models.Roles c in (ViewBag.rolesToAdd as List<MVC2013.Models.Roles>))
+                        {
+                            <tr>
+                                <td>@c.nombre</td>
+                                <td>@Html.ActionLink(@Resources.Resources.agregar, "AddRol", new { RolId = c.id_rol, ReporteId = Model.id_reporte }, new { @class = "btn btn-success btn-sm" })</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove-sign"></span>&nbsp;Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>Edicion de Reportes</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_reporte)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.reporte, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.reporte, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.reporte, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_reporte_carpeta, "id_reporte_carpeta", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_reporte_carpeta", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_reporte_carpeta, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_reporte_grupo, "id_reporte_grupo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_reporte_grupo", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_reporte_grupo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.url, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.url, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.url, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-success btn-sm" type="submit">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+
+<h3>Roles Agregados a Reporte</h3>
+<div class="table-responsive">
+    <button class="btn btn-primary btn-sm" type="button" id="bancoModalCaller" onclick="$('#clienteCatalog').modal()">
+        <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.agregar
+    </button>
+    <table class="table table-striped table-bordered table-hover">
+        <tr>
+            <th>IdRol</th>
+            <th>Rol</th>
+            <th>@Resources.Resources.opciones</th>
+        </tr>
+        @foreach (MVC2013.Models.Reporte_Rol c in (ViewBag.reporte_rolesAdd as List<MVC2013.Models.Reporte_Rol>))
+        {
+            <tr>
+                <td>@c.id_rol</td>
+                <td>
+                    @c.Roles.nombre
+            </td>
+            <td>
+                @Html.ActionLink("Eliminar", "DeleteReporteRol", new { ReporteRolId = c.id_reporte_rol, ReporteId = Model.id_reporte }, new { @class = "btn btn-danger" })
+
+
+            </td>
+        </tr>
+        }
+    </table>
+</div>
+}
+
+
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

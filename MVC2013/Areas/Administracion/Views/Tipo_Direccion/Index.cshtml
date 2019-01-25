@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MVC2013.Models.Tipo_Direccion>
+
+@{
+    ViewBag.Title = @Resources.Resources.tipo_direccion + "_" + @Resources.Resources.lista;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.tipo_direccion_lista</h2>
+
+<div class="form-group">
+    <button class="btn btn-sm btn-success" onclick="location.href = '@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</div>
+
+<div class="table-responsive" style="overflow-y:auto; max-height:400px">
+    <table class="table-striped">
+        <thead>
+            <tr>
+                <th>@Resources.Resources.tipo_direccion_nombre</th>
+                <th>@Resources.Resources.acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.id_tipo_direccion })'">
+                            <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                        </button>
+                        <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.id_tipo_direccion })'">
+                            <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = item.id_tipo_direccion })'">
+                            <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                        </button>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

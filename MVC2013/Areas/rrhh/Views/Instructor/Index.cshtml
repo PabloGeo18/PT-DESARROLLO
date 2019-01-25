@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MVC2013.Models.Instructor>
+
+@{
+    ViewBag.Title = @Resources.Resources.capacitacion_instructor + "_" + Resources.Resources.lista;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.instructor_lista</h2>
+
+<div class="row">
+    <div class="col-lg-12 form-group">
+        <button class="btn btn-sm btn-success" onclick="location.href = '@Url.Action("Create")'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 form-group">
+        <div class="table-responsive">
+            <table class="table-striped">
+                <tr>
+                    <th>@Resources.Resources.instructor_primer_nombre</th>
+                    <th>@Resources.Resources.instructor_segundo_nombre</th>
+                    <th>@Resources.Resources.instructor_primer_apellido</th>
+                    <th>@Resources.Resources.instructor_segundo_apellido</th>
+                    <th>@Resources.Resources.acciones</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.primer_nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.segundo_nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.primer_apellido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.segundo_apellido)
+                        </td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.id_instructor })'">
+                                <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = item.id_instructor })'">
+                                <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                            </button>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

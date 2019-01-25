@@ -1,0 +1,154 @@
+﻿@using MVC2013.Src.MvcPaging;
+@model IPagedList<MVC2013.Models.Solicitudes>
+@*@model IEnumerable<MVC2013.Models.Solicitudes>*@
+
+
+@{
+    ViewBag.Title = @Resources.Resources.solicitudes + "_" + Resources.Resources.lista;
+    Layout = "~/Areas/TransporteValores/Views/Shared/_Layout.cshtml";
+    String errorMessage = (String)ViewBag.ErrorMessage;
+}
+
+<h2>@Resources.Resources.solicitudes_lista</h2>
+
+
+@Html.ValidationSummary(errorMessage, new { @class = "text-danger" })
+
+
+<div class="searchBox">
+    <h5>Carga Masiva</h5>
+
+    @using (Html.BeginForm("CargaMasiva", "Solicitudes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <table border="0" style="border-width:0;width:200pt;border-style:none" class="none">
+            <tr>
+                <td style="border-width:0;width:50pt;">
+                    <input type="submit" name="Submit" id="Submit" value="@Resources.Resources.subir" class="btn btn-default" disabled="true" />
+                </td>
+                <td style="border-width:0;width:150pt;">
+                    <span class="btn btn-default btn-file">
+                        @Resources.Resources.buscar <input type="file" name="FileUpload1" id="FileUpload1" class="btn-file" onchange="file_path_display.innerHTML = '<label>' + FileUpload1.value + '</label>'; Submit.disabled = false;" />
+                    </span>
+                    <div id="file_path_display" style="width:150pt"></div>
+                </td>
+
+        </table>
+    }
+</div>
+
+@*@{Html.RenderPartial("SearchBox", "Solicitudes");}*@
+@{Html.RenderPartial("SearchBox", "Solicitudes", new ViewDataDictionary(this.ViewData) {
+        { "showLetters", false },
+        { "showDates"  , true  }
+});}
+
+<p>
+    @Html.ActionLink(@Resources.Resources.crear_nuevo, "Create")
+</p>
+
+<div class="pagingContainer">
+    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+</div>
+
+<table class="zebra-striped">
+    <thead>
+        <th>
+            @Resources.Resources.solicitudes_idsolicitud
+        </th>
+        <th>
+            @Resources.Resources.solicitudes_estado_solicitud
+        </th>
+        <th>
+            @Resources.Resources.solicitudes_fecha_creacion
+        </th>
+        <th>
+            @Resources.Resources.asignaciones_receptor
+        </th>
+        <th>
+            @Resources.Resources.solicitudes_cliente
+        </th>
+        <th>
+            @Resources.Resources.solicitudes_origen
+        </th>
+        <th>
+            @Resources.Resources.solicitudes_destino
+        </th>
+        <th>
+            @Resources.Resources.solicitudes_fecha_asignacion
+        </th>
+        <th>
+            @Resources.Resources.asignaciones_estado
+        </th>
+        <th>
+            @Resources.Resources.solicitud_origen
+        </th>
+        <th>
+            @Resources.Resources.tipo_solicitud
+        </th>
+        <th>@Resources.Resources.acciones</th>
+    </thead>
+
+@foreach (var item in Model) {
+
+    var asignacion = item.Asignaciones.Where(x => x.eliminado == false && x.activo == true).FirstOrDefault();
+    
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_solicitud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Solicitud_Estado.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_creacion)
+        </td>
+        <td>
+            @if (asignacion != null)
+            {@asignacion.Receptores.nombre_completo_usuario}
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clientes.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Puntos.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Puntos1.nombre)
+        </td>
+        <td>
+            @if (asignacion != null)
+            {@asignacion.fecha_creacion}
+        </td>
+        <td>
+            @if (asignacion != null)
+            {@asignacion.Asignacion_Estado.descripcion}
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_solicitud_origen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Solicitud_Tipo.nombre)
+        </td>
+        <td>
+            @if (item.id_solicitud_estado < 3) { 
+                if (asignacion == null) {
+                    @Html.ActionLink(@Resources.Resources.asignar, "Create", "Asignaciones", new { id_solicitud = item.id_solicitud }, null) <text>&nbsp;|&nbsp;</text>
+                }
+                else
+                {
+                    if (asignacion.id_asignacion_estado != (int)MVC2013.Src.Comun.Util.Catalogos.Estados_Asignacion.Reasignando)
+                    {
+                        @Html.ActionLink(@Resources.Resources.reasignar, "Recreate", "Asignaciones", new { id_solicitud = item.id_solicitud, id_asignacion = asignacion.id_asignacion }, null) <text>&nbsp;|&nbsp;</text>
+                    }
+                }
+            }
+            @if (item.id_solicitud_estado < (int)MVC2013.Src.Comun.Util.Catalogos.Estados_Solicitud.Entregar) { 
+                @Html.ActionLink(@Resources.Resources.anular, "Anular", new { id_solicitud = item.id_solicitud}) <text>&nbsp;|&nbsp;</text>
+                @Html.ActionLink(@Resources.Resources.eliminar, "DeleteAll", new { id_solicitud = item.id_solicitud }, new { onclick = "return confirm('" + @Resources.Resources.confirmacion_eliminar + "');" })
+            }
+        </td>
+
+    </tr>
+}
+
+</table>

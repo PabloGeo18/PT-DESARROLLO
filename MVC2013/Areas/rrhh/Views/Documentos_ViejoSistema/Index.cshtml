@@ -1,0 +1,313 @@
+﻿@model IEnumerable<MVC2013.Models.Archivo>
+
+@{
+    ViewBag.Title = "Documentos Sistema Anterior";
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Documentos de Empleados - Sistema Anterior</h2>
+
+<div>
+    <div class="form-group">
+        <input id="id_empleado" type="number" placeholder="Código Empleado" class="form-control" style="display:inline-block" />
+        <button class="btn btn-success btn-sm" id="seleccionar_empleado" data-loading-text="Buscando..." style="display:inline-block" type="button">
+            <span class="glyphicon glyphicon-search"></span>&nbsp; @Resources.Resources.buscar
+        </button>
+    </div>
+    <label style="color:red" id="error_busqueda"></label>
+
+    <h3 id="nombre_empleado"></h3>
+
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+            <label>Documentos</label>
+            <table class="table-striped">
+                <thead>
+                    <tr>
+                        <th>Archivo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="body_doc1"></tbody>
+            </table>
+        </div>
+        
+        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+            <label>Documentos 2014</label>
+            <table class="table-striped">
+                <thead>
+                    <tr>
+                        <th>Archivo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="body_doc2"></tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(function () {
+
+        //Documentos de tabla pt_documentos
+        $(document).on('click', '.btn_descarga1', function () {
+            var id = $(this).data('id');
+            var val = $(this).data('val');
+            console.log(2);
+            var url = "@Url.Action("Descargar1", new { id = "val1", val = "val2" })";
+            url = url.replace("val1", id);
+            url = url.replace("val2", val);
+            window.open(url);
+        });
+        //Documentos de tabla pt_documentos_2014
+        $(document).on('click', '.btn_descarga2', function () {
+            var id = $(this).data('id');
+            var val = $(this).data('val');
+            console.log(2);
+            var url = "@Url.Action("Descargar2", new { id = "val1", val = "val2" })";
+            url = url.replace("val1", id);
+            url = url.replace("val2", val);
+            window.open(url);
+        });
+
+        //Buscar y seleccionar empleado
+        $('#seleccionar_empleado').click(function () {
+            var btn = $(this);
+            $('#error_busqueda').text('');
+            $('#nombre_empleado').text('');
+            var id = $('#id_empleado').val();
+            if (id != "") {
+                btn.button('loading');
+                $.ajax({
+                    url: '@Url.Action("ExisteEmpleado", "Documentos_ViejoSistema")',
+                    type: 'GET',
+                    data: { 'id_empleado': id },
+                    success: function (response) {
+                        selector = "#body_doc1";
+                        target = $(selector);
+                        target.html("");
+                        selector = "#body_doc2";
+                        target = $(selector);
+                        target.html("");
+                        //Se encontro empleado
+                        if (!("empty" in response)) {
+                            selector = "#body_doc1";
+                            target = $(selector);
+                            target.html("");
+                            console.log(response.doc1.nombre);
+                            console.log(response.doc2.nombre);
+                            if (response.doc1.nombre == "")
+                            {
+                                $('#nombre_empleado').text(response.doc2.nombre);
+                            }
+                            else
+                            {
+                                $('#nombre_empleado').text(response.doc1.nombre);
+                            }
+                            if (response.doc1.cv) {
+                                target.append("<tr><td>Hoja de Información</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc1.id + "\" data-val=\"1\" class=\"btn btn-sm btn-warning btn_descarga1\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc1.solicitud) {
+                                target.append("<tr><td>SOLICITUD</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc1.id + "\" data-val=\"2\" class=\"btn btn-sm btn-warning btn_descarga1\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc1.dpi) {
+                                target.append("<tr><td>DPI</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc1.id + "\" data-val=\"3\" class=\"btn btn-sm btn-warning btn_descarga1\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc1.penales) {
+                                target.append("<tr><td>PENALES</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc1.id + "\" data-val=\"4\" class=\"btn btn-sm btn-warning btn_descarga1\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc1.infornet) {
+                                target.append("<tr><td>INFORNET</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc1.id + "\" data-val=\"5\" class=\"btn btn-sm btn-warning btn_descarga1\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc1.poligrafia) {
+                                target.append("<tr><td>POLIGRAFIA</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc1.id + "\" data-val=\"6\" class=\"btn btn-sm btn-warning btn_descarga1\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc1.estudios) {
+                                target.append("<tr><td>ESTUDIOS</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc1.id + "\" data-val=\"7\" class=\"btn btn-sm btn-warning btn_descarga1\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc1.academia) {
+                                target.append("<tr><td>ACADEMIA</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc1.id + "\" data-val=\"8\" class=\"btn btn-sm btn-warning btn_descarga1\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc1.capacitacion) {
+                                target.append("<tr><td>CAPACITACION</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc1.id + "\" data-val=\"9\" class=\"btn btn-sm btn-warning btn_descarga1\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc1.recomendacion) {
+                                target.append("<tr><td>RECOMENDACION</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc1.id + "\" data-val=\"10\" class=\"btn btn-sm btn-warning btn_descarga1\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc1.socioeconomico) {
+                                target.append("<tr><td>SOCIOECONOMICO</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc1.id + "\" data-val=\"11\" class=\"btn btn-sm btn-warning btn_descarga1\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc1.curriculum) {
+                                target.append("<tr><td>CURRICULUM</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc1.id + "\" data-val=\"12\" class=\"btn btn-sm btn-warning btn_descarga1\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc1.militar) {
+                                target.append("<tr><td>MILITAR</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc1.id + "\" data-val=\"13\" class=\"btn btn-sm btn-warning btn_descarga1\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            //Segunda tabla
+                            selector = "#body_doc2";
+                            target = $(selector);
+                            target.html("");
+                            if (response.doc2.cv) {
+                                target.append("<tr><td>CV</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc2.id + "\" data-val=\"1\" class=\"btn btn-sm btn-warning btn_descarga2\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc2.solicitud) {
+                                target.append("<tr><td>SOLICITUD</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc2.id + "\" data-val=\"2\" class=\"btn btn-sm btn-warning btn_descarga2\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc2.dpi) {
+                                target.append("<tr><td>DPI</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc2.id + "\" data-val=\"3\" class=\"btn btn-sm btn-warning btn_descarga2\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc2.penales) {
+                                target.append("<tr><td>PENALES</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc2.id + "\" data-val=\"4\" class=\"btn btn-sm btn-warning btn_descarga2\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc2.infornet) {
+                                target.append("<tr><td>INFORNET</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc2.id + "\" data-val=\"5\" class=\"btn btn-sm btn-warning btn_descarga2\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc2.poligrafia) {
+                                target.append("<tr><td>POLIGRAFIA</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc2.id + "\" data-val=\"6\" class=\"btn btn-sm btn-warning btn_descarga2\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc2.estudios) {
+                                target.append("<tr><td>ESTUDIOS</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc2.id + "\" data-val=\"7\" class=\"btn btn-sm btn-warning btn_descarga2\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc2.academia) {
+                                target.append("<tr><td>ACADEMIA</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc2.id + "\" data-val=\"8\" class=\"btn btn-sm btn-warning btn_descarga2\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc2.capacitacion) {
+                                target.append("<tr><td>CAPACITACION</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc2.id + "\" data-val=\"9\" class=\"btn btn-sm btn-warning btn_descarga2\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc2.recomendacion) {
+                                target.append("<tr><td>RECOMENDACION</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc2.id + "\" data-val=\"10\" class=\"btn btn-sm btn-warning btn_descarga2\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc2.socioeconomico) {
+                                target.append("<tr><td>SOCIOECONOMICO</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc2.id + "\" data-val=\"11\" class=\"btn btn-sm btn-warning btn_descarga2\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc2.curriculum) {
+                                target.append("<tr><td>CURRICULUM</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc2.id + "\" data-val=\"12\" class=\"btn btn-sm btn-warning btn_descarga2\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            if (response.doc2.militar) {
+                                target.append("<tr><td>MILITAR</td>" +
+                                        "<td><button type=\"button\" data-id=\"" + response.doc2.id + "\" data-val=\"13\" class=\"btn btn-sm btn-warning btn_descarga2\">" +
+                                                "<span class=\"glyphicon glyphicon-download\"></span>&nbsp;Descargar" +
+                                            "</button></td>" +
+                                        "</tr>");
+                            }
+                            
+                        }
+                        else
+                        {
+                            $('#error_busqueda').text('Empleado no encontrado.');
+                        }
+                        btn.button('reset');
+                    },
+                    error: function () {
+                        alert("Error en la conexión con el servidor. Proceso no completado.");
+                        btn.button('reset');
+                    }
+                });
+
+            }
+        });
+    });
+</script>

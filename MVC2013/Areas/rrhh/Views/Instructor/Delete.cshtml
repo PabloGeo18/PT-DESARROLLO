@@ -1,0 +1,62 @@
+﻿@model MVC2013.Models.Instructor
+
+@{
+    ViewBag.Title = Resources.Resources.instructor + "_" + Resources.Resources.eliminar;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.instructor_eliminar</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Resources.Resources.instructor_primer_nombre
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.primer_nombre)
+        </dd>
+
+        <dt>
+            @Resources.Resources.instructor_segundo_nombre
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.segundo_nombre)
+        </dd>
+
+        <dt>
+            @Resources.Resources.instructor_primer_apellido
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.primer_apellido)
+        </dd>
+
+        <dt>
+            @Resources.Resources.instructor_segundo_apellido
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.segundo_apellido)
+        </dd>
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dd>
+            <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("DeleteConfirmed", new { id = Model.id_instructor })'">
+                <span class="glyphicon glyphicon-trash"></span> @Resources.Resources.eliminar
+            </button>
+        </dd>
+
+    </dl>
+
+</div>
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp; @Resources.Resources.listado_regresar
+    </button>
+</div>

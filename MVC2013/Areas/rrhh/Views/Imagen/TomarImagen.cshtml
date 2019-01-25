@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "TomarImagen";
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tomar Imagen</h2>
+<hr />
+
+@using (Html.BeginForm("GuardarImagen", "Imagen", FormMethod.Post, new { id = "form_imagen", enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+            <dl class="dl-horizontal">
+                <!-- /input-group -->
+                <dd>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="input_empleado" placeholder="Ingresar empleado">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" id="buscar_empleado" type="button">
+                                <span class="glyphicon glyphicon-search"></span>&nbsp;Buscar
+                            </button>
+                        </span>
+                        <input type="hidden" required id="id_empleado" name="id_empleado"/>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+            <dl class="dl-horizontal">
+                <dt style="font-size:20px">Empleado:</dt>
+                <dd style="font-size:20px" id="empleado_seleccionado">No determinado</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" form-group col-lg-6 col-md-12 col-xs-12 col-sm-12">
+            <dl class="dl-horizontal">
+                <dd id="">&nbsp;</dd>
+                <dd>
+                    <h4>@Resources.Resources.imagen</h4>
+                </dd>
+                <dd><img id="imagen_previa" class="img-rounded" style="width:320px; height:240px;" /></dd>
+                <dd>&nbsp;</dd>
+                <dd>
+                    <button type="submit" class="btn btn-success btn-sm">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar
+                    </button>
+                </dd>
+            </dl>
+        </div>
+        <div class="form-group col-lg-6 col-md-12 col-xs-12 col-sm-12">
+            <iframe id="frame_webcam" frameborder="0" src="@Url.Action("WebCam")" style="width:400px; height:410px;"></iframe>
+        </div>
+    </div>
+}
+<script>
+    $(function () {
+
+        var tomo_foto = 0;
+
+        //Presionar teclado en la interfaz
+        $(document).keypress(function (e) {
+            if (e.which == 13) { //Enter
+                $('#buscar_empleado').click();
+            }
+        });
+
+        //Validar la toma de fotografía 
+        $("#form_imagen").submit(function (event) {
+            if (tomo_foto == 0)
+            {
+                event.preventDefault();
+                return (false);
+            }
+            else
+            {
+                return;
+            }
+        });
+
+        $('#buscar_empleado').click(function () {
+            var id = $('#input_empleado').val();
+            if (id != "") {
+                $.ajax({
+                    url: '@Url.Action("ExisteEmpleado", "Empleado")',
+                    type: "GET",
+                    data: { 'id_empleado': id },
+                    error: function () {
+                        alert("Error con la conexión con el servidor.");
+                    },
+                    success: function (response) {
+                        if (response.error == false) {
+                            $('#empleado_seleccionado').text(response.nombre);
+                            $('#empleado_seleccionado').css('color', 'black');
+                            $('#id_empleado').val(response.id_empleado);
+                        }
+                        else {
+                            $('#empleado_seleccionado').text('Empleado no encontrado.');
+                            $('#empleado_seleccionado').css('color', 'red');
+                            $('#id_empleado').val("");
+                        }
+                    }
+                });
+            }
+        });
+
+        $("#frame_webcam").load(function () {
+            document.getElementById('frame_webcam').contentWindow.webcam.onSave = function () {
+                var x = new Date().getTime();
+                $('#imagen_previa').attr('src', '@Url.Action("OtenerImagenCamara")?' + x);
+                $('#tipo_foto').val(2); //2 significa que la imagen de perfil es ingresada desde la camara web
+            }
+
+            $('#frame_webcam').contents().find('#tomar_foto').on('click', function () {
+                tomo_foto = 1;
+                document.getElementById('frame_webcam').contentWindow.webcam.capture();
+            });
+        });
+    });
+</script>

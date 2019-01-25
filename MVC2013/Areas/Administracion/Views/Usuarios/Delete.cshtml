@@ -1,0 +1,54 @@
+﻿@model MVC2013.Models.Usuarios
+
+@{
+    ViewBag.Title = @Resources.Resources.usuario + "_" + @Resources.Resources.eliminar;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.usuario_eliminar</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>@Resources.Resources.usuario_usuario</dt>
+        <dd>@Html.DisplayFor(model => model.usuario)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.usuario_nombre</dt>
+        <dd>@Html.DisplayFor(model => model.nombre_completo_usuario)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.usuario_email</dt>
+        <dd>@Html.DisplayFor(model => model.email)</dd>
+
+        <dt>&nbsp;</dt>
+        <dd></dd>
+
+        <dt>@Resources.Resources.usuario_bloqueado</dt>
+        <dd>@Html.DisplayFor(model => model.bloqueo_habilitado)</dd>
+
+    </dl>
+
+    <div class="dl-horizontal">
+        <dt>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = Model.id_usuario })'">
+                    @Resources.Resources.eliminar
+                </button>
+            }
+        </dt>
+        <dd>
+            <button class="btn btn-warning btn-sm" onclick="location.href = '@Url.Action("Index", new { id = @Resources.Resources.boton_regresar_id })'">
+                @Resources.Resources.listado_regresar
+            </button>
+        </dd>
+    </div>
+</div>

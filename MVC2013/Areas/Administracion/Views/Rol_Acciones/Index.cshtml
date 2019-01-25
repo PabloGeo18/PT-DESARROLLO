@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MVC2013.Models.Rol_Acciones>
+
+@{
+    ViewBag.Title = @Resources.Resources.rol_acciones + "_" + @Resources.Resources.lista;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.rol_acciones_lista</h2>
+<div class="form-group">
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</div>
+
+<div class="table-responsive">
+    <table class="table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Resources.Resources.rol_acciones_acciones_nombre
+                </th>
+                <th>
+                    @Resources.Resources.rol_acciones_controlador
+                </th>
+                <th>
+                    @Resources.Resources.rol_acciones_rol
+                </th>
+                <th>@Resources.Resources.acciones</th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Acciones.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Controladores.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Roles.nombre)
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { /*id*/  })'">
+                        <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                    </button>
+                    <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { /*id*/ })'">
+                        <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                    </button>
+
+                    <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { /*id*/  })'">
+                        <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                    </button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

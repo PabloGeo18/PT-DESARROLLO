@@ -1,0 +1,199 @@
+﻿@model MVC2013.Models.Ingresos
+@using System.Globalization;
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+@*@{ int id_ingreso = @ViewBag.id_ingreso; }*@
+<div>
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+<h2><u>Editar Ingreso</u></h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id_ingreso)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.referencia, Resources.Resources.referencia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.referencia, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.referencia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fecha_factura, Resources.Resources.fecha_factura, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.TextBox("fecha_factura_datetime", Model.fecha_factura, new { @class = "form-control", type = "text", @readonly = "readonly" })
+                @Html.ValidationMessage("fecha_factura_datetime", null, new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-success btn-sm" type="submit">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
+                    </button>
+                </div>
+            </div>*@
+    </div>
+}
+<hr style="height:3px; border-style:solid;background-color:#222d32">
+
+<!--Ingreso Detalle-->
+<h2>@Resources.Resources.ingreso_detalle</h2>
+
+
+<p>
+    <button class="btn btn-xs btn-info" type="button" onclick="location.href='@Url.Action("add_arma", "Ingresos", new { id = Model.id_ingreso })'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.arma
+    </button>
+    @*<button class="btn btn-xs btn-success" type="button" onclick="location.href='@Url.Action("add_articulo", "Ingresos", new { id = Model.id_ingreso })'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.articulo
+        </button>*@
+    <button class="btn btn-xs btn-info" type="button" onclick="location.href='@Url.Action("add_municiones", "Ingresos", new { id = Model.id_ingreso })'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.municion
+    </button>
+    @*<button class="btn btn-xs btn-success" type="button" onclick="location.href='@Url.Action("add_uniformes", "Ingresos", new { id_ingreso = Model.id_ingreso })'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.uniforme
+        </button>
+        <button class="btn btn-xs btn-success" type="button" onclick="location.href='@Url.Action("add_consumibles", "Ingresos", new { id = Model.id_ingreso })'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.consumible
+        </button>*@
+</p>
+
+<div class="table-responsive">
+    @if (Model.Ingreso_Detalle.Where(i => i.activo && !i.eliminado).Count() <= 0)
+    {
+        <table class="table table-striped table-bordered table-responsive">
+            <thead style="background-color:cadetblue"></thead>
+            <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+        </table>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead style="background-color:#969aa2">
+                <tr>
+                    <th class="text-center">@Resources.Resources.acciones</th>
+                    <th class="text-center">@Resources.Resources.tipo</th>
+                    <th class="text-center">@Resources.Resources.valor</th>
+                    <th class="text-center">@Resources.Resources.cantidad</th>
+                    <th class="text-center">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Ingreso_Detalle in Model.Ingreso_Detalle)
+                {
+                    if (Ingreso_Detalle.activo && !Ingreso_Detalle.eliminado)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                <button data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("del_detalle", new { id_ingreso = Model.id_ingreso, id_detalle = Ingreso_Detalle.id_ingreso_detalle })'">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                            @if (Ingreso_Detalle.id_arma != null)
+                            {
+                                <td class="text-center">
+                                    @Resources.Resources.arma
+                                    <br>Tipo - @Ingreso_Detalle.Armas.Arma_Tipo.descripcion
+                                    <br>Marca - @Ingreso_Detalle.Armas.Marcas.descripcion
+                                    <br>Calibre - @Ingreso_Detalle.Armas.Calibres.descripcion
+                                </td>
+                            }
+                            @if (Ingreso_Detalle.id_articulo != null)
+                            {
+                                <td class="text-center">
+                                    @Resources.Resources.articulo
+                                    <br>Tipo - @Ingreso_Detalle.Articulos.Articulo_Tipo.descripcion
+                                </td>
+                            }
+                            @if (Ingreso_Detalle.id_consumible != null)
+                            {
+                                <td class="text-center">
+                                    @Resources.Resources.consumible
+                                    <br>@Ingreso_Detalle.Consumibles.descripcion
+                                    <br>Tipo - @Ingreso_Detalle.Consumibles.Consumible_Tipo.descripcion
+
+                                </td>
+                            }
+                            @if (Ingreso_Detalle.id_uniforme != null)
+                            {
+                                <td class="text-center">
+                                    @Resources.Resources.uniforme
+                                    <br>@Ingreso_Detalle.Uniformes.descripcion
+                                    <br>Tipo - @Ingreso_Detalle.Uniformes.Uniforme_Tipo.descripcion
+                                    <br>Talla - @Ingreso_Detalle.Uniformes.talla
+                                </td>
+                            }
+                            @if (Ingreso_Detalle.id_municion != null)
+                            {
+                                <td class="text-center">
+                                    @Resources.Resources.municion
+                                    <br>@Ingreso_Detalle.Municiones.descripcion
+                                    <br>Calibre - @Ingreso_Detalle.Municiones.Calibres.descripcion
+                                </td>
+                            }
+                            <td class="text-center">@Convert.ToDecimal(Ingreso_Detalle.valor).ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => Ingreso_Detalle.cantidad)</td>
+                            <td class="text-center">@(((Ingreso_Detalle.valor.Value) * (Ingreso_Detalle.cantidad.Value)).ToString("C", CultureInfo.GetCultureInfo("es-GT")))</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+</div>
+@if (Model.Ingreso_Detalle.Where(x => x.activo && !x.eliminado && x.id_ingreso == Model.id_ingreso).Count() <= 0)
+{
+    <div>
+        <button disabled class="btn btn-success btn-sm" onclick="location.href='@Url.Action("end_detalle", new { id = Model.id_ingreso })'">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.finalizar_ingreso
+        </button>
+    </div>
+}
+else
+{
+    <div>
+        <button class="btn btn-success btn-sm" onclick="location.href='@Url.Action("end_detalle", new { id = Model.id_ingreso })'">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.finalizar_ingreso
+        </button>
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $.validator.addMethod('date',
+            function (value, element) {
+                if (this.optional(element)) {
+                    return true;
+                }
+
+                var ok = true;
+                try {
+                    $.datepicker.parseDate('dd/mm/yy', value);
+                }
+                catch (err) {
+                    ok = false;
+                }
+                return ok;
+            }
+        );
+        $('#fecha_factura_datetime').datetimepicker(
+        {
+            viewMode: 'years',
+            format: 'DD/MM/YYYY',
+        });
+    });
+</script>

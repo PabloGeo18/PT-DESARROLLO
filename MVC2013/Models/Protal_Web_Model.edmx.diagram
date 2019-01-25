@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8e943ac29d9a403b977ab95d74ab194a" Name="Diagram1" ZoomLevel="34">
+        <EntityTypeShape EntityType="Protal_webModel.pt_estadofuerza" Width="1.5" PointX="0.625" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Protal_webModel.pt_estadofuerza_encabezado" Width="1.5" PointX="2.875" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Protal_webModel.pt_situacion" Width="1.5" PointX="4.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Protal_webModel.pt_contratacion" Width="1.5" PointX="8.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Protal_webModel.pt_empleado" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <AssociationConnector Association="Protal_webModel.pt_estadofuerzapt_empleado" />
+        <AssociationConnector Association="Protal_webModel.pt_estadofuerza_encabezadopt_estadofuerza" />
+        <AssociationConnector Association="Protal_webModel.pt_situacionpt_estadofuerza" />
+        <AssociationConnector Association="Protal_webModel.pt_empleadopt_contratacion" />
+        <EntityTypeShape EntityType="Protal_webModel.pt_ubicacion" Width="1.5" PointX="12.875" PointY="1.125" />
+        <AssociationConnector Association="Protal_webModel.pt_estadofuerzapt_ubicacion" />
+        <EntityTypeShape EntityType="Protal_webModel.pt_tipo_ubicacion" Width="1.5" PointX="0.75" PointY="7.75" />
+        <AssociationConnector Association="Protal_webModel.pt_estadofuerzapt_tipo_ubicacion" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Puestos" Width="1.5" PointX="12.75" PointY="10.25" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Tipo_Pagos" Width="1.5" PointX="11" PointY="14.75" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Puesto_Insumos" Width="1.5" PointX="14.875" PointY="10.25" />
+        <AssociationConnector Association="Protal_webModel.FK_Pt_Puesto_Insumos_Pt_Puesto" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Costos_Fijos" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Pagos_Puesto" Width="1.5" PointX="9.125" PointY="11.5" />
+        <AssociationConnector Association="Protal_webModel.FK_Pt_Pagos_Puesto_Pt_Puesto" />
+        <AssociationConnector Association="Protal_webModel.FK_Pt_Pagos_Puesto_Pt_Tipo_Pago" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Insumos" Width="1.5" PointX="3.375" PointY="14" />
+        <AssociationConnector Association="Protal_webModel.FK_Pt_Puesto_Insumos_Pt_Insumos" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Estados_Fase" Width="1.5" PointX="11.375" PointY="5.75" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Cotizaciones" Width="1.5" PointX="15.625" PointY="15.125" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Fases_Cotizacion" Width="1.5" PointX="17.875" PointY="11" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Tipos_Proyecto" Width="1.5" PointX="13.375" PointY="16.125" />
+        <AssociationConnector Association="Protal_webModel.FK_Pt_Fase_Cotizacion_Pt_Cotizaciones" />
+        <AssociationConnector Association="Protal_webModel.FK_Pt_Fase_Cotizacion_Pt_Tipos_Proyecto" />
+        <AssociationConnector Association="Protal_webModel.FK_Pt_Fases_Cotizacion_Pt_Estado_Fase" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Meses" Width="1.5" PointX="13.375" PointY="5.75" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Tipo_Gasto" Width="1.5" PointX="5.375" PointY="13.75" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Gastos_Costos_Fijos_Mes_Anio" Width="1.5" PointX="17.875" PointY="5.125" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Cantidad_Planilla_Mes_Anio" Width="1.5" PointX="15.625" PointY="0.75" />
+        <AssociationConnector Association="Protal_webModel.FK_Pt_Cantidad_Planilla_Mes_Anio_Pt_Meses" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Tmp_Cotizacion_Fase_Insumos" Width="1.5" PointX="20.125" PointY="16.125" />
+        <AssociationConnector Association="Protal_webModel.FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Fases_Cotizacion" />
+        <AssociationConnector Association="Protal_webModel.FK_Pt_Tmp_Cotizacion_Fase_Insumos_Pt_Puestos" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Tmp_Cotizacion_Fase_Insumos_New" Width="1.5" PointX="20.125" PointY="4.75" />
+        <AssociationConnector Association="Protal_webModel.FK_Pt_Tmp_Cotizacion_Fase_Insumos_New_Pt_Fases_Cotizacion" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Tmp_Propuesta_Fase_Puesto" Width="1.5" PointX="20.125" PointY="11.125" />
+        <AssociationConnector Association="Protal_webModel.FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Fases_Cotizacion" />
+        <AssociationConnector Association="Protal_webModel.FK_Pt_Tmp_Propuesta_Fase_Puesto_Pt_Puestos" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Tmp_Cotizacion_Fase_Margen_Conf" Width="1.5" PointX="20.125" PointY="21.375" />
+        <AssociationConnector Association="Protal_webModel.FK_Pt_Tmp_Cotizacion_Fase_Margen_Conf_Pt_Fases_Cotizacion" />
+        <EntityTypeShape EntityType="Protal_webModel.Pt_Costos_Fijos_Mes_Anio" Width="1.5" PointX="15.625" PointY="5.375" />
+        <AssociationConnector Association="Protal_webModel.FK_Pt_Costos_Fijos_Mes_Anio_Pt_Meses" />
+        <AssociationConnector Association="Protal_webModel.FK_Pt_Gastos_Costos_Fijos_Mes_Anio_Pt_Costos_Fijos_Mes_Anio" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

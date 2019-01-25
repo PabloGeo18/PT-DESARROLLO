@@ -1,0 +1,785 @@
+﻿@model MVC2013.Models.Clientes
+@using System.Globalization
+@using MVC2013.Src.Comun.Util
+@{
+    ViewBag.Title = "Detalles de Razon Social";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+    //bool factura_ciclica = (bool)ViewBag.factura_ciclica;
+    //bool factura_eventual = (bool)ViewBag.factura_eventual;
+    var Razon_Social = Model.Razones_Sociales.Where(x => x.id_razon_social == @ViewBag.id_RS).First();
+    decimal total_ciclico = 0;
+    decimal total_eventual = 0;
+}
+
+<h2>Detalles de Razon Social</h2>
+<div class="panel panel-info">
+    <div class="panel-heading bg-light-blue-active">Informacion Cliente</div>
+    <div class="panel-body">
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    Nombre Cliente
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.nombre)
+                </dd>
+                <dt>
+                    Tipo de Cliente
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Tipo_Cliente.nombre)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Details", new { id = Model.id_cliente})'">
+                <span class="glyphicon glyphicon-backward"></span>&nbsp;Regreas a Detalle del Cliente
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<hr />
+<div class="panel panel-danger">
+    <div class="panel-heading bg-red">Razones Sociales</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <ul class="nav nav-tabs" id="nav_menu">
+                    <li class="active"><a data-toggle="tab" href="#Datos">Datos</a></li>
+                    <li><a data-toggle="tab" href="#Contactos">Contactos</a></li>
+                    <li><a data-toggle="tab" href="#Facturas">Facturas</a></li>
+                    <li><a data-toggle="tab" href="#Memorandum">Memorandum</a></li>
+                    <li><a data-toggle="tab" href="#Grupos_Factura">Grupos de Factura</a></li>
+                    <li><a data-toggle="tab" href="#Ubicaciones">Ubicaciones</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="Datos">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        Nombre Comercial
+                                    </dt>
+                                    <dd>
+                                        @ViewBag.Nombre_Comercial
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        Nit
+                                    </dt>
+                                    <dd>
+                                        @ViewBag.Nit
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        Direccion Facturacion
+                                    </dt>
+                                    <dd>
+                                        @ViewBag.Direccion_Facturacion
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        Municipio Facturacion
+                                    </dt>
+                                    <dd>
+                                        @ViewBag.Municipio_Facturacion
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        Direccion Fiscal
+                                    </dt>
+                                    <dd>
+                                        @ViewBag.Direccion_Fiscal
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        Municipio Fiscal
+                                    </dt>
+                                    <dd>
+                                        @ViewBag.Municipio_Fiscal
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        Días de Crédito
+                                    </dt>
+                                    <dd>
+                                        @Razon_Social.dias_credito
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        Auto-Generacion de Factura
+                                    </dt>
+                                    <dd>
+                                        @if (Razon_Social.autogeneracion_factura)
+                                        {
+                                            <text>Si</text>
+                                        }
+                                        else
+                                        {
+                                            <text>No</text>
+                                        }
+                                    </dd>
+                                    <dt>
+                                        Orden de Aceptacion
+                                    </dt>
+                                    <dd>
+                                        @if (Razon_Social.orden_aceptacion)
+                                        {
+                                            <text>Si</text>
+                                        }
+                                        else
+                                        {
+                                            <text>No</text>
+                                        }
+                                    </dd>
+                                </dl>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="Contactos">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                <label>Contactos</label>
+                                <p>
+                                    <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5">
+                                        <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create_Contacto", new { id = @ViewBag.id_razon_social })'">
+                                            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Contacto Nuevo
+                                        </button>
+                                        &nbsp;&nbsp;
+                                        <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Asignar_Contacto", new { id = @ViewBag.id_razon_social })'">
+                                            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Relacionar Contacto Existente
+                                        </button>
+                                    </div>
+
+                                </p>
+                                <br />
+                                <hr />
+                                <table class="table-hover">
+                                    <tr>
+                                        <th>
+                                            ID
+                                        </th>
+                                        <th>
+                                            Puesto
+                                        </th>
+                                        <th>
+                                            Nombre
+                                        </th>
+                                        <th>
+                                            Telefono
+                                        </th>
+                                        <th>
+                                            Acciones
+                                        </th>
+                                    </tr>
+                                    @foreach (var item in @ViewBag.RS_Contacto)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.id_razon_social_contacto
+                                            </td>
+                                            
+                                            
+                                            <td>
+                                                @item.Contactos.Contacto_Puesto.descripcion
+                                            </td>
+                                            <td>
+                                                @item.Contactos.nombre
+                                            </td>
+                                            <td>
+                                                @item.Contactos.telefono
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete_C", new { id = item.id_razon_social_contacto })'">
+                                                    <span class="glyphicon glyphicon-trash"></span>&nbsp;   Eliminar relacion
+                                                </button>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="Facturas">
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <hr />
+                            <table class="table-hover">
+                                <tr>
+                                    <th>
+                                        Serie
+                                    </th>
+                                    <th>
+                                        Numero de Factura
+                                    </th>
+                                    <th>
+                                        Estado de Factura
+                                    </th>
+                                    <th>
+                                        Fecha
+                                    </th>
+                                    <th>
+                                        Total
+                                    </th>
+                                    <th>
+                                        Acciones
+                                    </th>
+                                </tr>
+                                @foreach (var item in ViewBag.facturas)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.serie
+                                        </td>
+                                        <td>
+                                            @item.numero_factura
+                                        </td>
+                                        <td>
+                                            @item.Cat_Estados_Factura.nombre
+                                        </td>
+                                        <td>
+                                            @item.fecha_factura.ToString("dd/MM/yyyy")
+                                        </td>
+                                        <td>
+                                            @item.total.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                                        </td>
+                                        <td>
+
+                                            <button class="btn btn-info btn-sm btn_factura_ventana" data-url='@Url.Action("Details", "Facturas_Detalle", new { id = item.id_factura })'>
+                                                <span class="glyphicon glyphicon-search"></span>&nbsp; Detalles de Factura
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="Memorandum">
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <table class="table-hover">
+                                <tr>
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Memorandum
+                                    </th>
+                                    <th>
+                                        Tipo de Servicio
+                                    </th>
+                                    <th>
+                                        Creador
+                                    </th>
+                                    <th>
+                                        Fecha de Creacion
+                                    </th>
+                                    <th>
+                                        Acciones
+                                    </th>
+                                </tr>
+                                @foreach (var item in Razon_Social.Contratos_Servicios.Where(x => x.activo && !x.eliminado).OrderBy(x => x.id_cat_tipo_facturacion).ThenBy(x => x.fecha_creacion))
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.id_contrato_servicio
+                                        </td>
+                                        <td>
+                                            @item.memorandum
+                                        </td>
+                                        <td>
+                                            @item.Cat_Tipos_Facturacion.nombre
+                                        </td>
+                                        <td>
+                                            @item.Usuarios.nombre_completo_usuario
+                                        </td>
+                                        <td>
+                                            @item.fecha_creacion.ToString("dd/MM/yyyy")
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-info btn-sm btn_details_memorandum" data-url='@Url.Action("Details", "Contratos_Servicios", new { id = item.id_contrato_servicio })'>
+                                                <span class="glyphicon glyphicon-search"></span> @Resources.Resources.detalle
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", "Contratos_Servicios", new { id = item.id_contrato_servicio })'">
+                                                <span class="glyphicon glyphicon-trash"></span>&nbsp;   @Resources.Resources.eliminar
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="Grupos_Factura">
+
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create", "Razon_Social_Grupos_Factura", new { id = Razon_Social.id_razon_social})'">
+                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+                            </button>
+
+                            <hr />
+                            <table class="table-hover">
+                                <tr>
+                                    <th>
+                                        Nombre
+                                    </th>
+                                    <th>
+                                        Correlativo
+                                    </th>
+                                    <th>
+                                        Acciones
+                                    </th>
+                                </tr>
+                                @foreach (var item in Razon_Social.Razon_Social_Grupos_Factura.Where(x => x.activo && !x.eliminado))
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.nombre
+                                        </td>
+                                        <td>
+                                            @item.correlativo
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", "Razon_Social_Grupos_Factura", new { id = item.id_razon_social_grupo_factura })'">
+                                                <span class="glyphicon glyphicon-edit"></span>&nbsp;    @Resources.Resources.editar
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", "Razon_Social_Grupos_Factura", new { id = item.id_razon_social_grupo_factura })'">
+                                                <span class="glyphicon glyphicon-trash"></span>&nbsp;   @Resources.Resources.eliminar
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="Ubicaciones">
+                        <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create_Ubicacion", new { id_cliente = @ViewBag.id_cliente, id_RS = @ViewBag.id_razon_social })'">
+                            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Ubicacion Nueva
+                        </button>
+                        <hr />
+                        <div>
+                            <table class="table-hover">
+                                <tr>
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Ubicación
+                                    </th>
+                                    <th>
+                                        Acciones
+                                    </th>
+                                </tr>
+                                @for (int i = 0; i < ViewBag.Ubicaciones.Count; i++)
+                                {
+                                    <tr>
+                                        <td>
+                                            @ViewBag.Ubicaciones[i].id_ubicacion
+                                        </td>
+                                        <td>
+                                            @ViewBag.Ubicaciones[i].nombre
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit_U", new { id_ubicacion = @ViewBag.Ubicaciones[i].id_ubicacion })'">
+                                                <span class="glyphicon glyphicon-edit"></span>&nbsp;Editar
+                                            </button>
+                                            <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details_U", new { id_ubicacion = @ViewBag.Ubicaciones[i].id_ubicacion })'">
+                                                <span class="glyphicon glyphicon-search"></span>&nbsp;Detalles
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+<div class="panel panel-warning">
+    <div class="panel-heading bg-yellow-active">Contratos</div>
+    <div class="panel-body">
+        <ul class="nav nav-tabs" id="nav_menu">
+            <li class="active"><a data-toggle="tab" href="#Ciclicos">Contratos Ciclicos</a></li>
+            <li><a data-toggle="tab" href="#Eventuales">Contratos Eventuales</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="Ciclicos">
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <br />
+                    <p>
+                        @if (Razon_Social.Ubicaciones.Count() > 0)
+                        {
+                            <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create_AS_U", new {id = @Razon_Social.id_razon_social })'">
+                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Nuevo Contrato
+                            </button>
+                        }
+                        else
+                        {
+                            <label class="label-danger">Debe Haber al Menos Una Ubicacion para Generar un Contrato</label>
+                        }
+                    </p>
+
+                    <hr />
+                    <table class="table-hover formatHTML5">
+                        <tr>
+                            <th>
+                                Ubicaciones
+                            </th>
+                            <th>
+                                Grupo de Factura
+                            </th>
+                            <th>
+                                Nombre del Servicio
+                            </th>
+                            <th>
+                                Cantidad
+                            </th>
+                            <th>
+                                Precio
+                            </th>
+                            <th>
+                                Importe
+                            </th>
+                            <th>
+                                Acciones
+                            </th>
+                        </tr>
+
+                        @foreach (var item_contrato in Razon_Social.Contratos_Servicios.Where(x => x.activo && !x.eliminado))
+                        {
+                            if ((item_contrato.id_cat_estado_servicio_contratado == (int)Catalogos.Estado_Contrato_Servicio.Activo) && item_contrato.Cat_Tipos_Facturacion.ciclica)
+                            {
+                                foreach (var item in item_contrato.Contratos_Agentes.Where(x => x.activo && !x.eliminado).OrderBy(x => x.Cat_Tipos_Agente.nombre))
+                                {
+                                    <tr>
+                                        <td>
+                                            @if (@item.id_ubicacion.HasValue)
+                                            {
+                                                @item.Ubicaciones.nombre
+                                            }
+                                            else
+                                            {
+                                                <text>----</text>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.id_razon_social_grupo_factura.HasValue)
+                                            {
+                                                @item.Razon_Social_Grupos_Factura.nombre
+                                            }
+                                            else
+                                            {
+                                                <text>----</text>
+                                            }
+                                        </td>
+                                        <td>
+                                            @item.Cat_Tipos_Agente.nombre
+                                        </td>
+                                        <td>
+                                            @item.cantidad
+                                        </td>
+                                        <td>
+                                            @item.precio_venta_unitario.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                                        </td>
+                                        <td>
+                                            @((item.cantidad * item.precio_venta_unitario).ToString("C", CultureInfo.GetCultureInfo("es-GT")))
+                                            @{
+                                    total_ciclico += item.cantidad * item.precio_venta_unitario;
+                                            }
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm btn_edit_agente" data-url='@Url.Action("Edit_Agente", "Contratos_Agentes", new { id = item.id_contrato_agente})'>
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm btn_delete_agente" data-url='@Url.Action("Delete_Agente", "Contratos_Agentes", new { id = item.id_contrato_agente})'>
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                                foreach (var item in item_contrato.Contratos_Otros_Servicios.Where(x => x.activo && !x.eliminado).OrderBy(x => x.Cat_Otros_Servicios.nombre))
+                                {
+                                    <tr>
+                                        <td>
+                                            @if (@item.id_ubicacion.HasValue)
+                                            {
+                                                @item.Ubicaciones.nombre
+                                            }
+                                            else
+                                            {
+                                                <text>----</text>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.id_razon_social_grupo_factura.HasValue)
+                                            {
+                                                @item.Razon_Social_Grupos_Factura.nombre
+                                            }
+                                            else
+                                            {
+                                                <text>----</text>
+                                            }
+                                        </td>
+                                        <td>
+                                            @item.Cat_Otros_Servicios.nombre
+                                        </td>
+                                        <td>
+                                            @item.cantidad
+                                        </td>
+                                        <td>
+                                            @item.precio_venta_unitario.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                                        </td>
+                                        <td>
+                                            @((item.cantidad * item.precio_venta_unitario).ToString("C", CultureInfo.GetCultureInfo("es-GT")))
+                                            @{
+                                    total_ciclico += item.cantidad * item.precio_venta_unitario;
+                                            }
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm btn_edit_servicio" data-url='@Url.Action("Edit_Servicio", "Contratos_Otros_Servicios", new { id = item.id_contrato_otro_servicio})'>
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm btn_delete_servicio" data-url='@Url.Action("Delete_Servicio", "Contratos_Otros_Servicios", new { id = item.id_contrato_otro_servicio})'>
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        }
+                    </table>
+                    <h3 class="col-lg-offset-7 col-md-offset-7"><label>Total Contratos Ciclicos: </label>@total_ciclico.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</h3>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="Eventuales">
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <br />
+                    <p>
+                        
+                        @if (Razon_Social.Ubicaciones.Count() > 0)
+                        {
+                            <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create_Contrato_Servicio_Eventual", new { id = @Razon_Social.id_razon_social })'">
+                                <span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Nuevo Contrato Eventual
+                            </button>
+                        }
+                        else
+                        {
+                            <label class="label-danger">Debe Haber al Menos Una Ubicacion para Generar un Contrato</label>
+                        }
+                    </p>
+                    <hr />
+                    <table class="table-hover formatHTML5">
+                        <tr>
+                            <th>
+                                Ubicacion
+                            </th>
+                            <th>
+                                Grupo de Factura
+                            </th>
+                            <th>
+                                Nombre del Servicio
+                            </th>
+                            <th>
+                                Cantidad
+                            </th>
+                            <th>
+                                Precio
+                            </th>
+                            <th>
+                                Importe
+                            </th>
+                            <th>
+                                Acciones
+                            </th>
+                        </tr>
+                        @foreach (var item_contrato in Razon_Social.Contratos_Servicios.Where(x => x.activo && !x.eliminado))
+                        {
+                            if ((item_contrato.id_cat_estado_servicio_contratado == (int)Catalogos.Estado_Contrato_Servicio.Activo) && !item_contrato.Cat_Tipos_Facturacion.ciclica)
+                            {
+                                foreach (var item in item_contrato.Contratos_Agentes.Where(x => x.activo && !x.eliminado).OrderBy(x => x.Cat_Tipos_Agente.nombre))
+                                {
+                                    <tr>
+                                        <td>
+                                            @if (@item.id_ubicacion.HasValue)
+                                            {
+                                                @item.Ubicaciones.nombre
+                                            }
+                                            else
+                                            {
+                                                <text>----</text>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.id_razon_social_grupo_factura.HasValue)
+                                            {
+                                                @item.Razon_Social_Grupos_Factura.nombre
+                                            }
+                                            else
+                                            {
+                                                <text>----</text>
+                                            }
+                                        </td>
+                                        <td>
+                                            @item.Cat_Tipos_Agente.nombre
+                                        </td>
+                                        <td>
+                                            @item.cantidad
+                                        </td>
+                                        <td>
+                                            @item.precio_venta_unitario.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                                        </td>
+                                        <td>
+                                            @((item.cantidad * item.precio_venta_unitario).ToString("C", CultureInfo.GetCultureInfo("es-GT")))
+                                            @{
+                                    total_eventual += item.cantidad * item.precio_venta_unitario;
+                                            }
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm btn_edit_agente" data-url='@Url.Action("Edit_Agente", "Contratos_Agentes", new { id = item.id_contrato_agente})'>
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm btn_delete_agente" data-url='@Url.Action("Delete_Agente", "Contratos_Agentes", new { id = item.id_contrato_agente})'>
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                                foreach (var item in item_contrato.Contratos_Otros_Servicios.Where(x => x.activo && !x.eliminado).OrderBy(x => x.Cat_Otros_Servicios.nombre))
+                                {
+                                    <tr>
+                                        <td>
+                                            @if (@item.id_ubicacion.HasValue)
+                                            {
+                                                @item.Ubicaciones.nombre
+                                            }
+                                            else
+                                            {
+                                                <text>----</text>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.id_razon_social_grupo_factura.HasValue)
+                                            {
+                                                @item.Razon_Social_Grupos_Factura.nombre
+                                            }
+                                            else
+                                            {
+                                                <text>----</text>
+                                            }
+                                        </td>
+                                        <td>
+                                            @item.Cat_Otros_Servicios.nombre
+                                        </td>
+                                        <td>
+                                            @item.cantidad
+                                        </td>
+                                        <td>
+                                            @item.precio_venta_unitario.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                                        </td>
+                                        <td>
+                                            @((item.cantidad * item.precio_venta_unitario).ToString("C", CultureInfo.GetCultureInfo("es-GT")))
+                                            @{
+                                    total_eventual += item.cantidad * item.precio_venta_unitario;
+                                            }
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm btn_edit_servicio" data-url='@Url.Action("Edit_Servicio", "Contratos_Otros_Servicios", new { id = item.id_contrato_otro_servicio})'>
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm btn_delete_servicio" data-url='@Url.Action("Delete_Servicio", "Contratos_Otros_Servicios", new { id = item.id_contrato_otro_servicio})'>
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        }
+
+                    </table>
+                    <h3 class="col-lg-offset-7 col-md-offset-7"><label>Total Contratos Eventuales: </label>@total_eventual.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).on('click', '.btn_edit_agente', function () {
+        var data = $(this).data("url");
+        console.log(data)
+        window.open(data);
+    });
+    $(document).on('click', '.btn_delete_agente', function () {
+        var data = $(this).data("url");
+        console.log(data)
+        window.open(data);
+    });
+    $(document).on('click', '.btn_edit_servicio', function () {
+        var data = $(this).data("url");
+        console.log(data)
+        window.open(data);
+    });
+    $(document).on('click', '.btn_delete_servicio', function () {
+        var data = $(this).data("url");
+        console.log(data)
+        window.open(data);
+    });
+    $(document).on('click', '.btn_details_memorandum', function () {
+        var data = $(this).data("url");
+        console.log(data)
+        window.open(data);
+
+    }); $(document).on('click', '.btn_factura_ventana', function () {
+        var data = $(this).data("url");
+        window.open(data);
+    });
+</script>

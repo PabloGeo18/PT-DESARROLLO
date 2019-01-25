@@ -1,0 +1,150 @@
+﻿@model MVC2013.Models.Empleado
+
+@{
+    ViewBag.Title = Resources.Resources.contratacion + "_Historico";
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+    int id_empleado = Model.id_empleado;
+    MVC2013.Models.Empleado emp = (MVC2013.Models.Empleado)Model;
+
+}
+
+<!--Modal Mensaje-->
+<div class="modal fade" id="mostrar_mensaje" data-backdrop="static" role="dialog">
+    <div style="left:auto" class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <label id="titulo">Prueba</label>
+            </div>
+            <div class="modal-body">
+                <label id="mensaje">Prueba</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Baja de Empleado-->
+<!--Confirmar Terminación de Contrato-->
+<div class="modal fade" id="modal_baja" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        @using (Html.BeginForm("Modificar_Baja", "Contratacion", FormMethod.Post))
+        {
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    Información de baja
+                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                </div>
+                <div class="modal-body">
+                    <input hidden id="input_id_contratacion" name="id" value="" />
+                    <div class="form-group">
+                        <label>Motivo de Baja</label>
+                        @Html.DropDownList("motivo_baja", null, "---", htmlAttributes: new { @class = "form-control", @required = "required", @id = "input_motivo_baja" })
+                    </div>
+                    <div class="form-group">
+                        <label>Razón de Baja</label>
+                        <input type="text" class="form-control" autocomplete="off" name="razon_baja" id="input_razon_baja" />
+                    </div>
+                    <div class="form-group">
+                        <b>@Resources.Resources.fecha_terminar_contrato</b>
+                        <div style="position:relative">
+                            <input type='text' class="form-control" id="input_fecha_baja" name="fecha_baja" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary" type="submit">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+<div>
+    <h3>
+        @(Model.id_empleado.ToString() + " - " + Model.primer_nombre + " " +
+        (!String.IsNullOrEmpty(Model.segundo_nombre) ? Model.segundo_nombre + " " : "") +
+        Model.primer_apellido + " " +
+        (!String.IsNullOrEmpty(Model.segundo_apellido) ? Model.segundo_apellido : ""))
+    </h3>
+    <h4>Contratos</h4>
+    <table class="table-striped">
+        <thead>
+        </thead>
+        <tbody>
+            @foreach (MVC2013.Models.Contratacion contratos in emp.Contratacion.Where(c => !c.eliminado).ToList())
+            {
+                <tr>
+                    <td>
+                        <b>Empresa:</b> @contratos.Empresa.nombre
+                        <br />
+                        <b>Puesto: </b>@contratos.Puesto.nombre
+                        <br />
+                        <b>Fecha alta:</b> @contratos.fecha_inicio.ToString("dd/MM/yyyy")
+                        <br />
+                        <b>Referido por:</b> @contratos.referido_por
+                    </td>
+                    <td>
+                        <b>Ubicación: @((contratos.Ubicaciones == null) ? "" : contratos.Ubicaciones.direccion) </b>
+                        <br />
+                        @if (contratos.fecha_fin != null)
+                        {
+                            <text>
+                                <b>Fecha Baja:</b> </text> @contratos.fecha_fin.Value.ToString("dd/MM/yyyy")
+                        }
+                        <br />
+                        <b>Motivo de Baja:</b> @((contratos.id_motivo_baja.HasValue) ? contratos.Motivo_Baja.descripcion : "No establecida")
+                        <br />
+                        <b>Razon de Baja:</b> @contratos.razon_baja
+                    </td>
+                    <td>
+                        <b>Usuario Creación:</b> @contratos.Usuarios.usuario
+                        <br />
+                        <b>Fecha creación:</b> @contratos.fecha_creacion
+                        <br />
+                        <b>Usuario Modificación:</b> @((contratos.Usuarios2 != null) ? contratos.Usuarios2.usuario : "--")
+                        <br />
+                        <b>Fecha modificación:</b> @contratos.fecha_modificacion
+                    </td>
+                    <td>
+                        <button class="btn btn-primary btn-sm btn_editar_baja" type="button" data-toggle="modal" data-target="#modal_baja" data-motivo_baja="@contratos.id_motivo_baja" data-razon_baja="@contratos.razon_baja" data-id="@contratos.id_contratacion" data-fecha_baja="@((contratos.fecha_fin.HasValue)? contratos.fecha_fin.Value.ToString("dd/MM/yyyy") : "")">
+                            <span class="glyphicon glyphicon-edit"></span>&nbsp;Editar baja del empleado.
+                        </button>
+                        <button class="btn btn-warning btn-sm" type="button" onclick="location.href='@Url.Action("CalcularLiquidacion", "Empleado", new { id_contratacion = contratos.id_contratacion })'">
+                            <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.liquidacion_calcular
+                        </button>
+                        <button class="btn btn-success btn-sm" type="button" onclick="location.href='@Url.Action("ActivarContrato", "Contratacion", new { id = contratos.id_contratacion })'">
+                            <span class="glyphicon glyphicon-check"></span>&nbsp;@Resources.Resources.activar_contrato
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" type="button" onclick="location.href='@Url.Action("Details", "Empleado", new { id = id_empleado })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+
+<script>
+    $(function () {
+        $('#input_fecha_baja').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+        });
+
+        $('.btn_editar_baja').click(function () {
+            $('#input_fecha_baja').val($(this).data('fecha_baja'));
+            $('#input_motivo_baja').val($(this).data('motivo_baja'));
+            $('#input_razon_baja').val($(this).data('razon_baja'));
+            $('#input_id_contratacion').val($(this).data('id'))
+        });
+    });
+</script>

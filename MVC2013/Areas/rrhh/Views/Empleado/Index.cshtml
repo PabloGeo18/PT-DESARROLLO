@@ -1,0 +1,270 @@
+﻿<!--model IEnumerable<MVC2013.Models.Empleado>-->
+
+@{
+    ViewBag.Title = @Resources.Resources.empleado + "_" + @Resources.Resources.lista;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+    }
+<!--Confirmar Eliminación-->
+<div class="modal fade" id="confirm_delete" data-backdrop="static" role="dialog">
+    <div style="left: auto;" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-red">
+                @Resources.Resources.confirmacion
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+            </div>
+            <div class="modal-body">
+                @Resources.Resources.confirmacion_eliminar
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger" id="btn_ok" data-id="">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Mensaje-->
+<div class="modal fade" id="mostrar_mensaje" data-backdrop="static" role="dialog">
+    <div style="left: auto" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <label id="titulo">--</label>
+            </div>
+            <div class="modal-body">
+                <label id="mensaje">--</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Nuevo Código Empleado-->
+<div class="modal fade" id="" data-backdrop="static" role="dialog">
+
+    <div style="left: auto" class="modal-dialog modal-sm ">
+        <div class="modal-content">
+            @using (Html.BeginForm("NuevoCodigoEmpleado", "Empleado", FormMethod.Post))
+            {
+                <div class="modal-header bg-green">
+                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                    <label id="titulo">Ingresar empleado existente</label>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="hidden" id="id_codigo_empleado" name="id" />
+                        <div class="input-group">
+                            <input id="id_busqueda_empleado" type="number" class="form-control" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" id="seleccionar_empleado" data-loading-text="Buscando..." type="button">
+                                    <span class="glyphicon glyphicon-search"></span>&nbsp; @Resources.Resources.buscar
+                                </button>
+                            </span>
+                        </div>
+                        <label id="empleado_encontrado"></label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-success" type="submit" data-loading-text="Creando...">
+                        Crear
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<h2>@Resources.Resources.empleado_lista</h2>
+
+<div class="form-group">
+    <div class="btn-group">
+        <button class="btn btn-sm btn-success" onclick="location.href = '@Url.Action("Create")'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Crear Empleado
+        </button>
+        <button class="btn btn-sm btn-success" type="button" id="nuevo_codigo_empleado">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Nuevo código para empleado
+        </button>
+        <button class="btn btn-sm btn-danger" type="button" onclick="window.open('@Url.Action("AlertaFaltasEmpleados")', '_blank')">
+            <span class="glyphicon glyphicon-alert"></span>&nbsp; Ausencias de Empleados
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 form-group">
+        <table class="table-striped" id="lista_empleados_head">
+            <thead>
+                <tr>
+                    <th>@Resources.Resources.empleado_codigo</th>
+                    <th>@Resources.Resources.empleado_primer_apellido</th>
+                    <th>@Resources.Resources.empleado_segundo_apellido</th>
+                    <th>@Resources.Resources.empleado_primer_nombre</th>
+                    <th>@Resources.Resources.empleado_segundo_nombre</th>
+                    <th>@Resources.Resources.empleado_dpi</th>
+                    <th>@Resources.Resources.acciones</th>
+                </tr>
+            </thead>
+            <tr>
+                <td><input type="number" id="id_empleado" class="form-control" autocomplete="off" /></td>
+                <td><input type="text" id="primer_apellido" autocomplete="off" class="form-control" style="text-transform:uppercase" /></td>
+                <td><input type="text" id="segundo_apellido" autocomplete="off" class="form-control" style="text-transform:uppercase" /></td>
+                <td><input type="text" id="primer_nombre" autocomplete="off" class="form-control" style="text-transform:uppercase" /></td>
+                <td><input type="text" id="segundo_nombre" autocomplete="off" class="form-control" style="text-transform:uppercase" /></td>
+                <td><input type="text" id="dpi" autocomplete="off" class="form-control" style="text-transform:uppercase" /></td>
+                <td>
+                    <button class="btn btn-primary btn-sm" id="b_search" data-loading-text="Cargando...">
+                        <span class="glyphicon glyphicon-search"></span>&nbsp;@Resources.Resources.buscar
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <div class="table-responsive">
+            <table class="table-striped" id="lista_empleados"></table>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+
+        //Transferir ID
+        $(document).on('click', '.btn_delete', function () {
+            $('#btn_ok').data('id', $(this).data('id'));
+        });
+
+        $(document).on("keypress", function (e) {
+            if ((e.which || e.keyCode) == 13) {
+                e.preventDefault();
+                if ($("#nuevo_codigo_empleado").is(".in")) {
+                    //Cuando el modal esta abierto
+                    $('#seleccionar_empleado').click();
+
+                } else {
+                    $('#b_search').click();
+                }
+            }
+        });
+
+        //Buscar y seleccionar empleado
+        $('#seleccionar_empleado').click(function () {
+            var btn = $(this);
+            $('#empleado_encontrado').text('');
+            var id = $('#id_busqueda_empleado').val();
+            if (id != "") {
+                btn.button('loading');
+                $.ajax({
+                    url: '@Url.Action("ExisteEmpleado", "Empleado")',
+                    type: 'POST',
+                    data: { 'id_empleado': id },
+                    success: function (response) {
+                        if (response.error == false) //Se encontro el empleado
+                        {
+                            $('#empleado_encontrado').text(response.nombre);
+                            $('#empleado_encontrado').css('color', 'black');
+                            $('#id_codigo_empleado').val(response.id_empleado);
+                        }
+                        else {
+                            $('#empleado_encontrado').text('Empleado no encontrado.');
+                            $('#empleado_encontrado').css('color', 'red');
+                            $('#id_codigo_empleado').val('');
+                        }
+                        btn.button('reset');
+                    },
+                    error: function () {
+                        alert("Error en la conexión con el servidor. Empleado no completado.");
+                        $('#id_empleado').val('');
+                    }
+                });
+            }
+        });
+
+
+        //Busqueda de empleados
+        $('#b_search').click(function () {
+            var btn = $(this);
+            btn.button('loading');
+            var nombre = $('#primer_nombre').val();
+            var dpi = $('#dpi').val();
+            var apellido = $('#primer_apellido').val();
+            var id = $('#id_empleado').val();
+            var segundo_nombre = $('#segundo_nombre').val();
+            var segundo_apellido = $('#segundo_apellido').val();
+            $.ajax({
+                url: '@Url.Action("Search", "Empleado")',
+                type: "GET",
+                data: { 'primer_nombre': nombre, 'dpi': dpi, 'primer_apellido': apellido, 'id_empleado': id, 'segundo_nombre': segundo_nombre, 'segundo_apellido': segundo_apellido },
+                error: function () {
+                    btn.button('reset');
+                    alert("Error en la obtención de datos del servidor.");
+                },
+                success: function (response) {
+                    btn.button('reset');
+                    selector = "#lista_empleados";
+                    target = $(selector);
+                    target.html("<thead><tr>" +
+                        "<th>@Resources.Resources.empleado_codigo</th>" +
+                        "<th>@Resources.Resources.empleado_primer_apellido</th>" +
+                        "<th>@Resources.Resources.empleado_segundo_apellido</th>" +
+                        "<th>@Resources.Resources.empleado_primer_nombre</th>" +
+                        "<th>@Resources.Resources.empleado_segundo_nombre</th>" +
+                        "<th>@Resources.Resources.empleado_dpi</th>" +
+                        "<th>@Resources.Resources.acciones</th></tr></thead>");
+                    $.each(response, function ($in, item) {
+                        target.append("<tr><td>" + item.id_empleado + "</td><td>" + item.primer_apellido + "</td><td>" + item.segundo_apellido + "</td><td>" + item.primer_nombre + "</td><td>" + item.segundo_nombre + "</td><td>" + item.dpi + "</td><td>" +
+                            "<button class=\"btn btn-info btn-sm btn_details_empleado \" data-id_empleado=\"" + item.id_empleado + " \"><span class=\"glyphicon glyphicon-list-alt\"></span>&nbsp;@Resources.Resources.detalle</button>"
+                             + "<button class=\"btn btn-sm btn-danger btn_delete\" data-toggle=\"modal\" data-target=\"#confirm_delete\" data-id=\"" + item.id_empleado + "\"><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;@Resources.Resources.eliminar</button>"
+                            + "</td><tr>");
+                    });
+                }
+            });
+        });
+
+        //Boton de detalles de empleado
+        $(document).on('click', '.btn_details_empleado', function () {
+            var id = $(this).data('id_empleado');
+            var url = "@Url.Action("Details", new { id = "val" , error = "" })";
+            url = url.replace("val", id);
+            //window.location.href = url;
+            window.open(url, "_blank");
+        });
+
+        //Boton de contrato del empleado
+        $(document).on('click', '.btn_contrato', function () {
+            var id = $(this).data('id_empleado');
+            var url = "@Url.Action("Contrato", new { id = "val" })";
+            url = url.replace("val", id);
+            window.open(url, "_blank");
+        });
+
+        //Boton para crear nuevo codigo de empleado
+        $('#nuevo_codigo_empleado').click(function () {
+            var url = "@Url.Action("NuevoCodigo", "Contratacion")";
+            window.open(url, "_blank");
+        });
+
+        //Boton para eliminar el empleado
+        $('#btn_ok').click(function () {
+            $('#confirm_delete').modal('toggle');
+            var id = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("EliminarEmpleado", "Empleado")',
+                type: "POST",
+                data: { 'id_empleado': id },
+                error: function () {
+                    alert("Error con la conexión con el servidor.");
+                },
+                success: function (response) {
+                    if (response.response == true) {
+                        $('#t_' + id.toString()).remove();
+                    }
+                    else {
+                        $('#mensaje').text(response.msg);
+                        $('#titulo').text("Error");
+                        $('#mostrar_mensaje').modal('show');
+                    }
+                }
+            });
+        });
+    });
+
+</script>

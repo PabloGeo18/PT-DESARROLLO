@@ -1,0 +1,96 @@
+﻿@model MVC2013.Models.Clientes
+
+@{
+    ViewBag.Title = Resources.Resources.clientes + "_" + Resources.Resources.detalle;
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles del Cliente</h2>
+<div class="panel panel-info">
+    <div class="panel-heading bg-light-blue-active">Informacion Cliente</div>
+    <div class="panel-body">
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    Nombre Cliente
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.nombre)
+                </dd>
+                <dt>
+                    Tipo de Cliente
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Tipo_Cliente.nombre)
+                </dd>
+            </dl>
+        </div>
+        
+    </div>
+</div>
+
+
+<button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Create_Razon_Social", new { id = Model.id_cliente })'">
+    <span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Razon Social Nueva
+</button>
+<hr />
+<div class="panel panel-danger">
+    <div class="panel-heading bg-red">Razones Sociales</div>
+    <div class="panel-body">
+        <div>
+            <table class="table-hover">
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Razon Social
+                    </th>
+                    <th>
+                        Nombre Comercial
+                    </th>
+                    <th>                        
+                        Acciones
+                    </th>
+                </tr>
+                @foreach (var item in Model.Razones_Sociales)
+                {
+                    if (item.activo == true && item.eliminado == false)
+                    {
+                        <tr>
+                            <td>
+                                @item.id_razon_social
+                            </td>
+                            <td>
+                                @item.razon_social
+                            </td>
+                            <td>
+                                @item.nombre_comercial
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit_RS", new { id_Razon_Social = item.id_razon_social})'">
+                                    <span class="glyphicon glyphicon-edit"></span>&nbsp;    @Resources.Resources.editar
+                                </button>
+                                <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details_RS", new {id_Razon_Social = item.id_razon_social })'">
+                                    <span class="glyphicon glyphicon-search"></span>&nbsp;     @Resources.Resources.detalle
+                                </button>
+
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>
+        
+<p>
+    <div>
+        <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Index")'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar al listado de clientes
+        </button>
+    </div>
+
+</p>

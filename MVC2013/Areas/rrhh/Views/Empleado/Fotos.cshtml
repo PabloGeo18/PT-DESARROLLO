@@ -1,0 +1,196 @@
+﻿@model List<MVC2013.Models.Empleado>
+
+@{
+    ViewBag.Title = "Fotos";
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+    Boolean paginacion = false;
+    if (ViewBag.paginacion != null){
+        paginacion = (Boolean)ViewBag.paginacion;
+    }
+    int cantidad_paginas = 0;
+    if (paginacion) {
+        cantidad_paginas = (int)ViewBag.cantidad_paginas + 1;
+    }
+    
+}
+
+
+
+<script src="~/Content/galleriffic/js/jquery.galleriffic.js"></script>
+<script src="~/Content/galleriffic/js/jquery.opacityrollover.js"></script>
+<link href="~/Content/galleriffic/css/basic.css" rel="stylesheet" />
+<link href="~/Content/galleriffic/css/galleriffic-2.css" rel="stylesheet" />
+<div id="page">
+    <div id="container">
+        <h1><a href="#">Galeria de Fotos</a></h1>
+        <h2>Galeria de Fotos de Empleados</h2>
+        <h3>Del Empleado No. @Model.OrderBy(x => x.id_empleado).Take(1).FirstOrDefault().id_empleado al No. @Model.OrderByDescending(x => x.id_empleado).Take(1).FirstOrDefault().id_empleado</h3>
+
+        @if (paginacion) { 
+            for (int i = 0; i < cantidad_paginas; i++)
+            {
+                <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Fotos", "Empleado", new { id = i+1 })'">
+                    <span class="glyphicon glyphicon-search"></span>&nbsp;P @(i + 1)
+                </button>
+            }
+        }
+
+        
+        <!-- Start Advanced Gallery Html Containers -->
+        <div id="gallery" class="content">
+            <div id="controls" class="controls"></div>
+            <div id="nav" class="controls"></div>
+            <div id="caption" class="caption-container"></div>
+            <div class="slideshow-container">
+                <div id="loading" class="loader"></div>
+                <div id="slideshow" class="slideshow"></div>
+            </div>
+            
+        </div>
+        <div id="thumbs" class="navigation">
+            <ul class="thumbs noscript">
+
+                @foreach (MVC2013.Models.Empleado item in Model)
+                {
+                    <li>
+                        <a class="thumb" name="leaf" href="@Url.Action("GetImage", "Empleado", new { id = item.id_empleado })" title="@item.id_empleado.ToString()">
+                            <img src="@Url.Action("GetImage", "Empleado", new { id = item.id_empleado })" height="75" width="75"  alt="@item.id_empleado.ToString()" />
+                        </a>
+                        <div class="caption">
+                            <div class="download">
+                                <a href="@Url.Action("GetImage", "Empleado", new { id = item.id_empleado })">Descargar Original</a>
+                            </div>
+                            <div class="image-title">@(item.id_empleado.ToString() + " - " +
+        item.primer_nombre + " " +
+        (!String.IsNullOrEmpty(item.segundo_nombre) ? item.segundo_nombre + " " : "") +
+        item.primer_apellido + " " +
+        (!String.IsNullOrEmpty(item.segundo_apellido) ? item.segundo_apellido : ""))</div>
+                            <div class="image-desc">
+                                @if(item.Contratacion.Where(x => !x.eliminado).Count() > 0 )
+                                {
+                                    <table style="border:none !important">
+                                        <tr>
+                                            <td style="border:none !important">
+                                                <dl class="dl-horizontal">
+                                                    <dt>@Resources.Resources.empresa</dt>
+                                                    <dd>@item.Contratacion.Where(x => !x.eliminado).OrderByDescending(x => x.id_contratacion).Take(1).FirstOrDefault().Empresa.nombre</dd>
+                                                    <dt>Tipo de Puesto</dt>
+                                                    <dd>@item.Contratacion.Where(x => !x.eliminado).OrderByDescending(x => x.id_contratacion).Take(1).FirstOrDefault().Puesto.Tipo_Puesto.nombre</dd>
+                                                    <dt>@Resources.Resources.puesto_nombre</dt>
+                                                    <dd>@item.Contratacion.Where(x => !x.eliminado).OrderByDescending(x => x.id_contratacion).Take(1).FirstOrDefault().Puesto.nombre</dd>
+                                                    <dt>Ubicación</dt>
+                                                    <dd>@((item.Contratacion.Where(x => !x.eliminado).OrderByDescending(x => x.id_contratacion).Take(1).FirstOrDefault().Ubicaciones != null) ? item.Contratacion.Where(x => !x.eliminado).OrderByDescending(x => x.id_contratacion).Take(1).FirstOrDefault().Ubicaciones.direccion : "No asignada")</dd>
+                                                </dl>
+
+                                            </td>
+                                            <td style="border:none !important">
+                                                <dl class="dl-horizontal">
+                                                    <dt>@Resources.Resources.fecha_inicio</dt>
+                                                    <dd>@item.Contratacion.Where(x => !x.eliminado).OrderByDescending(x => x.id_contratacion).Take(1).FirstOrDefault().fecha_inicio.ToString("dd/MM/yyyy")</dd>
+                                                    <dt>Estado de Empleado</dt>
+                                                    <dd>@item.Contratacion.Where(x => !x.eliminado).OrderByDescending(x => x.id_contratacion).Take(1).FirstOrDefault().Estado_Empleado.nombre</dd>
+                                                    <dt>Fecha de Baja</dt>
+                                                    @if (item.Contratacion.Where(x => !x.eliminado).OrderByDescending(x => x.id_contratacion).Take(1).FirstOrDefault().fecha_fin.HasValue)
+                                                    {
+                                                        <dd>@item.Contratacion.Where(x => !x.eliminado).OrderByDescending(x => x.id_contratacion).Take(1).FirstOrDefault().fecha_fin.Value.ToString("dd/MM/yyyy")</dd>
+                                                    }
+                                                    else
+                                                    {
+                                                        <dd>--/--/----</dd>
+                                                    }
+                                                </dl>
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                }
+                                
+                            </div>
+                        </div>
+                    </li>
+
+                }
+                @*<li>
+                    <a class="thumb" name="leaf" href="~/Archivos/Foto Perfil/foto_10013.jpg" title="Title #0">
+                        <img src="~/Archivos/Foto Perfil/foto_10013.jpg" height="75" width="75" alt="Title #0" />
+                    </a>
+                    <div class="caption">
+                        <div class="download">
+                            <a href="~/Archivos/Foto Perfil/foto_10013.jpg">Download Original</a>
+                        </div>
+                        <div class="image-title">Title #0</div>
+                        <div class="image-desc">Description</div>
+                    </div>
+                </li>
+
+                <li>
+                    <a class="thumb" name="drop" href="~/Archivos/Foto Perfil/foto_10014.jpg" title="Title #1">
+                        <img src="~/Archivos/Foto Perfil/foto_10014.jpg" height="75" width="75" alt=" title #1" />
+                    </a>
+                    <div class="caption">
+                        Any html can be placed here ...
+                    </div>
+                </li>*@
+
+               
+            </ul>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+</div>
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				// We only want these styles applied when javascript is enabled
+				$('div.navigation').css({'width' : '300px', 'float' : 'left'});
+				$('div.content').css('display', 'block');
+
+				// Initially set opacity on thumbs and add
+				// additional styling for hover effect on thumbs
+				var onMouseOutOpacity = 0.67;
+				$('#thumbs ul.thumbs li').opacityrollover({
+					mouseOutOpacity:   onMouseOutOpacity,
+					mouseOverOpacity:  1.0,
+					fadeSpeed:         'fast',
+					exemptionSelector: '.selected'
+				});
+
+				// Initialize Advanced Galleriffic Gallery
+				var gallery = $('#thumbs').galleriffic({
+					delay:                     2500,
+					numThumbs:                 15,
+					preloadAhead:              10,
+					enableTopPager:            true,
+					enableBottomPager:         true,
+					maxPagesToShow:            5,
+					imageContainerSel:         '#slideshow',
+					ssControlsContainerSel:    '#controls',
+					navControlsContainerSel:   '#nav',
+					captionContainerSel:       '#caption',
+					loadingContainerSel:       '#loading',
+					renderSSControls:          true,
+					renderNavControls:         true,
+					playLinkText:              'Iniciar Galeria',
+					pauseLinkText:             'Pausar Galeria',
+					prevLinkText:              '&lsaquo; Foto Anterior',
+					nextLinkText:              'Foto Siguiente &rsaquo;',
+					nextPageLinkText:          'Sig &rsaquo;',
+					prevPageLinkText:          '&lsaquo; Ant',
+					enableHistory:             false,
+					autoStart:                 false,
+					syncTransitions:           true,
+					defaultTransitionDuration: 900,
+					onSlideChange:             function(prevIndex, nextIndex) {
+						// 'this' refers to the gallery, which is an extension of $('#thumbs')
+						this.find('ul.thumbs').children()
+							.eq(prevIndex).fadeTo('fast', onMouseOutOpacity).end()
+							.eq(nextIndex).fadeTo('fast', 1.0);
+					},
+					onPageTransitionOut:       function(callback) {
+						this.fadeTo('fast', 0.0, callback);
+					},
+					onPageTransitionIn:        function() {
+						this.fadeTo('fast', 1.0);
+					}
+				});
+			});
+</script>

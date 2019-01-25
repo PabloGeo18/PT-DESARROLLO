@@ -1,0 +1,90 @@
+﻿@model IEnumerable<MVC2013.Models.Descuento_Periodico>
+@using System.Globalization;
+
+@{
+    ViewBag.Title = Resources.Resources.prestamo + "_" + Resources.Resources.lista;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.prestamo_lista</h2>
+
+<div>
+    <div class="form-group">
+        <button class="btn btn-success btn-sm" type="button" onclick="location.href='@Url.Action("Create")'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+        </button>
+    </div>
+    <div class="table-responsive">
+        <table class="table-striped" id="tabla_prestamos">
+            <thead>
+                <tr>
+                    <th style="width: 10%">@Resources.Resources.codigo</th>
+                    <th style="width: 30%">@Resources.Resources.empleado</th>
+                    <th style="width: 10%">@Resources.Resources.pagos_faltantes</th>
+                    <th style="width: 10%">@Resources.Resources.fecha_final</th>
+                    <th style="width: 10%">@Resources.Resources.cantidad_pagada</th>
+                    <th style="width: 30%">@Resources.Resources.acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="number" id="codigo" autocomplete="off" class="form-control" /></td>
+                    <td><input type="text" id="empleado" autocomplete="off" class="form-control" /></td>
+                    <td><input type="number" id="pagos_faltantes" autocomplete="off" class="form-control" /></td>
+                    <td><input type="text" id="fecha_final" autocomplete="off" class="form-control" /></td>
+                    <td><input type="number" id="pago_faltante" autocomplete="off" class="form-control" /></td>
+                    <td></td>
+                </tr>
+                @foreach (var prestamo in Model)
+                {
+                    <tr>
+                        <td class="c_codigo">@prestamo.id_descuento_periodico</td>
+                        <td class="c_empleado">@(prestamo.Empleado.primer_apellido + " " + prestamo.Empleado.segundo_apellido + ", " + prestamo.Empleado.primer_nombre + " " + prestamo.Empleado.segundo_nombre)</td>
+                        <td class="c_pagos_faltantes">@(prestamo.total_pagos - prestamo.pagos_actuales)</td>
+                        <td class="c_fecha_fin">@prestamo.fecha_fin.Value.ToString("dd/MM/yyyy")</td>
+                        <td class="c_pago_faltante">@((prestamo.cantidad_a_pagar - prestamo.cantidad_pagado).ToString("C", CultureInfo.GetCultureInfo("es-GT")))</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("Edit", new { id = prestamo.id_descuento_periodico })'">
+                                <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                            </button>
+                            <button class="btn btn-info btn-sm" onclick="location.href='@Url.Action("Details", new { id = prestamo.id_descuento_periodico })'">
+                                <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                            </button>
+                            <button class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("Delete", new { id = prestamo.id_descuento_periodico })'">
+                                <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        //Filtro de la tabla de empleados
+        $('#tabla_prestamos').filterByMultiColumn([
+            {
+                filterClass: 'c_codigo',
+                field: 'codigo'
+            },
+            {
+                filterClass: 'c_empleado',
+                field: 'empleado'
+            },
+            {
+                filterClass: 'c_pagos_faltantes',
+                field: 'pagos_faltantes'
+            },
+            {
+                filterClass: 'c_fecha_final',
+                field: 'fecha_final'
+            },
+            {
+                filterClass: 'c_pago_faltante',
+                field: 'pago_faltante'
+            }
+        ]);
+    });
+</script>

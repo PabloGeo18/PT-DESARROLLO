@@ -1,0 +1,72 @@
+﻿@model MVC2013.Models.pt_estadofuerza
+
+@{
+    ViewBag.Title = "Carga Masiva de Estado de Fuerza";
+    Layout = "~/Areas/EstadoFuerza/Views/Shared/_Layout.cshtml";
+
+    String errorMessage = (String)ViewBag.ErrorMessage;
+    //String msg_cargando = "<i class='icon-spinner icon-spin icon-large'></i>Cargando...";
+    String msg_cargando = "<i class='glyphicon glyphicon-refresh'></i>Cargando...";
+}
+
+
+<h2>Carga de Estado de Fuerza</h2>
+
+@Html.ValidationSummary(errorMessage, new { @class = "text-danger" })
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Carga Masiva</h3>
+    </div>
+    <div class="panel-body">
+
+        <h3>
+            <span class="label label-primary">Fecha de Estado de fuerza:</span>
+            <span class="label label-info">@ViewBag.fecha_estado_fuerza</span>
+        </h3>
+        
+        @using (Html.BeginForm("SubeArchivo", "CargaMasiva", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            <div class="form-group" style="position:relative">
+                <br />
+                <span class="btn btn-info btn-file">
+                    <i class="glyphicon glyphicon-file"></i>  @Resources.Resources.buscar Archivo <input type="file" name="FileUpload1" id="FileUpload1" class="btn-file" onchange="file_path_display.innerHTML = '<label>' + FileUpload1.value + '</label>'; $('#carga_btn').prop('disabled', false);" />
+
+                </span>
+                <div id="file_path_display" style="width:150pt"></div>
+                <button type="submit" id="carga_btn" class="btn btn-primary has-spinner" data-loading-text="@msg_cargando">
+                    <i class="glyphicon glyphicon-upload"></i> @Resources.Resources.subir
+                </button>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+
+
+
+    <script type="text/javascript">
+            //var $j = jQuery.noConflict();
+            $(document).ready(function () {
+
+               // $('#carga_btn').prop('disabled', true);
+                
+
+            });
+
+
+            $('#carga_btn').on('click', function () {
+                var $btn = $(this).button('loading')
+                //$btn.button('reset')
+            })
+            
+    </script>
+}
+
+
+
+
+

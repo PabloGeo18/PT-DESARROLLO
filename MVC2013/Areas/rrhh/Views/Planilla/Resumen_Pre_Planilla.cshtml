@@ -1,0 +1,205 @@
+﻿@model MVC2013.Areas.rrhh.Models.PlanillaDetalle
+<!--model MVC2013.Models.Encabezado_Planilla-->
+@using System.Globalization;
+@using GridMvc.Html;
+@{
+    ViewBag.Title = Resources.Resources.empleado + "_" + Resources.Resources.lista + " " + Resources.Resources.planilla;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<!--Modal para Reportes-->
+<div class="modal fade modal" id="reportes" data-backdrop="static">
+    <div style="left: auto" class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                Reportes
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <div class="btn-group-vertical">
+                    @*<button type="button" class="btn btn-default" onclick="location.href='@Url.Action("GetExcel_Pre_Planilla", new { id = Model.encabezado_planilla.id_encabezado_planilla })'">
+        <span class="glyphicon glyphicon-download-alt"></span>&nbsp;Planilla  GetExcel_Pre_Planilla
+    </button>*@
+                    <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("GetExcel_Planilla", new { id = Model.encabezado_planilla.id_encabezado_planilla })'">
+                        <span class="glyphicon glyphicon-download-alt"></span>&nbsp;Planilla
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>@(Model.encabezado_planilla.Tipo_Planilla.nombre + " - " + Model.encabezado_planilla.Empresa.nombre)</h2>
+
+
+<div class="form-group">
+    <div class="btn-group">
+        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#reportes">
+            <span class="glyphicon glyphicon-book"></span>&nbsp;Reportes
+        </button>
+        <span class="btn btn-file btn-warning btn-sm">
+            <span class="glyphicon glyphicon-upload"></span>&nbsp;Subir Tipo de Pago
+            <input type="file" id="archivo_tp" data-id="@Model.encabezado_planilla.id_encabezado_planilla" accept="xls,.xlsx">
+        </span>
+        <span class="btn btn-file btn-warning btn-sm">
+            <span class="glyphicon glyphicon-upload"></span>&nbsp;Subir Correlativo de Boleta
+            <input type="file" id="archivo_correlativo" data-id="@Model.encabezado_planilla.id_encabezado_planilla" accept="xls,.xlsx">
+        </span>
+    </div>
+</div>
+
+<div class="form-group">
+    @if(Model.encabezado_planilla.id_tipo_planilla > 2) //Bono14 y Aguinaldo
+    {
+        @Html.Grid(Model.resumen_bono_aguinaldo.ToList()).Columns(columns =>
+          {
+              columns.Add(foo => foo.id_empleado).Titled("Código Empleado").SetWidth(50).Filterable(true).Sortable(true);
+              columns.Add(foo => foo.primer_apellido).Titled(Resources.Resources.empleado_primer_apellido).SetWidth(50).Filterable(true).Sortable(true);
+              columns.Add(foo => foo.primer_nombre).Titled(Resources.Resources.empleado_primer_nombre).SetWidth(50).Filterable(true).Sortable(true);
+              columns.Add(foo => foo.puesto).Titled(Resources.Resources.puesto_nombre).SetWidth(100).Filterable(true).Sortable(true);
+              columns.Add(foo => foo.total).Titled(Resources.Resources.planilla_total).SetWidth(100).Filterable(true).Sortable(true).RenderValueAs(
+                  d => @<text>
+                    Q @MVC2013.Src.Comun.Util.FormatUtil.getCurrencyString(d.total)
+                </text>
+                  );
+              columns.Add().Titled(Resources.Resources.acciones).Encoded(false).Sanitized(false).SetWidth(100).RenderValueAs(d =>
+                @<b>
+                    <button class="btn btn-info btn-sm" onclick="location.href='@Url.Action("Editar_Planilla", new { id = d.id_empleado_encabezado_planilla, tab = 0 })'">
+                        <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                    </button>
+                </b>);
+          }).WithPaging(20)
+    }
+    else //Primera y Segunda Quincena
+    {
+        @Html.Grid(Model.resumen_pre_planilla.ToList()).Columns(columns =>
+          {
+              columns.Add(foo => foo.id_empleado).Titled("Código Empleado").SetWidth(50).Filterable(true).Sortable(true);
+              columns.Add(foo => foo.primer_apellido).Titled(Resources.Resources.empleado_primer_apellido).SetWidth(50).Filterable(true).Sortable(true);
+              columns.Add(foo => foo.segundo_apellido).Titled(Resources.Resources.empleado_segundo_apellido).SetWidth(50).Filterable(true).Sortable(true);
+              columns.Add(foo => foo.primer_nombre).Titled(Resources.Resources.empleado_primer_nombre).SetWidth(50).Filterable(true).Sortable(true);
+              columns.Add(foo => foo.segundo_nombre).Titled(Resources.Resources.empleado_segundo_nombre).SetWidth(50).Filterable(true).Sortable(true);
+              columns.Add(foo => foo.puesto).Titled(Resources.Resources.puesto_nombre).SetWidth(100).Filterable(true).Sortable(true);
+              columns.Add(foo => foo.total).Titled(Resources.Resources.planilla_total).SetWidth(100).Filterable(true).Sortable(true).RenderValueAs(
+                  d => @<text>
+                    Q @MVC2013.Src.Comun.Util.FormatUtil.getCurrencyString(d.total)
+                </text>
+                  );
+              columns.Add().Titled(Resources.Resources.acciones).Encoded(false).Sanitized(false).SetWidth(100).RenderValueAs(d =>
+                @<b>
+                    <button class="btn btn-info btn-sm" onclick="location.href='@Url.Action("Editar_Planilla", new { id = d.id_empleado_encabezado_planilla, tab = 0 })'">
+                        <span class="glyphicon glyphicon-list-alt"></span>&nbsp;@Resources.Resources.detalle
+                    </button>
+                </b>);
+          }).WithPaging(20)
+    }
+    
+</div>
+
+<div class="form-group">
+    <button class="btn-bitbucket btn-sm" onclick="location.href='@Url.Action("Index")'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+
+
+<script>
+    $(function () {
+
+        //Filtro de la tabla de empleados
+        $('#lista_empleado').filterByMultiColumn([
+            {
+                filterClass: 'c_primer_nombre',
+                field: 'primer_nombre'
+            },
+            {
+                filterClass: 'c_primer_apellido',
+                field: 'primer_apellido'
+            },
+            {
+                filterClass: 'c_puesto',
+                field: 'puesto'
+            },
+            {
+                filterClass: 'c_planilla_total',
+                field: 'planilla_total'
+            }
+        ]);
+    });
+
+    //Archivo de Tipos de Pago
+    $(document).on('change', '#archivo_tp', function () {
+        var file = $(this).prop("files")[0];
+        var data = new FormData();
+        var id_encabezado = $(this).data('id');
+        data.append('file', file);
+        data.append('id', id_encabezado);
+        $.ajax({
+            url: '@Url.Action("Subir_Tipo_Pago", "Planilla")',
+            type: "POST",
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            error: function () {
+                alert("Error con la conexión con el servidor.");
+            },
+            success: function (response) {
+                if (response.response == true) {
+                    $('#titulo').text("Operación completa");
+                    if (response.error_detectado == true) {
+                        $('#mensaje').text("Registros correctos almacenados. Registro de errores encontrados -> " + response.errores);
+                    }
+                    else {
+                        $('#mensaje').text("Registros almacenados correctamente.");
+                    }
+                }
+                else {
+                    $('#titulo').text("Operación incompleta");
+                    $('#mensaje').text("Datos no guardados. " + response.error);
+                }
+                $('#mostrar_mensaje').modal('show');
+            }
+        });
+        $archivo = $(this);
+        $archivo.replaceWith($archivo.val("").clone(true, true)); //resetear boton
+    });
+
+    //Archivo Correlativo
+    $(document).on('change', '#archivo_correlativo', function () {
+        var file = $(this).prop("files")[0];
+        var data = new FormData();
+        var id_encabezado = $(this).data('id');
+        data.append('file', file);
+        data.append('id', id_encabezado);
+        $.ajax({
+            url: '@Url.Action("Subir_Correlativo_Boleta", "Planilla")',
+            type: "POST",
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            error: function () {
+                alert("Error con la conexión con el servidor.");
+            },
+            success: function (response) {
+                if (response.response == true) {
+                    $('#titulo').text("Operación completa");
+                    if (response.error_detectado == true) {
+                        $('#mensaje').text("Registros correctos almacenados. Registro de errores encontrados -> " + response.errores);
+                    }
+                    else {
+                        $('#mensaje').text("Registros almacenados correctamente.");
+                    }
+                }
+                else {
+                    $('#titulo').text("Operación incompleta");
+                    $('#mensaje').text("Datos no guardados. " + response.error);
+                }
+                $('#mostrar_mensaje').modal('show');
+            }
+        });
+        $archivo = $(this);
+        $archivo.replaceWith($archivo.val("").clone(true, true)); //resetear boton
+    });
+</script>

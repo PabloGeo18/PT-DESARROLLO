@@ -1,0 +1,322 @@
+﻿@model MVC2013.Models.Empleado
+
+@{
+    ViewBag.Title = @Resources.Resources.empleado + "_" + @Resources.Resources.eliminar;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.empleado_eliminar</h2>
+
+<h3>@Resources.Resources.confirmacion_eliminar</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.primer_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.primer_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.segundo_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.segundo_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.primer_apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.primer_apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.segundo_apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.segundo_apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellido_casada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellido_casada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.servicio_militar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.servicio_militar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_nacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_nacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sabe_leer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sabe_leer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sabe_escribir)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sabe_escribir)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estatura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estatura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.peso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.peso)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dpi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dpi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numero_licencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero_licencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_vencimiento_licencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_vencimiento_licencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.afiliacion_igss)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.afiliacion_igss)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.afiliacion_irtra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.afiliacion_irtra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pasaporte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pasaporte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numero_cuenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero_cuenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eliminado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eliminado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_creacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_modificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_eliminacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_eliminacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Banco.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Banco.nombre)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipios.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipios.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipios1.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipios1.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paises.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paises.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Profesion.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profesion.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_Cuenta.id_tipo_cuenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_Cuenta.id_tipo_cuenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_Licencia.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_Licencia.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios1.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios1.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios2.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios2.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado_Empleado.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado_Empleado.nombre)
+        </dd>
+
+    </dl>
+
+    <div>
+        <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = Model.id_empleado })'">
+            @Resources.Resources.eliminar
+        </button>
+        <button class="btn btn-warning btn-sm" onclick="location.href = '@Url.Action("Index", new { id = @Resources.Resources.boton_regresar_id })'">
+            @Resources.Resources.listado_regresar
+        </button>
+    </div>
+</div>

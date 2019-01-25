@@ -1,0 +1,192 @@
+﻿@model MVC2013.Models.rpt_Contrato_Result
+@using System.Globalization;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Contratos.css")">*@
+    <title>Contrato Aprendiz</title>
+    <style type="text/css">
+        body {
+            font-size: 12pt;
+        }
+
+        .datos_representante {
+            text-decoration: underline;
+            font-size: 14pt;
+        }
+
+        .datos_empleado {
+            text-decoration: underline;
+            font-size: 14pt;
+        }
+
+
+        .datos_contrato {
+            font-size: 16pt;
+            text-decoration: underline;
+        }
+
+        .cursiva {
+            font-style: italic;
+        }
+
+        .negrita {
+            font-weight: bold;
+        }
+
+        .subrayado {
+            text-decoration: underline;
+        }
+
+        .datos_referencia {
+            font-size: 10pt;
+        }
+
+        .justificado {
+            text-align: justify;
+        }
+
+        .derecha {
+            text-align: right;
+        }
+
+        .centrado {
+            text-align: center;
+        }
+
+        .page {
+            page-break-after: always;
+            page-break-inside: avoid;
+            margin-top: 100px;
+            margin-left: 100px;
+            margin-right: 100px;
+            margin-bottom: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--Contrato Aprendiz-->
+    <div class="page">
+        <div style="text-align:right;font-size:20px; font-family:'Times New Roman'">
+            <b>No. @Model.id_empleado</b>
+        </div>
+        <div style="text-align:center;font-size:24px; font-family:'Times New Roman'">
+            <label><b>CONTRATO DE APRENDIZAJE</b></label>
+            <br />
+        </div>
+        <div style="text-align:justify; font-size:20px; font-family:Arial">
+            <b><u>De las partes:</u></b>
+            <ol type="a">
+                <li>
+                    <b>@Model.empresa</b>, (en adelante denominado
+                    <b>EL PATRONO</b>)  representada en este acto por
+                    <b>@Model.representante_nombre</b>, quien dice ser de @Model.edadR años
+                    de edad, de sexo @Model.generoR, estado civil @Model.estado_civilR, de profesión Gerente de Recursos Humanos, de este domicilio y vecino del municipio de @Model.municipioR,
+                    titular del DPI numero @Model.dpiR1, @Model.dpiR2, @Model.dpiR3  (@Model.dpiR), extendido por el Registro Nacional de las Personas y por la otra parte el señor (a)
+                </li>
+                <li>
+                    <b>@Model.empleado_nombre</b> (en adelante denominado
+                    <b>APRENDIZ</b>) quien dice ser de @Model.edad años de edad, de sexo @Model.genero de estado civil @Model.estado_civil
+                    de profesión @Model.profesion, de este domicilio y vecindad, portador del DPI  número @Model.dpi1, @Model.dpi2, @Model.dpi3. (@Model.dpi) Extendido por el Registro Nacional de las Personas.
+                </li>
+            </ol>
+            <b><u>Declaraciones Previas:</u></b>
+            <br />
+            Las partes reconocen que dentro de la diversidad de las artes, profesiones y oficios, se encuentran aquellos encaminados a brindar seguridad y/o protección a las personas y sus bienes. Así también reconocen, que el arte, profesión y el oficio de seguridad, requiere de un aprendizaje especial que se obtiene mediante un proceso especifico; máxime por el tipo de bienes a los que está encaminado a resguardar y proteger (personas y bienes).
+            En ese sentido,
+            <b>EL PATRONO</b> declara que dentro del giro de las actividades que desarrolla habitualmente, se encuentra aquellas vinculadas a la prestación de servicios de seguridad para las personas y sus bienes. También declara
+            <b>El PATRONO</b>, que tiene amplia experiencia en materia de Seguridad y que se encuentra debidamente autorizado como centro de capacitación por parte de la institución y normas que rigen la prestación de servicios de seguridad privada, según lo establece el artículo 52 del decreto 52-2010 que rige la materia;  lo que le permite brindar enseñanza en forma práctica del arte, profesión y oficio de SEGURIDAD.
+            <br />Por su parte
+            <b>EL APRENDIZ</b> declara que conoce que
+            <b>EL PATRONO</b> presta servicios vinculados con la seguridad privada así como que éste tiene amplia experiencia en la enseñanza de los servicios de Seguridad por lo que está interesado en que
+            <b>EL PATRONO</b>, le enseñe en forma práctica, el arte, profesión u oficio de Seguridad.
+            <br />
+            <b><u>Del contrato y condiciones legales a que se sujeta el mismo:</u></b>
+            <br />
+            Con base en las declaraciones de las partes antes descritas que han sido fundamentales para la celebración del presente acuerdo y con fundamento en el
+            <u>Título Cuarto, Capítulo VI artículos 170, 171, 172, 173 y 174 del Código de Trabajo</u>, así como a los establecido en el
+            <u>Decreto 52-2010 articulo 46 incisos c y d</u> por este acto ambas partes celebran
+            <b>CONTRATO DE APRENDIZAJE EN EL OFICIO DE SEGURIDAD PRIVADA</b>, el cual queda sujeto a las siguientes condiciones y estipulaciones:
+            <ol type="a">
+                <li>
+                    <b>Inicio y plazo de Relación Laboral.</b> La relación de trabajo se inicia el día @Model.fechaInicioLetras y tendrá una vigencia de un año, la empresa
+                    queda obligada a enseñarle las actividades profesionales en el área Técnica tales como: Seguridad preventiva, Manejo de Armamento  y se dará por
+                    aprobado al momento en que el trabajador obtenga el certificado de haber aprobado todos los cursos definidos, de acuerdo a lo que establece el artículo 46 inciso c del decreto 52-2010.
+                </li>
+                <li>
+                    <b>De los servicios:</b> El Aprendizaje se realizará en el área de seguridad de personas y bienes. Por lo tanto, El Aprendiz prestará servicios seguridad en los lugares en los cuales el patrono le indique con la antelación debida. En ese sentido, el Aprendiz realizara todos aquellos  actos y procedimientos inherentes a los citados servicios y que el patrono le brindara por medios manuales y/o documentos escritos o verbales para su debido cumplimiento.
+                </li>
+                <li>
+                    <b>Lugar del aprendizaje.</b> El aprendizaje lo realizará el aprendiz en el lugar o lugares que el Patrono le indique y en especial en la Avenida Hincapié 29-75 zona 13 de esta ciudad. Derivado de ello, los servicios que El Aprendiz se compromete a realizar a favor del Patrono, los realizará en cualquiera de los lugares que el patrono le indique en forma debida.
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div style="margin-top: 100px;
+            margin-left: 100px;
+            margin-right: 100px;
+            margin-bottom: 100px;">
+        <div style="text-align:justify; font-size:20px; font-family:Arial">
+            <ol type="a" start="4">
+                <li>
+                    <b>Jornada.</b> Por el tipo de servicios que realiza el Patrono y por el tipo de servicios que prestará El Aprendiz, éste conforme lo determina el artículo 124 del Código de Trabajo y el Acuerdo 346, no estará sujeto a las limitaciones de jornada. En tal virtud podrá laborar en horarios de 07:00 am a 19:00 pm o de 19:00 pm a 07:00 am del siguiente día.
+                </li>
+                <li>
+                    <b>Retribución:</b> El Aprendiz por los servicios que prestará a favor de El patrono devengará una retribución equivalente a la cantidad de
+                    <b>
+                        @Model.total_salarioL (@Model.total_salario.Value.ToString("C", CultureInfo.GetCultureInfo("es-GT")))
+                    </b> mensuales; cantidad que se compone de la siguiente manera:
+                    <b>
+                        a) un salario base de  (@Model.sueldo_base.Value.ToString("C", CultureInfo.GetCultureInfo("es-GT"))); b) una bonificación incentivo conforme el decreto 78-89 del Congreso por la
+                        suma de @Model.bono_decreto.ToString("C", CultureInfo.GetCultureInfo("es-GT")); y c) una bonificación convenida conforme el decreto 78-89 del Congreso de la República de @Model.bono_extra.ToString("C", CultureInfo.GetCultureInfo("es-GT")).
+                    </b> Dicha retribución será pagada en moneda nacional, con anticipos quincenales,
+                    el quince y último día de cada mes, independientemente que sea día hábil o no. La bonificación incentivo contenida en el inciso c) estará sujeta quincenalmente al reporte sobre su desempeño y desenvolvimiento
+                    en su proceso de aprendizaje, tales como: puntualidad, asistencia, presentación, cumplimiento de los procedimientos instruidos, cuidado de los enseres y equipos otorgados por el patrono para su aprendizaje.
+                </li>
+                <li>
+                    <b>Causas de terminación prematura del contrato.</b> En base a lo que establece el artículo 173 del código de trabajo son causas para que el patrono de por terminado el presente contrato sin responsabilidad de su parte antes del vencimiento del plazo
+                    pactado: a) Cuando el aprendiz abandonare el proceso de aprendizaje establecido por el patrono; b) Cuando el aprendiz adolezca de incapacidad manifiesta en el oficio que se le enseña; c) cuando El Aprendiz viole o incumpla cualquiera de la
+                    obligaciones contraídas en el presente contrato.
+                </li>
+            </ol>
+            El presente contrato de trabajo se suscribe en la ciudad de Guatemala, el día @Model.fechaenletras, en tres ejemplares, quedando en poder del patrono el original, una copia para el trabajador y otra adicional para hacer llegar a la autoridad de trabajo que corresponda.
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <table width="100%" style="text-align:center">
+                <tr>
+                    <td>
+                        _________________________________
+                    </td>
+                    <td>
+                        __________________________________
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <b>Firma o impresión digital del Trabajador</b>
+                    </td>
+                    <td>
+                        <b>Firma o impresión digital del Patrono</b>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MVC2013.Models.Tipo_Permiso_Ausencia>
+
+@{
+    ViewBag.Title = "Tipo_Permiso_Ausencia_Index";
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Tipos de Permiso para Ausencias</h2>
+
+<div class="form-group">
+    <button class="btn btn-success btn-sm" type="button" onclick="location.href='@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</div>
+<div class="table-responsive">
+    <table class="table-striped" id="tabla_tipo_prestamo">
+        <thead>
+            <tr>
+                <th>Tipo de Permiso</th>
+                <th>Situación</th>
+                <th>@Resources.Resources.acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.descripcion</td>
+                    <td>@item.Situacion.nombre</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="location.href='@Url.Action("Edit", new { id = item.id_tipo_permiso_ausencia })'">
+                            <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                        </button>
+                        <button class="btn btn-sm btn-danger" onclick="location.href='@Url.Action("Delete", new { id = item.id_tipo_permiso_ausencia })'">
+                            <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,43 @@
+﻿@model MVC2013.Models.Rol_Acciones
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Rol_Acciones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Acciones.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acciones.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Controladores.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Controladores.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Roles.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Roles.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

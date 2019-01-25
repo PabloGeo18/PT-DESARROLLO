@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MVC2013.Models.Consumibles>
+@using System.Globalization;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Listado de Consumibles</h2>
+
+<table class="table-hover">
+    <tr>
+        <th>
+            @Resources.Resources.descripcion
+        </th>
+        <th>
+            @Resources.Resources.costo
+        </th>
+        <th>
+            @Resources.Resources.costo_venta
+        </th>
+        <th>
+            @Resources.Resources.existencia
+        </th>
+        <th>
+            @Resources.Resources.consumible_tipo
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @item.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+
+            </td>
+            <td>
+                @item.costo_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.existencia)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Consumible_Tipo.descripcion)
+            </td>
+
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,191 @@
+﻿@model IEnumerable<MVC2013.Models.Puntos>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administracion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="zebra-striped">
+    <thead>
+        <th>
+            @Html.DisplayNameFor(model => model.id_punto_externo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre_corto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.calle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.avenida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.no_casa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.local)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nivel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kilometro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.zona)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.colonia_cc_edificio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hora_maxima_visita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.homa_minima_visita)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.activo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.eliminado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_usuario_creacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_usuario_modificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_usuario_eliminacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_modificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_eliminacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Clasificacion_Punto.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Clientes.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Departamentos.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Municipios.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paises.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo_Punto.nombre)
+        </th>
+        <th></th>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_punto_externo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_corto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.calle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.avenida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.no_casa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.local)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nivel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kilometro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.zona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.colonia_cc_edificio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hora_maxima_visita)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.homa_minima_visita)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.activo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.eliminado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_usuario_creacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_usuario_modificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_usuario_eliminacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_creacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_modificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_eliminacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clasificacion_Punto.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clientes.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamentos.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Municipios.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paises.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo_Punto.nombre)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id_punto }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id_punto }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id_punto })
+            </td>
+        </tr>
+    }
+
+</table>

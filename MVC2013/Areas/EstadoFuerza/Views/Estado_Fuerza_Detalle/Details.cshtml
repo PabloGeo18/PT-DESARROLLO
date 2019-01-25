@@ -1,0 +1,44 @@
+﻿@model MVC2013.Models.Estado_Fuerza_Detalle
+
+@{
+    ViewBag.Title = "Estado_Fuerza_Detalle_Detalle";
+    Layout = "~/Areas/EstadoFuerza/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalle del Registro</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Empleado</dt>
+        <dd>@(Model.id_empleado.ToString() + " - " +
+        Model.Empleado.primer_nombre + " " +
+                (!String.IsNullOrEmpty(Model.Empleado.segundo_nombre) ? Model.Empleado.segundo_nombre + " " : "") +
+            Model.Empleado.primer_apellido + " " +
+                (!String.IsNullOrEmpty(Model.Empleado.segundo_apellido) ? Model.Empleado.segundo_apellido : ""))</dd>
+        <dt>Tipo de Agente</dt>
+        <dd>@Model.Cat_Tipos_Agente.nombre</dd>
+        <dt>Ubicación</dt>
+        <dd>@Model.Ubicaciones.direccion</dd>
+        <dt>Situación</dt>
+        <dd>@Model.Situacion.nombre</dd>
+        <dt>Fecha</dt>
+        <dd>@Model.fecha.ToString("dd/MM/yyyy")</dd>
+        <dt>Observación</dt>
+        <dd>@Model.observacion</dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt></dt>
+        <dd>
+            <button class="btn btn-sm btn-primary" type="button" onclick="location.href='@Url.Action("Edit", new { id = Model.id_estado_fuerza_detalle })'">
+                <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+            </button>
+        </dd>
+    </dl>
+</div>
+<div class="form-group">
+    <button class="btn-sm btn-bitbucket" type="button" onclick="location.href='@Url.Action("Index", new { id = Model.id_estado_fuerza })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+    </button>
+</div>
+

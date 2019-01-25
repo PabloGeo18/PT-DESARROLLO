@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MVC2013.Models.Pt_Tipos_Proyecto>
+
+@{
+    ViewBag.Title = "Inicio - Tipos de Proyecto";
+    Layout = "~/Areas/Comercializacion/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tipos de Proyecto</h2>
+<div class="form-group">
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</div>
+<div class="table-responsive">
+    @if (Model.Where(i => i.activo && !i.eliminado).Count() <= 0)
+    {
+        <table class="table table-striped table-bordered table-responsive">
+            <thead style="background-color:cadetblue"></thead>
+            <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+        </table>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead style="background-color:#969aa2">
+                <tr>
+                    <th class="text-center">Acciones</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td class="text-center" width="20%">
+                    <button data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.ctpo_id })'">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button data-toggle="tooltip" data-placement="top" title="Detalles" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.ctpo_id })'">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                    </button>
+                    <button data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = item.ctpo_id })'">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.ctpo_descripcion)</td>
+            </tr>
+            }
+
+        </table>
+    }
+</div>

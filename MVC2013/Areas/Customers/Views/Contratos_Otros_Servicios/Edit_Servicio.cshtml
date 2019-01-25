@@ -1,0 +1,130 @@
+﻿@model MVC2013.Models.Contratos_Otros_Servicios
+
+@{
+    ViewBag.Title = "Editar Servicio Adicional";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar Contrato de Agente </h2>
+<h4><label>Cliente:</label>@Model.Contratos_Servicios.Razones_Sociales.Clientes.nombre</h4>
+<h4><label>Razon Social:</label>@Model.Contratos_Servicios.Razones_Sociales.razon_social</h4>
+
+@using (Html.BeginForm("Edit_Servicio", "Contratos_Otros_Servicios", FormMethod.Post, new { @id = "contratoForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <input class="hidden" value="@Model.id_contrato_otro_servicio" name="id_contrato_otro_servicio" id="id_contrato_otro_servicio" />
+        <div class="panel panel-primary">
+            <div class="panel-heading bg-blue">Informacion de Contrato Servicio Adicional</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Tipo de Servicio</label>
+                            <div class="col-md-12">
+                                @Html.DropDownList("id_cat_otro_servicio", null, "----", htmlAttributes: new { @class = "form-control", required = "required" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Cantidad a Solicitar</label>
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Costo</label>
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.costo, new { htmlAttributes = new { @class = "form-control", required = "required", @id = "costo" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Precio</label>
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.precio_venta_unitario, new { htmlAttributes = new { @class = "form-control", required = "required", @id = "precio" } })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Fecha de Inicio de Contratacion</label>
+                            <div class="col-md-12">
+                                <div style="position:relative">
+                                    <input type='text' class="form-control" value="@ViewBag.fecha_inicio" required name="fecha_inicio" id="fecha_inicio" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Fecha de Fin de Contratacion</label>
+                            <div class="col-md-12">
+                                <div style="position:relative">
+
+                                    <input type='text' class="form-control" value="@ViewBag.fecha_fin" name="fecha_fin" id="fecha_fin" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Grupo de Factura</label>
+                            <div class="col-md-12">
+                                @Html.DropDownList("id_razon_social_grupo_factura", null, "----", htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="col-md-12">Ubicacion</label>
+                            <div class="col-md-12">
+                                @Html.DropDownList("id_ubicacion", null, "----", htmlAttributes: new { @class = "form-control", required = "required" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button class="btn btn-success btn-sm" type="submit">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+<div class="form-group">
+    <button class="btn-sm btn-bitbucket" onclick="location.href = '@Url.Action("Details_RS", "Clientes", new { id_Razon_Social = Model.Contratos_Servicios.id_razon_social })'">
+        <span class="glyphicon glyphicon-backward"></span>&nbsp;Retornar al Detalle de la Razon Social
+    </button>
+</div>
+<script>
+    $(function () {
+        $('#fecha_fin, #fecha_inicio').datetimepicker(
+                {
+                    viewMode: 'days',
+                    format: 'DD/MM/YYYY',
+                });
+        $('#precio').val($('#precio').val().replace(",", "."));
+        $('#costo').val($('#costo').val().replace(",", "."));
+    });
+
+    $('#focus').focus();
+</script>

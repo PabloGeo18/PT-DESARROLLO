@@ -1,0 +1,53 @@
+﻿@model MVC2013.Models.Razon_Social_Grupos_Factura
+
+@{
+    ViewBag.Title = "Eliminar Grupo Factura";
+    Layout = "~/Areas/Customers/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Agrupacion de Factura</h2>
+
+<h3> ¿Está seguro de eliminar el registro?</h3>
+<div>
+    <hr />
+    <div class="panel panel-default">
+        <div class="panel-heading bg-red">Informacion</div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    Nombre
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.nombre)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    
+
+    <dl class="dl-horizontal">
+        <dd>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <button class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = Model.id_razon_social_grupo_factura })'">
+                    <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                </button>
+            }
+        </dd>
+    </dl>
+
+</div>
+<p>
+    <div>
+        <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Details_RS", "Clientes", new { id_Razon_Social = @Model.id_razon_social })'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;Regresar al Detalle de la Razon Social
+        </button>
+    </div>
+
+
+</p>
+
+

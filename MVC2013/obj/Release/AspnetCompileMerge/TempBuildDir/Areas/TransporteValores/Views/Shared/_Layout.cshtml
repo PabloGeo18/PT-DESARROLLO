@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @Resources.Resources.aplicacion</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/font-awesome.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/ionicons.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/AdminLTE.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/skins/skin-red.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap/css/bootstrap.min.css")">
+
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/AdminLte/js/app.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+
+    <!--- Calendar --->
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap/css/datepicker.css")">
+    <script src="@Url.Content("~/Content/bootstrap/js/bootstrap-datepicker.js")"></script>
+
+    <!--- Calendar/Time --->
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap-datetimepicker.css")">
+    <script src="@Url.Content("~/Scripts/moment.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
+
+
+
+</head>
+<body class="skin-red">
+
+
+    @Html.Partial("_LoginPartial")
+
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="@Url.Content("~/Content/AdminLte/img/user2_160-160.png")" class="img-circle" alt="User Image" />
+                </div>
+                <div class="pull-left info">
+                    <p>@Resources.Resources.tdv</p>
+                    <!-- Status -->
+                    <a href="#"><i class="fa fa-circle text-success"></i> @Html.Encode(User.Identity.Name)</a>
+                </div>
+            </div>
+            <!-- search form (Optional) -->
+            <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Busqueda..." />
+                    <span class="input-group-btn">
+                        <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </form>
+            <!-- /.search form -->
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu">
+                <li>@Html.ActionLink(@Resources.Resources.menu_inicio, "Index", "Home", new { Area = "" }, null)</li>
+                <li class="treeview">
+                    <a href="#"><span>@Resources.Resources.tdv_menu_catalogo</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li>@Html.ActionLink(@Resources.Resources.tdv_menu_tipo_paquete, "Index", "TipoPaquete")</li>
+                        <li>@Html.ActionLink(@Resources.Resources.tdv_menu_tipo_contenido, "Index", "TipoContenido")</li>
+                        <li>@Html.ActionLink(@Resources.Resources.menu_tipo_solicitud, "Index", "SolicitudTipo")</li>
+                        <li>@Html.ActionLink(@Resources.Resources.menu_gtokens_conf, "Index", "TokenClienteConf")</li>
+                        <li>@Html.ActionLink(@Resources.Resources.receptores, "Index", "Receptores")</li>
+                        
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><span>Procesos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li>@Html.ActionLink(@Resources.Resources.solicitudes, "Index", "Solicitudes")</li>
+                        <li>@Html.ActionLink(@Resources.Resources.transacciones, "Index", "Transacciones")</li>
+                        <li>@Html.ActionLink(@Resources.Resources.lote, "Index", "SolicitudLote")</li>
+                        <li>@Html.ActionLink(@Resources.Resources.menu_tokens_salida, "Index", "TokenSalida")</li>
+                    </ul>
+                </li>
+
+            </ul><!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header"></section>
+        <!-- Main content -->
+        <section class="content">
+            @RenderBody()
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+
+        </div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2015 <a href="#">Geo Informatica</a>.</strong> All rights reserved.
+    </footer>
+
+
+
+    @RenderSection("scripts", required: false)
+
+    </body>
+    </html>

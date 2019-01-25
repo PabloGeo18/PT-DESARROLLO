@@ -1,0 +1,156 @@
+﻿@using MVC2013.Src.Comun.Helper
+<!DOCTYPE html>
+<html>
+<head><link rel="icon" href="~/Content/AdminLte/img/pt.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @Resources.Resources.aplicacion</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/font-awesome.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/ionicons.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/AdminLTE.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/skins/skin-red.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/AdminLTE.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/skins/_all-skins.min.css")">
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap/css/bootstrap.min.css")">
+
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/AdminLte/js/app.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+    <script src="@Url.Content("~/Scripts/filter-inclusive.js")"></script>
+
+    <!--Selet2-->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/select2.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/select2.min.css")">
+    <script src="@Url.Content("~/Scripts/select2.js")"></script>
+    <script src="@Url.Content("~/Scripts/select2.min.js")"></script>
+
+    <!--- Calendar --->
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap/css/datepicker.css")">
+    @*<script src="@Url.Content("~/Content/bootstrap/js/bootstrap-datepicker.js")"></script>*@
+
+    <!--- Calendar/Time --->
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap-datetimepicker.css")">
+    <script src="@Url.Content("~/Scripts/moment.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
+
+    <!-- Grid MVC -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/Gridmvc.css")">
+    <script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+
+</head>
+<body class="hold-transition skin-black fixed sidebar-mini">
+
+
+
+    @Html.Partial("_LoginPartial")
+
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar" style="background-color: #474747 !important">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="@Url.Content("~/Content/AdminLte/img/user2_160-160.png")" class="img-circle" alt="User Image" />
+                </div>
+                <div class="pull-left info">
+                    <p>@Resources.Resources.clientes</p>
+                    <!-- Status -->
+                    <a href="#"><i class="fa fa-circle text-success"></i> @Html.Encode(User.Identity.Name)</a>
+                </div>
+            </div>
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="@Url.Action("Index", "Home", new { area = "" })"><i class="fa fa-home"></i> <span>Inicio</span></a>
+                </li>
+                <li class="treeview">
+                    <a href="#"><span>@Resources.Resources.administracion_menu_catalogo_general</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li>@Html.SpecialMenuLinkLi("Tipos de Agente", "Index", "Cat_Tipos_Agente", User.Identity.Name, "<i class='fa fa-list-alt'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Tipos de Servicios Adicionales", "Index", "Cat_Otros_Servicios", User.Identity.Name, "<i class='fa fa-cubes'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.administracion_menu_municipios, "Index", "Municipios", User.Identity.Name, "<i class='fa fa-circle'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.administracion_menu_departamentos, "Index", "Departamentos", User.Identity.Name, "<i class='fa fa-circle-o'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.administracion_menu_tipo_cliente, "Index", "TipoCliente", User.Identity.Name, "<i class='fa fa-users'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.administracion_menu_puesto_contacto, "Index", "Contacto_Puesto", User.Identity.Name, "<i class='fa fa-sitemap'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Razones de Anulación de Factura", "Index", "Cat_Razones_Anulacion", User.Identity.Name, "<i class='fa fa-minus-square'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Razones de Eliminación de Factura", "Index", "Cat_Razones_Eliminacion", User.Identity.Name, "<i class='fa fa-times-circle'></i>")</li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><span>@Resources.Resources.catalogos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.administracion_menu_contactos, "Index", "Contactos", User.Identity.Name, "<i class='fa fa-phone'></i>")</li>
+
+                    </ul>
+
+                </li>
+                <li class="treeview">
+                    <a href="#"><span>@Resources.Resources.clientes</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.administracion_menu_clientes, "Index", "Clientes", User.Identity.Name, "<i class='fa fa-users'></i>")</li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><span>Proceso Facturación</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+
+                        <li>@Html.SpecialMenuLinkLi("Proceso Facturacion Mensual", "Index", "Procesos_Facturacion", User.Identity.Name, "<i class='fa fa-list-alt'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Generación de Facturas", "Procesar_Facturacion", "Procesos_Facturacion_Detalle", User.Identity.Name, "<i class='fa fa-server'></i>")</li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><span>Facturas</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li>@Html.SpecialMenuLinkLi("Consulta Mensual", "Index_Mensual", "Facturas", User.Identity.Name, "<i class='fa fa-sort-amount-desc'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Facturas del Día", "Index_Hoy", "Facturas", User.Identity.Name, "<i class='fa fa-tasks'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Consultar Factura", "Consulta_Factura", "Facturas", User.Identity.Name, "<i class='fa fa-list-alt'></i>")</li>
+                     </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><span>Gestiones</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li>@Html.SpecialMenuLinkLi("Gestión de Cobro", "Index", "Gestion_Cobro", User.Identity.Name, "<i class='fa fa-phone'></i>")</li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><span>@Resources.Resources.consultas</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li>@Html.SpecialMenuLinkLi("Reportes", "ViewReport", "Reportes", User.Identity.Name, "<i class='fa fa-file-text-o'></i>")</li>
+                    </ul>
+                </li>
+            </ul><!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="padding: 0px !important">
+        <!-- Content Header (Page header) -->
+        <section class="content-header"></section>
+        <!-- Main content -->
+        <section class="content">
+            @RenderBody()
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+
+        </div>
+        <!-- Default to the left -->
+        @*<strong>Copyright &copy; @DateTime.Today.Year <a href="#">Protecci&oacute;n Total</a>.</strong> All rights reserved.*@
+        <strong>ERPGEO</strong>, Derechos reservados 2018
+    </footer>
+
+    @Scripts.Render("~/Content/plugins/slimscroll/jquery.slimscroll.min.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

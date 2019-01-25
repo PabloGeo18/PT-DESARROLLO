@@ -1,0 +1,168 @@
+﻿@model IEnumerable<MVC2013.Models.Tickets_Movimiento>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Tickets/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movimiento de Tickets a Encargado</h2>
+
+<p>
+    @if (ViewBag.inv == null || ViewBag.inv.existencia == 0)
+    {
+        <button type="button" data-toggle="tooltip" data-placement="top" title="No hay tickets disponibles" class="btn btn-success btn-sm ">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Entregar Tickets a Empleado
+        </button>
+    }
+    else
+    {
+        <button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Trasladar_Encargado")'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Entregar Tickets a Encargado
+        </button>
+    }
+    <button data-toggle="modal" data-target="#gReporte" class="btn btn-primary btn-sm" type="button">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Generar Reporte
+    </button>
+    @*<button class="btn btn-success btn-sm " onclick="location.href = '@Url.Action("Trasladar_Empleado")'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Entregar Tickets a Empleado
+        </button>*@
+</p>
+<!-- Modal -->
+<div class="modal fade" id="gReporte" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><b>Generar Reporte</b></h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label style="padding-right:0px" class="control-label col-md-3">Fecha Inicial</label>
+                    <div class="col-md-9">
+                        <input style="max-width:175px" class="form-control" type="date" id="initial_date" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3">Fecha Final</label>
+                    <div class="col-md-9">
+                        <input style="max-width:175px" class="form-control" type="date" id="final_date" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <hr />
+                <div class="col-md-offset-2 col-md-6">
+                    <button type="button" id="movTicketEncargadoSearch" class="btn-success btn btn-sm">
+                        <span class="glyphicon glyphicon-search"></span>&nbsp;Generar Reporte
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @section Scripts{
+    <script type="text/javascript">
+        $("#movTicketEncargadoSearch").click(function () {
+            initial_date = $("#initial_date").val();
+            final_date = $("#final_date").val();
+            console.log("fechai", initial_date)
+            console.log("fechaf", final_date)
+            var url = '@Url.Action("GetTicketsMovimientoEncargado", "Tickets_Movimiento", new { initial_date = "__id__", final_date = "__di__" })';
+            var urln = url.replace('__id__', initial_date);
+            var utu = urln.replace('amp;', '');
+            var final = utu.replace('__di__', final_date);
+            window.location.href = final;
+            $('#gReporte').modal('hide');
+        });
+    </script>
+    }
+</div>
+@if (Model.Where(x => (x.id_ticket_tipo_movimiento == 1 || x.id_ticket_tipo_movimiento == 2 || x.id_ticket_tipo_movimiento == 3) && x.activo && !x.eliminado).Count() <= 0)
+{
+    <table class="table table-striped table-bordered table-responsive">
+        <thead style="background-color:cadetblue"></thead>
+        <tbody><tr><td><p>No hay datos para mostrar</p></td></tr></tbody>
+    </table>
+}
+else
+{
+    <table class="table-hover">
+        <thead style="background-color:#969aa2">
+            <tr>
+                <th class="text-center">Acciones</th>
+                <th class="text-center">Usuario</th>
+                <th class="text-center">Tipo de Ticket</th>
+                <th class="text-center">Tipo de Movimiento</th>
+                <th class="text-center">Debe</th>
+                <th class="text-center">Haber</th>
+                <th class="text-center">Desde</th>
+                <th class="text-center">Hasta</th>
+                <th class="text-center">Fecha de Transaccion</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Where(x => (x.id_ticket_tipo_movimiento == 1 || x.id_ticket_tipo_movimiento == 2 || x.id_ticket_tipo_movimiento == 3) && x.activo && !x.eliminado))
+            {
+                <tr>
+                    <td class="text-center">
+                        @if (item.id_ticket_tipo_movimiento != 1 && item.id_ticket_tipo_movimiento!=3)
+                        {
+                            <button data-toggle="tooltip" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm" onclick="location.href = '@Url.Action("Delete", new { id = item.id_ticket_movimiento })'">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        }
+                        else {
+                            <p>No hay acciones disponibles</p>
+                        }
+                    </td>
+                    <td class="text-center">
+                        @item.Usuarios2.nombre_completo_usuario
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Tickets_Tipo.nombre)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Tickets_Tipo_Movimiento.nombre)
+                    </td>
+                    <td class="text-center">
+                        @if (@item.debe == 0)
+                        {
+                            <p>0</p>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.debe)
+                        }
+                    </td>
+                    <td class="text-center">
+                        @if (@item.haber == 0)
+                        {
+                            <p>0</p>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.haber)
+                        }
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.desde)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.hasta)
+                    </td>
+                    <td class="text-center">
+                        @item.fecha_creacion.ToString("dd/MM/yyyy")
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td colspan="9"><hr style="height:1px; border-style:solid;background-color:#222d32; margin-bottom:0px; margin-top:0px;"></td>    
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td colspan="2" class="text-right"><p>Tickets Disponibles</p></td>
+                <td class="text-center">@ViewBag.inv.existencia</td>
+                <td colspan="3"></td>
+            </tr>
+        </tbody>
+    </table>
+}

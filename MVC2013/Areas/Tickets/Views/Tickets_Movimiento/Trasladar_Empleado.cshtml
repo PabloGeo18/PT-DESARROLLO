@@ -1,0 +1,77 @@
+﻿@model MVC2013.Models.Tickets_Movimiento
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Tickets/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <div>
+        <button class="btn btn-sm btn-bitbucket" onclick="location.href = '@Url.Action("MovTicketEmpleado")'">
+            <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
+        </button>
+    </div>
+</div>
+
+<h2>Transferir Ticket a Empleado</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.id_empleado, "Transferir Tickets a", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownList("id_empleado", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.id_empleado, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.id_ticket_tipo, "Tipo de Ticket", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownList("id_ticket_tipo", null, "--Elegir Tipo de Ticket--", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.id_ticket_tipo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.desde, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.desde, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.desde, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.hasta, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.hasta, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.hasta, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <font color="red"> @Html.ValidationMessage("Desde_Mayor") </font>
+        <font color="red"> @Html.ValidationMessage("Traslado") </font>
+        <font color="red"> @Html.ValidationMessage("Sin_Tickets") </font>
+        <font color="red"> @Html.ValidationMessage("Sin_Existencia") </font>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-success btn-sm" type="submit">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;Transferir Ticket
+                </button>
+            </div>
+        </div>
+    </div>
+}

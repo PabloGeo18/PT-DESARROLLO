@@ -1,0 +1,94 @@
+﻿@model IEnumerable<MVC2013.Models.Puesto>
+@using System.Globalization;
+
+@{
+    ViewBag.Title = Resources.Resources.puesto + "_" + Resources.Resources.lista;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.puesto_lista</h2>
+
+<div class="form-group">
+    <button class="btn btn-sm btn-success" onclick="location.href= '@Url.Action("Create")'">
+        <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+    </button>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 form-group">
+        <table class="table-condensed" id="lista_puestos">
+            <thead>
+                <tr>
+                    <th style="width:10%">Empresa</th>
+                    <th style="width:15%">@Resources.Resources.puesto_nombre</th>
+                    <th style="width:15%">Tipo de Puesto</th>
+                    <th style="width:10%">Sueldo Base</th>
+                    <th style="width:10%">Bono Decreto</th>
+                    <th style="width:10%">Bono Extra</th>
+                    <th style="width:10%">@Resources.Resources.acciones</th>
+                </tr>
+            </thead>
+            <tr>
+                <td><input type="text" id="empresa" class="form-control" autocomplete="off" /></td>
+                <td><input type="text" id="nombre" class="form-control" autocomplete="off" /></td>
+                <td><input type="text" id="tipo_puesto" class="form-control" autocomplete="off" /></td>
+                <td><input type="text" id="sueldo_base" class="form-control" autocomplete="off" /></td>
+                <td><input type="text" id="bono_decreto" class="form-control" autocomplete="off" /></td>
+                <td><input type="text" id="bono_extra" class="form-control" autocomplete="off" /></td>
+                <td></td>
+            </tr>
+            @foreach (var puesto in Model)
+            {
+                <tr>
+                    <td class="c_empresa">@puesto.Tipo_Puesto.Empresa.nombre</td>
+                    <td class="c_nombre">@puesto.nombre</td>
+                    <td class="c_tipo_puesto">@puesto.Tipo_Puesto.nombre</td>
+                    <td class="c_sueldo_base">@puesto.sueldo_base.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+                    <td class="c_bono_decreto">@puesto.bono_decreto.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+                    <td class="c_bono_extra">@puesto.bono_extra.ToString("C", CultureInfo.GetCultureInfo("es-GT"))</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("Edit", new { id = puesto.id_puesto })'">
+                            <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("Delete", new { id = puesto.id_puesto })'">
+                            <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                        </button>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        //Filtro de la tabla de empleados
+        $('#lista_puestos').filterByMultiColumn([
+            {
+                filterClass: 'c_nombre',
+                field: 'nombre'
+            },
+            {
+                filterClass: 'c_empresa',
+                field: 'empresa'
+            },
+            {
+                filterClass: 'c_sueldo_base',
+                field: 'sueldo_base'
+            },
+            {
+                filterClass: 'c_bono_extra',
+                field: 'bono_extra'
+            },
+            {
+                filterClass: 'c_bono_decreto',
+                field: 'bono_decreto'
+            },
+            {
+                filterClass: 'c_tipo_puesto',
+                field: 'tipo_puesto'
+            }
+        ]);
+    });
+
+</script>

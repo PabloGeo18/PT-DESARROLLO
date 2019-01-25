@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MVC2013.Models.Academia>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = @Resources.Resources.academia + "_" + @Resources.Resources.lista; ;
+    Layout = "~/Areas/rrhh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.Resources.academia_lista</h2>
+<div class="row">
+    <div class="col-lg-12 form-group">
+        <button class="btn btn-sm btn-success" onclick="location.href = '@Url.Action("Create")'">
+            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;@Resources.Resources.crear
+        </button>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table-striped">
+        <thead>
+            <tr>
+                <th>@Resources.Resources.academia_nombre</th>
+                <th>@Resources.Resources.academia_direccion</th>
+                <th>@Resources.Resources.acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var academia in Model)
+            {
+                <tr>
+                    <td>@academia.nombre</td>
+                    <td>@academia.ubicacion</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = academia.id_academia })'">
+                            <span class="glyphicon glyphicon-edit"></span>&nbsp;@Resources.Resources.editar
+                        </button>
+                        <button class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Index", "Capacitacion", new { id = academia.id_academia })'">
+                            <span class="glyphicon glyphicon-new-window"></span>&nbsp;@Resources.Resources.academia_ingresar
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("Delete", new { id = academia.id_academia })'">
+                            <span class="glyphicon glyphicon-trash"></span>&nbsp;@Resources.Resources.eliminar
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

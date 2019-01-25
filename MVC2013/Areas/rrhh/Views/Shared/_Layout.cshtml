@@ -1,0 +1,167 @@
+﻿@using MVC2013.Src.Comun.Helper
+<!DOCTYPE html>
+<html>
+<head><link rel="icon" href="~/Content/AdminLte/img/pt.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @Resources.Resources.aplicacion</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/font-awesome.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/ionicons.min.css")">
+    @*<link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/AdminLTE.css")">
+        <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/skins/skin-red.css")">*@
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/AdminLTE.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/AdminLte/css/skins/_all-skins.min.css")">
+
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap/css/bootstrap.min.css")" type="text/css">
+
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/AdminLte/js/app.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+    <script src="@Url.Content("~/Scripts/filter-inclusive.js")"></script>
+
+    <!--Selet2-->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/select2.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/select2.min.css")">
+    <script src="@Url.Content("~/Scripts/select2.js")"></script>
+    <script src="@Url.Content("~/Scripts/select2.min.js")"></script>
+
+    <!--WebCam-->
+    <script src="@Url.Content("~/Scripts/jquery.webcam.js")"></script>
+    <script src="@Url.Content("~/Scripts/inputmask.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.inputmask.js")"></script>
+
+    <script src="@Url.Content("~/Scripts/inputmask.extensions.js")"></script>
+    <script src="@Url.Content("~/Scripts/inputmask.numeric.extensions.js")"></script>
+
+    <!--- Calendar --->
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap/css/datepicker.css")">
+
+    <!--- Calendar/Time --->
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootstrap-datetimepicker.css")">
+    <script src="@Url.Content("~/Scripts/moment.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
+
+    <!-- Grid MVC -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/Gridmvc.css")">
+    <script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+
+</head>
+<body class="hold-transition skin-black fixed sidebar-mini">
+
+
+
+    @Html.Partial("_LoginPartial")
+
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar" style="background-color: #474747 !important">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="@Url.Content("~/Content/AdminLte/img/user2_160-160.png")" class="img-circle" alt="User Image" />
+                </div>
+                <div class="pull-left info">
+                    <p>@Resources.Resources.recursos_humanos_menu_recursos_humanos</p>
+                    <!-- Status -->
+                    <a href="#"><i class="fa fa-circle text-success"></i> @Html.Encode(User.Identity.Name)</a>
+                </div>
+            </div>
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="@Url.Action("Index", "Home", new { area = "" })"><i class="fa fa-home"></i> <span>Inicio</span></a>
+                </li>
+                <li class="treeview">
+                    <a href="#"><span>Recursos Humanos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu" style="max-height:250px; overflow-y:auto">
+                        <li>@Html.SpecialMenuLinkLi("Empresas", "Index", "Empresas", User.Identity.Name, "<i class='fa fa-building'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.recursos_humanos_planilla_menu_empleado, "Index", "Empleado", User.Identity.Name, "<i class='fa fa-user'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Consulta de Documentos", "Index", "Documentos_ViejoSistema", User.Identity.Name, "<i class='fa fa-file'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Tomar Foto", "TomarImagen", "Imagen", User.Identity.Name, "<i class='fa fa-camera'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Consuta de Fotos", "Fotos", "Empleado", User.Identity.Name, "<i class='fa fa-camera-retro'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Seleccion de Fotos", "FotosSeleccion", "Empleado", User.Identity.Name, "<i class='fa fa-file-image-o'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.recursos_humanos_menu_puesto, "Index", "Puesto", User.Identity.Name, "<i class='fa fa-sitemap'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.recursos_humanos_menu_tipo_puesto, "Index", "Tipo_Puesto", User.Identity.Name, "<i class='fa fa-sitemap'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Ajuste de Salario del Período", "SueldoBase", "Salario", User.Identity.Name, "<i class='fa fa-pencil'></i>")</li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><span>Nomina</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu" style="max-height:250px; overflow-y:auto">
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.recursos_humanos_menu_planilla, "Index", "Planilla", User.Identity.Name, "<i class='fa fa-money'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Histórico de Planilla", "Historico", "Planilla", User.Identity.Name, "<i class='fa fa-history'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Archivo para IGSS", "ReporteIgss", "Planilla", User.Identity.Name, "<i class='fa fa-institution'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.recursos_humanos_menu_liquidacion, "Index", "Liquidaciones", User.Identity.Name, "<i class='fa fa-credit-card'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.recursos_humanos_menu_prestamo, "Index", "Descuento_Periodico", User.Identity.Name, "<i class='fa fa-cc-mastercard'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Registro de Ausencias", "Index", "Empleado_Permisos_Ausencias", User.Identity.Name, "<i class='fa fa-hand-o-down'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Incremento de Días Trabajados", "Index", "Asistencias_Extras_Empleado", User.Identity.Name, "<i class='fa fa-hand-o-up'></i>")</li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><span>Academia</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu" style="max-height:250px; overflow-y:auto">
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.recursos_humanos_menu_academia, "Index", "Academias", User.Identity.Name, "<i class='fa fa-book'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.recursos_humanos_menu_instructor, "Index", "Instructor", User.Identity.Name, "<i class='fa fa-bullhorn'></i>")</li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><span>@Resources.Resources.catalogos</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu" style="max-height:250px; overflow-y:auto">
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.recursos_humanos_menu_grado_estudio, "Index", "Grado_Estudio", User.Identity.Name, "<i class='fa fa-suitcase'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.recursos_humanos_menu_estado_empleado, "Index", "Estado_Empleado", User.Identity.Name, "<i class='fa fa-circle'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.recursos_humanos_menu_tipo_bono, "Index", "Tipo_Bono", User.Identity.Name, "<i class='fa fa-plus'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.recursos_humanos_menu_tipo_descuento, "Index", "Tipo_Descuento", User.Identity.Name, "<i class='fa fa-minus'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.recursos_humanos_menu_tipo_plan_pago, "Index", "Tipo_Plan_Pago", User.Identity.Name, "<i class='fa fa-calendar'></i>")</li>
+
+                        <li>@Html.SpecialMenuLinkLi(Resources.Resources.recursos_humanos_menu_tipo_prestamo, "Index", "Tipo_Prestamo", User.Identity.Name, "<i class='fa fa-cc-mastercard'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Motivo de Baja", "Index", "Motivo_Baja", User.Identity.Name, "<i class='fa fa-exclamation'></i>")</li>
+                        <li>@Html.SpecialMenuLinkLi("Tipo de Permisos para Ausencias", "Index", "Tipo_Permiso_Ausencia", User.Identity.Name, "<i class='fa fa-exclamation-circle'></i>")</li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#"><span>Consultas</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu" style="max-height:250px; overflow-y:auto">
+                        <li>@Html.SpecialMenuLinkLi("Reportes", "ViewReport", "Reportes", User.Identity.Name, "<i class='fa fa-file-text-o'></i>")</li>
+                    </ul>
+                </li>
+            </ul><!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="padding: 0px !important">
+        <!-- Content Header (Page header) -->
+        <section class="content-header"></section>
+        <!-- Main content -->
+        <section class="content">
+            @RenderBody()
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+
+        </div>
+        <!-- Default to the left -->
+        @*<strong>Copyright &copy; @DateTime.Today.Year <a href="#">Protecci&oacute;n Total</a>.</strong> All rights reserved.*@
+        <strong>ERPGEO</strong>, Derechos reservados 2018
+    </footer>
+
+
+    @*@Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+        @Scripts.Render("~/Scripts/bootstrap.js")
+        @Scripts.Render("~/Content/AdminLte/js/app.js")
+        @Scripts.Render("~/bundles/jqueryval")*@
+    @Scripts.Render("~/Content/plugins/slimscroll/jquery.slimscroll.min.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
