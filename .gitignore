@@ -2,3 +2,4 @@
 *.pdf
 
 #ignore web config
+web.config

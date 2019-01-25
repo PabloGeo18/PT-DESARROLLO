@@ -1322,7 +1322,7 @@ namespace MVC2013.Areas.Inventario.Controllers
         public JsonResult Search(int? id_empleado, string primer_apellido, string primer_nombre, string segundo_apellido, string segundo_nombre, long? dpi)
         {
             List<object> resultados = new List<object>();
-            var empleados = db.Empleado.Where(e => !e.eliminado);
+            var empleados = db.Empleado.Where(e => !e.eliminado && e.Contratacion.Where(c => c.id_empresa == 1 && c.id_estado_empleado == 1).Count() > 0);
             if (id_empleado.HasValue)
             {
                 empleados = empleados.Where(e => e.id_empleado == id_empleado.Value && e.activo && !e.eliminado);
@@ -1347,7 +1347,7 @@ namespace MVC2013.Areas.Inventario.Controllers
             {
                 empleados = empleados.Where(e => e.dpi == dpi.Value);
             }
-            foreach (var empleado in empleados.Take(30000))
+            foreach (var empleado in empleados)
             {
                 resultados.Add(new
                 {
