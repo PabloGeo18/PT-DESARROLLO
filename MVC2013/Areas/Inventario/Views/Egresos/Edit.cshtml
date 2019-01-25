@@ -184,7 +184,8 @@
         </table>
     }
 </div>
-@if (Model.Egreso_Detalle.Where(x => x.activo && !x.eliminado && x.id_egreso == Model.id_egreso && x.id_empleado!=null).Count() <= 0)
+@{ int egresos = Model.Egreso_Detalle.Where(x=>x.activo && !x.eliminado && x.id_egreso==Model.id_egreso).Count(); }
+@if (Model.Egreso_Detalle.Where(x => x.activo && !x.eliminado && x.id_egreso == Model.id_egreso && x.id_empleado != null).Count() < egresos)
 {
     <div>
         <button disabled class="btn btn-success btn-sm" onclick="location.href='@Url.Action("end_detalle", new { id_egreso = Model.id_egreso })'">

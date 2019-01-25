@@ -133,6 +133,7 @@ namespace MVC2013.Areas.Inventario.Controllers
             ViewBag.id_usuario_creacion = new SelectList(db.Usuarios, "id_usuario", "email", armas.id_usuario_creacion);
             ViewBag.id_usuario_eliminacion = new SelectList(db.Usuarios, "id_usuario", "email", armas.id_usuario_eliminacion);
             ViewBag.id_usuario_modificacion = new SelectList(db.Usuarios, "id_usuario", "email", armas.id_usuario_modificacion);
+            ViewBag.fechaVencimiento = Convert.ToDateTime(armas.fecha_vencimiento).ToString("yyyy-MM-dd");
             return View(armas);
         }
 

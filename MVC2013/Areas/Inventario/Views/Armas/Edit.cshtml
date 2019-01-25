@@ -4,7 +4,13 @@
     ViewBag.Title = "Editar - Armas";
     Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
 }
-
+<style>
+    textarea {
+        resize: none !important;
+        width: 300px;
+        height: 150px;
+    }
+</style>
 <h2>Editar Arma</h2>
 <div class="form-group">
     <button class="btn-sm btn-bitbucket" onclick="location.href = '@Url.Action("Index")'">
@@ -16,7 +22,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id_arma)
         <div class="form-group">
@@ -161,7 +166,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.fecha_vencimiento, "Fecha de Vencimiento", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.fecha_vencimiento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.fecha_vencimiento, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", @type="date", @Value = ViewBag.fechaVencimiento } })
                 @Html.ValidationMessageFor(model => model.fecha_vencimiento, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -193,7 +198,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.observaciones, "Observaciones", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.observaciones, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.observaciones, htmlAttributes: new { @class = "form-control", @maxlength= "500" })
                 @Html.ValidationMessageFor(model => model.observaciones, "", new { @class = "text-danger" })
             </div>
         </div>

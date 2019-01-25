@@ -1900,8 +1900,8 @@
     <Property Name="fecha_modificacion" Type="datetime" />
     <Property Name="fecha_eliminacion" Type="datetime" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'Dev_AdmSeg_PT.pln.Acreditaciones_dias' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Dev_AdmSeg_PT.pln.Acreditaciones_dias' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="Acreditaciones_dias">
     <Key>
       <PropertyRef Name="id_empleado" />

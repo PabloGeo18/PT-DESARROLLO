@@ -18,13 +18,13 @@
                             <thead style="background-color:#969aa2">
                                 <tr>
                                     <th class="text-center">Accioness</th>
+                                    <th class="text-center">Registro</th>
                                     <th class="text-center">Tipo de arma</th>
                                     <th class="text-center">Estado del arma</th>
                                     <th class="text-center">Marca</th>
                                     <th class="text-center">Calibre</th>
                                     <th class="text-center">Cant. Municiones</th>
                                     <th class="text-center">Ubicación</th>
-                                    <th class="text-center">Registro</th>
                                     <th class="text-center">Largo</th>
                                     <th class="text-center">Modelo</th>
                                     <th class="text-center">Proveedor</th>
@@ -37,54 +37,54 @@
                                 {
                                     if (item.trans_cliente || item.proceso_retorno)
                                     {
-                                        <tr style="background-color:#f90b0b2e">
-                                            <td width="10%" class="text-center">
-                                                @if ((!item.trans_cliente && item.id_cliente == null && !item.proceso_retorno))
-                                                {
-                                                    <button data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.id_arma })'">
-                                                        <span class="glyphicon glyphicon-pencil"></span>
-                                                    </button>
-                                                }
-                                                <button data-toggle="tooltip" data-placement="top" title="Detalles" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.id_arma })'">
-                                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                                </button>
-                                            </td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Tipo.descripcion)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Estado.descripcion)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Marcas.descripcion)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Calibres.descripcion)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.cantidad_municion)</td>
-                                            <td class="text-center">
-                                                @if (item.id_cliente != null)
-                                                {
-                                                    @Html.DisplayFor(modelItem => item.Clientes.nombre)
-                                                }
-                                                @if (item.id_bodega != null)
-                                                {
-                                                    @Html.DisplayFor(modelItem => item.Bodegas.descripcion)
-                                                }
-                                            </td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.registro)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.largo)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Modelos.descripcion)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Proveedores.descripcion)</td>
-                                            @if (item.trans_cliente == true)
-                                            {
-                                                <td class="text-center">Si</td>
-                                            }
-                                            else
-                                            {
-                                                <td class="text-center">No</td>
-                                            }
-                                            @if (item.proceso_retorno == true)
-                                            {
-                                                <td class="text-center">Si</td>
-                                            }
-                                            else
-                                            {
-                                                <td class="text-center">No</td>
-                                            }
-                                        </tr>
+                                <tr style="background-color:#f90b0b2e">
+                                    <td width="10%" class="text-center">
+                                        @if ((!item.trans_cliente && item.id_cliente == null && !item.proceso_retorno))
+                                        {
+                                            <button data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.id_arma })'">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </button>
+                                        }
+                                        <button data-toggle="tooltip" data-placement="top" title="Detalles" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.id_arma })'">
+                                            <span class="glyphicon glyphicon-list-alt"></span>
+                                        </button>
+                                    </td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.registro)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Tipo.descripcion)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Estado.descripcion)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Marcas.descripcion)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Calibres.descripcion)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.cantidad_municion)</td>
+                                    <td class="text-center">
+                                        @if (item.id_cliente != null)
+                                        {
+                                            @Html.DisplayFor(modelItem => item.Clientes.nombre)
+                                        }
+                                        @if (item.id_bodega != null)
+                                        {
+                                            @Html.DisplayFor(modelItem => item.Bodegas.descripcion)
+                                        }
+                                    </td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.largo)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Modelos.descripcion)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Proveedores.descripcion)</td>
+                                    @if (item.trans_cliente == true)
+                                    {
+                                        <td class="text-center">Si</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">No</td>
+                                    }
+                                    @if (item.proceso_retorno == true)
+                                    {
+                                        <td class="text-center">Si</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">No</td>
+                                    }
+                                </tr>
                                     }
                                     else
                                     {
@@ -100,6 +100,7 @@
                                                     <span class="glyphicon glyphicon-list-alt"></span>
                                                 </button>
                                             </td>
+                                            <td class="text-center">@Html.DisplayFor(modelItem => item.registro)</td>
                                             <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Tipo.descripcion)</td>
                                             <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Estado.descripcion)</td>
                                             <td class="text-center">@Html.DisplayFor(modelItem => item.Marcas.descripcion)</td>
@@ -115,7 +116,6 @@
                                                     @Html.DisplayFor(modelItem => item.Bodegas.descripcion)
                                                 }
                                             </td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.registro)</td>
                                             <td class="text-center">@Html.DisplayFor(modelItem => item.largo)</td>
                                             <td class="text-center">@Html.DisplayFor(modelItem => item.Modelos.descripcion)</td>
                                             <td class="text-center">@Html.DisplayFor(modelItem => item.Proveedores.descripcion)</td>
@@ -157,13 +157,13 @@
                             <thead style="background-color:#969aa2">
                                 <tr>
                                     <th class="text-center">Accioness</th>
+                                    <th class="text-center">Registro</th>
                                     <th class="text-center">Tipo de arma</th>
                                     <th class="text-center">Estado del arma</th>
                                     <th class="text-center">Marca</th>
                                     <th class="text-center">Calibre</th>
                                     <th class="text-center">Cant. Municiones</th>
                                     <th class="text-center">Ubicación</th>
-                                    <th class="text-center">Registro</th>
                                     <th class="text-center">Largo</th>
                                     <th class="text-center">Modelo</th>
                                     <th class="text-center">Proveedor</th>
@@ -175,89 +175,89 @@
                                 {
                                     if (item.comprometida)
                                     {
-                                        <tr style="background-color:#f90b0b2e">
-                                            <td width="10%" class="text-center">
-                                                @if (!item.comprometida)
-                                                {
-                                                    <button data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.id_arma })'">
-                                                        <span class="glyphicon glyphicon-pencil"></span>
-                                                    </button>
-                                                }
-                                                <button data-toggle="tooltip" data-placement="top" title="Detalles" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.id_arma })'">
-                                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                                </button>
-                                            </td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Tipo.descripcion)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Estado.descripcion)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Marcas.descripcion)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Calibres.descripcion)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.cantidad_municion)</td>
-                                            <td class="text-center">
-                                                @if (item.id_cliente != null)
-                                                {
-                                                    @Html.DisplayFor(modelItem => item.Clientes.nombre)
-                                                }
-                                                @if (item.id_bodega != null)
-                                                {
-                                                    @Html.DisplayFor(modelItem => item.Bodegas.descripcion)
-                                                }
-                                            </td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.registro)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.largo)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Modelos.descripcion)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Proveedores.descripcion)</td>
-                                            @if (item.comprometida)
-                                            {
-                                                <td class="text-center">Si</td>
-                                            }
-                                            else
-                                            {
-                                                <td class="text-center">No</td>
-                                            }
-                                        </tr>
+                                <tr style="background-color:#f90b0b2e">
+                                    <td width="10%" class="text-center">
+                                        @if (!item.comprometida)
+                                        {
+                                            <button data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.id_arma })'">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </button>
+                                        }
+                                        <button data-toggle="tooltip" data-placement="top" title="Detalles" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.id_arma })'">
+                                            <span class="glyphicon glyphicon-list-alt"></span>
+                                        </button>
+                                    </td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.registro)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Tipo.descripcion)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Estado.descripcion)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Marcas.descripcion)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Calibres.descripcion)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.cantidad_municion)</td>
+                                    <td class="text-center">
+                                        @if (item.id_cliente != null)
+                                        {
+                                            @Html.DisplayFor(modelItem => item.Clientes.nombre)
+                                        }
+                                        @if (item.id_bodega != null)
+                                        {
+                                            @Html.DisplayFor(modelItem => item.Bodegas.descripcion)
+                                        }
+                                    </td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.largo)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Modelos.descripcion)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Proveedores.descripcion)</td>
+                                    @if (item.comprometida)
+                                    {
+                                        <td class="text-center">Si</td>
                                     }
                                     else
                                     {
-                                        <tr>
-                                            <td width="10%" class="text-center">
-                                                @if (!item.comprometida)
-                                                {
-                                                    <button data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.id_arma })'">
-                                                        <span class="glyphicon glyphicon-pencil"></span>
-                                                    </button>
-                                                }
-                                                <button data-toggle="tooltip" data-placement="top" title="Detalles" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.id_arma })'">
-                                                    <span class="glyphicon glyphicon-list-alt"></span>
-                                                </button>
-                                            </td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Tipo.descripcion)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Estado.descripcion)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Marcas.descripcion)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Calibres.descripcion)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.cantidad_municion)</td>
-                                            <td class="text-center">
-                                                @if (item.id_cliente != null)
-                                                {
-                                                    @Html.DisplayFor(modelItem => item.Clientes.nombre)
-                                                }
-                                                @if (item.id_bodega != null)
-                                                {
-                                                    @Html.DisplayFor(modelItem => item.Bodegas.descripcion)
-                                                }
-                                            </td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.registro)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.largo)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Modelos.descripcion)</td>
-                                            <td class="text-center">@Html.DisplayFor(modelItem => item.Proveedores.descripcion)</td>
-                                            @if (item.comprometida)
-                                            {
-                                                <td class="text-center">Si</td>
-                                            }
-                                            else
-                                            {
-                                                <td class="text-center">No</td>
-                                            }
-                                        </tr>
+                                        <td class="text-center">No</td>
+                                    }
+                                </tr>
+                                    }
+                                    else
+                                    {
+                                <tr>
+                                    <td width="10%" class="text-center">
+                                        @if (!item.comprometida)
+                                        {
+                                            <button data-toggle="tooltip" data-placement="top" title="Editar" class="btn btn-primary btn-sm" onclick="location.href = '@Url.Action("Edit", new { id = item.id_arma })'">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </button>
+                                        }
+                                        <button data-toggle="tooltip" data-placement="top" title="Detalles" class="btn btn-info btn-sm" onclick="location.href = '@Url.Action("Details", new { id = item.id_arma })'">
+                                            <span class="glyphicon glyphicon-list-alt"></span>
+                                        </button>
+                                    </td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.registro)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Tipo.descripcion)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Estado.descripcion)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Marcas.descripcion)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Calibres.descripcion)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.cantidad_municion)</td>
+                                    <td class="text-center">
+                                        @if (item.id_cliente != null)
+                                        {
+                                            @Html.DisplayFor(modelItem => item.Clientes.nombre)
+                                        }
+                                        @if (item.id_bodega != null)
+                                        {
+                                            @Html.DisplayFor(modelItem => item.Bodegas.descripcion)
+                                        }
+                                    </td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.largo)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Modelos.descripcion)</td>
+                                    <td class="text-center">@Html.DisplayFor(modelItem => item.Proveedores.descripcion)</td>
+                                    @if (item.comprometida)
+                                    {
+                                        <td class="text-center">Si</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">No</td>
+                                    }
+                                </tr>
                                     }
                                 }
                             </tbody>

@@ -4,6 +4,11 @@
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
 }
+<style>
+    input:invalid {
+        background-color: #ffdddd;
+    }
+</style>
 @{ int id_ingreso = @ViewBag.id_ingreso; }
 <div>
     <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("add_municiones", "Ingresos", new { id = id_ingreso })'">
@@ -14,29 +19,44 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id_municion)
 
-        
+
 
         <div class="form-group">
-            @Html.LabelFor(model => model.existencia,@Resources.Resources.existencia_add, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.existencia, @Resources.Resources.existencia_add, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.existencia, new { htmlAttributes = new { @class = "form-control", @type="number", @autofocus="autofocus"  } })
-                @Html.ValidationMessageFor(model => model.existencia, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.existencia, new { htmlAttributes = new { @class = "form-control", @type = "number", @autofocus = "autofocus", @min = "0", @onkeyup = "calcExistencia()" } })
+                @*@Html.ValidationMessageFor(model => model.existencia, "", new { @class = "text-danger" })*@
+                <span class="text-danger" id="error"></span>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button class="btn btn-success btn-sm" type="submit">
+                <button id="send" class="btn btn-success btn-sm" type="submit">
                     <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.guardar
                 </button>
             </div>
         </div>
 
     </div>
+}
+@section Scripts{
+    <script type="text/javascript">
+        function calcExistencia() {
+            existencia = $("#existencia").val();
+            if (existencia < 0) {
+                document.getElementById('error').innerHTML = "ERROR: No se permiten números negativos";
+                document.getElementById("send").disabled = true;
+            } else {
+                document.getElementById('error').innerHTML = "";
+                document.getElementById("send").disabled = false;
+            }
+        }
+    </script>
 }
