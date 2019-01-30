@@ -44,12 +44,11 @@
                     <td><input type="text" id="dpi" autocomplete="off" class="form-control" style="text-transform:uppercase" /></td>
                 </tr>
             </tbody>
-            <tbody id ="lista_empleados">
-            </tbody>
+            <tbody id="lista_empleados"></tbody>
         </table>
         @*<div class="table-responsive">
-            <table class="table-striped" id="lista_empleados"></table>
-        </div>*@
+                <table class="table-striped" id="lista_empleados"></table>
+            </div>*@
     </div>
 </div>
 <!--Limpiar los imputs al cierre del modal-->
@@ -105,7 +104,7 @@
                                 "<td class='text-center'>" + item.segundo_apellido + "</td>" +
                                 "<td class='text-center'>" + item.primer_nombre + "</td>" +
                                 "<td class='text-center'>" + item.segundo_nombre + "</td>" +
-                                "<td class='text-center'>" + item.dpi + "</td>"
+                                "<td class='text-center'>" + item.dpi + "</td></tr>"
                                 @*"<button class=\"btn btn-info btn-sm btn_details_empleado \" data-id_empleado=\"" + item.id_empleado + " \">" +
                                 "<span class=\"glyphicon glyphicon-list-alt\"></span>&nbsp;@Resources.Resources.detalle</button>"
                                  + "<button class=\"btn btn-sm btn-danger btn_delete\" data-toggle=\"modal\" data-target=\"#confirm_delete\" data-id=\"" + item.id_empleado + "\"><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;@Resources.Resources.eliminar</button>"*@
@@ -129,26 +128,5 @@
                 }
             });
         });
-        //$(function() {
-        //    //Filtro de la tabla de empleados
-        //    $('#lista_empleados').filterByMultiColumn([
-        //        {
-        //            filterClass: 'c_id_empleado',
-        //            field: 'id_codigo_empleado'
-        //        },
-        //        {
-        //            filterClass: 'c_dpi_empleado',
-        //            field: 'empleado_dpi'
-        //        },
-        //        {
-        //            filterClass: 'c_primer_apellido',
-        //            field: 'primer_apellido'
-        //        },
-        //        {
-        //            filterClass: 'c_primer_nombre',
-        //            field: 'primer_nombre'
-        //        }
-        //    ]);
-        //});
     });
 </script>

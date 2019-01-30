@@ -90,7 +90,7 @@ namespace MVC2013.Areas.rrhh.Controllers
             empleado_planilla.bonos = db.Obtener_Bonificaciones(id, empleado_encabezado.id_encabezado_planilla, empleado_encabezado.Encabezado_Planilla.id_tipo_planilla);
             empleado_planilla.descuentos = db.Obtener_Descuentos(id, empleado_encabezado.id_encabezado_planilla, empleado_encabezado.Encabezado_Planilla.id_tipo_planilla);
             decimal total_bonificacion = 0, total_descuento = 0;
-            if (empleado_planilla.bonos.ToList().Count > 0)
+            if (empleado_planilla.bonos.ToList().Count() > 0)
             {
                 total_bonificacion = empleado_planilla.bonos.Select(s => s.total).Sum();
             }

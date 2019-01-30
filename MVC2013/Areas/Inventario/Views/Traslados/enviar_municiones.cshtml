@@ -37,7 +37,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.existencia, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.existencia, @Resources.Resources.existencia, new { htmlAttributes = new { @class = "form-control", @min="0", max = existencia, @onkeyup = "calcExistencia()" } })
+                @Html.EditorFor(model => model.existencia, @Resources.Resources.existencia, new { htmlAttributes = new { @class = "form-control", @min = "0", max = existencia, @onkeyup = "calcExistencia()" } })
                 @*@Html.ValidationMessageFor(model => model.existencia, "", new { @class = "text-danger" })*@
                 <span class="text-danger" id="error"></span>
             </div>
@@ -55,9 +55,13 @@
 
 @section Scripts{
     <script type="text/javascript">
+        $(document).ready(function(){
+            document.getElementById("send").disabled = true;
+        });
         function calcExistencia() {
             existenciaCalc = $("#existenciaCalc").val();
             comprometido = $("#comprometido").val();
+            console.log(comprometido);
             var total = parseFloat(existenciaCalc) - parseFloat(comprometido);
             existencia = $("#existencia").val();
             //if (existencia > total) {
@@ -67,8 +71,8 @@
             //    document.getElementById('error').innerHTML = "";
             //    document.getElementById("send").disabled = false;
             //}
-            if (existencia < 0) {
-                document.getElementById('error').innerHTML = "ERROR: No se permiten números negativos";
+            if (existencia <= 0) {
+                document.getElementById('error').innerHTML = "ERROR: No se permiten números negativos o iguales a 0";
                 document.getElementById("send").disabled = true;
             } else {
                 if (existencia > total) {

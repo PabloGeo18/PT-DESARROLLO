@@ -445,6 +445,7 @@ namespace MVC2013.Areas.Inventario.Controllers
                         bim.id_bodega = ingresos.id_bodega;
                         bim.comprometido = 0;
                         bim.existencia = 0;
+                        bim.retornando = 0;
                         bim.activo = true;
                         bim.eliminado = false;
                         bim.autorizada = false;

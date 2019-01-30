@@ -1,0 +1,40 @@
+Modificaciones en planilla
+-Subir a produccion las fechas de generacion de la planilla.
+
+-Arreglar el calculo de los dias trabajados.
+	-Alta (Fecha alta a 15 / 30 del mes)
+	-Baja (Fecha inicial a Fecha Baja) + 1
+	-Alta y Baja (Fecha alta a fecha baja) + 1
+	
+	Observacion: ya no tomar la fecha final como datetime, sino el dia 15 o 30 (ver los meses de 30 dias)
+
+-Dias de suspension (restan dias trabajados)
+	-Solo para aquellos de tipo 2 y 3. (ya)
+	-La resta de dias ponerla en 0 si queda negativo. (ya)
+	
+-Arreglar reportes de Pre y Planilla Final. (ya)
+	-Agregar Dias de suspension al reporte. (ya)
+
+-Remover la activacion de contrato cuando ya posea un contrato activo (o validarlo desde el controlador). (ya)
+
+-Agregar registro en los cambios del salario.
+
+-Arreglar los contratos de empleados nuevos, no esta obteniendo las prestaciones (ya)
+
+-Arreglar las vacaciones de los empleados cada vez que se genera la planilla (ya)
+	-Arreglar base de datos (ya)
+	-Arreglar procedure GuardarDetallePlanilla en la generacion de las vacaciones. (ya)
+
+iris - Recursos Humanos
+3006-3661
+
+
+
+quinta calle, 0-46 zona 1, avenida helena, primera avenida
+domingo a las 7 am
+
+
+
+
+
+

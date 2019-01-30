@@ -362,14 +362,13 @@ namespace MVC2013.Areas.Inventario.Controllers
             }
             ViewBag.id_traslado = db.Traslados.Find(id_traslado).id_traslado;
             ViewBag.traslado_tipo = db.Traslados.Find(id_traslado).id_traslado_tipo;
+            int Armeria = Convert.ToInt32(Catalogos.InventarioBodegas.Armeria);
             if (traslados.id_traslado_tipo == Convert.ToInt32(Catalogos.InventarioTrasladosTipo.Armeria_BodCentral))
             {
-                int Armeria = Convert.ToInt32(Catalogos.InventarioBodegas.Armeria);
                 var bodega_Inventario_Municiones = db.Bodega_Inventario_Municiones.Where(x => x.activo && !x.eliminado && x.id_bodega == Armeria).ToList();
                 return View(bodega_Inventario_Municiones);
             }
             else {
-                int Armeria = Convert.ToInt32(Catalogos.InventarioBodegas.Armeria);
                 var bodega_Inventario_Municiones = db.Bodega_Inventario_Municiones.Where(x => x.activo && !x.eliminado && x.debitado && !x.autorizada && x.id_bodega == Armeria && x.id_cliente == id_cliente).ToList();
                 return View(bodega_Inventario_Municiones);
             }
@@ -385,13 +384,13 @@ namespace MVC2013.Areas.Inventario.Controllers
             Traslados traslados = db.Traslados.Find(id_traslado);
             if (traslados.id_traslado_tipo == Convert.ToInt32(Catalogos.InventarioTrasladosTipo.Armeria_BodCentral))
             {
-                Bodega_Inventario_Municiones bodega_Inventario_Municiones = db.Bodega_Inventario_Municiones.Where(b => b.id_municion == id_municion && b.id_bodega == traslados.id_bodega_origen && !b.debitado && b.existencia>0).SingleOrDefault();
+                List<Bodega_Inventario_Municiones> bodega_Inventario_Municiones = db.Bodega_Inventario_Municiones.Where(b => b.activo && !b.eliminado && b.id_municion == id_municion && b.id_bodega == traslados.id_bodega_origen).ToList();
                 if (bodega_Inventario_Municiones == null)
                 {
                     return HttpNotFound();
                 }
-                ViewBag.existencia = bodega_Inventario_Municiones.existencia;
-                ViewBag.comprometido = bodega_Inventario_Municiones.comprometido;
+                ViewBag.existencia = bodega_Inventario_Municiones.Sum(x=>x.existencia);
+                ViewBag.comprometido = (bodega_Inventario_Municiones.Sum(x=>x.cantidad_debito)+bodega_Inventario_Municiones.Sum(x=>x.retornando));
                 ViewBag.id_traslado = db.Traslados.Find(id_traslado).id_traslado;
                 ViewBag.bodega_inventario = 0;
             }
@@ -483,7 +482,7 @@ namespace MVC2013.Areas.Inventario.Controllers
                         if (traslado.id_traslado_tipo == (Convert.ToInt32(Catalogos.InventarioTrasladosTipo.Armeria_BodCentral)))
                         {
                             Traslado_Detalle trasladoDetalleEdit = db.Traslado_Detalle.Where(td => td.id_traslado == id_traslado && td.id_municion == bodega_Inventario_Municiones.id_municion && td.activo && !td.eliminado).SingleOrDefault();
-                            Bodega_Inventario_Municiones bim = db.Bodega_Inventario_Municiones.Where(x => x.activo && !x.eliminado && x.id_municion == trasladoDetalleEdit.id_municion && x.id_bodega == traslado.id_bodega_origen && x.autorizada && !x.debitado && x.retornando > 0).SingleOrDefault();
+                            Bodega_Inventario_Municiones bim = db.Bodega_Inventario_Municiones.Where(x => x.activo && !x.eliminado && x.id_municion == trasladoDetalleEdit.id_municion && x.id_bodega == traslado.id_bodega_origen && x.autorizada && !x.debitado).SingleOrDefault();
 
                             bim.retornando = bodega_Inventario_Municiones.existencia;
                             bim.id_usuario_modificacion = usuarioTO.usuario.id_usuario;
@@ -731,6 +730,16 @@ namespace MVC2013.Areas.Inventario.Controllers
                             arma.fecha_modificacion = DateTime.Now;
                             db.Entry(arma).State = EntityState.Modified;
                         }
+                        if (tradet.id_municion != null) {
+                            if (traslado.id_traslado_tipo == Convert.ToInt32(Catalogos.InventarioTrasladosTipo.Armeria_BodCentral)) {
+                                Bodega_Inventario_Municiones bim = db.Bodega_Inventario_Municiones.Where(x => x.activo && !x.eliminado && x.id_municion == tradet.id_municion && x.id_bodega == traslado.id_bodega_origen && x.autorizada && !x.debitado).SingleOrDefault();
+                                bim.retornando -= Convert.ToInt32(tradet.cantidad);
+                                bim.id_usuario_modificacion = usuarioTO.usuario.id_usuario;
+                                bim.fecha_modificacion = DateTime.Now;
+                                db.Entry(bim).State = EntityState.Modified;
+                                db.SaveChanges();
+                            }
+                        }
                         db.SaveChanges();
                         tran.Commit();
                         return RedirectToAction("Edit", new { id = id_traslado });
@@ -910,6 +919,7 @@ namespace MVC2013.Areas.Inventario.Controllers
                                     }
                                     else {
                                         armas.id_bodega = traslados.id_bodega_destino;
+                                        armas.id_cliente = null;
                                     }
                                     armas.id_usuario_modificacion = usuarioTO.usuario.id_usuario;
                                     armas.fecha_modificacion = DateTime.Now;

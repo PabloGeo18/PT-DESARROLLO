@@ -1,5 +1,6 @@
 ﻿@model MVC2013.Models.Egresos
 @using System.Globalization
+@using MVC2013.Src.Comun.Util
 @{
     ViewBag.Title = "Editar - Egresos";
     Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
@@ -185,11 +186,13 @@
     }
 </div>
 @{ int egresos = Model.Egreso_Detalle.Where(x=>x.activo && !x.eliminado && x.id_egreso==Model.id_egreso).Count(); }
-@if (Model.Egreso_Detalle.Where(x => x.activo && !x.eliminado && x.id_egreso == Model.id_egreso && x.id_empleado != null).Count() < egresos)
+@if (ViewBag.rol == Convert.ToInt32(Catalogos.InventarioRoles.Bodeguero))
+{
+if (Model.Egreso_Detalle.Where(x => x.activo && !x.eliminado && x.id_egreso == Model.id_egreso).Count() == 0)
 {
     <div>
         <button disabled class="btn btn-success btn-sm" onclick="location.href='@Url.Action("end_detalle", new { id_egreso = Model.id_egreso })'">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.finalizar_ingreso
+            <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.finalizar_egreso
         </button>
     </div>
 }
@@ -197,7 +200,27 @@ else
 {
     <div>
         <button class="btn btn-success btn-sm" onclick="location.href='@Url.Action("end_detalle", new { id_egreso = Model.id_egreso })'">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.finalizar_ingreso
+            <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.finalizar_egreso
         </button>
     </div>
+}
+}
+else
+{
+    if (Model.Egreso_Detalle.Where(x => x.activo && !x.eliminado && x.id_egreso == Model.id_egreso && x.id_empleado != null).Count() < egresos || Model.Egreso_Detalle.Where(x => x.activo && !x.eliminado && x.id_egreso == Model.id_egreso && x.id_empleado != null).Count() == 0)
+    {
+        <div>
+            <button disabled class="btn btn-success btn-sm" onclick="location.href='@Url.Action("end_detalle", new { id_egreso = Model.id_egreso })'">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.finalizar_egreso
+            </button>
+        </div>
+    }
+    else
+    {
+        <div>
+            <button class="btn btn-success btn-sm" onclick="location.href='@Url.Action("end_detalle", new { id_egreso = Model.id_egreso })'">
+                <span class="glyphicon glyphicon-save"></span>&nbsp;@Resources.Resources.finalizar_egreso
+            </button>
+        </div>
+    }
 }

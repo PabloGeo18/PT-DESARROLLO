@@ -23,20 +23,6 @@ namespace MVC2013.Areas.Inventario.Controllers
             var roles = usuarioTO.usuario.Roles;
             int rol = roles.Where(x => x.id_aplicacion == Convert.ToInt32(Catalogos.ModulosPT.Inventario)).Select(x => x.id_rol).SingleOrDefault();
             ViewBag.rol = rol;
-            //if (rol == 8)
-            //{
-            //    var municiones = db.Municiones.Where(x => x.activo && !x.eliminado && x.Bodega_Inventario_Municiones.Where(b => b.activo && !b.eliminado && b.id_bodega == 1).Count() > 0);
-            // //   var bodega_Inventario_Municiones = db.Bodega_Inventario_Municiones.Where(x => x.activo && !x.eliminado && x.id_bodega == 1);//.Include(b => b.Usuarios).Include(b => b.Usuarios1).Include(b => b.Usuarios2).Include(b => b.Bodegas).Include(b => b.Municiones).Where(b => b.activo && !b.eliminado).Where(b => b.id_bodega == egresos.id_bodega);
-            //    return View(municiones.ToList());
-            //}
-            //else
-            //{
-            //    var municiones = db.Municiones.Where(x => x.activo && !x.eliminado && x.Bodega_Inventario_Municiones.Where(b => b.activo && !b.eliminado && b.id_bodega == 4).Count() > 0);
-            //    //   var bodega_Inventario_Municiones = db.Bodega_Inventario_Municiones.Where(x => x.activo && !x.eliminado && x.id_bodega == 1);//.Include(b => b.Usuarios).Include(b => b.Usuarios1).Include(b => b.Usuarios2).Include(b => b.Bodegas).Include(b => b.Municiones).Where(b => b.activo && !b.eliminado).Where(b => b.id_bodega == egresos.id_bodega);
-            //    return View(municiones.ToList());
-            //}
-            //var municiones = db.Municiones.Include(m => m.Usuarios).Include(m => m.Usuarios1).Include(m => m.Usuarios2).Include(m => m.Bodega_Inventario_Municiones).Include(m => m.Calibres);
-            //return View(municiones.ToList());
             if (rol == Convert.ToInt32(Catalogos.InventarioRoles.Bodeguero))
             {
                 var bodega_Inventario_Municiones = db.Bodega_Inventario_Municiones.Where(x => x.activo && !x.eliminado && x.id_bodega == 1 && x.autorizada).OrderBy(x=>x.id_municion);//.Include(b => b.Usuarios).Include(b => b.Usuarios1).Include(b => b.Usuarios2).Include(b => b.Bodegas).Include(b => b.Municiones).Where(b => b.activo && !b.eliminado).Where(b => b.id_bodega == egresos.id_bodega);

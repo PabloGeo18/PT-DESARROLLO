@@ -1288,12 +1288,12 @@
     <Property Name="fecha_eliminacion" Type="datetime" />
     <Property Name="comprometido" Type="int" />
     <Property Name="autorizada" Type="bit" Nullable="false" />
-    <Property Name="id_empleado" Type="int" />
-    <Property Name="id_egreso_detalle" Type="int" />
+    <Property Name="retornando" Type="int" />
+    <Property Name="id_cliente" Type="int" />
     <Property Name="debitado" Type="bit" Nullable="false" />
     <Property Name="cantidad_debito" Type="int" Nullable="false" />
-    <Property Name="id_cliente" Type="int" />
-    <Property Name="retornando" Type="int" />
+    <Property Name="id_egreso_detalle" Type="int" />
+    <Property Name="id_empleado" Type="int" />
   </EntityType>
   <EntityType Name="Bodega_Inventario_Uniformes">
     <Key>
@@ -1543,12 +1543,12 @@
     <Property Name="id_tipo_transaccion" Type="int" />
     <Property Name="id_estado_transaccion" Type="int" />
     <Property Name="id_cliente" Type="int" />
+    <Property Name="cantidad" Type="int" />
     <Property Name="fecha_asignacion" Type="datetime" />
     <Property Name="fecha_creacion" Type="datetime" />
     <Property Name="id_usuario_creacion" Type="int" />
     <Property Name="activo" Type="bit" />
     <Property Name="eliminado" Type="bit" />
-    <Property Name="cantidad" Type="int" />
   </EntityType>
   <EntityType Name="Marca_Tipo">
     <Key>
@@ -1900,8 +1900,8 @@
     <Property Name="fecha_modificacion" Type="datetime" />
     <Property Name="fecha_eliminacion" Type="datetime" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'Dev_AdmSeg_PT.pln.Acreditaciones_dias' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AdmSeg_PT.pln.Acreditaciones_dias' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Acreditaciones_dias">
     <Key>
       <PropertyRef Name="id_empleado" />

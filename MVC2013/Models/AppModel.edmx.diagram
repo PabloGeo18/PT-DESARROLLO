@@ -144,13 +144,9 @@
         <EntityTypeShape EntityType="db_AppModel.Calibres" Width="1.5" PointX="8" PointY="219.75" />
         <EntityTypeShape EntityType="db_AppModel.Consumible_Tipo" Width="1.5" PointX="8" PointY="206.375" />
         <EntityTypeShape EntityType="db_AppModel.Consumibles" Width="1.5" PointX="13.25" PointY="104" />
-        <EntityTypeShape EntityType="db_AppModel.Egreso_Detalle" Width="1.5" PointX="29.375" PointY="58.75" />
         <EntityTypeShape EntityType="db_AppModel.Egreso_Estado" Width="1.5" PointX="8" PointY="230.625" />
         <EntityTypeShape EntityType="db_AppModel.Egreso_Tipo" Width="1.5" PointX="8" PointY="179.25" />
-        <EntityTypeShape EntityType="db_AppModel.Egresos" Width="1.5" PointX="14.75" PointY="121.125" />
-        <EntityTypeShape EntityType="db_AppModel.Ingreso_Detalle" Width="1.5" PointX="29.5" PointY="66.625" />
         <EntityTypeShape EntityType="db_AppModel.Ingreso_Estado" Width="1.5" PointX="8" PointY="215.25" />
-        <EntityTypeShape EntityType="db_AppModel.Ingresos" Width="1.5" PointX="19.25" PointY="109" />
         <EntityTypeShape EntityType="db_AppModel.Inventario_Tipo" Width="1.5" PointX="8" PointY="235.375" />
         <EntityTypeShape EntityType="db_AppModel.Marca_Tipo" Width="1.5" PointX="10.25" PointY="99.125" />
         <EntityTypeShape EntityType="db_AppModel.Marcas" Width="1.5" PointX="8" PointY="197.125" />
@@ -160,6 +156,7 @@
         <EntityTypeShape EntityType="db_AppModel.Transaccion_Inventario_Detalle" Width="1.5" PointX="22" PointY="111.875" />
         <EntityTypeShape EntityType="db_AppModel.Transaccion_Inventario_Tipo" Width="1.5" PointX="8" PointY="210.875" />
         <EntityTypeShape EntityType="db_AppModel.Transacciones_Inventario" Width="1.5" PointX="8" PointY="147.875" />
+        <EntityTypeShape EntityType="db_AppModel.Traslado_Estado" Width="1.5" PointX="8" PointY="174.75" />
         <EntityTypeShape EntityType="db_AppModel.Uniforme_Tipo" Width="1.5" PointX="8" PointY="138.75" />
         <EntityTypeShape EntityType="db_AppModel.Uniformes" Width="1.5" PointX="10.25" PointY="70" />
         <EntityTypeShape EntityType="db_AppModel.Documento_Puesto" Width="1.5" PointX="21.25" PointY="85.625" />
@@ -167,14 +164,11 @@
         <EntityTypeShape EntityType="db_AppModel.Empleado_Encabezado_Planilla" Width="1.5" PointX="29" PointY="46.625" />
         <AssociationConnector Association="db_AppModel.FK__Empleado___id_ba__18C19800" />
         <AssociationConnector Association="db_AppModel.FK_Articulos_Cliente" />
-        <AssociationConnector Association="db_AppModel.FK_Egresos_cliente" />
         <AssociationConnector Association="db_AppModel.FK_Transacciones_Inventario_Detalle_cliente" />
         <AssociationConnector Association="db_AppModel.FK_Articulos_articulo_tipo" />
         <AssociationConnector Association="db_AppModel.FK_Articulos_Bodega" />
         <AssociationConnector Association="db_AppModel.FK_Articulos_marca" />
         <AssociationConnector Association="db_AppModel.FK_Articulos_proveedor" />
-        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_articulo" />
-        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_articulo" />
         <AssociationConnector Association="db_AppModel.FK_Transacciones_Inventario_Detalle_articulo" />
         <AssociationConnector Association="db_AppModel.FK_Bodega_Inventario_Consumibles_Bodega" />
         <AssociationConnector Association="db_AppModel.FK_Bodega_Inventario_Consumibles_Consumible" />
@@ -182,23 +176,10 @@
         <AssociationConnector Association="db_AppModel.FK_Bodega_Inventario_Municiones_Municiones" />
         <AssociationConnector Association="db_AppModel.FK_Bodega_Inventario_Uniformes_Bodega" />
         <AssociationConnector Association="db_AppModel.FK_Bodega_Inventario_Uniformes_Uniformes" />
-        <AssociationConnector Association="db_AppModel.FK_Egresos_bodega" />
-        <AssociationConnector Association="db_AppModel.FK_Ingresos_bodega" />
         <AssociationConnector Association="db_AppModel.FK_Transacciones_Inventario_Detalle_bodega" />
         <AssociationConnector Association="db_AppModel.FK_Municiones_Calibre" />
         <AssociationConnector Association="db_AppModel.FK_Consumibles_Consumible_Tipo" />
-        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_consumible" />
-        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_consumible" />
         <AssociationConnector Association="db_AppModel.FK_Transacciones_Inventario_Detalle_consumible" />
-        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_egreso" />
-        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_municion" />
-        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_uniforme" />
-        <AssociationConnector Association="db_AppModel.FK_Egresos_egreso_estado" />
-        <AssociationConnector Association="db_AppModel.FK_Egresos_egreso_tipo" />
-        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_Ingreso" />
-        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_municion" />
-        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_uniforme" />
-        <AssociationConnector Association="db_AppModel.FK_Ingresos_Ingreso_Estado" />
         <AssociationConnector Association="db_AppModel.FK_Marca_Tipo_Inventario_Tipo" />
         <AssociationConnector Association="db_AppModel.FK_Marca_Tipo_Marca" />
         <AssociationConnector Association="db_AppModel.FK_Transacciones_Inventario_Detalle_municion" />
@@ -252,8 +233,6 @@
         <AssociationConnector Association="db_AppModel.FK_Armas_marca" />
         <AssociationConnector Association="db_AppModel.FK_Armas_modelo" />
         <AssociationConnector Association="db_AppModel.FK_Armas_proveedor" />
-        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_arma" />
-        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_arma" />
         <AssociationConnector Association="db_AppModel.FK_Transacciones_Inventario_Detalle_Arma" />
         <EntityTypeShape EntityType="db_AppModel.Empleado" Width="1.5" PointX="22.125" PointY="56.875" />
         <AssociationConnector Association="db_AppModel.FK__Empleado__id_ban__70A8B9AE" />
@@ -266,7 +245,6 @@
         <AssociationConnector Association="db_AppModel.FK__Empleado__id_tip__6FB49575" />
         <AssociationConnector Association="db_AppModel.FK__Empleado__id_tip__43A1090D" />
         <AssociationConnector Association="db_AppModel.FK__Estado_Fu__id_em__261B931E" />
-        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_empleado" />
         <AssociationConnector Association="db_AppModel.tm_id_empleado_fk" />
         <AssociationConnector Association="db_AppModel.FK_Aprendiz_Empleado" />
         <AssociationConnector Association="db_AppModel.FK__Archivo_E__id_em__6F7F8B4B" />
@@ -692,35 +670,21 @@
         <AssociationConnector Association="db_AppModel.FK_Curso_Usuarios" />
         <AssociationConnector Association="db_AppModel.FK_Curso_Usuarios1" />
         <AssociationConnector Association="db_AppModel.FK_Curso_Usuarios2" />
-        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_Usuarios_Creacion" />
-        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_Usuarios_Eliminacion" />
-        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_Usuarios_Modificacion" />
         <AssociationConnector Association="db_AppModel.FK_Egreso_Estado_Usuarios_Creacion" />
         <AssociationConnector Association="db_AppModel.FK_Egreso_Estado_Usuarios_Eliminacion" />
         <AssociationConnector Association="db_AppModel.FK_Egreso_Estado_Usuarios_Modificacion" />
         <AssociationConnector Association="db_AppModel.FK_Egreso_Tipo_Usuarios_Creacion" />
         <AssociationConnector Association="db_AppModel.FK_Egreso_Tipo_Usuarios_Eliminacion" />
         <AssociationConnector Association="db_AppModel.FK_Egreso_Tipo_Usuarios_Modificacion" />
-        <AssociationConnector Association="db_AppModel.FK_Egresos_Usuarios_Autorizacion" />
-        <AssociationConnector Association="db_AppModel.FK_Egresos_Usuarios_Creacion" />
-        <AssociationConnector Association="db_AppModel.FK_Egresos_Usuarios_Eliminacion" />
-        <AssociationConnector Association="db_AppModel.FK_Egresos_Usuarios_Modificacion" />
         <AssociationConnector Association="db_AppModel.FK_Empleado_Direcciones_Usuarios" />
         <AssociationConnector Association="db_AppModel.FK_Empleado_Direcciones_Usuarios1" />
         <AssociationConnector Association="db_AppModel.FK_Empleado_Direcciones_Usuarios2" />
         <AssociationConnector Association="db_AppModel.FK_Empleado_Telefono_Usuarios" />
         <AssociationConnector Association="db_AppModel.FK_Empleado_Telefono_Usuarios1" />
         <AssociationConnector Association="db_AppModel.FK_Empleado_Telefono_Usuarios2" />
-        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_Usuarios_Creacion" />
-        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_Usuarios_Eliminacion" />
-        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_Usuarios_Modificacion" />
         <AssociationConnector Association="db_AppModel.FK_Ingreso_Estado_Usuarios_Creacion" />
         <AssociationConnector Association="db_AppModel.FK_Ingreso_Estado_Usuarios_Eliminacion" />
         <AssociationConnector Association="db_AppModel.FK_Ingreso_Estado_Usuarios_Modificacion" />
-        <AssociationConnector Association="db_AppModel.FK_Ingresos_Usuarios_Autorizacion" />
-        <AssociationConnector Association="db_AppModel.FK_Ingresos_Usuarios_Creacion" />
-        <AssociationConnector Association="db_AppModel.FK_Ingresos_Usuarios_Eliminacion" />
-        <AssociationConnector Association="db_AppModel.FK_Ingresos_Usuarios_Modificacion" />
         <AssociationConnector Association="db_AppModel.FK_Instructor_Usuarios" />
         <AssociationConnector Association="db_AppModel.FK_Instructor_Usuarios1" />
         <AssociationConnector Association="db_AppModel.FK_Instructor_Usuarios2" />
@@ -754,6 +718,9 @@
         <AssociationConnector Association="db_AppModel.FK_Transacciones_Inventario_Usuarios_Creacion" />
         <AssociationConnector Association="db_AppModel.FK_Transacciones_Inventario_Usuarios_Eliminacion" />
         <AssociationConnector Association="db_AppModel.FK_Transacciones_Inventario_Usuarios_Modificacion" />
+        <AssociationConnector Association="db_AppModel.FK_Traslado_Estado_Usuarios_Creacion" />
+        <AssociationConnector Association="db_AppModel.FK_Traslado_Estado_Usuarios_Eliminacion" />
+        <AssociationConnector Association="db_AppModel.FK_Traslado_Estado_Usuarios_Modificacion" />
         <AssociationConnector Association="db_AppModel.FK_Uniforme_Tipo_Usuarios_Creacion" />
         <AssociationConnector Association="db_AppModel.FK_Uniforme_Tipo_Usuarios_Eliminacion" />
         <AssociationConnector Association="db_AppModel.FK_Uniforme_Tipo_Usuarios_Modificacion" />
@@ -793,37 +760,70 @@
         <AssociationConnector Association="db_AppModel.ttm_id_usuario_eliminacion_fk" />
         <AssociationConnector Association="db_AppModel.ttm_id_usuario_modificacion_fk" />
         <AssociationConnector Association="db_AppModel.Usuario_Roles" />
-        <AssociationConnector Association="db_AppModel.FK_Egresos_Bodegas" />
-        <EntityTypeShape EntityType="db_AppModel.Traslado_Detalle" Width="1.5" PointX="26.875" PointY="71" />
-        <EntityTypeShape EntityType="db_AppModel.Traslado_Estado" Width="1.5" PointX="7.875" PointY="14.875" />
-        <EntityTypeShape EntityType="db_AppModel.Traslado_Tipo" Width="1.5" PointX="12.5" PointY="115.75" />
+        <AssociationConnector Association="db_AppModel.FK_Armas_Empleado" />
+        <AssociationConnector Association="db_AppModel.FK_Bodega_Inventario_Municiones_Empleado" />
+        <EntityTypeShape EntityType="db_AppModel.Logs_Movimientos_Arma" Width="1.5" PointX="6.375" PointY="0.75" />
+        <EntityTypeShape EntityType="db_AppModel.Logs_Movimientos_Municion" Width="1.5" PointX="5.375" PointY="9.75" />
+        <EntityTypeShape EntityType="db_AppModel.Traslado_Tipo" Width="1.5" PointX="3.375" PointY="10" />
+        <EntityTypeShape EntityType="db_AppModel.Egreso_Detalle" Width="1.5" PointX="26.875" PointY="77" />
+        <EntityTypeShape EntityType="db_AppModel.Egresos" Width="1.5" PointX="17.75" PointY="123.625" />
+        <EntityTypeShape EntityType="db_AppModel.Ingreso_Detalle" Width="1.5" PointX="26.875" PointY="70.25" />
+        <EntityTypeShape EntityType="db_AppModel.Ingresos" Width="1.5" PointX="10.25" PointY="125.25" />
+        <EntityTypeShape EntityType="db_AppModel.Traslado_Detalle" Width="1.5" PointX="29.875" PointY="73.25" />
+        <EntityTypeShape EntityType="db_AppModel.Traslados" Width="1.5" PointX="14.75" PointY="117.125" />
+        <AssociationConnector Association="db_AppModel.FK_Egresos_cliente" />
+        <AssociationConnector Association="db_AppModel.FK_Traslados_cliente_origen" />
+        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_Usuarios_Creacion" />
+        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_Usuarios_Eliminacion" />
+        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_Usuarios_Modificacion" />
+        <AssociationConnector Association="db_AppModel.FK_Egresos_Usuarios_Autorizacion" />
+        <AssociationConnector Association="db_AppModel.FK_Egresos_Usuarios_Creacion" />
+        <AssociationConnector Association="db_AppModel.FK_Egresos_Usuarios_Eliminacion" />
+        <AssociationConnector Association="db_AppModel.FK_Egresos_Usuarios_Modificacion" />
+        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_Usuarios_Creacion" />
+        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_Usuarios_Eliminacion" />
+        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_Usuarios_Modificacion" />
+        <AssociationConnector Association="db_AppModel.FK_Ingresos_Usuarios_Autorizacion" />
+        <AssociationConnector Association="db_AppModel.FK_Ingresos_Usuarios_Creacion" />
+        <AssociationConnector Association="db_AppModel.FK_Ingresos_Usuarios_Eliminacion" />
+        <AssociationConnector Association="db_AppModel.FK_Ingresos_Usuarios_Modificacion" />
         <AssociationConnector Association="db_AppModel.FK_Traslado_Detalle_Usuarios_Creacion" />
         <AssociationConnector Association="db_AppModel.FK_Traslado_Detalle_Usuarios_Eliminacion" />
         <AssociationConnector Association="db_AppModel.FK_Traslado_Detalle_Usuarios_Modificacion" />
-        <AssociationConnector Association="db_AppModel.FK_Traslado_Estado_Usuarios_Creacion" />
-        <AssociationConnector Association="db_AppModel.FK_Traslado_Estado_Usuarios_Eliminacion" />
-        <AssociationConnector Association="db_AppModel.FK_Traslado_Estado_Usuarios_Modificacion" />
-        <AssociationConnector Association="db_AppModel.FK_Traslado_Detalle_arma" />
-        <AssociationConnector Association="db_AppModel.FK_Traslado_Detalle_articulo" />
-        <AssociationConnector Association="db_AppModel.FK_Traslado_Detalle_consumible" />
-        <AssociationConnector Association="db_AppModel.FK_Traslado_Detalle_municion" />
-        <AssociationConnector Association="db_AppModel.FK_Traslado_Detalle_uniforme" />
-        <EntityTypeShape EntityType="db_AppModel.Traslados" Width="1.5" PointX="14.75" PointY="114.375" />
-        <AssociationConnector Association="db_AppModel.FK_Traslados_cliente_origen" />
         <AssociationConnector Association="db_AppModel.FK_Traslados_Usuarios_Autorizacion" />
         <AssociationConnector Association="db_AppModel.FK_Traslados_Usuarios_Creacion" />
         <AssociationConnector Association="db_AppModel.FK_Traslados_Usuarios_Eliminacion" />
         <AssociationConnector Association="db_AppModel.FK_Traslados_Usuarios_Modificacion" />
+        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_arma" />
+        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_arma" />
+        <AssociationConnector Association="db_AppModel.FK_Traslado_Detalle_arma" />
+        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_articulo" />
+        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_articulo" />
+        <AssociationConnector Association="db_AppModel.FK_Traslado_Detalle_articulo" />
+        <AssociationConnector Association="db_AppModel.FK_Bodega_Inventario_Municiones_Egreso_Detalle" />
+        <AssociationConnector Association="db_AppModel.FK_Egresos_bodega" />
+        <AssociationConnector Association="db_AppModel.FK_Egresos_Bodegas" />
+        <AssociationConnector Association="db_AppModel.FK_Ingresos_bodega" />
         <AssociationConnector Association="db_AppModel.FK_Traslados_bodega_destino" />
         <AssociationConnector Association="db_AppModel.FK_Traslados_bodega_origen" />
+        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_consumible" />
+        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_consumible" />
+        <AssociationConnector Association="db_AppModel.FK_Traslado_Detalle_consumible" />
+        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_egreso" />
+        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_empleado" />
+        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_municion" />
+        <AssociationConnector Association="db_AppModel.FK_Egreso_Detalle_uniforme" />
+        <AssociationConnector Association="db_AppModel.FK_Egresos_egreso_estado" />
+        <AssociationConnector Association="db_AppModel.FK_Egresos_egreso_tipo" />
+        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_Ingreso" />
+        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_municion" />
+        <AssociationConnector Association="db_AppModel.FK_Ingreso_Detalle_uniforme" />
+        <AssociationConnector Association="db_AppModel.FK_Ingresos_Ingreso_Estado" />
+        <AssociationConnector Association="db_AppModel.FK_Traslado_Detalle_municion" />
         <AssociationConnector Association="db_AppModel.FK_Traslado_Detalle_traslado" />
+        <AssociationConnector Association="db_AppModel.FK_Traslado_Detalle_uniforme" />
         <AssociationConnector Association="db_AppModel.FK_Traslados_traslado_estado" />
         <AssociationConnector Association="db_AppModel.FK_Traslados_traslado_tipo" />
-        <AssociationConnector Association="db_AppModel.FK_Bodega_Inventario_Municiones_Egreso_Detalle" />
-        <AssociationConnector Association="db_AppModel.FK_Bodega_Inventario_Municiones_Empleado" />
-        <AssociationConnector Association="db_AppModel.FK_Armas_Empleado" />
-        <EntityTypeShape EntityType="db_AppModel.Logs_Movimientos_Arma" Width="1.5" PointX="6.375" PointY="0.75" />
-        <EntityTypeShape EntityType="db_AppModel.Logs_Movimientos_Municion" Width="1.5" PointX="3.375" PointY="9.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -26,39 +26,47 @@
                     <th class="text-center">Costo</th>
                     <th class="text-center">Costo de Venta</th>
                     <th class="text-center">Existencia</th>
-                    <th class="text-center">Comprometido</th>
-                    <th class="text-center">Disponible</th>
-                    @*<th class="text-center">Debitado</th>
-                    @if (@ViewBag.rol == Convert.ToInt32(Catalogos.InventarioRoles.Armero))
+                    @if (ViewBag.rol == Convert.ToInt32(Catalogos.InventarioRoles.Bodeguero))
                     {
+                        <th class="text-center">Comprometido</th>
+                    }
+                    else
+                    {
+                        <th class="text-center">Comprometido</th>
                         <th class="text-center">Retornando</th>
-                    }*@
+                    }
+                    <th class="text-center">Disponible</th>
                 </tr>
             </thead>
             <tbody>
 
                 @foreach (var item in Model.GroupBy(x => x.id_municion))
                 {
-                    <tr>
-                        <td class="text-center">@(item.Max(x => x.Municiones.descripcion))@*@Html.DisplayFor(modelItem => item.Municiones.descripcion)*@@*@Html.DisplayFor(modelItem => item.descripcion)*@</td>
-                        <td class="text-center">@(item.Max(x => x.Municiones.Calibres.descripcion))@*@Html.DisplayFor(modelItem => item.Municiones.Calibres.descripcion)*@@*@Html.DisplayFor(modelItem => item.Calibres.descripcion)*@</td>
-                        <td class="text-center">@(item.Max(x => x.Municiones.costo).ToString("C", CultureInfo.GetCultureInfo("es-GT")))@*@item.Municiones.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))*@@*@item.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))*@</td>
-                        <td class="text-center">@(item.Max(x => x.Municiones.costo_venta).ToString("C", CultureInfo.GetCultureInfo("es-GT")))@*@item.Municiones.costo_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))*@@*@item.costo_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))*@</td>
-                        <td style="background-color:#f9e70b4f" class="text-center">@(item.Sum(x => x.existencia))</td>
-                        <td style="background-color:#f90b0b2e" class="text-center">@(item.Sum(x => x.comprometido))</td>
-                        <td style="background-color:#25f90b3d" class="text-center">@(item.Sum(x => x.existencia) - item.Sum(x => x.comprometido))</td>
-                        @*<td style="background-color:#ed67078c" class="text-center">@(item.Sum(x => x.cantidad_debito))</td>
-                        @if (@ViewBag.rol == Convert.ToInt32(Catalogos.InventarioRoles.Armero))
-                        {
-                            <td style="background-color:#0743ed59" class="text-center">@(item.Sum(x => x.retornando))</td>
-                        }*@
-                        @*<td class="text-center">
-                                <br>Calibre -
-                                <br>Costo -
-                                <br>Costo de Venta -
-                            </td>
-                            <td class="text-center">@Html.DisplayFor(modelItem => item.existencia)</td>*@
-                    </tr>
+                    if (ViewBag.rol == Convert.ToInt32(Catalogos.InventarioRoles.Bodeguero))
+                    {
+                        <tr>
+                            <td class="text-center">@(item.Max(x => x.Municiones.descripcion))@*@Html.DisplayFor(modelItem => item.Municiones.descripcion)*@@*@Html.DisplayFor(modelItem => item.descripcion)*@</td>
+                            <td class="text-center">@(item.Max(x => x.Municiones.Calibres.descripcion))@*@Html.DisplayFor(modelItem => item.Municiones.Calibres.descripcion)*@@*@Html.DisplayFor(modelItem => item.Calibres.descripcion)*@</td>
+                            <td class="text-center">@(item.Max(x => x.Municiones.costo).ToString("C", CultureInfo.GetCultureInfo("es-GT")))@*@item.Municiones.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))*@@*@item.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))*@</td>
+                            <td class="text-center">@(item.Max(x => x.Municiones.costo_venta).ToString("C", CultureInfo.GetCultureInfo("es-GT")))@*@item.Municiones.costo_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))*@@*@item.costo_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))*@</td>
+                            <td style="background-color:#f9e70b4f" class="text-center">@(item.Sum(x => x.existencia))</td>
+                            <td style="background-color:#f90b0b2e" class="text-center">@(item.Sum(x => x.comprometido))</td>
+                            <td style="background-color:#25f90b3d" class="text-center">@(item.Sum(x => x.existencia) - item.Sum(x => x.comprometido))</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td class="text-center">@(item.Max(x => x.Municiones.descripcion))@*@Html.DisplayFor(modelItem => item.Municiones.descripcion)*@@*@Html.DisplayFor(modelItem => item.descripcion)*@</td>
+                            <td class="text-center">@(item.Max(x => x.Municiones.Calibres.descripcion))@*@Html.DisplayFor(modelItem => item.Municiones.Calibres.descripcion)*@@*@Html.DisplayFor(modelItem => item.Calibres.descripcion)*@</td>
+                            <td class="text-center">@(item.Max(x => x.Municiones.costo).ToString("C", CultureInfo.GetCultureInfo("es-GT")))@*@item.Municiones.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))*@@*@item.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))*@</td>
+                            <td class="text-center">@(item.Max(x => x.Municiones.costo_venta).ToString("C", CultureInfo.GetCultureInfo("es-GT")))@*@item.Municiones.costo_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))*@@*@item.costo_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))*@</td>
+                            <td style="background-color:#f9e70b4f" class="text-center">@(item.Sum(x => x.existencia) - item.Where(x => x.activo && !x.eliminado && x.debitado).Sum(x => x.cantidad_debito))@*@(item.Sum(x => x.existencia))*@</td>
+                            <td style="background-color:#f90b0b2e" class="text-center">@(item.Where(x=>x.activo && !x.eliminado && !x.debitado).Sum(x => x.cantidad_debito))@*@(item.Sum(x => x.comprometido))*@</td>
+                            <td style="background-color:#f90b0b2e" class="text-center">@(item.Where(x => x.activo && !x.eliminado && x.autorizada && !x.debitado).Sum(x => x.retornando))@*@(item.Sum(x => x.comprometido))*@</td>
+                            <td style="background-color:#25f90b3d" class="text-center">@(item.Sum(x => x.existencia) - item.Sum(x => x.cantidad_debito) - item.Sum(x=>x.retornando))</td>
+                        </tr>
+                    }
                 }
             </tbody>
         </table>
