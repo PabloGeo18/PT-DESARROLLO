@@ -5915,6 +5915,7 @@
     <Property Name="id_empleado" Type="Int32" />
     <NavigationProperty Name="Empleado" Relationship="db_AppModel.FK_Bodega_Inventario_Municiones_Empleado" FromRole="Bodega_Inventario_Municiones" ToRole="Empleado" />
     <NavigationProperty Name="Egreso_Detalle" Relationship="db_AppModel.FK_Bodega_Inventario_Municiones_Egreso_Detalle" FromRole="Bodega_Inventario_Municiones" ToRole="Egreso_Detalle" />
+    <Property Name="retornado" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Bodega_Inventario_Uniformes">
     <Key>

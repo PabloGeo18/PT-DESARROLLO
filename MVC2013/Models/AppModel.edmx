@@ -1299,6 +1299,7 @@
           <Property Name="cantidad_debito" Type="int" Nullable="false" />
           <Property Name="id_egreso_detalle" Type="int" />
           <Property Name="id_empleado" Type="int" />
+          <Property Name="retornado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Bodega_Inventario_Uniformes">
           <Key>
@@ -1905,8 +1906,8 @@
           <Property Name="fecha_modificacion" Type="datetime" />
           <Property Name="fecha_eliminacion" Type="datetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'AdmSeg_PT.pln.Acreditaciones_dias' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'AdmSeg_PT.pln.Acreditaciones_dias' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Acreditaciones_dias">
           <Key>
             <PropertyRef Name="id_empleado" />
@@ -19753,6 +19754,7 @@ warning 6002: The table/view 'AdmSeg_PT.pln.Acreditaciones_dias' does not have a
           <Property Name="id_empleado" Type="Int32" />
           <NavigationProperty Name="Empleado" Relationship="db_AppModel.FK_Bodega_Inventario_Municiones_Empleado" FromRole="Bodega_Inventario_Municiones" ToRole="Empleado" />
           <NavigationProperty Name="Egreso_Detalle" Relationship="db_AppModel.FK_Bodega_Inventario_Municiones_Egreso_Detalle" FromRole="Bodega_Inventario_Municiones" ToRole="Egreso_Detalle" />
+          <Property Name="retornado" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Bodega_Inventario_Uniformes">
           <Key>
@@ -31278,6 +31280,7 @@ warning 6002: The table/view 'AdmSeg_PT.pln.Acreditaciones_dias' does not have a
           <EntitySetMapping Name="Bodega_Inventario_Municiones">
             <EntityTypeMapping TypeName="db_AppModel.Bodega_Inventario_Municiones">
               <MappingFragment StoreEntitySet="Bodega_Inventario_Municiones">
+                <ScalarProperty Name="retornado" ColumnName="retornado" />
                 <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
                 <ScalarProperty Name="id_egreso_detalle" ColumnName="id_egreso_detalle" />
                 <ScalarProperty Name="cantidad_debito" ColumnName="cantidad_debito" />

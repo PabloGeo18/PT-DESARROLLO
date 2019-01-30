@@ -1577,6 +1577,7 @@
     <EntitySetMapping Name="Bodega_Inventario_Municiones">
       <EntityTypeMapping TypeName="db_AppModel.Bodega_Inventario_Municiones">
         <MappingFragment StoreEntitySet="Bodega_Inventario_Municiones">
+          <ScalarProperty Name="retornado" ColumnName="retornado" />
           <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
           <ScalarProperty Name="id_egreso_detalle" ColumnName="id_egreso_detalle" />
           <ScalarProperty Name="cantidad_debito" ColumnName="cantidad_debito" />

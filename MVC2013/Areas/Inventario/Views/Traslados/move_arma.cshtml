@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MVC2013.Models.Armas>
 @using MVC2013.Src.Comun.Util
 @{
-    ViewBag.Title = "Retornar Arma";
+    ViewBag.Title = "Enviar Arma - Retornos";
     Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
 }
 <h2>Listado de Armas</h2>
@@ -30,13 +30,13 @@
             <thead style="background-color:#969aa2">
                 <tr>
                     <th class="text-center">Acciones</th>
+                    <th class="text-center">Registro</th>
                     <th class="text-center">Tipo de Arma</th>
                     <th class="text-center">Estado de Arma</th>
                     <th class="text-center">Marca</th>
                     <th class="text-center">Calibre</th>
                     <th class="text-center">Cantidad de Munición</th>
                     <th class="text-center">Ubicaciones</th>
-                    <th class="text-center">Registro</th>
                     <th class="text-center">Largo</th>
                     <th class="text-center">Modelo</th>
                     <th class="text-center">Proveedor</th>
@@ -45,26 +45,26 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td class="text-center">
-                            <button data-toggle="tooltip" data-placement="top" title="Enviar Arma" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("enviar_arma", new { id_arma = item.id_arma, id_traslado = id_traslado })'">
-                                <span class="glyphicon glyphicon-send"></span>
-                            </button>
-                        </td>
-                        <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Tipo.descripcion)</td>
-                        <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Estado.descripcion)</td>
-                        <td class="text-center">@Html.DisplayFor(modelItem => item.Marcas.descripcion)</td>
-                        <td class="text-center">@Html.DisplayFor(modelItem => item.Calibres.descripcion)</td>
-                        <td class="text-center">@Html.DisplayFor(modelItem => item.cantidad_municion)</td>
-                        <td class="text-center">
-                            @Html.DisplayFor(modelItem => item.Clientes.nombre)
-                            @Html.DisplayFor(modelItem => item.Bodegas.descripcion)
-                        </td>
-                        <td class="text-center">@Html.DisplayFor(modelItem => item.registro)</td>
-                        <td class="text-center">@Html.DisplayFor(modelItem => item.largo)</td>
-                        <td class="text-center">@Html.DisplayFor(modelItem => item.Modelos.descripcion)</td>
-                        <td class="text-center">@Html.DisplayFor(modelItem => item.Proveedores.descripcion)</td>
-                    </tr>
+                <tr>
+                    <td class="text-center">
+                        <button data-toggle="tooltip" data-placement="top" title="Enviar Arma" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("enviar_arma", new { id_arma = item.id_arma, id_traslado = id_traslado })'">
+                            <span class="glyphicon glyphicon-send"></span>
+                        </button>
+                    </td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.registro)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Tipo.descripcion)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Estado.descripcion)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Marcas.descripcion)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Calibres.descripcion)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.cantidad_municion)</td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.Clientes.nombre)
+                        @Html.DisplayFor(modelItem => item.Bodegas.descripcion)
+                    </td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.largo)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Modelos.descripcion)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.Proveedores.descripcion)</td>
+                </tr>
                 }
             </tbody>
         </table>
@@ -87,13 +87,13 @@
                 <thead style="background-color:#969aa2">
                     <tr>
                         <th class="text-center">Acciones</th>
+                        <th class="text-center">Registro</th>
                         <th class="text-center">Tipo de Arma</th>
                         <th class="text-center">Estado de Arma</th>
                         <th class="text-center">Marca</th>
                         <th class="text-center">Calibre</th>
                         <th class="text-center">Cantidad de Munición</th>
                         <th class="text-center">Ubicaciones</th>
-                        <th class="text-center">Registro</th>
                         <th class="text-center">Largo</th>
                         <th class="text-center">Modelo</th>
                         <th class="text-center">Proveedor</th>
@@ -102,26 +102,26 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td class="text-center">
-                                <button data-toggle="tooltip" data-placement="top" title="Enviar Arma" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("enviar_arma", new { id_arma = item.id_arma, id_traslado = id_traslado })'">
-                                    <span class="glyphicon glyphicon-send"></span>
-                                </button>
-                            </td>
-                            <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Tipo.descripcion)</td>
-                            <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Estado.descripcion)</td>
-                            <td class="text-center">@Html.DisplayFor(modelItem => item.Marcas.descripcion)</td>
-                            <td class="text-center">@Html.DisplayFor(modelItem => item.Calibres.descripcion)</td>
-                            <td class="text-center">@Html.DisplayFor(modelItem => item.cantidad_municion)</td>
-                            <td class="text-center">
-                                @Html.DisplayFor(modelItem => item.Clientes.nombre)
-                                @Html.DisplayFor(modelItem => item.Bodegas.descripcion)
-                            </td>
-                            <td class="text-center">@Html.DisplayFor(modelItem => item.registro)</td>
-                            <td class="text-center">@Html.DisplayFor(modelItem => item.largo)</td>
-                            <td class="text-center">@Html.DisplayFor(modelItem => item.Modelos.descripcion)</td>
-                            <td class="text-center">@Html.DisplayFor(modelItem => item.Proveedores.descripcion)</td>
-                        </tr>
+                    <tr>
+                        <td class="text-center">
+                            <button data-toggle="tooltip" data-placement="top" title="Enviar Arma" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("enviar_arma", new { id_arma = item.id_arma, id_traslado = id_traslado })'">
+                                <span class="glyphicon glyphicon-send"></span>
+                            </button>
+                        </td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.registro)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Tipo.descripcion)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Arma_Estado.descripcion)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Marcas.descripcion)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Calibres.descripcion)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.cantidad_municion)</td>
+                        <td class="text-center">
+                            @Html.DisplayFor(modelItem => item.Clientes.nombre)
+                            @Html.DisplayFor(modelItem => item.Bodegas.descripcion)
+                        </td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.largo)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Modelos.descripcion)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.Proveedores.descripcion)</td>
+                    </tr>
                     }
                 </tbody>
             </table>

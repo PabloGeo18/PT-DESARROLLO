@@ -64,7 +64,7 @@
                             <td style="background-color:#f9e70b4f" class="text-center">@(item.Sum(x => x.existencia) - item.Where(x => x.activo && !x.eliminado && x.debitado).Sum(x => x.cantidad_debito))@*@(item.Sum(x => x.existencia))*@</td>
                             <td style="background-color:#f90b0b2e" class="text-center">@(item.Where(x=>x.activo && !x.eliminado && !x.debitado).Sum(x => x.cantidad_debito))@*@(item.Sum(x => x.comprometido))*@</td>
                             <td style="background-color:#f90b0b2e" class="text-center">@(item.Where(x => x.activo && !x.eliminado && x.autorizada && !x.debitado).Sum(x => x.retornando))@*@(item.Sum(x => x.comprometido))*@</td>
-                            <td style="background-color:#25f90b3d" class="text-center">@(item.Sum(x => x.existencia) - item.Sum(x => x.cantidad_debito) - item.Sum(x=>x.retornando))</td>
+                            <td style="background-color:#25f90b3d" class="text-center">@(item.Sum(x => x.existencia) - item.Sum(x => x.cantidad_debito) - item.Where(x=>x.activo && !x.eliminado && !x.debitado).Sum(x=>x.retornando))</td>
                         </tr>
                     }
                 }

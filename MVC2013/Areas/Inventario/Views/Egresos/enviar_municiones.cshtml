@@ -1,7 +1,7 @@
 ﻿@model MVC2013.Models.Bodega_Inventario_Municiones
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Enviar Municiones - Egresos";
     Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
 }
 <style>
@@ -49,13 +49,16 @@
 }
 @section Scripts{
     <script type="text/javascript">
+        $(document).ready(function(){
+            document.getElementById("send").disabled = true;
+        });
         function calcExistencia() {
             existenciaCalc = $("#existenciaCalc").val();
             comprometido = $("#comprometido").val();
             var total = parseFloat(existenciaCalc) - parseFloat(comprometido);
             existencia = $("#existencia").val();
-            if (existencia < 0) {
-                document.getElementById('error').innerHTML = "ERROR: No se permiten números negativos";
+            if (existencia <= 0) {
+                document.getElementById('error').innerHTML = "ERROR: No se permiten números negativos, o iguales a 0";
                 document.getElementById("send").disabled = true;
             } else {
                 if (existencia > total) {

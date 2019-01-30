@@ -6,6 +6,7 @@
     Layout = "~/Areas/Inventario/Views/Shared/_Layout.cshtml";
 }
 @{ int id_traslado = @ViewBag.id_traslado; }
+@{ int cliente = @ViewBag.id_cliente; }
 <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("Edit",  new { id = id_traslado })'">
     <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
 </button>
@@ -18,7 +19,7 @@
                 <th class="text-center">Bodega</th>
                 <th class="text-center">Munición</th>
                 <th class="text-center">Existencias</th>
-                @if (ViewBag.traslado_tipo==Convert.ToInt32(Catalogos.InventarioTrasladosTipo.Armeria_BodCentral))
+                @if (ViewBag.traslado_tipo == Convert.ToInt32(Catalogos.InventarioTrasladosTipo.Armeria_BodCentral))
                 {
                     <th class="text-center">Retornando a Bodega Central</th>
                 }
@@ -32,13 +33,13 @@
         <tbody>
             @if (@ViewBag.traslado_tipo == Convert.ToInt32(Catalogos.InventarioTrasladosTipo.Armeria_BodCentral))
             {
-                foreach (var item in Model.Where(m=>m.activo && !m.eliminado).GroupBy(x=>x.id_municion))
+                foreach (var item in Model.Where(m => m.activo && !m.eliminado).GroupBy(x => x.id_municion))
                 {
                     <tr>
                         <td class="text-center">
                             @if (((item.Sum(x => x.existencia) - item.Where(x => x.activo && !x.eliminado && x.debitado).Sum(x => x.cantidad_debito)) - item.Sum(x => x.retornando)) > 0)
                             {
-                                <button data-toggle="tooltip" data-placement="top" title="Enviar Municiones" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("enviar_municiones", new { id_municion = item.Max(x => x.id_municion), id_traslado = id_traslado })'">
+                                <button data-toggle="tooltip" data-placement="top" title="Enviar Municiones" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("enviar_municiones", new { id_municion = item.Max(x => x.id_municion), id_traslado = id_traslado, id_cliente=cliente })'">
                                     <span class="glyphicon glyphicon-send"></span>
                                 </button>
                             }
@@ -58,13 +59,13 @@
                         </td>
                         <td style="background-color:#f9e70b4f" class="text-center">@(item.Sum(x => x.existencia) - item.Where(x => x.activo && !x.eliminado && x.debitado).Sum(x => x.cantidad_debito))@*@Html.DisplayFor(modelItem => item.existencia)*@</td>
                         @*@if (item.comprometido != null)
-                        {*@
-                            <td style="background-color:#f90b0b2e" class="text-center">@(item.Where(x=>x.activo && !x.eliminado && x.autorizada).Sum(x => x.retornando))</td>
+                            {*@
+                        <td style="background-color:#f90b0b2e" class="text-center">@(item.Where(x => x.activo && !x.eliminado && x.autorizada).Sum(x => x.retornando))</td>
                         @*}
-                        else
-                        {
-                            <td style="background-color:#f90b0b2e" class="text-center">0</td>
-                        }*@
+                            else
+                            {
+                                <td style="background-color:#f90b0b2e" class="text-center">0</td>
+                            }*@
                         @if ((item.Sum(x => x.existencia) - item.Sum(x => x.retornando)) > 0)
                         {
                             <td style="background-color:#25f90b3d" class="text-center">@((item.Sum(x => x.existencia) - item.Where(x => x.activo && !x.eliminado && x.debitado).Sum(x => x.cantidad_debito)) - (item.Sum(x => x.retornando)))@*@(item.existencia - item.comprometido)*@</td>
@@ -78,13 +79,22 @@
             }
             else
             {
-                foreach (var item in Model)
+                foreach (var item in Model.Where(x=>x.activo && !x.eliminado && !x.retornado))
                 {
                     <tr>
                         <td class="text-center">
-                            <button data-toggle="tooltip" data-placement="top" title="Enviar Municiones" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("enviar_municiones", new { id_municion = item.id_municion, id_traslado = id_traslado, id_bodega_inventario_municiones = item.id_bodega_inventario_municiones })'">
-                                <span class="glyphicon glyphicon-send"></span>
-                            </button>
+                            @if ((item.cantidad_debito - item.retornando) > 0)
+                            {
+                                <button data-toggle="tooltip" data-placement="top" title="Enviar Municiones" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("enviar_municiones", new { id_municion = item.id_municion, id_traslado = id_traslado, id_bodega_inventario_municiones = item.id_bodega_inventario_municiones, id_cliente = cliente })'">
+                                    <span class="glyphicon glyphicon-send"></span>
+                                </button>
+                            }
+                            else
+                            {
+                                <button disabled data-toggle="tooltip" data-placement="top" title="Enviar Municiones" class="btn btn-success btn-sm" onclick="location.href = '@Url.Action("enviar_municiones", new { id_municion = item.id_municion, id_traslado = id_traslado, id_bodega_inventario_municiones = item.id_bodega_inventario_municiones, id_cliente = cliente })'">
+                                    <span class="glyphicon glyphicon-send"></span>
+                                </button>
+                            }
                         </td>
                         <td class="text-center">@Html.DisplayFor(modelItem => item.Bodegas.descripcion)</td>
                         <td class="text-center">
@@ -92,16 +102,10 @@
                             <br>Calibre - @Html.DisplayFor(modelItem => item.Municiones.Calibres.descripcion)
                             <br>Costo - @item.Municiones.costo.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
                             <br>Costo de Venta - @item.Municiones.costo_venta.ToString("C", CultureInfo.GetCultureInfo("es-GT"))
+                            <br>Este Lote se asignó el: @item.fecha_modificacion.Value.ToString("dd/MM/yyyy HH:mm")
                         </td>
                         <td style="background-color:#f9e70b4f" class="text-center">@Html.DisplayFor(modelItem => item.cantidad_debito)</td>
-                        @if (item.retornando != null)
-                        {
-                            <td style="background-color:#f90b0b2e" class="text-center">@Html.DisplayFor(modelItem => item.retornando)</td>
-                        }
-                        else
-                        {
-                            <td style="background-color:#f90b0b2e" class="text-center">0</td>
-                        }
+                        <td style="background-color:#f90b0b2e" class="text-center">@Html.DisplayFor(modelItem => item.retornando)</td>
                         @if ((item.cantidad_debito - item.retornando) > 0)
                         {
                             <td style="background-color:#25f90b3d" class="text-center">@(item.cantidad_debito - item.retornando)</td>

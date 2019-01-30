@@ -10,9 +10,10 @@
     }
 </style>
 @{ int id_traslado = @ViewBag.id_traslado; }
+@{ int cliente = @ViewBag.id_cliente; }
 @{int id_bodega_inventario_municiones = @ViewBag.bodega_inventario; }
 <div>
-    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("move_municiones", "Traslados", new { id_traslado = id_traslado })'">
+    <button class="btn btn-sm btn-primary" onclick="location.href = '@Url.Action("move_municiones", new { id_traslado = id_traslado, id_cliente = cliente })'">
         <span class="glyphicon glyphicon-backward"></span>&nbsp;@Resources.Resources.listado_regresar
     </button>
 </div>
@@ -20,7 +21,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id_municion)
@@ -55,7 +56,7 @@
 
 @section Scripts{
     <script type="text/javascript">
-        $(document).ready(function(){
+        $(document).ready(function () {
             document.getElementById("send").disabled = true;
         });
         function calcExistencia() {

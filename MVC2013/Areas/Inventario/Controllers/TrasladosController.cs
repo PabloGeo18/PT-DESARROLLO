@@ -361,6 +361,20 @@ namespace MVC2013.Areas.Inventario.Controllers
                 return HttpNotFound();
             }
             ViewBag.id_traslado = db.Traslados.Find(id_traslado).id_traslado;
+            if (id_cliente != null)
+            {
+                if (id_cliente > 0) {
+                    ViewBag.id_cliente = db.Traslados.Find(id_traslado).id_cliente_origen;
+                }
+                else
+                {
+                    ViewBag.id_cliente = 0;
+                }
+            }
+            else
+            {
+                ViewBag.id_cliente = 0;
+            }
             ViewBag.traslado_tipo = db.Traslados.Find(id_traslado).id_traslado_tipo;
             int Armeria = Convert.ToInt32(Catalogos.InventarioBodegas.Armeria);
             if (traslados.id_traslado_tipo == Convert.ToInt32(Catalogos.InventarioTrasladosTipo.Armeria_BodCentral))
@@ -375,7 +389,7 @@ namespace MVC2013.Areas.Inventario.Controllers
         }
 
         // GET: Inventario/Armas
-        public ActionResult enviar_municiones(int? id_municion, int? id_traslado, int? id_bodega_inventario_municiones)
+        public ActionResult enviar_municiones(int? id_municion, int? id_traslado, int? id_bodega_inventario_municiones, int? id_cliente)
         {
             if (id_traslado == null || id_municion == null)
             {
@@ -389,6 +403,7 @@ namespace MVC2013.Areas.Inventario.Controllers
                 {
                     return HttpNotFound();
                 }
+                ViewBag.id_cliente = id_cliente;
                 ViewBag.existencia = bodega_Inventario_Municiones.Sum(x=>x.existencia);
                 ViewBag.comprometido = (bodega_Inventario_Municiones.Sum(x=>x.cantidad_debito)+bodega_Inventario_Municiones.Sum(x=>x.retornando));
                 ViewBag.id_traslado = db.Traslados.Find(id_traslado).id_traslado;
@@ -401,6 +416,7 @@ namespace MVC2013.Areas.Inventario.Controllers
                 {
                     return HttpNotFound();
                 }
+                ViewBag.id_cliente = id_cliente;
                 ViewBag.existencia = bodega_Inventario_Municiones.cantidad_debito;
                 ViewBag.comprometido = bodega_Inventario_Municiones.retornando;
                 ViewBag.id_traslado = db.Traslados.Find(id_traslado).id_traslado;
@@ -731,8 +747,17 @@ namespace MVC2013.Areas.Inventario.Controllers
                             db.Entry(arma).State = EntityState.Modified;
                         }
                         if (tradet.id_municion != null) {
-                            if (traslado.id_traslado_tipo == Convert.ToInt32(Catalogos.InventarioTrasladosTipo.Armeria_BodCentral)) {
+                            if (traslado.id_traslado_tipo == Convert.ToInt32(Catalogos.InventarioTrasladosTipo.Armeria_BodCentral))
+                            {
                                 Bodega_Inventario_Municiones bim = db.Bodega_Inventario_Municiones.Where(x => x.activo && !x.eliminado && x.id_municion == tradet.id_municion && x.id_bodega == traslado.id_bodega_origen && x.autorizada && !x.debitado).SingleOrDefault();
+                                bim.retornando -= Convert.ToInt32(tradet.cantidad);
+                                bim.id_usuario_modificacion = usuarioTO.usuario.id_usuario;
+                                bim.fecha_modificacion = DateTime.Now;
+                                db.Entry(bim).State = EntityState.Modified;
+                                db.SaveChanges();
+                            }
+                            else {
+                                Bodega_Inventario_Municiones bim = db.Bodega_Inventario_Municiones.Where(x => x.activo && !x.eliminado && x.id_bodega_inventario_municiones==tradet.id_bodega_inventario_municion).SingleOrDefault();
                                 bim.retornando -= Convert.ToInt32(tradet.cantidad);
                                 bim.id_usuario_modificacion = usuarioTO.usuario.id_usuario;
                                 bim.fecha_modificacion = DateTime.Now;
@@ -916,10 +941,41 @@ namespace MVC2013.Areas.Inventario.Controllers
                                     {
                                         armas.id_bodega = traslados.id_bodega_destino;
                                         armas.proceso_retorno = false;
+                                        armas.comprometida = false;
+
+                                        //Creando registro en logs para el arma
+                                        Logs_Movimientos_Arma lma = new Logs_Movimientos_Arma();
+                                        lma.id_arma = tradet.id_arma;
+                                        lma.id_bodega_origen = traslados.id_bodega_origen;
+                                        lma.id_bodega_destino = traslados.id_bodega_destino;
+                                        lma.id_cliente = null;
+                                        lma.id_empleado = null;
+                                        lma.id_tipo_transaccion = Convert.ToInt32(Catalogos.InventarioTransacciones.Retorno);
+                                        lma.id_estado_transaccion = Convert.ToInt32(Catalogos.InventarioTransaccionEstado.ToBodegaCentral);
+                                        lma.fecha_creacion = DateTime.Now;
+                                        lma.id_usuario_creacion = usuarioTO.usuario.id_usuario;
+                                        lma.activo = true;
+                                        lma.eliminado = false;
+                                        db.Logs_Movimientos_Arma.Add(lma);
+                                        db.SaveChanges();
                                     }
                                     else {
                                         armas.id_bodega = traslados.id_bodega_destino;
                                         armas.id_cliente = null;
+                                        armas.id_empleado = null;
+
+                                        //Creando registro en logs para el arma
+                                        Logs_Movimientos_Arma lma = new Logs_Movimientos_Arma();
+                                        lma.id_arma = tradet.id_arma;
+                                        lma.id_cliente = traslados.id_cliente_origen;
+                                        lma.id_tipo_transaccion = Convert.ToInt32(Catalogos.InventarioTransacciones.Retorno);
+                                        lma.id_estado_transaccion = Convert.ToInt32(Catalogos.InventarioTransaccionEstado.ToArmeria);
+                                        lma.fecha_creacion = DateTime.Now;
+                                        lma.id_usuario_creacion = usuarioTO.usuario.id_usuario;
+                                        lma.activo = true;
+                                        lma.eliminado = false;
+                                        db.Logs_Movimientos_Arma.Add(lma);
+                                        db.SaveChanges();
                                     }
                                     armas.id_usuario_modificacion = usuarioTO.usuario.id_usuario;
                                     armas.fecha_modificacion = DateTime.Now;
@@ -1046,13 +1102,30 @@ namespace MVC2013.Areas.Inventario.Controllers
                                         altas.fecha_modificacion = DateTime.Now;
                                         db.Entry(altas).State = EntityState.Modified;
                                         db.SaveChanges();
+
+                                        //Creando registro en logs para las municiones
+                                        Logs_Movimientos_Municion lmm = new Logs_Movimientos_Municion();
+                                        lmm.id_bodega_inventario_municion = bajas.id_bodega_inventario_municiones;
+                                        lmm.id_bodega_origen = traslados.id_bodega_origen;
+                                        lmm.id_bodega_destino = traslados.id_bodega_destino;
+                                        lmm.id_tipo_transaccion = Convert.ToInt32(Catalogos.InventarioTransacciones.Retorno);
+                                        lmm.id_estado_transaccion = Convert.ToInt32(Catalogos.InventarioTransaccionEstado.ToBodegaCentral);
+                                        lmm.cantidad = tradet.cantidad;
+                                        lmm.fecha_creacion = DateTime.Now;
+                                        lmm.id_usuario_creacion = usuarioTO.usuario.id_usuario;
+                                        lmm.activo = true;
+                                        lmm.eliminado = false;
+                                        db.Logs_Movimientos_Municion.Add(lmm);
+                                        db.SaveChanges();
+
                                     }
                                     else {
                                         Bodega_Inventario_Municiones bajas = db.Bodega_Inventario_Municiones.Where(x => !x.eliminado && x.activo && x.id_bodega_inventario_municiones == tradet.id_bodega_inventario_municion).SingleOrDefault();
                                         Bodega_Inventario_Municiones altas = db.Bodega_Inventario_Municiones.Where(x => !x.eliminado && x.activo && x.id_bodega == traslados.id_bodega_destino && x.id_municion == tradet.id_municion && !x.debitado && x.autorizada).SingleOrDefault();
 
-                                        bajas.retornando -= Convert.ToInt32(tradet.cantidad);
-                                        bajas.cantidad_debito -= Convert.ToInt32(tradet.cantidad);
+                                        //bajas.retornando -= Convert.ToInt32(tradet.cantidad);
+                                        //bajas.cantidad_debito -= Convert.ToInt32(tradet.cantidad);
+                                        bajas.retornado = true;
                                         bajas.id_usuario_modificacion = usuarioTO.usuario.id_usuario;
                                         bajas.fecha_modificacion = DateTime.Now;
                                         db.Entry(bajas).State = EntityState.Modified;
@@ -1063,7 +1136,22 @@ namespace MVC2013.Areas.Inventario.Controllers
                                         altas.fecha_modificacion = DateTime.Now;
                                         db.Entry(altas).State = EntityState.Modified;
                                         db.SaveChanges();
-                                    
+
+                                        //Creando registro en logs para las municiones
+                                        Logs_Movimientos_Municion lmm = new Logs_Movimientos_Municion();
+                                        lmm.id_bodega_inventario_municion = bajas.id_bodega_inventario_municiones;
+                                        lmm.id_bodega_destino = traslados.id_bodega_destino;
+                                        lmm.id_cliente = traslados.id_cliente_origen;
+                                        lmm.id_tipo_transaccion = Convert.ToInt32(Catalogos.InventarioTransacciones.Retorno);
+                                        lmm.id_estado_transaccion = Convert.ToInt32(Catalogos.InventarioTransaccionEstado.ToArmeria);
+                                        lmm.cantidad = tradet.cantidad;
+                                        lmm.fecha_creacion = DateTime.Now;
+                                        lmm.id_usuario_creacion = usuarioTO.usuario.id_usuario;
+                                        lmm.activo = true;
+                                        lmm.eliminado = false;
+                                        db.Logs_Movimientos_Municion.Add(lmm);
+                                        db.SaveChanges();
+
                                     }
                                     
 
