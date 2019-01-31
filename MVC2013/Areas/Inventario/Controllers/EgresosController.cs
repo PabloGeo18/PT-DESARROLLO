@@ -1237,6 +1237,7 @@ namespace MVC2013.Areas.Inventario.Controllers
                                         //bajas.existencia -= Convert.ToInt32(egdet.cantidad);
                                         //bajas.comprometido -= Convert.ToInt32(egdet.cantidad);
                                         bajas.debitado = true;
+                                        bajas.enCliente = true;
                                         bajas.cantidad_debito = Convert.ToInt32(egdet.cantidad);
                                         bajas.id_usuario_modificacion = usuarioTO.usuario.id_usuario;
                                         bajas.fecha_modificacion = DateTime.Now;

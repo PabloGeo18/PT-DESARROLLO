@@ -1295,6 +1295,7 @@
     <Property Name="id_egreso_detalle" Type="int" />
     <Property Name="id_empleado" Type="int" />
     <Property Name="retornado" Type="bit" Nullable="false" />
+    <Property Name="enCliente" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Bodega_Inventario_Uniformes">
     <Key>
@@ -1450,6 +1451,21 @@
     <Property Name="fecha_eliminacion" Type="datetime" />
     <Property Name="id_egreso_tipo" Type="int" Nullable="false" />
     <Property Name="id_bodega_destino" Type="int" />
+  </EntityType>
+  <EntityType Name="Estado_Tipo">
+    <Key>
+      <PropertyRef Name="id_estado_tipo" />
+    </Key>
+    <Property Name="id_estado_tipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="eliminado" Type="bit" Nullable="false" />
+    <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+    <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+    <Property Name="id_usuario_modificacion" Type="int" />
+    <Property Name="fecha_modificacion" Type="datetime" />
+    <Property Name="id_usuario_eliminacion" Type="int" />
+    <Property Name="fecha_eliminacion" Type="datetime" />
   </EntityType>
   <EntityType Name="Ingreso_Detalle">
     <Key>
@@ -11089,6 +11105,7 @@ advertencia 6002: La tabla o vista 'AdmSeg_PT.pln.Acreditaciones_dias' no tiene 
     <EntitySet Name="Egreso_Estado" EntityType="Self.Egreso_Estado" Schema="inv" store:Type="Tables" />
     <EntitySet Name="Egreso_Tipo" EntityType="Self.Egreso_Tipo" Schema="inv" store:Type="Tables" />
     <EntitySet Name="Egresos" EntityType="Self.Egresos" Schema="inv" store:Type="Tables" />
+    <EntitySet Name="Estado_Tipo" EntityType="Self.Estado_Tipo" Schema="inv" store:Type="Tables" />
     <EntitySet Name="Ingreso_Detalle" EntityType="Self.Ingreso_Detalle" Schema="inv" store:Type="Tables" />
     <EntitySet Name="Ingreso_Estado" EntityType="Self.Ingreso_Estado" Schema="inv" store:Type="Tables" />
     <EntitySet Name="Ingresos" EntityType="Self.Ingresos" Schema="inv" store:Type="Tables" />

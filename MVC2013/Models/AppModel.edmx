@@ -1300,6 +1300,7 @@
           <Property Name="id_egreso_detalle" Type="int" />
           <Property Name="id_empleado" Type="int" />
           <Property Name="retornado" Type="bit" Nullable="false" />
+          <Property Name="enCliente" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Bodega_Inventario_Uniformes">
           <Key>
@@ -1455,6 +1456,21 @@
           <Property Name="fecha_eliminacion" Type="datetime" />
           <Property Name="id_egreso_tipo" Type="int" Nullable="false" />
           <Property Name="id_bodega_destino" Type="int" />
+        </EntityType>
+        <EntityType Name="Estado_Tipo">
+          <Key>
+            <PropertyRef Name="id_estado_tipo" />
+          </Key>
+          <Property Name="id_estado_tipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="eliminado" Type="bit" Nullable="false" />
+          <Property Name="id_usuario_creacion" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="id_usuario_modificacion" Type="int" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_usuario_eliminacion" Type="int" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
         </EntityType>
         <EntityType Name="Ingreso_Detalle">
           <Key>
@@ -11094,6 +11110,7 @@ advertencia 6002: La tabla o vista 'AdmSeg_PT.pln.Acreditaciones_dias' no tiene 
           <EntitySet Name="Egreso_Estado" EntityType="Self.Egreso_Estado" Schema="inv" store:Type="Tables" />
           <EntitySet Name="Egreso_Tipo" EntityType="Self.Egreso_Tipo" Schema="inv" store:Type="Tables" />
           <EntitySet Name="Egresos" EntityType="Self.Egresos" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="Estado_Tipo" EntityType="Self.Estado_Tipo" Schema="inv" store:Type="Tables" />
           <EntitySet Name="Ingreso_Detalle" EntityType="Self.Ingreso_Detalle" Schema="inv" store:Type="Tables" />
           <EntitySet Name="Ingreso_Estado" EntityType="Self.Ingreso_Estado" Schema="inv" store:Type="Tables" />
           <EntitySet Name="Ingresos" EntityType="Self.Ingresos" Schema="inv" store:Type="Tables" />
@@ -17096,6 +17113,7 @@ advertencia 6002: La tabla o vista 'AdmSeg_PT.pln.Acreditaciones_dias' no tiene 
             <End Role="Traslado_Tipo" EntitySet="Traslado_Tipo" />
             <End Role="Traslados" EntitySet="Traslados" />
           </AssociationSet>
+          <EntitySet Name="Estado_Tipo" EntityType="db_AppModel.Estado_Tipo" />
           </EntityContainer>
         <EntityType Name="Aplicaciones">
           <Key>
@@ -19755,6 +19773,7 @@ advertencia 6002: La tabla o vista 'AdmSeg_PT.pln.Acreditaciones_dias' no tiene 
           <NavigationProperty Name="Empleado" Relationship="db_AppModel.FK_Bodega_Inventario_Municiones_Empleado" FromRole="Bodega_Inventario_Municiones" ToRole="Empleado" />
           <NavigationProperty Name="Egreso_Detalle" Relationship="db_AppModel.FK_Bodega_Inventario_Municiones_Egreso_Detalle" FromRole="Bodega_Inventario_Municiones" ToRole="Egreso_Detalle" />
           <Property Name="retornado" Type="Boolean" Nullable="false" />
+          <Property Name="enCliente" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Bodega_Inventario_Uniformes">
           <Key>
@@ -29698,6 +29717,21 @@ advertencia 6002: La tabla o vista 'AdmSeg_PT.pln.Acreditaciones_dias' no tiene 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Estado_Tipo">
+          <Key>
+            <PropertyRef Name="id_estado_tipo" />
+          </Key>
+          <Property Name="id_estado_tipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_usuario_modificacion" Type="Int32" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_usuario_eliminacion" Type="Int32" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -31280,6 +31314,7 @@ advertencia 6002: La tabla o vista 'AdmSeg_PT.pln.Acreditaciones_dias' no tiene 
           <EntitySetMapping Name="Bodega_Inventario_Municiones">
             <EntityTypeMapping TypeName="db_AppModel.Bodega_Inventario_Municiones">
               <MappingFragment StoreEntitySet="Bodega_Inventario_Municiones">
+                <ScalarProperty Name="enCliente" ColumnName="enCliente" />
                 <ScalarProperty Name="retornado" ColumnName="retornado" />
                 <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
                 <ScalarProperty Name="id_egreso_detalle" ColumnName="id_egreso_detalle" />
@@ -33109,6 +33144,22 @@ advertencia 6002: La tabla o vista 'AdmSeg_PT.pln.Acreditaciones_dias' no tiene 
                 <ScalarProperty Name="id_bodega_destino" ColumnName="id_bodega_destino" />
                 <ScalarProperty Name="id_bodega_origen" ColumnName="id_bodega_origen" />
                 <ScalarProperty Name="id_traslado" ColumnName="id_traslado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado_Tipo">
+            <EntityTypeMapping TypeName="db_AppModel.Estado_Tipo">
+              <MappingFragment StoreEntitySet="Estado_Tipo">
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_estado_tipo" ColumnName="id_estado_tipo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

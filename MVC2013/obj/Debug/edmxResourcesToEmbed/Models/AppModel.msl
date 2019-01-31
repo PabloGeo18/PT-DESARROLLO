@@ -1577,6 +1577,7 @@
     <EntitySetMapping Name="Bodega_Inventario_Municiones">
       <EntityTypeMapping TypeName="db_AppModel.Bodega_Inventario_Municiones">
         <MappingFragment StoreEntitySet="Bodega_Inventario_Municiones">
+          <ScalarProperty Name="enCliente" ColumnName="enCliente" />
           <ScalarProperty Name="retornado" ColumnName="retornado" />
           <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
           <ScalarProperty Name="id_egreso_detalle" ColumnName="id_egreso_detalle" />
@@ -3406,6 +3407,22 @@
           <ScalarProperty Name="id_bodega_destino" ColumnName="id_bodega_destino" />
           <ScalarProperty Name="id_bodega_origen" ColumnName="id_bodega_origen" />
           <ScalarProperty Name="id_traslado" ColumnName="id_traslado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estado_Tipo">
+      <EntityTypeMapping TypeName="db_AppModel.Estado_Tipo">
+        <MappingFragment StoreEntitySet="Estado_Tipo">
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="id_usuario_eliminacion" ColumnName="id_usuario_eliminacion" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="id_usuario_modificacion" ColumnName="id_usuario_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="id_usuario_creacion" ColumnName="id_usuario_creacion" />
+          <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id_estado_tipo" ColumnName="id_estado_tipo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

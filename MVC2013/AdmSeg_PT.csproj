@@ -308,6 +308,7 @@
     <Compile Include="Areas\Inventario\Controllers\Consumible_TipoController.cs" />
     <Compile Include="Areas\Inventario\Controllers\EgresosController.cs" />
     <Compile Include="Areas\Inventario\Controllers\Egreso_TipoController.cs" />
+    <Compile Include="Areas\Inventario\Controllers\Estado_TipoController.cs" />
     <Compile Include="Areas\Inventario\Controllers\HomeController.cs" />
     <Compile Include="Areas\Inventario\Controllers\IngresosController.cs" />
     <Compile Include="Areas\Inventario\Controllers\Ingreso_EstadoController.cs" />
@@ -624,6 +625,9 @@
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Estado_Fuerza_Detalle.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Estado_Tipo.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Facturas.cs">
@@ -12010,6 +12014,11 @@
     <Content Include="Areas\Inventario\Views\Traslado_Tipo\Details.cshtml" />
     <Content Include="Areas\Inventario\Views\Traslado_Tipo\Edit.cshtml" />
     <Content Include="Areas\Inventario\Views\Traslado_Tipo\Index.cshtml" />
+    <Content Include="Areas\Inventario\Views\Estado_Tipo\Create.cshtml" />
+    <Content Include="Areas\Inventario\Views\Estado_Tipo\Delete.cshtml" />
+    <Content Include="Areas\Inventario\Views\Estado_Tipo\Details.cshtml" />
+    <Content Include="Areas\Inventario\Views\Estado_Tipo\Edit.cshtml" />
+    <Content Include="Areas\Inventario\Views\Estado_Tipo\Index.cshtml" />
     <None Include="Properties\PublishProfiles\protal-file.pubxml" />
     <None Include="Properties\PublishProfiles\protal-filesystem.pubxml" />
     <None Include="Properties\PublishProfiles\protal-remoto.pubxml" />

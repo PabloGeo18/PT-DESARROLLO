@@ -1123,15 +1123,15 @@ namespace MVC2013.Areas.Inventario.Controllers
                                         Bodega_Inventario_Municiones bajas = db.Bodega_Inventario_Municiones.Where(x => !x.eliminado && x.activo && x.id_bodega_inventario_municiones == tradet.id_bodega_inventario_municion).SingleOrDefault();
                                         Bodega_Inventario_Municiones altas = db.Bodega_Inventario_Municiones.Where(x => !x.eliminado && x.activo && x.id_bodega == traslados.id_bodega_destino && x.id_municion == tradet.id_municion && !x.debitado && x.autorizada).SingleOrDefault();
 
-                                        //bajas.retornando -= Convert.ToInt32(tradet.cantidad);
-                                        //bajas.cantidad_debito -= Convert.ToInt32(tradet.cantidad);
-                                        bajas.retornado = true;
+                                        bajas.retornando -= Convert.ToInt32(tradet.cantidad);
+                                        bajas.cantidad_debito -= Convert.ToInt32(tradet.cantidad);
+                                        //bajas.retornado = true;
                                         bajas.id_usuario_modificacion = usuarioTO.usuario.id_usuario;
                                         bajas.fecha_modificacion = DateTime.Now;
                                         db.Entry(bajas).State = EntityState.Modified;
                                         db.SaveChanges();
 
-                                        altas.existencia += Convert.ToInt32(tradet.cantidad);
+                                        //altas.existencia += Convert.ToInt32(tradet.cantidad);
                                         altas.id_usuario_modificacion = usuarioTO.usuario.id_usuario;
                                         altas.fecha_modificacion = DateTime.Now;
                                         db.Entry(altas).State = EntityState.Modified;

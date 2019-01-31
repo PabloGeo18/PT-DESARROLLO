@@ -35,6 +35,7 @@ namespace MVC2013.Models
         public Nullable<int> id_egreso_detalle { get; set; }
         public Nullable<int> id_empleado { get; set; }
         public bool retornado { get; set; }
+        public bool enCliente { get; set; }
     
         public virtual Bodegas Bodegas { get; set; }
         public virtual Municiones Municiones { get; set; }

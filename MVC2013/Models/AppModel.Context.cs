@@ -186,6 +186,7 @@ namespace MVC2013.Models
         public virtual DbSet<Ingresos> Ingresos { get; set; }
         public virtual DbSet<Traslado_Detalle> Traslado_Detalle { get; set; }
         public virtual DbSet<Traslados> Traslados { get; set; }
+        public virtual DbSet<Estado_Tipo> Estado_Tipo { get; set; }
     
         public virtual int sp_procesa_recepciones(Nullable<int> operacion, Nullable<int> id_usuario, ObjectParameter error)
         {

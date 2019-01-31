@@ -3258,6 +3258,7 @@
       <End Role="Traslado_Tipo" EntitySet="Traslado_Tipo" />
       <End Role="Traslados" EntitySet="Traslados" />
     </AssociationSet>
+    <EntitySet Name="Estado_Tipo" EntityType="db_AppModel.Estado_Tipo" />
   </EntityContainer>
   <EntityType Name="Aplicaciones">
     <Key>
@@ -5916,6 +5917,7 @@
     <NavigationProperty Name="Empleado" Relationship="db_AppModel.FK_Bodega_Inventario_Municiones_Empleado" FromRole="Bodega_Inventario_Municiones" ToRole="Empleado" />
     <NavigationProperty Name="Egreso_Detalle" Relationship="db_AppModel.FK_Bodega_Inventario_Municiones_Egreso_Detalle" FromRole="Bodega_Inventario_Municiones" ToRole="Egreso_Detalle" />
     <Property Name="retornado" Type="Boolean" Nullable="false" />
+    <Property Name="enCliente" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Bodega_Inventario_Uniformes">
     <Key>
@@ -15859,4 +15861,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Estado_Tipo">
+    <Key>
+      <PropertyRef Name="id_estado_tipo" />
+    </Key>
+    <Property Name="id_estado_tipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="eliminado" Type="Boolean" Nullable="false" />
+    <Property Name="id_usuario_creacion" Type="Int32" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_usuario_modificacion" Type="Int32" />
+    <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+    <Property Name="id_usuario_eliminacion" Type="Int32" />
+    <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+  </EntityType>
 </Schema>
