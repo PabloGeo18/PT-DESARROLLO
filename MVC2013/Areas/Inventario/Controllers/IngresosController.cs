@@ -211,6 +211,7 @@ namespace MVC2013.Areas.Inventario.Controllers
             ViewBag.id_usuario_modificacion = new SelectList(db.Usuarios, "id_usuario", "email");
             ViewBag.id_arma_estado = new SelectList(db.Arma_Estado.Where(x => x.activo && !x.eliminado), "id_arma_estado", "descripcion");
             ViewBag.id_arma_tipo = new SelectList(db.Arma_Tipo.Where(x => x.activo && !x.eliminado), "id_arma_tipo", "descripcion");
+            ViewBag.id_estado_tipo = new SelectList(db.Estado_Tipo.Where(x => x.activo && !x.eliminado), "id_estado_tipo", "descripcion");
             ViewBag.id_bodega = new SelectList(db.Bodegas.Where(x => x.activo && !x.eliminado), "id_bodega", "descripcion");
             ViewBag.id_calibre = new SelectList(db.Calibres.Where(x => x.activo && !x.eliminado), "id_calibre", "descripcion");
             ViewBag.id_marca = new SelectList(db.Marca_Tipo.Where(x => x.activo && !x.eliminado && x.id_inventario_tipo==1).Select(x=> x.Marcas), "id_marca", "descripcion");

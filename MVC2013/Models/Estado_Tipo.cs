@@ -14,6 +14,11 @@ namespace MVC2013.Models
     
     public partial class Estado_Tipo
     {
+        public Estado_Tipo()
+        {
+            this.Armas = new HashSet<Armas>();
+        }
+    
         public int id_estado_tipo { get; set; }
         public string descripcion { get; set; }
         public bool activo { get; set; }
@@ -24,5 +29,7 @@ namespace MVC2013.Models
         public Nullable<System.DateTime> fecha_modificacion { get; set; }
         public Nullable<int> id_usuario_eliminacion { get; set; }
         public Nullable<System.DateTime> fecha_eliminacion { get; set; }
+    
+        public virtual ICollection<Armas> Armas { get; set; }
     }
 }

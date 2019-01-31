@@ -3259,6 +3259,10 @@
       <End Role="Traslados" EntitySet="Traslados" />
     </AssociationSet>
     <EntitySet Name="Estado_Tipo" EntityType="db_AppModel.Estado_Tipo" />
+    <AssociationSet Name="FK_Armas_Estado_Tipo" Association="db_AppModel.FK_Armas_Estado_Tipo">
+      <End Role="Estado_Tipo" EntitySet="Estado_Tipo" />
+      <End Role="Armas" EntitySet="Armas" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Aplicaciones">
     <Key>
@@ -7444,6 +7448,8 @@
     <NavigationProperty Name="Egreso_Detalle" Relationship="db_AppModel.FK_Egreso_Detalle_arma" FromRole="Armas" ToRole="Egreso_Detalle" />
     <NavigationProperty Name="Ingreso_Detalle" Relationship="db_AppModel.FK_Ingreso_Detalle_arma" FromRole="Armas" ToRole="Ingreso_Detalle" />
     <NavigationProperty Name="Traslado_Detalle" Relationship="db_AppModel.FK_Traslado_Detalle_arma" FromRole="Armas" ToRole="Traslado_Detalle" />
+    <Property Name="id_estado_tipo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Estado_Tipo" Relationship="db_AppModel.FK_Armas_Estado_Tipo" FromRole="Armas" ToRole="Estado_Tipo" />
   </EntityType>
   <Association Name="FK_Armas_cliente">
     <End Type="db_AppModel.Clientes" Role="Clientes" Multiplicity="0..1" />
@@ -15875,5 +15881,18 @@
     <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
     <Property Name="id_usuario_eliminacion" Type="Int32" />
     <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Armas" Relationship="db_AppModel.FK_Armas_Estado_Tipo" FromRole="Estado_Tipo" ToRole="Armas" />
   </EntityType>
+  <Association Name="FK_Armas_Estado_Tipo">
+    <End Type="db_AppModel.Estado_Tipo" Role="Estado_Tipo" Multiplicity="1" />
+    <End Type="db_AppModel.Armas" Role="Armas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado_Tipo">
+        <PropertyRef Name="id_estado_tipo" />
+      </Principal>
+      <Dependent Role="Armas">
+        <PropertyRef Name="id_estado_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

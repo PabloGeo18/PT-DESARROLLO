@@ -1215,6 +1215,7 @@
     <Property Name="autorizacion_cliente" Type="bit" Nullable="false" />
     <Property Name="proceso_retorno" Type="bit" Nullable="false" />
     <Property Name="id_empleado" Type="int" />
+    <Property Name="id_estado_tipo" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Articulo_Tipo">
     <Key>
@@ -6802,6 +6803,18 @@ advertencia 6002: La tabla o vista 'AdmSeg_PT.pln.Acreditaciones_dias' no tiene 
       </Principal>
       <Dependent Role="Armas">
         <PropertyRef Name="id_empleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Armas_Estado_Tipo">
+    <End Role="Estado_Tipo" Type="Self.Estado_Tipo" Multiplicity="1" />
+    <End Role="Armas" Type="Self.Armas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado_Tipo">
+        <PropertyRef Name="id_estado_tipo" />
+      </Principal>
+      <Dependent Role="Armas">
+        <PropertyRef Name="id_estado_tipo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -12539,6 +12552,10 @@ advertencia 6002: La tabla o vista 'AdmSeg_PT.pln.Acreditaciones_dias' no tiene 
     </AssociationSet>
     <AssociationSet Name="FK_Armas_Empleado" Association="Self.FK_Armas_Empleado">
       <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Armas" EntitySet="Armas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Armas_Estado_Tipo" Association="Self.FK_Armas_Estado_Tipo">
+      <End Role="Estado_Tipo" EntitySet="Estado_Tipo" />
       <End Role="Armas" EntitySet="Armas" />
     </AssociationSet>
     <AssociationSet Name="FK_Armas_marca" Association="Self.FK_Armas_marca">

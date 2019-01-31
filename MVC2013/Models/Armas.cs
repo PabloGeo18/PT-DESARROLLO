@@ -61,6 +61,7 @@ namespace MVC2013.Models
         public bool autorizacion_cliente { get; set; }
         public bool proceso_retorno { get; set; }
         public Nullable<int> id_empleado { get; set; }
+        public int id_estado_tipo { get; set; }
     
         public virtual Clientes Clientes { get; set; }
         public virtual Arma_Estado Arma_Estado { get; set; }
@@ -80,5 +81,6 @@ namespace MVC2013.Models
         public virtual ICollection<Egreso_Detalle> Egreso_Detalle { get; set; }
         public virtual ICollection<Ingreso_Detalle> Ingreso_Detalle { get; set; }
         public virtual ICollection<Traslado_Detalle> Traslado_Detalle { get; set; }
+        public virtual Estado_Tipo Estado_Tipo { get; set; }
     }
 }

@@ -2360,6 +2360,7 @@
     <EntitySetMapping Name="Armas">
       <EntityTypeMapping TypeName="db_AppModel.Armas">
         <MappingFragment StoreEntitySet="Armas">
+          <ScalarProperty Name="id_estado_tipo" ColumnName="id_estado_tipo" />
           <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
           <ScalarProperty Name="proceso_retorno" ColumnName="proceso_retorno" />
           <ScalarProperty Name="autorizacion_cliente" ColumnName="autorizacion_cliente" />

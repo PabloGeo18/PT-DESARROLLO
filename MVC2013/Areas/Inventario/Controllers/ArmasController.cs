@@ -64,6 +64,7 @@ namespace MVC2013.Areas.Inventario.Controllers
             ViewBag.id_usuario_eliminacion = new SelectList(db.Usuarios, "id_usuario", "email");
             ViewBag.id_usuario_modificacion = new SelectList(db.Usuarios, "id_usuario", "email");
             ViewBag.id_arma_estado = new SelectList(db.Arma_Estado.Where(x => x.activo && !x.eliminado), "id_arma_estado", "descripcion");
+            ViewBag.id_estado_tipo = new SelectList(db.Estado_Tipo.Where(x => x.activo && !x.eliminado), "id_estado_tipo", "descripcion");
             ViewBag.id_arma_estado_policia = new SelectList(db.Arma_Estado_Policia.Where(x => x.activo && !x.eliminado), "id_arma_estado_policia", "descripcion");
             ViewBag.id_arma_tipo = new SelectList(db.Arma_Tipo.Where(x => x.activo && !x.eliminado), "id_arma_tipo", "descripcion");
             ViewBag.id_bodega = new SelectList(db.Bodegas.Where(x => x.activo && !x.eliminado), "id_bodega", "descripcion");
@@ -120,6 +121,7 @@ namespace MVC2013.Areas.Inventario.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.id_estado_tipo = new SelectList(db.Estado_Tipo.Where(x => x.activo && !x.eliminado), "id_estado_tipo", "descripcion");
             ViewBag.id_arma_estado = new SelectList(db.Arma_Estado.Where(x => x.activo && !x.eliminado && x.id_arma_estado==armas.id_arma_estado), "id_arma_estado", "descripcion", armas.id_arma_estado);
             ViewBag.id_arma_estado_policia = new SelectList(db.Arma_Estado_Policia.Where(x => x.activo && !x.eliminado && x.id_arma_estado_policia==armas.id_arma_estado_policia), "id_arma_estado_policia", "descripcion");
             ViewBag.id_arma_tipo = new SelectList(db.Arma_Tipo.Where(x => x.activo && !x.eliminado && x.id_arma_tipo==armas.id_arma_tipo), "id_arma_tipo", "descripcion", armas.id_arma_tipo);

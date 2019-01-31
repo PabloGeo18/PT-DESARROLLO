@@ -825,6 +825,7 @@
         <AssociationConnector Association="db_AppModel.FK_Traslados_traslado_estado" />
         <AssociationConnector Association="db_AppModel.FK_Traslados_traslado_tipo" />
         <EntityTypeShape EntityType="db_AppModel.Estado_Tipo" Width="1.5" PointX="7.375" PointY="14" />
+        <AssociationConnector Association="db_AppModel.FK_Armas_Estado_Tipo" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
